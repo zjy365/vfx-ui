@@ -36,6 +36,8 @@ const SHADER_IMPORTS = {
   "web-globe": ["WEB_GLOBE_SHADER", "./WebGlobe.tsx"],
   "live-chart": ["LIVE_CHART_SHADER", "./LiveChart.tsx"],
   "energy-orb": ["ENERGY_ORB_SHADER", "./EnergyOrb.tsx"],
+  "ribbon-field": ["RIBBON_FIELD_SHADER", "./RibbonField.tsx"],
+  "timeline-arc": ["TIMELINE_ARC_SHADER", "./TimelineArc.tsx"],
 };
 
 /** Default-prop uniform snapshots (mirrors component defaults / catalog "classic" variant). */
@@ -51,6 +53,8 @@ const UNIFORMS = {
   iridescent: { time: 1.5, speed: 0.8, scale: 2.4, hueShift: 0, saturation: 1, brightness: 0.9 },
   vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996 },
   "energy-orb": { time: 1.4, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1, hue: 0, saturation: 1, glow: 1 },
+  "ribbon-field": { time: 1.2, speed: 1, intensity: 1, drift: 0, grain: 1, resX: 512, resY: 512 },
+  "timeline-arc": { time: 1.2, speed: 1, activeT: 0.5714, yearCount: 8, cr: 0.145, cg: 0.388, cb: 0.922, resX: 512, resY: 512 },
   "web-globe": { time: 0.8, speed: 0.35, phi: 0, theta: 0.35, dots: 520, dotScale: 1.15, diffuse: 1.2, dark: 0.92, atmosphere: 0.8, seaLevel: 0.46, globeScale: 0.98, cr: 0.616, cg: 0.706, cb: 0.839, gr: 0.49, gg: 0.827, gb: 0.988 },
   "live-chart": null, // data-driven; generated in the entry below
 };

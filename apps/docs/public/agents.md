@@ -25,10 +25,14 @@ npm install @vfx-ui/react vgpu@0.3.1
 - [Vortex](https://vfx-ui.dev/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
 - [Web Globe](https://vfx-ui.dev/components/web-globe.md): WebGPU re-creation of shuding/cobe (MIT): a tiny dot-matrix globe.
 - [Live Chart](https://vfx-ui.dev/components/live-chart.md): Real-time streaming line chart rendered entirely on the GPU.
+- [Energy Orb](https://vfx-ui.dev/components/energy-orb.md): Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
+- [Ribbon Field](https://vfx-ui.dev/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
+- [Timeline Arc](https://vfx-ui.dev/components/timeline-arc.md): Milestone timeline on a sweeping elliptical arc — ruler ticks, hexagon node, dashed leader line (sealos.run/about-us style).
 
 ## Per-component docs (machine-readable)
 
 - https://vfx-ui.dev/components/aurora.md
+- https://vfx-ui.dev/components/energy-orb.md
 - https://vfx-ui.dev/components/fluid-gradient.md
 - https://vfx-ui.dev/components/glass-card.md
 - https://vfx-ui.dev/components/iridescent.md
@@ -36,7 +40,9 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.dev/components/live-chart.md
 - https://vfx-ui.dev/components/mesh-gradient.md
 - https://vfx-ui.dev/components/particle-field.md
+- https://vfx-ui.dev/components/ribbon-field.md
 - https://vfx-ui.dev/components/starfield.md
+- https://vfx-ui.dev/components/timeline-arc.md
 - https://vfx-ui.dev/components/vortex.md
 - https://vfx-ui.dev/components/wave-background.md
 - https://vfx-ui.dev/components/web-globe.md
@@ -62,6 +68,35 @@ import { Aurora } from "@vfx-ui/react";
 
 export function Demo() {
   return <Aurora />;
+}
+```
+
+## Props
+
+(see source)
+
+## Notes for agents
+
+- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
+- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
+- `prefers-reduced-motion` freezes animation automatically.
+- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
+# Energy Orb
+
+Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
+
+## Install
+
+```bash
+npm install @vfx-ui/react vgpu@0.3.1
+```
+
+```tsx
+import { EnergyOrb } from "@vfx-ui/react";
+
+export function Demo() {
+  return <EnergyOrb />;
 }
 ```
 
@@ -279,6 +314,35 @@ export function Demo() {
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
 
+# Ribbon Field
+
+Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
+
+## Install
+
+```bash
+npm install @vfx-ui/react vgpu@0.3.1
+```
+
+```tsx
+import { RibbonField } from "@vfx-ui/react";
+
+export function Demo() {
+  return <RibbonField />;
+}
+```
+
+## Props
+
+(see source)
+
+## Notes for agents
+
+- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
+- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
+- `prefers-reduced-motion` freezes animation automatically.
+- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
 # Starfield
 
 Hashed star grid with twinkle and slow parallax drift.
@@ -294,6 +358,35 @@ import { Starfield } from "@vfx-ui/react";
 
 export function Demo() {
   return <Starfield />;
+}
+```
+
+## Props
+
+(see source)
+
+## Notes for agents
+
+- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
+- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
+- `prefers-reduced-motion` freezes animation automatically.
+- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
+# Timeline Arc
+
+Milestone timeline on a sweeping elliptical arc — ruler ticks, hexagon node, dashed leader line (sealos.run/about-us style).
+
+## Install
+
+```bash
+npm install @vfx-ui/react vgpu@0.3.1
+```
+
+```tsx
+import { TimelineArc } from "@vfx-ui/react";
+
+export function Demo() {
+  return <TimelineArc />;
 }
 ```
 

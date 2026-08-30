@@ -73,6 +73,20 @@ export {
   type EnergyOrbProps,
 } from "./components/EnergyOrb.tsx";
 export {
+  RibbonField,
+  RIBBON_FIELD_SHADER,
+  RIBBON_FIELD_DEFAULTS,
+  RIBBON_FIELD_PRESETS,
+  type RibbonFieldProps,
+} from "./components/RibbonField.tsx";
+export {
+  TimelineArc,
+  TIMELINE_ARC_SHADER,
+  TIMELINE_ARC_DEFAULTS,
+  TIMELINE_ARC_PRESETS,
+  type TimelineArcProps,
+} from "./components/TimelineArc.tsx";
+export {
   LiveChart,
   LIVE_CHART_SHADER,
   LIVE_CHART_PRESETS,

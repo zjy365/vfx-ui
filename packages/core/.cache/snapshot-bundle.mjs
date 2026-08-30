@@ -97,8 +97,8 @@ var require_react_production_min = __commonJS({
       var g = arguments.length - 2;
       if (1 === g) c.children = e;
       else if (1 < g) {
-        for (var f = Array(g), m = 0; m < g; m++) f[m] = arguments[m + 2];
-        c.children = f;
+        for (var f2 = Array(g), m = 0; m < g; m++) f2[m] = arguments[m + 2];
+        c.children = f2;
       }
       if (a && a.defaultProps) for (d in g = a.defaultProps, g) void 0 === c[d] && (c[d] = g[d]);
       return { $$typeof: l, type: a, key: k, ref: h, props: c, _owner: K.current };
@@ -143,10 +143,10 @@ var require_react_production_min = __commonJS({
       d = "" === d ? "." : d + ":";
       if (I(a)) for (var g = 0; g < a.length; g++) {
         k = a[g];
-        var f = d + Q(k, g);
-        h += R(k, b, e, f, c);
+        var f2 = d + Q(k, g);
+        h += R(k, b, e, f2, c);
       }
-      else if (f = A(a), "function" === typeof f) for (a = f.call(a), g = 0; !(k = a.next()).done; ) k = k.value, f = d + Q(k, g++), h += R(k, b, e, f, c);
+      else if (f2 = A(a), "function" === typeof f2) for (a = f2.call(a), g = 0; !(k = a.next()).done; ) k = k.value, f2 = d + Q(k, g++), h += R(k, b, e, f2, c);
       else if ("object" === k) throw b = String(a), Error("Objects are not valid as a React child (found: " + ("[object Object]" === b ? "object with keys {" + Object.keys(a).join(", ") + "}" : b) + "). If you meant to render a collection of children, use an array instead.");
       return h;
     }
@@ -211,13 +211,13 @@ var require_react_production_min = __commonJS({
         void 0 !== b.ref && (k = b.ref, h = K.current);
         void 0 !== b.key && (c = "" + b.key);
         if (a.type && a.type.defaultProps) var g = a.type.defaultProps;
-        for (f in b) J.call(b, f) && !L.hasOwnProperty(f) && (d[f] = void 0 === b[f] && void 0 !== g ? g[f] : b[f]);
+        for (f2 in b) J.call(b, f2) && !L.hasOwnProperty(f2) && (d[f2] = void 0 === b[f2] && void 0 !== g ? g[f2] : b[f2]);
       }
-      var f = arguments.length - 2;
-      if (1 === f) d.children = e;
-      else if (1 < f) {
-        g = Array(f);
-        for (var m = 0; m < f; m++) g[m] = arguments[m + 2];
+      var f2 = arguments.length - 2;
+      if (1 === f2) d.children = e;
+      else if (1 < f2) {
+        g = Array(f2);
+        for (var m = 0; m < f2; m++) g[m] = arguments[m + 2];
         d.children = g;
       }
       return { $$typeof: l, type: a.type, key: c, ref: k, props: d, _owner: h };
@@ -1363,7 +1363,7 @@ var require_react_development = __commonJS({
           }
           return dispatcher.useContext(Context);
         }
-        function useState2(initialState) {
+        function useState3(initialState) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useState(initialState);
         }
@@ -1371,11 +1371,11 @@ var require_react_development = __commonJS({
           var dispatcher = resolveDispatcher();
           return dispatcher.useReducer(reducer, initialArg, init3);
         }
-        function useRef2(initialValue) {
+        function useRef3(initialValue) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useRef(initialValue);
         }
-        function useEffect2(create, deps) {
+        function useEffect3(create, deps) {
           var dispatcher = resolveDispatcher();
           return dispatcher.useEffect(create, deps);
         }
@@ -2158,15 +2158,15 @@ var require_react_development = __commonJS({
         exports.useContext = useContext;
         exports.useDebugValue = useDebugValue;
         exports.useDeferredValue = useDeferredValue;
-        exports.useEffect = useEffect2;
+        exports.useEffect = useEffect3;
         exports.useId = useId;
         exports.useImperativeHandle = useImperativeHandle;
         exports.useInsertionEffect = useInsertionEffect;
         exports.useLayoutEffect = useLayoutEffect;
         exports.useMemo = useMemo;
         exports.useReducer = useReducer;
-        exports.useRef = useRef2;
-        exports.useState = useState2;
+        exports.useRef = useRef3;
+        exports.useState = useState3;
         exports.useSyncExternalStore = useSyncExternalStore;
         exports.useTransition = useTransition;
         exports.version = ReactVersion;
@@ -2194,11 +2194,11 @@ var require_react = __commonJS({
 var require_react_jsx_runtime_production_min = __commonJS({
   "node_modules/.pnpm/react@18.3.1/node_modules/react/cjs/react-jsx-runtime.production.min.js"(exports) {
     "use strict";
-    var f = require_react();
+    var f2 = require_react();
     var k = Symbol.for("react.element");
     var l = Symbol.for("react.fragment");
     var m = Object.prototype.hasOwnProperty;
-    var n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
+    var n = f2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner;
     var p = { key: true, ref: true, __self: true, __source: true };
     function q(c, a, g) {
       var b, d = {}, e = null, h = null;
@@ -3098,11 +3098,11 @@ var require_react_jsx_runtime_development = __commonJS({
             return jsxWithValidation(type, props, key, false);
           }
         }
-        var jsx15 = jsxWithValidationDynamic;
-        var jsxs = jsxWithValidationStatic;
+        var jsx3 = jsxWithValidationDynamic;
+        var jsxs2 = jsxWithValidationStatic;
         exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsx = jsx15;
-        exports.jsxs = jsxs;
+        exports.jsx = jsx3;
+        exports.jsxs = jsxs2;
       })();
     }
   }
@@ -5208,6 +5208,9 @@ var require_png = __commonJS({
   }
 });
 
+// packages/react/src/components/TimelineArc.tsx
+var import_react2 = __toESM(require_react(), 1);
+
 // packages/react/src/VfxCanvas.tsx
 var import_react = __toESM(require_react(), 1);
 
@@ -5277,1349 +5280,133 @@ async function attachRenderer(gpu2, canvas, options) {
 // packages/react/src/VfxCanvas.tsx
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 
-// packages/react/src/components/WaveBackground.tsx
+// packages/react/src/components/TimelineArc.tsx
 var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
-var WAVE_SHADER = (
+var CX_T = 0.52;
+var CY = 1.18;
+var RX_T = 0.58;
+var RY = 1.06;
+var ARC_A0 = -2.7053;
+var ARC_A1 = -0.3142;
+var YEAR_A0 = -2.6012;
+var YEAR_A1 = -1.1868;
+var MINORS = 5;
+var LEADER_DX = 0.13;
+var LEADER_DY = 0.34;
+var f = (n) => n.toFixed(6);
+var TIMELINE_ARC_SHADER = (
   /* wgsl */
   `
 struct Params {
   time: f32,
   speed: f32,
-  amplitude: f32,
-  frequency: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-  c1r: f32, c1g: f32, c1b: f32,
-  c2r: f32, c2g: f32, c2b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 3; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.13 + vec2f(7.3, 3.1);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-
-  // Four travelling wave trains at different speeds and directions \u2014
-  // parallax between them is what makes water read as water.
-  let w1 = sin(uvIn.x * p.frequency + t * 1.00 + fbm(uvIn * 2.0 + t * 0.10) * 2.4) * 0.14;
-  let w2 = sin(uvIn.x * p.frequency * 1.7 - t * 1.35 + fbm(uvIn * 3.1 - t * 0.16) * 1.8) * 0.07;
-  let w3 = sin(uvIn.x * p.frequency * 0.6 + t * 0.55 + fbm(uvIn * 1.3 + t * 0.07) * 3.0) * 0.24;
-  let w4 = sin((uvIn.x + uvIn.y) * p.frequency * 1.15 + t * 1.9) * 0.035;
-  let band = uvIn.y + (w1 + w2 + w3 + w4) * p.amplitude;
-
-  let cA = vec3f(p.c0r, p.c0g, p.c0b);
-  let cB = vec3f(p.c1r, p.c1g, p.c1b);
-  let cC = vec3f(p.c2r, p.c2g, p.c2b);
-  var col = mix(cA, cB, smoothstep(0.0, 0.62, band));
-  col = mix(col, cC, smoothstep(0.58, 1.05, band));
-
-  // Crest highlights: bright film where several waves peak together.
-  let crest = exp(-abs(band - 0.78) * 7.0) * 0.30;
-  col += vec3f(crest);
-
-  // Moonlight glitter: fine sparkles riding the crest line.
-  let sparkle = pow(hash21(floor(uvIn * vec2f(340.0, 190.0)) + floor(t * 3.0)), 40.0);
-  col += vec3f(sparkle) * crest * 2.2;
-
-  // Depth shading: darker troughs, airier tops.
-  col *= mix(0.72, 1.12, smoothstep(0.0, 1.0, band));
-
-  // Vignette + dither.
-  let v = uvIn - vec2f(0.5);
-  col *= 1.0 - 0.35 * dot(v, v) * 2.2;
-  col += vec3f((hash21(uvIn * 611.7 + t) - 0.5) / 255.0 * 1.5);
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/FluidGradient.tsx
-var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
-var FLUID_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  warp: f32,
-  scale: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-  c1r: f32, c1g: f32, c1b: f32,
-  c2r: f32, c2g: f32, c2b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 5; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.02 + vec2f(1.7, 4.3);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-fn dither(uv: vec2f) -> f32 {
-  return (hash21(uv * 831.7) - 0.5) / 255.0 * 1.6;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-  let uv = (uvIn - vec2f(0.5)) * p.scale * vec2f(1.0, 1.0);
-
-  // Triple nested domain warp (I\xF1igo Quilez's oil-paint recipe): q warps r,
-  // r warps the final field. Each layer drifts at its own speed.
-  let q = vec2f(
-    fbm(uv + vec2f(t * 0.21, -t * 0.14)),
-    fbm(uv + vec2f(5.2, 1.3) - vec2f(t * 0.17, t * 0.11)),
-  );
-  let r = vec2f(
-    fbm(uv + p.warp * q + vec2f(1.7, 9.2) + vec2f(t * 0.12, t * 0.09)),
-    fbm(uv + p.warp * q + vec2f(8.3, 2.8) - vec2f(t * 0.1, t * 0.13)),
-  );
-  let f = fbm(uv + p.warp * r);
-
-  let cA = vec3f(p.c0r, p.c0g, p.c0b);
-  let cB = vec3f(p.c1r, p.c1g, p.c1b);
-  let cC = vec3f(p.c2r, p.c2g, p.c2b);
-
-  var col = mix(cA, cB, clamp(f * f * 2.4, 0.0, 1.0));
-  col = mix(col, cC, clamp(r.x * 1.35, 0.0, 1.0));
-  col = mix(col, cC * vec3f(0.85, 1.0, 0.9), clamp(q.x * 0.9, 0.0, 1.0) * 0.6);
-
-  // Flow-line highlights: thin bright filaments along the warped field.
-  let filament = pow(clamp(1.0 - abs(f - 0.52) * 6.0, 0.0, 1.0), 4.0);
-  col += filament * 0.16 * mix(cB, cC, 0.5);
-
-  // Grade: filmic-ish S-curve, vignette, dither.
-  col = col * col * (3.0 - 2.0 * clamp(col, vec3f(0.0), vec3f(1.0)));
-  let v = uvIn - vec2f(0.5);
-  col *= 1.0 - 0.4 * dot(v, v) * 2.2;
-  col = clamp(col + vec3f(dither(uvIn)), vec3f(0.0), vec3f(1.0));
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/Aurora.tsx
-var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
-var AURORA_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  intensity: f32,
-  bands: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-  c1r: f32, c1g: f32, c1b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 4; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.07 + vec2f(3.7, 8.1);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-// Two-layer starfield, dimmed wherever the aurora is bright.
-fn stars(uv: vec2f, t: f32, suppress: f32) -> vec3f {
-  var col = vec3f(0.0);
-  let g1 = floor(uv * 220.0);
-  let s1 = hash21(g1);
-  if (s1 > 0.9965) {
-    let tw = 0.55 + 0.45 * sin(t * 2.1 + s1 * 40.0);
-    col += vec3f(0.9, 0.93, 1.0) * tw * 0.7;
-  }
-  let g2 = floor(uv * 90.0 + vec2f(31.7));
-  let s2 = hash21(g2);
-  if (s2 > 0.998) {
-    col += vec3f(1.0, 0.98, 0.9) * 1.1;
-  }
-  return col * suppress;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-
-  // Night sky: deep blue gradient, darkest at the top.
-  var col = mix(vec3f(0.008, 0.012, 0.03), vec3f(0.02, 0.035, 0.07), uvIn.y);
-
-  var aurora = vec3f(0.0);
-  let count = clamp(p.bands, 1.0, 5.0);
-  for (var i = 0; i < 5; i++) {
-    if (f32(i) >= count) { break; }
-    let fi = f32(i);
-
-    // Curtain lower edge: a fbm ridge drifting sideways, unique per band.
-    let drift = t * (0.13 + 0.04 * fi);
-    let edge = 0.14 + 0.09 * fi
-      + (fbm(vec2(uvIn.x * (1.6 + 0.3 * fi) + fi * 9.4, drift)) - 0.5) * 0.13
-      + sin(uvIn.x * (2.1 + 0.4 * fi) + fi * 2.7 + t * 0.18) * 0.025;
-    // Height above the sharp lower edge (positive = up into the curtain).
-    let h = edge - uvIn.y;
-
-    // Sharp lower edge, exponential falloff upward, curtain hangs in the sky.
-    let body = exp(-h * (2.6 + fi * 0.35)) * smoothstep(-0.004, 0.014, h) * smoothstep(0.0, 0.22, uvIn.y);
-
-    // Vertical rays along the curtain, animated.
-    let rays = 0.45 + 0.75 * fbm(vec2(uvIn.x * (16.0 + fi * 5.0) + fi * 13.0, drift * 2.2));
-
-    // Green at the edge fading to violet as rays rise.
-    let heightMix = exp(-h * 1.1);
-    let curtainCol = mix(vec3f(p.c0r, p.c0g, p.c0b), vec3f(p.c1r, p.c1g, p.c1b), clamp(1.0 - heightMix, 0.0, 1.0));
-
-    let bright = (0.4 + 0.6 * heightMix) * body * rays;
-    aurora += curtainCol * bright;
-  }
-
-  aurora = aurora * p.intensity * 0.6;
-  col += aurora;
-  col += stars(uvIn, t, 1.0 - clamp(aurora.g + aurora.b, 0.0, 0.85)) * 0.8;
-
-  // Faint horizon glow at the very bottom keeps the frame grounded.
-  col += vec3f(0.012, 0.02, 0.045) * pow(clamp((uvIn.y - 0.82) / 0.18, 0.0, 1.0), 2.0);
-
-  // Vignette + dither.
-  let v = uvIn - vec2f(0.5);
-  col *= 1.0 - 0.35 * dot(v, v) * 2.2;
-  col += vec3f((hash21(uvIn * 731.0 + t) - 0.5) / 255.0 * 1.5);
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/Starfield.tsx
-var import_jsx_runtime5 = __toESM(require_jsx_runtime(), 1);
-var STARFIELD_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  density: f32,
-  twinkle: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 4; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.11 + vec2f(4.4, 9.1);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-/// Stellar temperature: most stars cool white-blue, a few warm orange.
-fn starColor(seed: f32, base: vec3f) -> vec3f {
-  let warm = vec3f(1.0, 0.78, 0.55);
-  let neutral = vec3f(1.0, 0.97, 0.92);
-  let cold = vec3f(0.72, 0.82, 1.0);
-  var col = base;
-  if (seed < 0.12) {
-    col = warm;
-  } else if (seed < 0.55) {
-    col = neutral;
-  } else {
-    col = cold;
-  }
-  return mix(vec3f(1.0), col, 0.55);
-}
-
-/// One parallax layer of hashed stars. Returns (rgb premult by intensity).
-fn starLayer(
-  uv: vec2f,
-  t: f32,
-  cells: f32,
-  density: f32,
-  twinkle: f32,
-  seed: f32,
-  drift: vec2f,
-  sizeK: f32,
-  base: vec3f,
-) -> vec3f {
-  let g = fract(uv + drift) * cells;
-  let id = floor(g);
-  let f = fract(g);
-
-  let h1 = hash21(id + vec2f(seed, seed * 1.31 + 0.7));
-  let h2 = hash21(id + vec2f(seed + 5.2, 3.7));
-  let h3 = hash21(id + vec2f(9.1, seed + 2.3));
-  let h4 = hash21(id + vec2f(seed + 1.9, 7.7));
-
-  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
-  let pos = vec2f(h2, h3) * 0.72 + 0.14;
-  let d = length(f - pos);
-
-  // Only a fraction of stars pulse; the rest hold steady.
-  let pulsing = step(h4, twinkle);
-  let tw = mix(1.0, 0.5 + 0.5 * sin(t * (0.9 + 2.4 * h1) + h2 * 6.2831), pulsing * 0.9);
-  let mag = 0.5 + 0.5 * h3 * h3; // magnitude: few bright, many faint
-  let core = exp(-d * d * sizeK);
-  let halo = 0.09 * exp(-d * d * sizeK * 0.55);
-  let tint = starColor(h2, base);
-  return exists * mag * tw * tint * (core + halo);
-}
-
-fn dither(uv: vec2f) -> f32 {
-  return (hash21(uv * 733.1) - 0.5) / 255.0 * 1.5;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-  let base = vec3f(p.c0r, p.c0g, p.c0b);
-
-  // Milky-way band: a diagonal fbm haze that lifts star density inside it.
-  let bandQ = mat2x2f(0.62, -0.78, 0.78, 0.62) * (uvIn - vec2f(0.42, 0.55));
-  let band = exp(-bandQ.x * bandQ.x * 7.0);
-  let haze = fbm(bandQ * 3.1 + vec2f(t * 0.008, 0.0));
-  let milkyWay = band * (0.22 + 0.5 * haze);
-
-  // Deep-space gradient, never pure black; nebula tint inside the band.
-  var col = mix(vec3f(0.012, 0.016, 0.034), vec3f(0.03, 0.034, 0.06), uvIn.y);
-  col += base * milkyWay * 0.10;
-  col += vec3f(0.05, 0.04, 0.09) * band * haze * 0.35;
-
-  // Three parallax layers: far dust, mid field, near bright stars.
-  let far = starLayer(uvIn, t, 26.0, p.density * 1.6 + band * 0.25, p.twinkle * 0.7, 3.7, vec2f(t * 0.010, t * 0.004), 240.0, base);
-  let mid = starLayer(uvIn, t, 13.0, p.density * 0.9 + band * 0.18, p.twinkle, 11.3, vec2f(t * 0.02, -t * 0.008), 120.0, base);
-  let near = starLayer(uvIn, t, 6.5, p.density * 0.45, p.twinkle * 0.85, 27.9, vec2f(t * 0.034, t * 0.012), 70.0, base);
-
-  col += far * 0.35;
-  col += mid * 0.7;
-  col += near * 1.15;
-
-  // Vignette keeps corners quiet; dither kills 8-bit banding in the gradient.
-  let v = uvIn - vec2f(0.5);
-  col *= 1.0 - 0.3 * dot(v, v) * 2.2;
-  col += vec3f(dither(uvIn));
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/ParticleField.tsx
-var import_jsx_runtime6 = __toESM(require_jsx_runtime(), 1);
-var PARTICLE_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  density: f32,
-  size: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn hash31(p: vec3f) -> f32 {
-  return fract(sin(dot(p, vec3f(127.1, 311.7, 74.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-/// Flow field the particles ride on: two-octave curl-ish drift.
-fn flow(p: vec2f, t: f32) -> vec2f {
-  let e = noise(p * 1.4 + vec2f(t * 0.22, -t * 0.13));
-  let g = noise(p * 1.4 + vec2f(7.3 - t * 0.15, 2.9 + t * 0.17));
-  return vec2f(e, g) - vec2f(0.5);
-}
-
-/// One depth layer of drifting soft particles.
-fn particleLayer(
-  uv: vec2f,
-  t: f32,
-  cells: f32,
-  density: f32,
-  size: f32,
-  seed: f32,
-  drift: f32,
-  base: vec3f,
-  twinkleK: f32,
-) -> vec3f {
-  let g = fract(uv * 1.0 + vec2f(drift * 0.6, -drift)) * cells;
-  let id = floor(g);
-  let f = fract(g);
-
-  let h1 = hash21(id + vec2f(seed, seed * 0.73 + 1.1));
-  let h2 = hash21(id + vec2f(seed + 4.3, 9.2));
-  let h3 = hash21(id + vec2f(2.6, seed + 5.8));
-  let h4 = hash31(vec3f(id, seed));
-
-  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
-  // Per-particle wander: each drifts along the flow field with its own phase.
-  let wander = flow(id * 0.11 + h2 * 3.0, t) * 0.22;
-  let pos = vec2f(h2, h3) * 0.66 + 0.17 + wander;
-  let d = length(f - pos);
-
-  // Breathing size + per-particle phase twinkle.
-  let breathe = 0.75 + 0.25 * sin(t * (0.5 + h3) + h2 * 6.2831);
-  // dotR is in cell-fraction units and must stay well inside the cell.
-  let dotR = clamp(size * (0.35 + 0.3 * h4) * breathe, 0.04, 0.24);
-  let core = exp(-d * d / max(dotR * dotR * 2.2, 1e-5));
-  let halo = exp(-d * d / max(dotR * dotR * 7.0, 1e-5)) * 0.14;
-  // Soft-fade before the cell border so glowing orbs never clip into squares.
-  let edgeFade = 1.0 - smoothstep(0.30, 0.48, max(abs(f.x - 0.5), abs(f.y - 0.5)));
-
-  let fade = smoothstep(0.0, 0.15, h2) * smoothstep(1.0, 0.85, h2);
-  let tw = mix(1.0, 0.6 + 0.4 * sin(t * 1.3 + h2 * 6.2831), twinkleK);
-  return exists * fade * tw * edgeFade * base * (core + halo) * (0.3 + 0.45 * h1);
-}
-
-fn dither(uv: vec2f) -> f32 {
-  return (hash21(uv * 517.3) - 0.5) / 255.0 * 1.5;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-  let base = vec3f(p.c0r, p.c0g, p.c0b);
-
-  // Depth: far dust motes, mid field, near bokeh orbs \u2014 three drift rates.
-  var col = mix(vec3f(0.016, 0.022, 0.04), vec3f(0.035, 0.045, 0.075), uvIn.y);
-  col += base * 0.012 * noise(uvIn * 3.0 + vec2f(t * 0.05));
-
-  let far = particleLayer(uvIn, t, 30.0, p.density * 1.7, p.size * 0.55, 3.1, t * 0.02, base, 0.5);
-  let mid = particleLayer(uvIn, t, 15.0, p.density, p.size, 11.7, t * 0.045, base, 0.25);
-  let near = particleLayer(uvIn, t, 7.5, p.density * 0.5, p.size * 2.1, 27.3, t * 0.075, base, 0.1);
-
-  col += far * 0.35 + mid * 0.7 + near * 0.95;
-
-  // Faint glow pooling where particles cluster.
-  let cluster = noise(uvIn * 2.2 + flow(uvIn * 1.1, t) * 1.4 + vec2f(t * 0.03));
-  col += base * 0.05 * pow(cluster, 3.0);
-
-  let v = uvIn - vec2f(0.5);
-  col *= 1.0 - 0.32 * dot(v, v) * 2.2;
-  col += vec3f(dither(uvIn));
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/GlassCard.tsx
-var import_jsx_runtime7 = __toESM(require_jsx_runtime(), 1);
-var GLASS_CARD_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  shine: f32,
-  borderGlow: f32,
-  cardScale: f32,
-  radius: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 4; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.05 + vec2f(3.3, 6.1);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-/// Rounded-rect signed distance, centred, half-size (w, h).
-fn sdRoundRect(p: vec2f, w: f32, h: f32, r: f32) -> f32 {
-  let q = abs(p) - vec2f(w, h) + vec2f(r);
-  return length(max(q, vec2f(0.0))) + min(max(q.x, q.y), 0.0) - r;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time;
-
-  // Ambient backdrop: slow aurora-like colour field so the glass has
-  // something real to refract.
-  let bg = fbm(uvIn * 2.2 + vec2f(t * 0.03, -t * 0.02));
-  let bg2 = fbm(uvIn * 3.7 - vec2f(t * 0.02, t * 0.03));
-  var scene = mix(vec3f(0.05, 0.07, 0.13), vec3f(0.10, 0.14, 0.24), bg);
-  scene += vec3f(0.10, 0.06, 0.20) * pow(bg2, 2.2) * 0.9;
-
-  let aspect = vec2f(1.0, 1.0);
-  let card = (uvIn - vec2f(0.5)) * aspect;
-  let w = 0.36 * p.cardScale * 2.0;
-  let h = 0.24 * p.cardScale * 2.0;
-  let sd = sdRoundRect(card, w, h, p.radius);
-
-  // Refraction: bend the scene lookup by the glass surface normal.
-  let eps = 0.004;
-  let sdx = sdRoundRect(card + vec2f(eps, 0.0), w, h, p.radius) - sd;
-  let sdy = sdRoundRect(card + vec2f(0.0, eps), w, h, p.radius) - sd;
-  let normal = normalize(vec3f(sdx, sdy, 0.02));
-  let bend = normal.xy * 0.16;
-
-  let inside = smoothstep(0.0025, -0.0025, sd);
-
-  // What the glass shows: the scene, sampled through the bend + interior fbm.
-  let refr = fbm((uvIn + bend) * 3.4 + vec2f(t * 0.015, -t * 0.01));
-  var glassCol = scene * (0.55 + 0.5 * refr);
-  let tint = vec3f(p.c0r, p.c0g, p.c0b);
-  glassCol = mix(glassCol, glassCol * tint * 1.6 + tint * 0.10, 0.45);
-
-  // Sweeping specular highlight, diagonal, time-driven.
-  let sweep = fract(t * 0.11);
-  let sweepLine = card.x + card.y - sweep * 1.6 + 0.3;
-  let spec = exp(-abs(sweepLine) * 16.0) * p.shine;
-
-  // Edge treatment: bright outer rim + inner bevel line.
-  let edge = smoothstep(0.02, 0.0, abs(sd + 0.004)) ;
-  let bevel = smoothstep(0.05, 0.0, abs(sd + 0.016));
-
-  var col = mix(scene, glassCol, inside);
-  // Interior grain: micro-texture so the pane never reads as flat plastic.
-  let grain = fbm(uvIn * 46.0 + vec2f(refr * 2.0)) * 0.14 + fbm(uvIn * 170.0) * 0.07;
-  col = mix(col, col * (0.78 + 0.44 * grain) + vec3f(grain * 0.07), inside * 0.95);
-  col += tint * edge * p.borderGlow * 1.02;
-  col += vec3f(0.75, 0.82, 1.0) * bevel * 0.3 * p.borderGlow;
-  col += vec3f(0.9, 0.94, 1.0) * spec * inside * 0.9;
-
-  // Soft drop shadow below the card.
-  let shadow = smoothstep(0.12, 0.0, sd - 0.05) * (1.0 - inside);
-  col = mix(col, vec3f(0.0, 0.0, 0.0), shadow * 0.35);
-
-  // Keep the backdrop alive: faint drifting texture outside the pane.
-  let outer = 1.0 - inside;
-  col += vec3f(0.030, 0.038, 0.062) * outer * (0.4 + 0.6 * fbm(uvIn * 5.5 - vec2f(t * 0.02, t * 0.014)));
-
-  // Soft-clip highlights so rims never clamp into flat white plateaus.
-  let lum0 = dot(col, vec3f(0.2126, 0.7152, 0.0722));
-  if (lum0 > 0.8) {
-    col = col * (0.8 + 0.2 * lum0) / max(lum0, 1e-3) * lum0;
-  }
-  let d = hash21(uvIn * 991.0 + t);
-  let lum = dot(col, vec3f(0.2126, 0.7152, 0.0722));
-  col += vec3f((d - 0.5) / 255.0 * (3.2 + 5.0 * (1.0 - clamp(lum, 0.0, 1.0))) + (fbm(uvIn * 23.0 + t * 0.05) - 0.5) * 0.012);
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/LiquidGlass.tsx
-var import_jsx_runtime8 = __toESM(require_jsx_runtime(), 1);
-var LIQUID_GLASS_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  distortion: f32,
-  chromatic: f32,
-  scale: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 4; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.09 + vec2f(2.9, 7.1);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-/// The liquid surface height field: two crossing wave families + fbm swell.
-fn surface(p: vec2f, t: f32) -> f32 {
-  let w1 = sin(p.x * 3.1 + fbm(p * 1.4 + t * 0.18) * 4.0 + t * 0.7);
-  let w2 = sin(p.y * 2.6 - fbm(p * 1.1 - t * 0.14) * 3.4 + t * 0.5);
-  return w1 * 0.6 + w2 * 0.4 + fbm(p * 2.4 - vec2f(t * 0.1)) * 0.8;
-}
-
-/// Refraction offset of the surface field at p (finite-difference gradient).
-fn refract(p: vec2f, t: f32, k: f32) -> vec2f {
-  let e = 0.006;
-  let h = surface(p, t);
-  let dx = surface(p + vec2f(e, 0.0), t) - h;
-  let dy = surface(p + vec2f(0.0, e), t) - h;
-  return vec2f(dx, dy) * k;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-  let q = (uvIn - vec2f(0.5)) * p.scale * 2.4;
-
-  // Chromatic dispersion: each channel refracts with a slightly different
-  // offset \u2014 the signature of real thick glass.
-  let k = p.distortion * 0.05;
-  let base = vec2f(0.0);
-  let off = refract(q, t, k);
-  let disp = off * p.chromatic * 0.5;
-
-  let src = uvIn * 2.0;
-  let colR = fbm((uvIn + off + disp) * 2.6 + vec2f(t * 0.03));
-  let colG = fbm((uvIn + off) * 2.6 + vec2f(t * 0.03));
-  let colB = fbm((uvIn + off - disp) * 2.6 + vec2f(t * 0.03));
-
-  // Deep glass base from the refracted channels \u2014 dark, so ridges pop.
-  var col = vec3f(0.03, 0.045, 0.09);
-  col += vec3f(colR, colG, colB) * vec3f(0.22, 0.30, 0.46);
-
-  // Interference contour lines of the surface field, RGB-split: these are
-  // the visible "liquid" structures, not a blurry haze.
-  let phase = surface(q, t) * 9.0;
-  let lineR = abs(fract(phase * 0.96 + 0.19) - 0.5);
-  let lineG = abs(fract(phase) - 0.5);
-  let lineB = abs(fract(phase * 1.05 - 0.13) - 0.5);
-  let lineW = 0.10;
-  col += vec3f(
-    (1.0 - smoothstep(0.0, lineW, lineR)) * 0.85,
-    (1.0 - smoothstep(0.0, lineW, lineG)) * 0.75,
-    (1.0 - smoothstep(0.0, lineW, lineB)) * 0.7,
-  ) * vec3f(0.5, 0.65, 1.0);
-
-  // Steep-gradient caustic glow.
-  let ridge = pow(1.0 - clamp(length(off) * 4.2, 0.0, 1.0), 5.0);
-  col += vec3f(0.35, 0.5, 0.95) * ridge * 0.4;
-
-  // Sparse specular glints.
-  let glint = pow(noise(q * 3.4 + vec2f(t * 0.4, -t * 0.3)), 8.0);
-  col += vec3f(0.9, 0.94, 1.0) * glint * 0.35;
-
-  let v = uvIn - vec2f(0.5);
-  col *= 1.0 - 0.38 * dot(v, v) * 2.2;
-  col += vec3f((hash21(uvIn * 883.1 + t) - 0.5) / 255.0 * 1.5);
-  return vec4f(clamp(col, vec3f(0.0), vec3f(1.0)), 1.0);
-}
-`
-);
-
-// packages/react/src/components/MeshGradient.tsx
-var import_jsx_runtime9 = __toESM(require_jsx_runtime(), 1);
-var MESH_GRADIENT_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  scale: f32,
-  softness: f32,
-  c0r: f32, c0g: f32, c0b: f32,
-  c1r: f32, c1g: f32, c1b: f32,
-  c2r: f32, c2g: f32, c2b: f32,
-  c3r: f32, c3g: f32, c3b: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash2(p: vec2f) -> vec2f {
-  var q = vec2f(dot(p, vec2f(127.1, 311.7)), dot(p, vec2f(269.5, 183.3)));
-  q = fract(sin(q) * vec2f(43758.5453, 22578.145));
-  return q;
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * (3.0 - 2.0 * f);
-  let a = hash2(i).x;
-  let b = hash2(i + vec2f(1.0, 0.0)).x;
-  let c = hash2(i + vec2f(0.0, 1.0)).x;
-  let d = hash2(i + vec2f(1.0, 1.0)).x;
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-@fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-  var pt = uv * p.scale;
-  let w = noise(pt * 0.9 + t * 0.18) - 0.5;
-  let w2 = noise(pt * 1.7 - t * 0.13) - 0.5;
-  pt = pt + vec2f(w, w2) * 1.6;
-
-  let cell = floor(pt);
-  let f = fract(pt);
-  var minDist = 8.0;
-  for (var y: i32 = -1; y <= 1; y = y + 1) {
-    for (var x: i32 = -1; x <= 1; x = x + 1) {
-      let o = vec2f(f32(x), f32(y));
-      let h = hash2(cell + o);
-      let d = length(o + h - f);
-      minDist = min(minDist, d);
-    }
-  }
-
-  let warp = noise(pt * 0.5 + t * 0.07);
-  let cA = vec3f(p.c0r, p.c0g, p.c0b);
-  let cB = vec3f(p.c1r, p.c1g, p.c1b);
-  let cC = vec3f(p.c2r, p.c2g, p.c2b);
-  let cD = vec3f(p.c3r, p.c3g, p.c3b);
-  var col = mix(cA, cB, smoothstep(0.0, 0.55, warp));
-  col = mix(col, cC, smoothstep(0.35, 0.75, minDist));
-  col = mix(col, cD, smoothstep(0.6, 1.1, minDist) * (0.5 + 0.5 * w));
-
-  let edge = smoothstep(p.softness, 0.02, abs(minDist - 0.62)) * 0.10;
-  col += mix(vec3f(1.0), cC, 0.55) * edge;
-  col *= 0.92 + 0.16 * w;
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/Iridescent.tsx
-var import_jsx_runtime10 = __toESM(require_jsx_runtime(), 1);
-var IRIDESCENT_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  scale: f32,
-  hueShift: f32,
-  saturation: f32,
-  brightness: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
-}
-
-fn noise(p: vec2f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
-  let a = hash21(i);
-  let b = hash21(i + vec2f(1.0, 0.0));
-  let c = hash21(i + vec2f(0.0, 1.0));
-  let d = hash21(i + vec2f(1.0, 1.0));
-  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
-}
-
-fn fbm(p: vec2f) -> f32 {
-  var v = 0.0;
-  var amp = 0.55;
-  var q = p;
-  var m = 0.0;
-  for (var i = 0; i < 4; i++) {
-    v += amp * noise(q);
-    m += amp;
-    q = q * 2.04 + vec2f(5.2, 1.3);
-    amp = amp * 0.5;
-  }
-  return v / m;
-}
-
-fn cosinePalette(v: f32) -> vec3f {
-  return vec3f(0.5) + vec3f(0.5) * cos(vec3f(6.28318) * (vec3f(1.0, 0.81, 0.62) * v + vec3f(0.12, 0.34, 0.62)));
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let t = p.time * p.speed;
-  let q = (uvIn - vec2f(0.5)) * p.scale * vec2f(1.0, 1.0);
-
-  // Nested domain warp \u2014 two layers moving at different rates give the silk
-  // its depth; a single warp reads as a blurry gradient.
-  let w1 = fbm(q * 0.75 + vec2f(t * 0.11, -t * 0.06));
-  let w2 = fbm(q * 1.8 + vec2f(w1 * 2.1) - vec2f(t * 0.05, t * 0.09));
-  let flow = fbm(q * 1.25 + vec2f(w2 * 2.4) + vec2f(t * 0.04, -t * 0.05));
-
-  // Thin-film thickness field: smooth flow crossed with interference bands.
-  let bands = sin((q.x * 1.4 + q.y * 0.9) * 2.2 + w2 * 5.0 + t * 0.35);
-  let thick = flow * 3.0 + bands * 0.32 + w1 * 1.4;
-
-  var col = cosinePalette(thick * 0.8 + p.hueShift + t * 0.015);
-
-  // Secondary interference highlight \u2014 thin bright iridescent streaks.
-  let streak = pow(0.5 + 0.5 * bands, 6.0);
-  col = mix(col, cosinePalette(thick * 0.8 + 0.3 + p.hueShift), streak * 0.45);
-
-  // Anisotropic silk sheen sweeping across the warp.
-  let sheen = pow(0.5 + 0.5 * sin(flow * 7.0 + q.y * 2.5 - t * 0.7), 10.0);
-  col += sheen * vec3f(0.42, 0.4, 0.38);
-
-  // Grade: soft filmic S-curve, saturation, vignette, dither.
-  col = col * p.brightness;
-  let soft = col * col * (3.0 - 2.0 * clamp(col, vec3f(0.0), vec3f(1.0)));
-  col = mix(col, soft, 0.55);
-  col = max(col, vec3f(0.035, 0.045, 0.085));
-  let lum = dot(col, vec3f(0.2126, 0.7152, 0.0722));
-  col = mix(vec3f(lum), col, p.saturation);
-  let vig = 1.0 - 0.42 * dot(uvIn - vec2f(0.5), uvIn - vec2f(0.5)) * 2.4;
-  col *= vig;
-  col = clamp(col + vec3f((hash21(uvIn * 913.0 + t) - 0.5) / 255.0 * 2.0), vec3f(0.0), vec3f(1.0));
-  return vec4f(col, 1.0);
-}
-`
-);
-
-// packages/react/src/components/Vortex.tsx
-var import_jsx_runtime11 = __toESM(require_jsx_runtime(), 1);
-var VORTEX_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  swirl: f32,
-  arms: f32,
-  coreGlow: f32,
+  activeT: f32,
+  yearCount: f32,
   cr: f32, cg: f32, cb: f32,
-  er: f32, eg: f32, eb: f32,
+  resX: f32,
+  resY: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn hash21(p: vec2f) -> f32 {
-  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
+fn sdSeg(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
+  let pa = p - a;
+  let ba = b - a;
+  let h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+  return vec2f(length(pa - ba * h), h);
+}
+
+fn sdHex(pIn: vec2f, r: f32) -> f32 {
+  var p = abs(pIn);
+  p = p - 2.0 * min(dot(vec2f(-0.8660254, 0.5), p), 0.0) * vec2f(-0.8660254, 0.5);
+  p = p - vec2f(clamp(p.x, -0.5773503 * r, 0.5773503 * r), r);
+  return length(p) * sign(p.y);
+}
+
+fn hash2(pIn: vec2f) -> f32 {
+  var p = fract(pIn * vec2f(123.34, 456.21));
+  p = p + dot(p, p + 45.32);
+  return fract(p.x * p.y);
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
-  let q = (uv - vec2f(0.5)) * 2.0;
-  let r = length(q);
+  let aspect = p.resX / p.resY;
+  let wp = vec2f(uvIn.x * aspect, 1.0 - uvIn.y); // y-up, isotropic
+  let pxU = 1.0 / p.resY; // one pixel in workspace units
+  let C = vec2f(${f(CX_T)} * aspect, ${f(CY)});
+  let rad = vec2f(${f(RX_T)} * aspect, ${f(RY)});
+  let minRad = min(rad.x, rad.y);
+  let accent = vec3f(p.cr, p.cg, p.cb);
+  let t = p.time * p.speed;
+
+  let q = (wp - C) / rad; // unit-circle space of the ellipse
+  let lq = length(q);
   let ang = atan2(q.y, q.x);
+  let activeAng = mix(${f(YEAR_A0)}, ${f(YEAR_A1)}, p.activeT);
 
-  let t = p.time * p.speed;
-  let twist = p.swirl * log(1.0 + r * 3.5) - t * 0.6;
-  let a = ang + twist;
+  var col = vec3f(0.986, 0.989, 0.996); // near-white paper
+  // Paper grain: kills flat runs and reads as print texture.
+  col += (hash2(wp * vec2f(p.resX, p.resY) / max(p.resX, 1.0) * 512.0) - 0.5) * 0.012;
 
-  let armMask = 0.5 + 0.5 * cos(a * p.arms + r * 4.0);
-  let falloff = exp(-2.6 * r);
-  let dust = falloff * (0.5 + 0.72 * armMask);
+  // --- main arc ---
+  let dArc = abs(lq - 1.0) * minRad;
+  let arcMask = smoothstep(${f(ARC_A0)} - 0.01, ${f(ARC_A0)} + 0.01, ang) *
+                (1.0 - smoothstep(${f(ARC_A1)} - 0.01, ${f(ARC_A1)} + 0.01, ang));
+  let arcA = (1.0 - smoothstep(pxU * 0.9, pxU * 1.9, dArc)) * arcMask;
+  col = mix(col, vec3f(0.741, 0.792, 0.878), arcA * 0.9);
 
-  // Star speckles: hashed per cell, rendered as soft round points.
-  let sg = (q + vec2f(t * 0.02)) * 42.0;
-  let sid = floor(sg);
-  let sf = fract(sg) - vec2f(0.5);
-  let sh = hash21(sid);
-  let sPos = (vec2f(hash21(sid + vec2f(3.1)), hash21(sid + vec2f(7.7))) - vec2f(0.5)) * 0.6;
-  let sDot = exp(-dot(sf - sPos, sf - sPos) * 90.0);
-  let star = step(0.94, sh) * sDot * 2.6 * falloff * (0.4 + armMask);
-
-  let core = exp(-7.0 * r) * p.coreGlow;
-
-  var col = vec3f(p.cr, p.cg, p.cb) * dust;
-  col += vec3f(p.er, p.eg, p.eb) * (core + star);
-
-  let alpha = clamp(dust + core + star, 0.0, 1.0);
-  return vec4f(col, alpha);
-}
-`
-);
-
-// packages/react/src/components/WebGlobe.tsx
-var import_jsx_runtime12 = __toESM(require_jsx_runtime(), 1);
-var WEB_GLOBE_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  phi: f32,
-  theta: f32,
-  dots: f32,
-  dotScale: f32,
-  diffuse: f32,
-  dark: f32,
-  atmosphere: f32,
-  seaLevel: f32,
-  globeScale: f32,
-  cr: f32, cg: f32, cb: f32,
-  gr: f32, gg: f32, gb: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn rotMat(theta: f32, phi: f32) -> mat3x3f {
-  let cx = cos(theta);
-  let cy = cos(phi);
-  let sx = sin(theta);
-  let sy = sin(phi);
-  return mat3x3f(
-    vec3f(cy, sy * sx, -sy * cx),
-    vec3f(0.0, cx, sx),
-    vec3f(sy, -cy * sx, cy * cx),
-  );
-}
-
-fn hash13(p: vec3f) -> f32 {
-  var q = fract(p * 0.3183099 + vec3f(0.1, 0.2, 0.3));
-  q = q * 17.0;
-  return fract(q.x * q.y * q.z * (q.x + q.y + q.z));
-}
-
-fn noise3(p: vec3f) -> f32 {
-  let i = floor(p);
-  let f = fract(p);
-  let u = f * f * (3.0 - 2.0 * f);
-  let a = hash13(i + vec3f(0.0, 0.0, 0.0));
-  let b = hash13(i + vec3f(1.0, 0.0, 0.0));
-  let c = hash13(i + vec3f(0.0, 1.0, 0.0));
-  let d = hash13(i + vec3f(1.0, 1.0, 0.0));
-  let e = hash13(i + vec3f(0.0, 0.0, 1.0));
-  let g = hash13(i + vec3f(1.0, 0.0, 1.0));
-  let h = hash13(i + vec3f(0.0, 1.0, 1.0));
-  let k = hash13(i + vec3f(1.0, 1.0, 1.0));
-  return mix(
-    mix(mix(a, b, u.x), mix(c, d, u.x), u.y),
-    mix(mix(e, g, u.x), mix(h, k, u.x), u.y),
-    u.z,
-  );
-}
-
-fn fbm3(p: vec3f) -> f32 {
-  var v = 0.0;
-  var amp = 0.5;
-  var q = p;
-  for (var i = 0; i < 4; i++) {
-    v += amp * noise3(q);
-    q = q * 2.15 + vec3f(3.1, 7.7, 1.3);
-    amp = amp * 0.5;
-  }
-  return v;
-}
-
-// Procedural stand-in for cobe's earth texture: domain-warped fbm continents.
-fn continentMask(sphere: vec3f) -> f32 {
-  let warp = fbm3(sphere * 1.2 + vec3f(8.2, 1.7, 4.4));
-  let land = fbm3(sphere * 3.1 + (warp - 0.5) * 2.4 + vec3f(11.0, 4.0, 7.0));
-  let detail = fbm3(sphere * 6.0) * 0.1;
-  return smoothstep(params.seaLevel, params.seaLevel + 0.05, land + detail - 0.09);
-}
-
-// Nearest point on a Fibonacci lattice (golden-angle spiral) \u2014 the reason
-// cobe's dots are perfectly even everywhere on the sphere. Ported from
-// references/cobe/src/globe.frag.glslx (MIT).
-fn nearestFibonacci(pIn: vec3f, byDots: f32) -> vec4f {
-  let TAU = 6.283185;
-  let SQRT5 = 2.236068;
-  let KPHI = 1.618034;
-  var p = pIn.xzy;
-  let k = max(2.0, floor(log2(SQRT5 * params.dots * TAU * (1.0 - p.z * p.z)) * 0.72021));
-  let f = floor(pow(KPHI, k) / SQRT5 * vec2f(1.0, KPHI) + 0.5);
-  let br1 = fract((f + vec2f(1.0)) * (KPHI - 1.0)) * TAU - 3.883222;
-  let br2 = vec2f(-2.0) * f;
-  let sp = vec2f(atan2(p.y, p.x), p.z - 1.0);
-  let c = floor(vec2f(
-    br2.y * sp.x - br1.y * (sp.y * params.dots + 1.0),
-    -br2.x * sp.x + br1.x * (sp.y * params.dots + 1.0),
-  ) / (br1.x * br2.y - br2.x * br1.y));
-
-  var mindist = TAU;
-  var minip = vec3f(0.0);
-  for (var s = 0.0; s < 4.0; s += 1.0) {
-    let o = vec2f(s % 2.0, floor(s * 0.5));
-    let idx = dot(f, c + o);
-    if (idx > params.dots) { continue; }
-
-    var a = idx;
-    var b = 0.0;
-    if (a >= 16384.0) { a -= 16384.0; b += 0.868872; }
-    if (a >= 8192.0) { a -= 8192.0; b += 0.934436; }
-    if (a >= 4096.0) { a -= 4096.0; b += 0.467218; }
-    if (a >= 2048.0) { a -= 2048.0; b += 0.733609; }
-    if (a >= 1024.0) { a -= 1024.0; b += 0.866804; }
-    if (a >= 512.0) { a -= 512.0; b += 0.433402; }
-    if (a >= 256.0) { a -= 256.0; b += 0.216701; }
-    if (a >= 128.0) { a -= 128.0; b += 0.108351; }
-    if (a >= 64.0) { a -= 64.0; b += 0.554175; }
-    if (a >= 32.0) { a -= 32.0; b += 0.777088; }
-    if (a >= 16.0) { a -= 16.0; b += 0.888544; }
-    if (a >= 8.0) { a -= 8.0; b += 0.944272; }
-    if (a >= 4.0) { a -= 4.0; b += 0.472136; }
-    if (a >= 2.0) { a -= 2.0; b += 0.236068; }
-    if (a >= 1.0) { a -= 1.0; b += 0.618034; }
-
-    let theta = fract(b) * TAU;
-    let cosphi = 1.0 - 2.0 * idx * byDots;
-    let sinphi = sqrt(1.0 - cosphi * cosphi);
-    let sample = vec3f(cos(theta) * sinphi, sin(theta) * sinphi, cosphi);
-    let dist = length(p - sample);
-    if (dist < mindist) {
-      mindist = dist;
-      minip = sample;
-    }
-  }
-  return vec4f(minip.xzy, mindist);
-}
-
-fn dither(uv: vec2f) -> f32 {
-  return (fract(sin(dot(uv, vec2f(12.9898, 78.233))) * 43758.5453) - 0.5) / 255.0;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let R = 0.8;
-  let byDots = 1.0 / p.dots;
-
-  var uv = (uvIn * 2.0 - vec2f(1.0)) / max(p.globeScale, 0.1);
-  let l = dot(uv, uv);
-  var color = vec3f(0.0);
-  var alpha = 0.0;
-  var glowFactor = 0.0;
-
-  if (l <= R * R) {
-    let n = normalize(vec3f(uv, sqrt(R * R - l)));
-    let rot = rotMat(p.theta, p.phi + p.time * p.speed);
-    let dotNL = n.z;
-
-    let gpr = nearestFibonacci(n * rot, byDots);
-    let gp = gpr.xyz;
-    let dis = gpr.w;
-
-    // cobe's composition: dots carry the map, lit by lambert, mixed with a
-    // dark-side term; base surface keeps a faint ambient floor.
-    let dotR = 0.030 * p.dotScale;
-    let dotMask = smoothstep(dotR, dotR * 0.55, dis);
-
-    // Exactly cobe's formula: the map only modulates dot brightness \u2014 oceans
-    // get dim dots, land gets bright dots. The surface itself carries no mask.
-    let mapColor = max(continentMask(gp), 0.12);
-    let sample = mapColor * dotMask * pow(clamp(dotNL, 0.0, 1.0), p.diffuse);
-
-    let lit = mix((1.0 - sample) * pow(clamp(dotNL, 0.0, 1.0), 0.4), sample, p.dark) + 0.1;
-    var layer = vec3f(p.cr, p.cg, p.cb) * lit;
-    let rim = pow(1.0 - clamp(dotNL, 0.0, 1.0), 4.0);
-    layer += vec3f(p.gr, p.gg, p.gb) * rim;
-
-    color = layer;
-    alpha = 1.0;
-
-    glowFactor = (1.0 - l) * (1.0 - l) * smoothstep(0.0, 1.0, 0.2 / max(l - R * R, 1e-4)) * 0.35;
-  } else {
-    let outD = sqrt(0.2 / (l - R * R));
-    glowFactor = smoothstep(0.5, 1.0, outD / (outD + 1.0));
+  // --- dotted future path (inside the arc, after the active node) ---
+  if (ang > activeAng && ang < ${f(ARC_A1)}) {
+    let q2 = (wp - C) / (rad - vec2f(0.032));
+    let dDot = abs(length(q2) - 1.0) * minRad;
+    let dash = fract((ang - activeAng) * 34.0 - t * 0.35);
+    let dotA = (1.0 - smoothstep(pxU * 0.7, pxU * 1.6, dDot)) * step(dash, 0.42);
+    col = mix(col, accent * 0.72 + vec3f(0.28), dotA * 0.85);
   }
 
-  // Outer atmosphere halo + inner glow, both tinted by the glow color.
-  let glowCol = vec3f(p.gr, p.gg, p.gb) * p.atmosphere;
-  color += glowCol * glowFactor;
-  alpha = clamp(max(alpha, glowFactor * p.atmosphere), 0.0, 1.0);
-
-  color += dither(uvIn);
-  return vec4f(color * alpha, alpha);
-}
-`
-);
-
-// packages/react/src/components/LiveChart.tsx
-var import_jsx_runtime13 = __toESM(require_jsx_runtime(), 1);
-var MAX_POINTS = 64;
-var LIVE_CHART_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  count: f32,
-  lineWidth: f32,
-  glow: f32,
-  fill: f32,
-  cr: f32, cg: f32, cb: f32,
-  er: f32, eg: f32, eb: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-@group(0) @binding(1) var<uniform> pts: array<vec4f, ${MAX_POINTS}>;
-
-fn segmentDistance(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
-  let ab = b - a;
-  let t = clamp(dot(p - a, ab) / max(dot(ab, ab), 1e-6), 0.0, 1.0);
-  return vec2f(length(p - (a + t * ab)), t);
-}
-
-@fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let n = i32(clamp(p.count, 2.0, ${MAX_POINTS - 1}.0));
-
-  // Chart space: x 0..1 across the panel, y 0..1 bottom-up with margins.
-  let cs = vec2f(uv.x, 1.0 - uv.y);
-  var d = 1e6;
-  var nearestY = 0.0;
-  for (var i: i32 = 0; i < ${MAX_POINTS - 1}; i = i + 1) {
-    if (i >= n - 1) { break; }
-    let x0 = f32(i) / f32(n - 1);
-    let x1 = f32(i + 1) / f32(n - 1);
-    // Aspect correction so the stroke width is isotropic on screen.
-    let a = vec2f(x0, pts[i].y);
-    let b = vec2f(x1, pts[i + 1].y);
-    let dr = segmentDistance(cs * vec2f(1.0, 1.125), a * vec2f(1.0, 1.125), b * vec2f(1.0, 1.125));
-    if (dr.x < d) { d = dr.x; nearestY = mix(a.y, b.y, dr.y); }
+  // --- ruler ticks ---
+  let tickStep = (${f(YEAR_A1)} - ${f(YEAR_A0)}) / ((p.yearCount - 1.0) * ${f(MINORS)});
+  let tickA0 = ${f(YEAR_A0)} - 2.0 * tickStep;
+  for (var i = 0; i < 128; i++) {
+    let a = tickA0 + f32(i) * tickStep;
+    if (a > ${f(ARC_A1)}) { break; }
+    let dir = vec2f(cos(a), sin(a));
+    let T = C + rad * dir;
+    let n = normalize(vec2f(dir.x / rad.x, dir.y / rad.y));
+    let j = (f32(i) - 2.0) / ${f(MINORS)};
+    let isMajor = abs(j - round(j)) < 0.01 && j >= 0.0 && j < p.yearCount;
+    let len = select(0.020, 0.052, isMajor);
+    let seg = sdSeg(wp, T - n * len * 0.72, T + n * len * 0.28);
+    let aa = 1.0 - smoothstep(pxU * 0.8, pxU * 1.8, seg.x);
+    let past = select(0.0, 1.0, a <= activeAng);
+    var tickCol = mix(vec3f(0.733, 0.773, 0.835), accent, select(0.0, 0.55, isMajor));
+    tickCol = mix(tickCol, accent * 0.85 + vec3f(0.15), past * select(0.35, 0.15, isMajor));
+    col = mix(col, tickCol, aa * select(0.75, 0.95, isMajor));
   }
 
-  let lineMask = 1.0 - smoothstep(p.lineWidth * 0.6, p.lineWidth, d);
-  let glowMask = (1.0 - smoothstep(p.lineWidth, p.lineWidth * 8.0, d)) * p.glow;
-  // Area fill: bright right under the line, fading out downward.
-  let below = nearestY - cs.y;
-  let fillMask = smoothstep(0.0, 0.05, below) * p.fill;
-  let fillFade = 1.0 - smoothstep(0.05, 0.45, below);
+  // --- dashed leader: node -> elbow -> right edge ---
+  let N = C + rad * vec2f(cos(activeAng), sin(activeAng));
+  let E = N + vec2f(${f(LEADER_DX)}, ${f(LEADER_DY)});
+  let End = vec2f(aspect * 0.985, E.y);
+  let dashLen = 0.016;
+  let s1 = sdSeg(wp, N, E);
+  let s2 = sdSeg(wp, E, End);
+  let len1 = distance(N, E);
+  let ph1 = fract(s1.y * len1 / dashLen - t * 0.22);
+  let ph2 = fract((s2.y * distance(E, End) + len1) / dashLen - t * 0.22);
+  let leadA = (1.0 - smoothstep(pxU * 0.8, pxU * 1.7, s1.x)) * step(ph1, 0.5) +
+              (1.0 - smoothstep(pxU * 0.8, pxU * 1.7, s2.x)) * step(ph2, 0.5);
+  col = mix(col, accent, clamp(leadA, 0.0, 1.0) * 0.8);
 
-  var col = vec3f(p.er, p.eg, p.eb) * glowMask + vec3f(p.cr, p.cg, p.cb) * lineMask;
-  col += vec3f(p.cr, p.cg, p.cb) * fillMask * fillFade * 1.4;
-  let alpha = clamp(lineMask + glowMask + fillMask * fillFade * 0.55, 0.0, 1.0);
-  return vec4f(col, alpha);
-}
-`
-);
+  // --- milestone node: hexagon + pulse ring ---
+  let dHex = sdHex(wp - N, 0.016);
+  col = mix(col, accent, (1.0 - smoothstep(-pxU, pxU, dHex)) * 0.96);
+  let pulseR = 0.030 + 0.008 * sin(t * 2.1);
+  let ring = smoothstep(0.004, 0.0012, abs(distance(wp, N) - pulseR)) * (0.5 + 0.5 * sin(t * 2.1 - 1.2));
+  col = mix(col, accent, ring * 0.35);
 
-// packages/react/src/components/EnergyOrb.tsx
-var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
-var ENERGY_ORB_SHADER = (
-  /* wgsl */
-  `
-struct Params {
-  time: f32,
-  speed: f32,
-  smokeScale: f32,
-  smokeStrength: f32,
-  smokeSpeed: f32,
-  hue: f32,
-  saturation: f32,
-  glow: f32,
-}
-@group(0) @binding(0) var<uniform> params: Params;
-
-fn hash13(p: vec3f) -> f32 {
-  var q = fract(p * 0.3183099 + vec3f(0.1, 0.2, 0.3));
-  q = q * 17.0;
-  return fract(q.x * q.y * q.z * (q.x + q.y + q.z));
-}
-
-fn noise3(x: vec3f) -> f32 {
-  let i = floor(x);
-  var f = fract(x);
-  f = f * f * (3.0 - 2.0 * f);
-  return mix(
-    mix(mix(hash13(i), hash13(i + vec3f(1.0, 0.0, 0.0)), f.x),
-        mix(hash13(i + vec3f(0.0, 1.0, 0.0)), hash13(i + vec3f(1.0, 1.0, 0.0)), f.x), f.y),
-    mix(mix(hash13(i + vec3f(0.0, 0.0, 1.0)), hash13(i + vec3f(1.0, 0.0, 1.0)), f.x),
-        mix(hash13(i + vec3f(0.0, 1.0, 1.0)), hash13(i + vec3f(1.0, 1.0, 1.0)), f.x), f.y),
-    f.z,
-  );
-}
-
-fn fbm(pIn: vec3f) -> f32 {
-  var v = 0.0;
-  var a = 0.5;
-  var p = pIn;
-  for (var i = 0; i < 5; i++) {
-    v += a * noise3(p);
-    p = p * 2.03 + vec3f(1.7);
-    a = a * 0.5;
-  }
-  return v;
-}
-
-/// Rodrigues rotation of color around the (1,1,1) axis \u2014 hue shift.
-fn gradeColor(color: vec3f, hue: f32, saturation: f32) -> vec3f {
-  let luminance = dot(color, vec3f(0.2126, 0.7152, 0.0722));
-  let sat = mix(vec3f(luminance), color, saturation);
-  let axis = normalize(vec3f(1.0));
-  return max(vec3f(0.0), sat * cos(hue) + cross(axis, sat) * sin(hue) + axis * dot(axis, sat) * (1.0 - cos(hue)));
-}
-
-fn dither(uv: vec2f) -> f32 {
-  return (fract(sin(dot(uv, vec2f(12.9898, 78.233))) * 43758.5453) - 0.5) / 255.0 * 1.5;
-}
-
-@fragment
-fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
-  let p = params;
-  let uv = (uvIn - vec2f(0.5)) * 2.0;
-  let r = length(uv);
-  let R = 0.62;
-  var col = vec3f(0.0);
-  var alpha = 0.0;
-
-  if (r < R) {
-    let z = sqrt(R * R - r * r);
-    let n = normalize(vec3f(uv, z));
-    let ca = p.time * p.speed * 0.15;
-    let rot = mat3x3f(
-      vec3f(cos(ca), 0.0, sin(ca)),
-      vec3f(0.0, 1.0, 0.0),
-      vec3f(-sin(ca), 0.0, cos(ca)),
-    );
-    let sp = rot * n;
-
-    let smokeTime = p.time * p.speed * p.smokeSpeed;
-    let f1 = fbm(sp * (2.6 * p.smokeScale) + vec3f(0.0, smokeTime * 0.12, 0.0));
-    let f2 = fbm(sp * (4.5 * p.smokeScale) - vec3f(smokeTime * 0.08, 0.0, smokeTime * 0.05) + f1 * 1.8);
-    let veil = smoothstep(0.35, 0.75, f2);
-
-    let deep = vec3f(0.04, 0.02, 0.12);
-    let mid = vec3f(0.22, 0.16, 0.55);
-    let bright = vec3f(0.62, 0.60, 0.98);
-    col = mix(deep, mid, f1 * 1.2);
-    col = mix(col, bright, clamp(veil * 0.65 * p.smokeStrength, 0.0, 1.0));
-
-    let fres = pow(1.0 - z / R, 2.2);
-    col += vec3f(0.55, 0.55, 1.0) * fres * 1.1 * p.glow;
-    let top = pow(max(dot(n, normalize(vec3f(0.0, 0.7, 0.7))), 0.0), 3.0);
-    col += vec3f(0.45, 0.42, 0.9) * top * 0.35 * p.glow;
-    alpha = 1.0;
-  }
-
-  let glow = clamp(exp(-(r - R) * 14.0), 0.0, 1.0);
-  if (r >= R) {
-    col = vec3f(0.55, 0.52, 1.0) * glow * 0.8 * p.glow;
-    alpha = glow * 0.85;
-  } else {
-    let rim = smoothstep(R - 0.03, R, r);
-    col += vec3f(0.6, 0.58, 1.0) * rim * 0.6 * p.glow;
-  }
-
-  col = gradeColor(col, p.hue, p.saturation);
-  col += dither(uvIn);
-  return vec4f(col * alpha, alpha);
+  return vec4f(col, 1.0);
 }
 `
 );
@@ -6629,26 +5416,14 @@ var import_pngjs = __toESM(require_png(), 1);
 import { init as init2, effect as effect2, target, frame } from "vgpu/node";
 import { writeFileSync } from "node:fs";
 var CATALOG = {
-  "wave-background": { shader: WAVE_SHADER, uniforms: { "time": 1, "speed": 1, "amplitude": 1, "frequency": 2.5, "c0r": 78e-4, "c0g": 0.0235, "c0b": 0.0902, "c1r": 0.1137, "c1g": 0.3059, "c1b": 0.8471, "c2r": 0.2196, "c2g": 0.7412, "c2b": 0.9725 } },
-  "fluid-gradient": { shader: FLUID_SHADER, uniforms: { "time": 1.1, "speed": 0.55, "warp": 2.4, "scale": 1.6, "c0r": 0.043, "c0g": 0.071, "c0b": 0.125, "c1r": 0.29, "c1g": 0.35, "c1b": 0.65, "c2r": 0.55, "c2g": 0.75, "c2b": 0.95 } },
-  "aurora": { shader: AURORA_SHADER, uniforms: { "time": 1.2, "speed": 0.7, "intensity": 1, "bands": 4, "c0r": 0.176, "c0g": 0.831, "c0b": 0.749, "c1r": 0.506, "c1g": 0.549, "c1b": 0.973 } },
-  "starfield": { shader: STARFIELD_SHADER, uniforms: { "time": 1.3, "density": 0.35, "twinkle": 0.8, "speed": 1, "c0r": 0.812, "c0g": 0.894, "c0b": 1 } },
-  "particle-field": { shader: PARTICLE_SHADER, uniforms: { "time": 1.4, "density": 0.45, "size": 0.16, "speed": 0.8, "c0r": 0.62, "c0g": 0.796, "c0b": 1 } },
-  "glass-card": { shader: GLASS_CARD_SHADER, uniforms: { "time": 1.5, "radius": 0.05, "borderGlow": 0.7, "shine": 0.8, "cardScale": 0.62, "c0r": 0.647, "c0g": 0.784, "c0b": 1 } },
-  "liquid-glass": { shader: LIQUID_GLASS_SHADER, uniforms: { "time": 1.6, "speed": 0.8, "distortion": 0.45, "chromatic": 0.6, "scale": 1.2 } },
-  "mesh-gradient": { shader: MESH_GRADIENT_SHADER, uniforms: { "time": 0.8, "speed": 0.6, "scale": 3.2, "softness": 0.09, "c0r": 0.043, "c0g": 0.067, "c0b": 0.125, "c1r": 0.082, "c1g": 0.369, "c1b": 0.459, "c2r": 0.486, "c2g": 0.227, "c2b": 0.929, "c3r": 0.957, "c3g": 0.447, "c3b": 0.714 } },
-  "iridescent": { shader: IRIDESCENT_SHADER, uniforms: { "time": 1.5, "speed": 0.8, "scale": 2.4, "hueShift": 0, "saturation": 1, "brightness": 0.9 } },
-  "vortex": { shader: VORTEX_SHADER, uniforms: { "time": 0.6, "speed": 0.5, "swirl": 2.4, "arms": 2, "coreGlow": 1.2, "cr": 0.506, "cg": 0.549, "cb": 0.973, "er": 0.878, "eg": 0.949, "eb": 0.996 } },
-  "web-globe": { shader: WEB_GLOBE_SHADER, uniforms: { "time": 0.8, "speed": 0.35, "phi": 0, "theta": 0.35, "dots": 520, "dotScale": 1.15, "diffuse": 1.2, "dark": 0.92, "atmosphere": 0.8, "seaLevel": 0.46, "globeScale": 0.98, "cr": 0.616, "cg": 0.706, "cb": 0.839, "gr": 0.49, "gg": 0.827, "gb": 0.988 } },
-  "live-chart": { shader: LIVE_CHART_SHADER, uniforms: { "time": 0, "count": 48, "lineWidth": 6e-3, "glow": 0.4, "fill": 0.6, "cr": 0.22, "cg": 0.74, "cb": 0.97, "er": 0.49, "eg": 0.83, "eb": 0.99, "pts": [[0.5, 0.5, 0, 0], [0.6880599893484928, 0.6880599893484928, 0, 0], [0.8035344230038807, 0.8035344230038807, 0, 0], [0.8203134202134684, 0.8203134202134684, 0, 0], [0.7710918692668219, 0.7710918692668219, 0, 0], [0.7171224912331501, 0.7171224912331501, 0, 0], [0.698950548572041, 0.698950548572041, 0, 0], [0.7057660947314762, 0.7057660947314762, 0, 0], [0.686562994434805, 0.686562994434805, 0, 0], [0.5942986619270211, 0.5942986619270211, 0, 0], [0.42896121566349726, 0.42896121566349726, 0, 0], [0.24604636676161443, 0.24604636676161443, 0, 0], [0.12300212982100277, 0.12300212982100277, 0, 0], [0.10801160688706112, 0.10801160688706112, 0, 0], [0.1889774686823272, 0.1889774686823272, 0, 0], [0.30551940475865264, 0.30551940475865264, 0, 0], [0.3945604535357848, 0.3945604535357848, 0, 0], [0.43501651655474394, 0.43501651655474394, 0, 0], [0.4581382495151453, 0.4581382495151453, 0, 0], [0.5163595326095315, 0.5163595326095315, 0, 0], [0.6351369869128449, 0.6351369869128449, 0, 0], [0.7852556171304038, 0.7852556171304038, 0, 0], [0.8975812085913506, 0.8975812085913506, 0, 0], [0.9099872198487396, 0.9099872198487396, 0, 0], [0.811596699753744, 0.811596699753744, 0, 0], [0.6511942139552905, 0.6511942139552905, 0, 0], [0.5034199201397278, 0.5034199201397278, 0, 0], [0.41795194464623986, 0.41795194464623986, 0, 0], [0.3894474858919309, 0.3894474858919309, 0, 0], [0.37007678085748924, 0.37007678085748924, 0, 0], [0.3141349496495159, 0.3141349496495159, 0, 0], [0.21994997802862945, 0.21994997802862945, 0, 0], [0.136484196569521, 0.136484196569521, 0, 0], [0.12898635820690899, 0.12898635820690899, 0, 0], [0.22936004730098952, 0.22936004730098952, 0, 0], [0.408839251975214, 0.408839251975214, 0, 0], [0.5940353236415418, 0.5940353236415418, 0, 0], [0.7149051942453203, 0.7149051942453203, 0, 0], [0.7492574607985786, 0.7492574607985786, 0, 0], [0.7311458185566903, 0.7311458185566903, 0, 0], [0.7178164684780469, 0.7178164684780469, 0, 0], [0.7411059493340727, 0.7411059493340727, 0, 0], [0.7807106956649897, 0.7807106956649897, 0, 0], [0.7798771578568919, 0.7798771578568919, 0, 0], [0.6915991324213161, 0.6915991324213161, 0, 0], [0.5199673248148136, 0.5199673248148136, 0, 0], [0.32467822872609775, 0.32467822872609775, 0, 0], [0.18436799405256069, 0.18436799405256069, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] } },
-  "energy-orb": { shader: ENERGY_ORB_SHADER, uniforms: { "time": 1.4, "speed": 1, "smokeScale": 1, "smokeStrength": 1, "smokeSpeed": 1, "hue": 0, "saturation": 1, "glow": 1 } }
+  "timeline-arc": { shader: TIMELINE_ARC_SHADER, uniforms: { "time": 1.2, "speed": 1, "activeT": 0.5714, "yearCount": 8, "cr": 0.145, "cg": 0.388, "cb": 0.922, "resX": 512, "resY": 512 } }
 };
 var gpu = await init2();
 var out = [];
 for (const [name, { shader, uniforms }] of Object.entries(CATALOG)) {
   const t = target(gpu, { size: [512, 512], format: "rgba8unorm" });
   const fx = effect2(gpu, shader, { set: structuredClone(uniforms) });
-  frame(gpu, (f) => f.pass({ target: t, clear: [0, 0, 0, 0] }, (p) => p.draw(fx)));
+  frame(gpu, (f2) => f2.pass({ target: t, clear: [0, 0, 0, 0] }, (p) => p.draw(fx)));
   const rgba = await t.read();
   const png = new import_pngjs.PNG({ width: 512, height: 512 });
   Buffer.from(rgba).copy(png.data);

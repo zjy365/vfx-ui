@@ -11,6 +11,8 @@ import {
   VORTEX_PRESETS,
   WEB_GLOBE_PRESETS,
   ENERGY_ORB_PRESETS,
+  RIBBON_FIELD_PRESETS,
+  TIMELINE_ARC_PRESETS,
   LIVE_CHART_PRESETS,
 } from "@vfx-ui/react";
 
@@ -608,6 +610,81 @@ export function OrbHero() {
       amethyst: "Original violet arcana.",
       cyan: "Cold cyan storm orb.",
       magma: "Warm ember sphere, denser smoke.",
+    }, paletteThumb),
+  }),
+
+  entry({
+    id: "ribbon-field",
+    category: "Backgrounds",
+    label: "Ribbon Field",
+    tags: ["background", "ribbon", "dots", "glow"],
+    description: "Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores and film grain — WGSL port of ThreeUI's RibbonField (MIT).",
+    importName: "RibbonField",
+    thumbnail: paletteThumb({}),
+    sourceCode: `import { RibbonField, RIBBON_FIELD_PRESETS } from "@vfx-ui/react";
+
+export function RibbonHero() {
+  return (
+    <div style={{ position: "relative", width: "100%", height: 420 }}>
+      <RibbonField {...RIBBON_FIELD_PRESETS.classic} />
+    </div>
+  );
+}`,
+    agentNotes: [
+      "Purpose: dark hero/backdrop with three drifting light ribbons on a dot-matrix grid; reads as a high-tech data surface.",
+      "Mount: wide container (hero band); opaque near-black base — no background needed behind it.",
+      "Props: speed, intensity (ribbon brightness), drift (-1..1 horizontal sway), grain (micro-noise strength).",
+      "Guardrails: the dot grid is pixel-true (component measures its own backing store); keep the canvas unscaled (no CSS transform) or dots blur; WebGPU required with fallback prop.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 3, 0.05, 1),
+      range("intensity", "Intensity", 0, 2, 0.05, 1),
+      range("drift", "Drift", -1, 1, 0.05, 0),
+      range("grain", "Grain", 0, 2, 0.05, 1),
+    ],
+    variants: presetVariants(RIBBON_FIELD_PRESETS, {
+      classic: "Original three-ribbon teal/cyan field.",
+      calm: "Slower, dimmer, left-leaning drift.",
+      vivid: "Brighter ribbons with heavier grain.",
+    }, paletteThumb),
+  }),
+
+  entry({
+    id: "timeline-arc",
+    category: "Data",
+    label: "Timeline Arc",
+    tags: ["timeline", "milestone", "arc", "history"],
+    description: "Milestone timeline on a sweeping elliptical arc — ruler ticks, hexagon node, dashed leader to an annotation (sealos.run/about-us style).",
+    importName: "TimelineArc",
+    thumbnail: paletteThumb({}),
+    sourceCode: `import { TimelineArc } from "@vfx-ui/react";
+
+export function Milestones() {
+  return (
+    <div style={{ position: "relative", width: "100%", height: 520 }}>
+      <TimelineArc
+        years={["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]}
+        activeIndex={4}
+        annotation="2022 年 3 月，推出 v4.0 版本，引入集群镜像能力。"
+      />
+    </div>
+  );
+}`,
+    agentNotes: [
+      "Purpose: company/product milestone timeline — a huge elliptical arc with ruler ticks, year labels, a highlighted hexagon node and a dashed leader to an annotation.",
+      "Mount: wide tall container (e.g. 100% x 520px); opaque near-white background — designed for light pages.",
+      "Props: years (string[]), activeIndex, annotation (leader-line text), speed (dash march + node pulse), accent (hex color).",
+      "Guardrails: year labels are DOM spans positioned by the same arc math — do not CSS-transform-scale the wrapper or labels drift from the arc; text inherits page font; WebGPU required with fallback prop.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 3, 0.05, 1),
+      range("activeIndex", "Active index", 0, 7, 1, 4),
+      color("accent", "Accent", "#2563eb"),
+    ],
+    variants: presetVariants(TIMELINE_ARC_PRESETS, {
+      classic: "Sealos blue accent.",
+      emerald: "Green milestones.",
+      violet: "Violet milestones, faster march.",
     }, paletteThumb),
   }),
 

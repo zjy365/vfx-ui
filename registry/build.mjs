@@ -130,6 +130,33 @@ const CATALOG = [
     tags: ["chart", "streaming", "realtime"],
     files: ["components/LiveChart.tsx"],
   },
+  {
+    name: "energy-orb",
+    component: "EnergyOrb",
+    title: "Energy Orb",
+    description: "Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).",
+    categories: ["Globe"],
+    tags: ["globe", "orb", "smoke", "glow"],
+    files: ["components/EnergyOrb.tsx"],
+  },
+  {
+    name: "ribbon-field",
+    component: "RibbonField",
+    title: "Ribbon Field",
+    description: "Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).",
+    categories: ["Backgrounds"],
+    tags: ["background", "ribbon", "dots", "glow"],
+    files: ["components/RibbonField.tsx"],
+  },
+  {
+    name: "timeline-arc",
+    component: "TimelineArc",
+    title: "Timeline Arc",
+    description: "Milestone timeline on a sweeping elliptical arc — ruler ticks, hexagon node, dashed leader line (sealos.run/about-us style).",
+    categories: ["Data"],
+    tags: ["timeline", "milestone", "arc", "history"],
+    files: ["components/TimelineArc.tsx"],
+  },
 ];
 
 /** Shared runtime files every registry item needs (copy-paste is self-contained). */
