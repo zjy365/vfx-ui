@@ -1,0 +1,26 @@
+{
+  "name": "@vfx-ui/core",
+  "version": "0.1.0",
+  "description": "Renderer core for vfx-ui: vgpu-backed WebGPU effect renderer with deterministic test support.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "vgpu": "0.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@webgpu/types": "^0.1.69",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  }
+}

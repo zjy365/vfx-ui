@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        const root = document.documentElement;
+        const palettes = new Set(["mono", "sepia", "azure", "moss", "mauve"]);
+        try {
+          const savedTheme = localStorage.getItem("vfx-ui-theme");
+          const lightPalette = localStorage.getItem("vfx-ui-palette-light");
+          const darkPalette = localStorage.getItem("vfx-ui-palette-dark");
+          const mode = savedTheme === "light" || savedTheme === "system" ? savedTheme : "dark";
+          if (mode === "system") root.removeAttribute("data-theme");
+          else root.dataset.theme = mode;
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const scheme = mode === "system" ? (prefersDark ? "dark" : "light") : mode;
+          root.dataset.scheme = scheme;
+          const palette = scheme === "dark" ? darkPalette : lightPalette;
+          root.dataset.palette = palettes.has(palette) ? palette : "mono";
+        } catch {
+          root.dataset.theme = "dark";
+          root.dataset.scheme = "dark";
+          root.dataset.palette = "mono";
+        }
+      })();
+    </script>
+    <meta
+      name="description"
+      content="VFX UI — shader-native visual effect components for React, rendered on the GPU via WebGPU. Wave backgrounds, liquid glass, globes, and live charts. Copy, paste, and ship."
+    />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="VFX UI" />
+    <meta property="og:title" content="Shader Effect Components for React | VFX UI" />
+    <meta property="og:description" content="Shader-native visual effect components for React, rendered on the GPU via WebGPU. Copy, paste, and ship." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shader Effect Components for React | VFX UI" />
+    <meta name="twitter:description" content="Shader-native visual effect components for React, rendered on the GPU via WebGPU." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Shader Effect Components for React | VFX UI</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

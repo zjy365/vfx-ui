@@ -1,0 +1,16 @@
+{
+  "name": "@vfx-ui/cli",
+  "version": "0.1.0",
+  "description": "Copy-paste vfx-ui shader components into your project (shadcn registry format).",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "vfx-ui": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=18"
+  }
+}
