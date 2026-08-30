@@ -16,18 +16,18 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn hash(p: vec2f) -> f32 {
+fn hash21(p: vec2f) -> f32 {
   return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
 fn noise(p: vec2f) -> f32 {
   let i = floor(p);
   let f = fract(p);
-  let u = f * f * (3.0 - 2.0 * f);
-  let a = hash(i);
-  let b = hash(i + vec2f(1.0, 0.0));
-  let c = hash(i + vec2f(0.0, 1.0));
-  let d = hash(i + vec2f(1.0, 1.0));
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
   return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
 }
 
@@ -35,42 +35,55 @@ fn fbm(p: vec2f) -> f32 {
   var v = 0.0;
   var amp = 0.5;
   var q = p;
-  for (var i = 0; i < 4; i++) {
+  var m = 0.0;
+  for (var i = 0; i < 5; i++) {
     v += amp * noise(q);
-    q = q * 2.02 + vec2f(7.3, 3.1);
+    m += amp;
+    q = q * 2.02 + vec2f(1.7, 4.3);
     amp = amp * 0.5;
   }
-  return v;
+  return v / m;
+}
+
+fn dither(uv: vec2f) -> f32 {
+  return (hash21(uv * 831.7) - 0.5) / 255.0 * 1.6;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
+  let uv = (uvIn - vec2f(0.5)) * p.scale * vec2f(1.0, 1.0);
 
-  let p0 = uv * p.scale;
+  // Triple nested domain warp (Iñigo Quilez's oil-paint recipe): q warps r,
+  // r warps the final field. Each layer drifts at its own speed.
   let q = vec2f(
-    fbm(p0 + vec2f(0.0, 0.0) + t * 0.07),
-    fbm(p0 + vec2f(5.2, 1.3) - t * 0.05)
+    fbm(uv + vec2f(t * 0.21, -t * 0.14)),
+    fbm(uv + vec2f(5.2, 1.3) - vec2f(t * 0.17, t * 0.11)),
   );
   let r = vec2f(
-    fbm(p0 + p.warp * q + vec2f(1.7, 9.2) + t * 0.09),
-    fbm(p0 + p.warp * q + vec2f(8.3, 2.8) - t * 0.06)
+    fbm(uv + p.warp * q + vec2f(1.7, 9.2) + vec2f(t * 0.12, t * 0.09)),
+    fbm(uv + p.warp * q + vec2f(8.3, 2.8) - vec2f(t * 0.1, t * 0.13)),
   );
-  let f = fbm(p0 + p.warp * r);
+  let f = fbm(uv + p.warp * r);
 
   let cA = vec3f(p.c0r, p.c0g, p.c0b);
   let cB = vec3f(p.c1r, p.c1g, p.c1b);
   let cC = vec3f(p.c2r, p.c2g, p.c2b);
 
-  var col = mix(cA, cB, smoothstep(0.18, 0.72, f));
-  col = mix(col, cC, smoothstep(0.55, 0.95, f) * 0.85);
+  var col = mix(cA, cB, clamp(f * f * 2.4, 0.0, 1.0));
+  col = mix(col, cC, clamp(r.x * 1.35, 0.0, 1.0));
+  col = mix(col, cC * vec3f(0.85, 1.0, 0.9), clamp(q.x * 0.9, 0.0, 1.0) * 0.6);
 
-  // Gentle luminance shaping: lifted midtones, soft vignette.
-  col = col * (0.88 + 0.24 * f);
-  let d = uv - vec2f(0.5, 0.5);
-  col = col * (1.0 - 0.28 * dot(d, d));
+  // Flow-line highlights: thin bright filaments along the warped field.
+  let filament = pow(clamp(1.0 - abs(f - 0.52) * 6.0, 0.0, 1.0), 4.0);
+  col += filament * 0.16 * mix(cB, cC, 0.5);
 
+  // Grade: filmic-ish S-curve, vignette, dither.
+  col = col * col * (3.0 - 2.0 * clamp(col, vec3f(0.0), vec3f(1.0)));
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.4 * dot(v, v) * 2.2;
+  col = clamp(col + vec3f(dither(uvIn)), vec3f(0.0), vec3f(1.0));
   return vec4f(col, 1.0);
 }
 `;

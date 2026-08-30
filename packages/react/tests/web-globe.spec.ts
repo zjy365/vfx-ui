@@ -7,11 +7,15 @@ const BASE = {
   speed: 0.35,
   phi: 0,
   theta: 0.35,
-  dotSize: 0.62,
+  dots: 520,
+  dotScale: 1.15,
+  diffuse: 1.2,
+  dark: 0.92,
+  atmosphere: 0.8,
+  seaLevel: 0.46,
   globeScale: 0.98,
-  backside: 0.5,
-  cr: 0.58, cg: 0.64, cb: 0.72,
-  er: 0.97, eg: 0.98, eb: 1,
+  cr: 0.616, cg: 0.706, cb: 0.839,
+  gr: 0.49, gg: 0.827, gb: 0.988,
 };
 
 async function render(gpu: Awaited<ReturnType<typeof init>>, uniforms: Record<string, number>): Promise<Uint8Array> {
@@ -50,7 +54,7 @@ describe("WebGlobe shader", () => {
   it("emission color changes the rim", async () => {
     const gpu = await init();
     const defaultPx = await render(gpu, {});
-    const redRim = await render(gpu, { er: 1, eg: 0, eb: 0 });
+    const redRim = await render(gpu, { gr: 1, gg: 0, gb: 0 });
     expect([...defaultPx]).not.toEqual([...redRim]);
   }, 60_000);
 });

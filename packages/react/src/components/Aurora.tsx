@@ -15,18 +15,18 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn hash(p: vec2f) -> f32 {
+fn hash21(p: vec2f) -> f32 {
   return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
 fn noise(p: vec2f) -> f32 {
   let i = floor(p);
   let f = fract(p);
-  let u = f * f * (3.0 - 2.0 * f);
-  let a = hash(i);
-  let b = hash(i + vec2f(1.0, 0.0));
-  let c = hash(i + vec2f(0.0, 1.0));
-  let d = hash(i + vec2f(1.0, 1.0));
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
   return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
 }
 
@@ -34,55 +34,80 @@ fn fbm(p: vec2f) -> f32 {
   var v = 0.0;
   var amp = 0.5;
   var q = p;
+  var m = 0.0;
   for (var i = 0; i < 4; i++) {
     v += amp * noise(q);
-    q = q * 2.02 + vec2f(4.7, 9.3);
+    m += amp;
+    q = q * 2.07 + vec2f(3.7, 8.1);
     amp = amp * 0.5;
   }
-  return v;
+  return v / m;
+}
+
+// Two-layer starfield, dimmed wherever the aurora is bright.
+fn stars(uv: vec2f, t: f32, suppress: f32) -> vec3f {
+  var col = vec3f(0.0);
+  let g1 = floor(uv * 220.0);
+  let s1 = hash21(g1);
+  if (s1 > 0.9965) {
+    let tw = 0.55 + 0.45 * sin(t * 2.1 + s1 * 40.0);
+    col += vec3f(0.9, 0.93, 1.0) * tw * 0.7;
+  }
+  let g2 = floor(uv * 90.0 + vec2f(31.7));
+  let s2 = hash21(g2);
+  if (s2 > 0.998) {
+    col += vec3f(1.0, 0.98, 0.9) * 1.1;
+  }
+  return col * suppress;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let c0 = vec3f(p.c0r, p.c0g, p.c0b);
-  let c1 = vec3f(p.c1r, p.c1g, p.c1b);
 
-  // Night sky: near-black base, faint color lift near the top edge.
-  var col = vec3f(0.014, 0.02, 0.042);
-  col += c0 * pow(1.0 - uv.y, 3.5) * 0.10;
-  col += c1 * pow(1.0 - uv.y, 5.0) * 0.05;
+  // Night sky: deep blue gradient, darkest at the top.
+  var col = mix(vec3f(0.008, 0.012, 0.03), vec3f(0.02, 0.035, 0.07), uvIn.y);
 
-  let count = clamp(p.bands, 1.0, 5.0);
   var aurora = vec3f(0.0);
-
+  let count = clamp(p.bands, 1.0, 5.0);
   for (var i = 0; i < 5; i++) {
+    if (f32(i) >= count) { break; }
     let fi = f32(i);
-    let weight = clamp(count - fi, 0.0, 1.0);
-    if (weight <= 0.0) { continue; }
 
-    let n = fbm(vec2f(uv.x * 1.7 + fi * 4.31, uv.y * 0.9 - t * (0.14 + 0.05 * fi)));
-    let sway = sin(t * (0.28 + 0.11 * fi) + fi * 2.13) * 0.20;
-    let center = 0.22 + 0.16 * fi + sway + (n - 0.5) * 0.55;
+    // Curtain lower edge: a fbm ridge drifting sideways, unique per band.
+    let drift = t * (0.13 + 0.04 * fi);
+    let edge = 0.14 + 0.09 * fi
+      + (fbm(vec2(uvIn.x * (1.6 + 0.3 * fi) + fi * 9.4, drift)) - 0.5) * 0.13
+      + sin(uvIn.x * (2.1 + 0.4 * fi) + fi * 2.7 + t * 0.18) * 0.025;
+    // Height above the sharp lower edge (positive = up into the curtain).
+    let h = edge - uvIn.y;
 
-    let d = uv.x - center;
-    let w = 0.05 + 0.022 * fi;
-    let g = exp(-d * d / (2.0 * w * w));
+    // Sharp lower edge, exponential falloff upward, curtain hangs in the sky.
+    let body = exp(-h * (2.6 + fi * 0.35)) * smoothstep(-0.004, 0.014, h) * smoothstep(0.0, 0.22, uvIn.y);
 
-    // Vertical curtain streaks and bottom fade (uv.y = 0 is the top).
-    let rays = 0.65 + 0.7 * noise(vec2f(uv.x * 26.0 + fi * 11.0, t * 0.35 + fi * 3.0));
-    let fade = smoothstep(1.0, 0.12, uv.y) * (0.55 + 0.45 * n);
+    // Vertical rays along the curtain, animated.
+    let rays = 0.45 + 0.75 * fbm(vec2(uvIn.x * (16.0 + fi * 5.0) + fi * 13.0, drift * 2.2));
 
-    let mixCol = clamp(0.22 + 0.5 * n + 0.22 * sin(fi * 1.71 + t * 0.21), 0.0, 1.0);
-    aurora += mix(c0, c1, mixCol) * g * rays * fade * weight;
+    // Green at the edge fading to violet as rays rise.
+    let heightMix = exp(-h * 1.1);
+    let curtainCol = mix(vec3f(p.c0r, p.c0g, p.c0b), vec3f(p.c1r, p.c1g, p.c1b), clamp(1.0 - heightMix, 0.0, 1.0));
+
+    let bright = (0.4 + 0.6 * heightMix) * body * rays;
+    aurora += curtainCol * bright;
   }
 
-  col += aurora * p.intensity * 0.85;
+  aurora = aurora * p.intensity * 0.6;
+  col += aurora;
+  col += stars(uvIn, t, 1.0 - clamp(aurora.g + aurora.b, 0.0, 0.85)) * 0.8;
 
-  // Soft ground shadow at the bottom for depth.
-  col = col * mix(0.55, 1.0, smoothstep(0.0, 0.9, 1.0 - uv.y));
+  // Faint horizon glow at the very bottom keeps the frame grounded.
+  col += vec3f(0.012, 0.02, 0.045) * pow(clamp((uvIn.y - 0.82) / 0.18, 0.0, 1.0), 2.0);
 
+  // Vignette + dither.
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.35 * dot(v, v) * 2.2;
+  col += vec3f((hash21(uvIn * 731.0 + t) - 0.5) / 255.0 * 1.5);
   return vec4f(col, 1.0);
 }
 `;
