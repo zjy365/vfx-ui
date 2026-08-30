@@ -22,10 +22,10 @@ struct Params {
 @group(0) @binding(0) var<uniform> params: Params;
 @group(0) @binding(1) var<uniform> pts: array<vec4f, ${MAX_POINTS}>;
 
-fn segmentDistance(p: vec2f, a: vec2f, b: vec2f) -> f32 {
+fn segmentDistance(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
   let ab = b - a;
   let t = clamp(dot(p - a, ab) / max(dot(ab, ab), 1e-6), 0.0, 1.0);
-  return length(p - (a + t * ab));
+  return vec2f(length(p - (a + t * ab)), t);
 }
 
 @fragment
@@ -44,17 +44,20 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
     // Aspect correction so the stroke width is isotropic on screen.
     let a = vec2f(x0, pts[i].y);
     let b = vec2f(x1, pts[i + 1].y);
-    let dd = segmentDistance(cs * vec2f(1.0, 0.5625 * 2.0), a * vec2f(1.0, 0.5625 * 2.0), b * vec2f(1.0, 0.5625 * 2.0));
-    if (dd < d) { d = dd; nearestY = mix(a.y, b.y, 0.5); }
+    let dr = segmentDistance(cs * vec2f(1.0, 1.125), a * vec2f(1.0, 1.125), b * vec2f(1.0, 1.125));
+    if (dr.x < d) { d = dr.x; nearestY = mix(a.y, b.y, dr.y); }
   }
 
   let lineMask = 1.0 - smoothstep(p.lineWidth * 0.6, p.lineWidth, d);
   let glowMask = (1.0 - smoothstep(p.lineWidth, p.lineWidth * 8.0, d)) * p.glow;
-  let fillMask = (1.0 - smoothstep(0.0, 0.35, cs.y - nearestY)) * p.fill;
+  // Area fill: bright right under the line, fading out downward.
+  let below = nearestY - cs.y;
+  let fillMask = smoothstep(0.0, 0.05, below) * p.fill;
+  let fillFade = 1.0 - smoothstep(0.05, 0.45, below);
 
   var col = vec3f(p.er, p.eg, p.eb) * glowMask + vec3f(p.cr, p.cg, p.cb) * lineMask;
-  col += vec3f(p.cr, p.cg, p.cb) * fillMask * 0.35;
-  let alpha = clamp(lineMask + glowMask + fillMask * 0.35, 0.0, 1.0);
+  col += vec3f(p.cr, p.cg, p.cb) * fillMask * fillFade * 1.4;
+  let alpha = clamp(lineMask + glowMask + fillMask * fillFade * 0.55, 0.0, 1.0);
   return vec4f(col, alpha);
 }
 `;

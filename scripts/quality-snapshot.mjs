@@ -35,6 +35,7 @@ const SHADER_IMPORTS = {
   vortex: ["VORTEX_SHADER", "./Vortex.tsx"],
   "web-globe": ["WEB_GLOBE_SHADER", "./WebGlobe.tsx"],
   "live-chart": ["LIVE_CHART_SHADER", "./LiveChart.tsx"],
+  "energy-orb": ["ENERGY_ORB_SHADER", "./EnergyOrb.tsx"],
 };
 
 /** Default-prop uniform snapshots (mirrors component defaults / catalog "classic" variant). */
@@ -49,6 +50,7 @@ const UNIFORMS = {
   "mesh-gradient": { time: 0.8, speed: 0.6, scale: 3.2, softness: 0.09, c0r: 0.043, c0g: 0.067, c0b: 0.125, c1r: 0.082, c1g: 0.369, c1b: 0.459, c2r: 0.486, c2g: 0.227, c2b: 0.929, c3r: 0.957, c3g: 0.447, c3b: 0.714 },
   iridescent: { time: 1.5, speed: 0.8, scale: 2.4, hueShift: 0, saturation: 1, brightness: 0.9 },
   vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996 },
+  "energy-orb": { time: 1.4, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1, hue: 0, saturation: 1, glow: 1 },
   "web-globe": { time: 0.8, speed: 0.35, phi: 0, theta: 0.35, dots: 520, dotScale: 1.15, diffuse: 1.2, dark: 0.92, atmosphere: 0.8, seaLevel: 0.46, globeScale: 0.98, cr: 0.616, cg: 0.706, cb: 0.839, gr: 0.49, gg: 0.827, gb: 0.988 },
   "live-chart": null, // data-driven; generated in the entry below
 };
@@ -103,7 +105,8 @@ for (const [name, { shader, uniforms }] of Object.entries(CATALOG)) {
   for (let y = 0; y < 512; y++) {
     for (let x = 0; x < 512; x++) {
       const i = (y * 512 + x) * 4 + 1;
-      if (x > 0 && d[i] === d[i - 4]) { run++; if (run > maxRun) maxRun = run; }
+      const opaque = d[(y * 512 + x) * 4 + 3] > 8;
+      if (opaque && x > 0 && d[i] === d[i - 4] && d[i - 3] > 8) { run++; if (run > maxRun) maxRun = run; }
       else run = 0;
     }
   }
@@ -115,7 +118,7 @@ console.log("REPORT:" + JSON.stringify(out));
 }
 
 async function main() {
-  const argNames = process.argv.slice(3);
+  const argNames = process.argv.slice(2);
   const requested = argNames.length ? argNames : Object.keys(SHADER_IMPORTS);
   for (const n of requested) if (!SHADER_IMPORTS[n]) throw new Error(`unknown component: ${n}`);
 

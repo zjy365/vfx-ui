@@ -3098,10 +3098,10 @@ var require_react_jsx_runtime_development = __commonJS({
             return jsxWithValidation(type, props, key, false);
           }
         }
-        var jsx14 = jsxWithValidationDynamic;
+        var jsx15 = jsxWithValidationDynamic;
         var jsxs = jsxWithValidationStatic;
         exports.Fragment = REACT_FRAGMENT_TYPE;
-        exports.jsx = jsx14;
+        exports.jsx = jsx15;
         exports.jsxs = jsxs;
       })();
     }
@@ -5293,23 +5293,69 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
+fn hash21(p: vec2f) -> f32 {
+  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
+}
+
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+fn fbm(p: vec2f) -> f32 {
+  var v = 0.0;
+  var amp = 0.5;
+  var q = p;
+  var m = 0.0;
+  for (var i = 0; i < 3; i++) {
+    v += amp * noise(q);
+    m += amp;
+    q = q * 2.13 + vec2f(7.3, 3.1);
+    amp = amp * 0.5;
+  }
+  return v / m;
+}
+
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
-  let t = uv.x * p.frequency + p.time * p.speed;
-  let w1 = sin(t * 1.0 + uv.y * 2.0) * 0.15 * p.amplitude;
-  let w2 = sin(t * 1.7 + uv.y * 4.0 + 1.3) * 0.08 * p.amplitude;
-  let w3 = sin(t * 0.6 - uv.y * 1.0 + 2.1) * 0.22 * p.amplitude;
-  let band = uv.y + w1 + w2 + w3;
+  let t = p.time * p.speed;
+
+  // Four travelling wave trains at different speeds and directions \u2014
+  // parallax between them is what makes water read as water.
+  let w1 = sin(uvIn.x * p.frequency + t * 1.00 + fbm(uvIn * 2.0 + t * 0.10) * 2.4) * 0.14;
+  let w2 = sin(uvIn.x * p.frequency * 1.7 - t * 1.35 + fbm(uvIn * 3.1 - t * 0.16) * 1.8) * 0.07;
+  let w3 = sin(uvIn.x * p.frequency * 0.6 + t * 0.55 + fbm(uvIn * 1.3 + t * 0.07) * 3.0) * 0.24;
+  let w4 = sin((uvIn.x + uvIn.y) * p.frequency * 1.15 + t * 1.9) * 0.035;
+  let band = uvIn.y + (w1 + w2 + w3 + w4) * p.amplitude;
 
   let cA = vec3f(p.c0r, p.c0g, p.c0b);
   let cB = vec3f(p.c1r, p.c1g, p.c1b);
   let cC = vec3f(p.c2r, p.c2g, p.c2b);
-  var col = mix(cA, cB, smoothstep(0.0, 0.6, band));
-  col = mix(col, cC, smoothstep(0.55, 1.0, band));
+  var col = mix(cA, cB, smoothstep(0.0, 0.62, band));
+  col = mix(col, cC, smoothstep(0.58, 1.05, band));
 
-  let glow = exp(-3.0 * abs(band - 0.72)) * 0.35;
-  col += vec3f(glow);
+  // Crest highlights: bright film where several waves peak together.
+  let crest = exp(-abs(band - 0.78) * 7.0) * 0.30;
+  col += vec3f(crest);
+
+  // Moonlight glitter: fine sparkles riding the crest line.
+  let sparkle = pow(hash21(floor(uvIn * vec2f(340.0, 190.0)) + floor(t * 3.0)), 40.0);
+  col += vec3f(sparkle) * crest * 2.2;
+
+  // Depth shading: darker troughs, airier tops.
+  col *= mix(0.72, 1.12, smoothstep(0.0, 1.0, band));
+
+  // Vignette + dither.
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.35 * dot(v, v) * 2.2;
+  col += vec3f((hash21(uvIn * 611.7 + t) - 0.5) / 255.0 * 1.5);
   return vec4f(col, 1.0);
 }
 `
@@ -5531,10 +5577,52 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn hash(p: vec2f) -> f32 {
+fn hash21(p: vec2f) -> f32 {
   return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+fn fbm(p: vec2f) -> f32 {
+  var v = 0.0;
+  var amp = 0.5;
+  var q = p;
+  var m = 0.0;
+  for (var i = 0; i < 4; i++) {
+    v += amp * noise(q);
+    m += amp;
+    q = q * 2.11 + vec2f(4.4, 9.1);
+    amp = amp * 0.5;
+  }
+  return v / m;
+}
+
+/// Stellar temperature: most stars cool white-blue, a few warm orange.
+fn starColor(seed: f32, base: vec3f) -> vec3f {
+  let warm = vec3f(1.0, 0.78, 0.55);
+  let neutral = vec3f(1.0, 0.97, 0.92);
+  let cold = vec3f(0.72, 0.82, 1.0);
+  var col = base;
+  if (seed < 0.12) {
+    col = warm;
+  } else if (seed < 0.55) {
+    col = neutral;
+  } else {
+    col = cold;
+  }
+  return mix(vec3f(1.0), col, 0.55);
+}
+
+/// One parallax layer of hashed stars. Returns (rgb premult by intensity).
 fn starLayer(
   uv: vec2f,
   t: f32,
@@ -5543,40 +5631,66 @@ fn starLayer(
   twinkle: f32,
   seed: f32,
   drift: vec2f,
-) -> f32 {
+  sizeK: f32,
+  base: vec3f,
+) -> vec3f {
   let g = fract(uv + drift) * cells;
   let id = floor(g);
   let f = fract(g);
 
-  let h1 = hash(id + vec2f(seed, seed * 1.31 + 0.7));
-  let h2 = hash(id + vec2f(seed + 5.2, 3.7));
-  let h3 = hash(id + vec2f(9.1, seed + 2.3));
+  let h1 = hash21(id + vec2f(seed, seed * 1.31 + 0.7));
+  let h2 = hash21(id + vec2f(seed + 5.2, 3.7));
+  let h3 = hash21(id + vec2f(9.1, seed + 2.3));
+  let h4 = hash21(id + vec2f(seed + 1.9, 7.7));
 
-  let exists = step(h1, clamp(density, 0.0, 1.0));
-  let pos = vec2f(h2, h3) * 0.7 + 0.15;
+  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
+  let pos = vec2f(h2, h3) * 0.72 + 0.14;
   let d = length(f - pos);
 
-  let tw = 0.55 + 0.45 * sin(t * (1.2 + 2.2 * h1) + h2 * 6.2831);
-  let amp = mix(1.0, tw, twinkle) * (0.45 + 0.55 * h3);
+  // Only a fraction of stars pulse; the rest hold steady.
+  let pulsing = step(h4, twinkle);
+  let tw = mix(1.0, 0.5 + 0.5 * sin(t * (0.9 + 2.4 * h1) + h2 * 6.2831), pulsing * 0.9);
+  let mag = 0.5 + 0.5 * h3 * h3; // magnitude: few bright, many faint
+  let core = exp(-d * d * sizeK);
+  let halo = 0.09 * exp(-d * d * sizeK * 0.55);
+  let tint = starColor(h2, base);
+  return exists * mag * tw * tint * (core + halo);
+}
 
-  return exists * amp * (exp(-d * d * 70.0) + 0.12 * exp(-d * d * 7.0));
+fn dither(uv: vec2f) -> f32 {
+  return (hash21(uv * 733.1) - 0.5) / 255.0 * 1.5;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let star = vec3f(p.c0r, p.c0g, p.c0b);
+  let base = vec3f(p.c0r, p.c0g, p.c0b);
 
-  var col = vec3f(0.010, 0.014, 0.030);
+  // Milky-way band: a diagonal fbm haze that lifts star density inside it.
+  let bandQ = mat2x2f(0.62, -0.78, 0.78, 0.62) * (uvIn - vec2f(0.42, 0.55));
+  let band = exp(-bandQ.x * bandQ.x * 7.0);
+  let haze = fbm(bandQ * 3.1 + vec2f(t * 0.008, 0.0));
+  let milkyWay = band * (0.22 + 0.5 * haze);
 
-  let far = starLayer(uv, t, 7.5, p.density * 0.8, p.twinkle, 3.7, vec2f(t * 0.012, t * 0.005));
-  let near = starLayer(uv, t, 4.5, p.density, p.twinkle, 11.3, vec2f(t * 0.024, -t * 0.009));
-  col += star * (far * 0.55 + near);
+  // Deep-space gradient, never pure black; nebula tint inside the band.
+  var col = mix(vec3f(0.012, 0.016, 0.034), vec3f(0.03, 0.034, 0.06), uvIn.y);
+  col += base * milkyWay * 0.10;
+  col += vec3f(0.05, 0.04, 0.09) * band * haze * 0.35;
 
-  // Faint milky-way style haze so the void is never flat black.
-  col += star * 0.016 * (0.5 + 0.5 * sin(uv.x * 3.1 + t * 0.05) * sin(uv.y * 2.3 - t * 0.04));
+  // Three parallax layers: far dust, mid field, near bright stars.
+  let far = starLayer(uvIn, t, 26.0, p.density * 1.6 + band * 0.25, p.twinkle * 0.7, 3.7, vec2f(t * 0.010, t * 0.004), 240.0, base);
+  let mid = starLayer(uvIn, t, 13.0, p.density * 0.9 + band * 0.18, p.twinkle, 11.3, vec2f(t * 0.02, -t * 0.008), 120.0, base);
+  let near = starLayer(uvIn, t, 6.5, p.density * 0.45, p.twinkle * 0.85, 27.9, vec2f(t * 0.034, t * 0.012), 70.0, base);
 
+  col += far * 0.35;
+  col += mid * 0.7;
+  col += near * 1.15;
+
+  // Vignette keeps corners quiet; dither kills 8-bit banding in the gradient.
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.3 * dot(v, v) * 2.2;
+  col += vec3f(dither(uvIn));
   return vec4f(col, 1.0);
 }
 `
@@ -5596,10 +5710,33 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn hash(p: vec2f) -> f32 {
+fn hash21(p: vec2f) -> f32 {
   return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
+fn hash31(p: vec3f) -> f32 {
+  return fract(sin(dot(p, vec3f(127.1, 311.7, 74.7))) * 43758.5453);
+}
+
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+/// Flow field the particles ride on: two-octave curl-ish drift.
+fn flow(p: vec2f, t: f32) -> vec2f {
+  let e = noise(p * 1.4 + vec2f(t * 0.22, -t * 0.13));
+  let g = noise(p * 1.4 + vec2f(7.3 - t * 0.15, 2.9 + t * 0.17));
+  return vec2f(e, g) - vec2f(0.5);
+}
+
+/// One depth layer of drifting soft particles.
 fn particleLayer(
   uv: vec2f,
   t: f32,
@@ -5607,46 +5744,66 @@ fn particleLayer(
   density: f32,
   size: f32,
   seed: f32,
-  drift: vec2f,
-) -> f32 {
-  let g = fract(uv + drift) * cells;
+  drift: f32,
+  base: vec3f,
+  twinkleK: f32,
+) -> vec3f {
+  let g = fract(uv * 1.0 + vec2f(drift * 0.6, -drift)) * cells;
   let id = floor(g);
   let f = fract(g);
 
-  let h1 = hash(id + vec2f(seed, seed * 1.7 + 1.9));
-  let h2 = hash(id + vec2f(seed + 7.7, 3.1));
-  let h3 = hash(id + vec2f(2.9, seed + 8.4));
+  let h1 = hash21(id + vec2f(seed, seed * 0.73 + 1.1));
+  let h2 = hash21(id + vec2f(seed + 4.3, 9.2));
+  let h3 = hash21(id + vec2f(2.6, seed + 5.8));
+  let h4 = hash31(vec3f(id, seed));
 
-  let exists = step(h1, clamp(density, 0.0, 1.0));
-
-  let phase = h2 * 6.2831;
-  let wob = vec2f(
-    sin(t * (0.35 + 0.4 * h3) + phase),
-    cos(t * (0.28 + 0.3 * h2) + phase * 1.37)
-  ) * 0.2;
-  let pos = vec2f(h1, h2) * 0.56 + 0.22 + wob;
+  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
+  // Per-particle wander: each drifts along the flow field with its own phase.
+  let wander = flow(id * 0.11 + h2 * 3.0, t) * 0.22;
+  let pos = vec2f(h2, h3) * 0.66 + 0.17 + wander;
   let d = length(f - pos);
 
-  let r = max(size * (0.72 + 0.28 * sin(t * (0.7 + 0.6 * h3) + h1 * 6.2831)), 0.001);
-  let core = 1.0 - smoothstep(r * 0.25, r, d);
-  let glow = exp(-d * d / (r * r * 6.0)) * 0.35;
-  let amp = 0.35 + 0.65 * h3;
+  // Breathing size + per-particle phase twinkle.
+  let breathe = 0.75 + 0.25 * sin(t * (0.5 + h3) + h2 * 6.2831);
+  // dotR is in cell-fraction units and must stay well inside the cell.
+  let dotR = clamp(size * (0.35 + 0.3 * h4) * breathe, 0.04, 0.24);
+  let core = exp(-d * d / max(dotR * dotR * 2.2, 1e-5));
+  let halo = exp(-d * d / max(dotR * dotR * 7.0, 1e-5)) * 0.14;
+  // Soft-fade before the cell border so glowing orbs never clip into squares.
+  let edgeFade = 1.0 - smoothstep(0.30, 0.48, max(abs(f.x - 0.5), abs(f.y - 0.5)));
 
-  return exists * amp * (core + glow);
+  let fade = smoothstep(0.0, 0.15, h2) * smoothstep(1.0, 0.85, h2);
+  let tw = mix(1.0, 0.6 + 0.4 * sin(t * 1.3 + h2 * 6.2831), twinkleK);
+  return exists * fade * tw * edgeFade * base * (core + halo) * (0.3 + 0.45 * h1);
+}
+
+fn dither(uv: vec2f) -> f32 {
+  return (hash21(uv * 517.3) - 0.5) / 255.0 * 1.5;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let pc = vec3f(p.c0r, p.c0g, p.c0b);
+  let base = vec3f(p.c0r, p.c0g, p.c0b);
 
-  var col = vec3f(0.018, 0.022, 0.038);
+  // Depth: far dust motes, mid field, near bokeh orbs \u2014 three drift rates.
+  var col = mix(vec3f(0.016, 0.022, 0.04), vec3f(0.035, 0.045, 0.075), uvIn.y);
+  col += base * 0.012 * noise(uvIn * 3.0 + vec2f(t * 0.05));
 
-  let far = particleLayer(uv, t, 5.5, p.density * 0.85, p.size * 0.55, 6.2, vec2f(t * 0.010, t * 0.004));
-  let near = particleLayer(uv, t, 3.2, p.density, p.size, 13.9, vec2f(-t * 0.016, t * 0.007));
-  col += pc * (far * 0.5 + near);
+  let far = particleLayer(uvIn, t, 30.0, p.density * 1.7, p.size * 0.55, 3.1, t * 0.02, base, 0.5);
+  let mid = particleLayer(uvIn, t, 15.0, p.density, p.size, 11.7, t * 0.045, base, 0.25);
+  let near = particleLayer(uvIn, t, 7.5, p.density * 0.5, p.size * 2.1, 27.3, t * 0.075, base, 0.1);
 
+  col += far * 0.35 + mid * 0.7 + near * 0.95;
+
+  // Faint glow pooling where particles cluster.
+  let cluster = noise(uvIn * 2.2 + flow(uvIn * 1.1, t) * 1.4 + vec2f(t * 0.03));
+  col += base * 0.05 * pow(cluster, 3.0);
+
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.32 * dot(v, v) * 2.2;
+  col += vec3f(dither(uvIn));
   return vec4f(col, 1.0);
 }
 `
@@ -5667,70 +5824,107 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn cardSdf(uv: vec2f, halfW: f32, halfH: f32, rad: f32) -> f32 {
-  let ctr = uv - vec2f(0.5, 0.5);
-  let q = abs(ctr) - vec2f(halfW - rad, halfH - rad);
-  return length(max(q, vec2f(0.0))) + min(max(q.x, q.y), 0.0) - rad;
+fn hash21(p: vec2f) -> f32 {
+  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
-fn backdrop(uv: vec2f, tint: vec3f) -> vec3f {
-  let d = uv - vec2f(0.5, 0.45);
-  let v = smoothstep(1.05, 0.2, length(d));
-  var c = mix(vec3f(0.030, 0.036, 0.054), vec3f(0.074, 0.086, 0.116), v);
-  c += tint * 0.035 * v;
-  return c;
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+fn fbm(p: vec2f) -> f32 {
+  var v = 0.0;
+  var amp = 0.5;
+  var q = p;
+  var m = 0.0;
+  for (var i = 0; i < 4; i++) {
+    v += amp * noise(q);
+    m += amp;
+    q = q * 2.05 + vec2f(3.3, 6.1);
+    amp = amp * 0.5;
+  }
+  return v / m;
+}
+
+/// Rounded-rect signed distance, centred, half-size (w, h).
+fn sdRoundRect(p: vec2f, w: f32, h: f32, r: f32) -> f32 {
+  let q = abs(p) - vec2f(w, h) + vec2f(r);
+  return length(max(q, vec2f(0.0))) + min(max(q.x, q.y), 0.0) - r;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
+  let t = p.time;
+
+  // Ambient backdrop: slow aurora-like colour field so the glass has
+  // something real to refract.
+  let bg = fbm(uvIn * 2.2 + vec2f(t * 0.03, -t * 0.02));
+  let bg2 = fbm(uvIn * 3.7 - vec2f(t * 0.02, t * 0.03));
+  var scene = mix(vec3f(0.05, 0.07, 0.13), vec3f(0.10, 0.14, 0.24), bg);
+  scene += vec3f(0.10, 0.06, 0.20) * pow(bg2, 2.2) * 0.9;
+
+  let aspect = vec2f(1.0, 1.0);
+  let card = (uvIn - vec2f(0.5)) * aspect;
+  let w = 0.36 * p.cardScale * 2.0;
+  let h = 0.24 * p.cardScale * 2.0;
+  let sd = sdRoundRect(card, w, h, p.radius);
+
+  // Refraction: bend the scene lookup by the glass surface normal.
+  let eps = 0.004;
+  let sdx = sdRoundRect(card + vec2f(eps, 0.0), w, h, p.radius) - sd;
+  let sdy = sdRoundRect(card + vec2f(0.0, eps), w, h, p.radius) - sd;
+  let normal = normalize(vec3f(sdx, sdy, 0.02));
+  let bend = normal.xy * 0.16;
+
+  let inside = smoothstep(0.0025, -0.0025, sd);
+
+  // What the glass shows: the scene, sampled through the bend + interior fbm.
+  let refr = fbm((uvIn + bend) * 3.4 + vec2f(t * 0.015, -t * 0.01));
+  var glassCol = scene * (0.55 + 0.5 * refr);
   let tint = vec3f(p.c0r, p.c0g, p.c0b);
+  glassCol = mix(glassCol, glassCol * tint * 1.6 + tint * 0.10, 0.45);
 
-  let halfW = 0.5 * p.cardScale;
-  let halfH = 0.5 * p.cardScale * 0.66;
-  let rad = min(p.radius, min(halfW, halfH) * 0.9);
+  // Sweeping specular highlight, diagonal, time-driven.
+  let sweep = fract(t * 0.11);
+  let sweepLine = card.x + card.y - sweep * 1.6 + 0.3;
+  let spec = exp(-abs(sweepLine) * 16.0) * p.shine;
 
-  let sd = cardSdf(uv, halfW, halfH, rad);
-  let px = 0.0022;
-  let inside = 1.0 - smoothstep(-px, px, sd);
+  // Edge treatment: bright outer rim + inner bevel line.
+  let edge = smoothstep(0.02, 0.0, abs(sd + 0.004)) ;
+  let bevel = smoothstep(0.05, 0.0, abs(sd + 0.016));
 
-  // Outward normal from the SDF gradient, used to bend the backdrop at the rim.
-  let e = 0.0045;
-  let nx = cardSdf(uv + vec2f(e, 0.0), halfW, halfH, rad) - cardSdf(uv - vec2f(e, 0.0), halfW, halfH, rad);
-  let ny = cardSdf(uv + vec2f(0.0, e), halfW, halfH, rad) - cardSdf(uv - vec2f(0.0, e), halfW, halfH, rad);
-  let n = normalize(vec2f(nx, ny) + vec2f(1e-5, 0.0));
+  var col = mix(scene, glassCol, inside);
+  // Interior grain: micro-texture so the pane never reads as flat plastic.
+  let grain = fbm(uvIn * 46.0 + vec2f(refr * 2.0)) * 0.14 + fbm(uvIn * 170.0) * 0.07;
+  col = mix(col, col * (0.78 + 0.44 * grain) + vec3f(grain * 0.07), inside * 0.95);
+  col += tint * edge * p.borderGlow * 1.02;
+  col += vec3f(0.75, 0.82, 1.0) * bevel * 0.3 * p.borderGlow;
+  col += vec3f(0.9, 0.94, 1.0) * spec * inside * 0.9;
 
-  let edgeBand = exp(-abs(sd) * 22.0);
-  let rimBand = exp(-abs(sd) * 70.0);
+  // Soft drop shadow below the card.
+  let shadow = smoothstep(0.12, 0.0, sd - 0.05) * (1.0 - inside);
+  col = mix(col, vec3f(0.0, 0.0, 0.0), shadow * 0.35);
 
-  // Background: quiet radial gradient with a whisper of tint.
-  var col = backdrop(uv, tint);
+  // Keep the backdrop alive: faint drifting texture outside the pane.
+  let outer = 1.0 - inside;
+  col += vec3f(0.030, 0.038, 0.062) * outer * (0.4 + 0.6 * fbm(uvIn * 5.5 - vec2f(t * 0.02, t * 0.014)));
 
-  // Card body: frosted tint over the refracted backdrop, top-lit for volume.
-  let refr = backdrop(uv + n * edgeBand * 0.05, tint);
-  var body = mix(refr, tint * 0.42 + vec3f(0.10, 0.11, 0.14), 0.38);
-  body = body * mix(0.88, 1.06, 1.0 - smoothstep(0.0, 1.0, uv.y));
-
-  // Bevel: bright rim toward the light, gentle shading opposite.
-  let lightDir = normalize(vec2f(-0.62, -0.78));
-  let bevel = pow(clamp(dot(n, lightDir), 0.0, 1.0), 3.0) * rimBand;
-  let shade = pow(clamp(dot(n, -lightDir), 0.0, 1.0), 3.0) * rimBand;
-  body += vec3f(0.88, 0.93, 1.0) * bevel * 0.22;
-  body = body * (1.0 - shade * 0.16);
-
-  // Shine: a soft diagonal highlight sweeping across the card.
-  let diag = (uv.x + uv.y) * 0.5;
-  let sweep = fract(p.time * 0.22) * 1.7 - 0.35;
-  let bandD = diag - sweep;
-  let shineBand = exp(-bandD * bandD / 0.01125);
-  body += vec3f(1.0) * shineBand * p.shine * 0.14;
-
-  col = mix(col, body, inside);
-
-  // Border glow just outside the rim.
-  let glow = exp(-max(sd, 0.0) * 60.0) * (1.0 - inside);
-  col = mix(col, col + tint * 0.85 + vec3f(0.10), glow * p.borderGlow * 0.40);
-
+  // Soft-clip highlights so rims never clamp into flat white plateaus.
+  let lum0 = dot(col, vec3f(0.2126, 0.7152, 0.0722));
+  if (lum0 > 0.8) {
+    col = col * (0.8 + 0.2 * lum0) / max(lum0, 1e-3) * lum0;
+  }
+  let d = hash21(uvIn * 991.0 + t);
+  let lum = dot(col, vec3f(0.2126, 0.7152, 0.0722));
+  col += vec3f((d - 0.5) / 255.0 * (3.2 + 5.0 * (1.0 - clamp(lum, 0.0, 1.0))) + (fbm(uvIn * 23.0 + t * 0.05) - 0.5) * 0.012);
   return vec4f(col, 1.0);
 }
 `
@@ -5750,59 +5944,98 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn waves(p: vec2f, t: f32) -> vec2f {
-  var d = vec2f(
-    sin(p.y * 5.3 + t * 0.9) + 0.55 * sin(p.y * 11.7 - t * 0.6 + 1.7),
-    cos(p.x * 4.7 - t * 0.8) + 0.55 * cos(p.x * 10.3 + t * 0.7 + 2.3)
-  );
-  d += vec2f(
-    sin((p.x + p.y) * 8.1 + t * 1.15),
-    cos((p.x - p.y) * 7.3 + t * 0.95)
-  ) * 0.6;
-  return d;
+fn hash21(p: vec2f) -> f32 {
+  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
-fn scene(uv: vec2f, t: f32) -> vec3f {
-  var acc = vec3f(0.045, 0.052, 0.078);
-  let b1 = uv - vec2f(0.32 + 0.10 * sin(t * 0.21), 0.38 + 0.08 * cos(t * 0.17));
-  acc += vec3f(0.09, 0.30, 0.32) * exp(-dot(b1, b1) * 5.5);
-  let b2 = uv - vec2f(0.70 + 0.09 * cos(t * 0.19), 0.30 + 0.10 * sin(t * 0.23));
-  acc += vec3f(0.18, 0.15, 0.40) * exp(-dot(b2, b2) * 6.5);
-  let b3 = uv - vec2f(0.52 + 0.11 * sin(t * 0.15 + 2.0), 0.74 + 0.07 * cos(t * 0.20 + 1.0));
-  acc += vec3f(0.32, 0.15, 0.23) * exp(-dot(b3, b3) * 7.5);
-  return acc;
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+fn fbm(p: vec2f) -> f32 {
+  var v = 0.0;
+  var amp = 0.5;
+  var q = p;
+  var m = 0.0;
+  for (var i = 0; i < 4; i++) {
+    v += amp * noise(q);
+    m += amp;
+    q = q * 2.09 + vec2f(2.9, 7.1);
+    amp = amp * 0.5;
+  }
+  return v / m;
+}
+
+/// The liquid surface height field: two crossing wave families + fbm swell.
+fn surface(p: vec2f, t: f32) -> f32 {
+  let w1 = sin(p.x * 3.1 + fbm(p * 1.4 + t * 0.18) * 4.0 + t * 0.7);
+  let w2 = sin(p.y * 2.6 - fbm(p * 1.1 - t * 0.14) * 3.4 + t * 0.5);
+  return w1 * 0.6 + w2 * 0.4 + fbm(p * 2.4 - vec2f(t * 0.1)) * 0.8;
+}
+
+/// Refraction offset of the surface field at p (finite-difference gradient).
+fn refract(p: vec2f, t: f32, k: f32) -> vec2f {
+  let e = 0.006;
+  let h = surface(p, t);
+  let dx = surface(p + vec2f(e, 0.0), t) - h;
+  let dy = surface(p + vec2f(0.0, e), t) - h;
+  return vec2f(dx, dy) * k;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let sp = p.scale;
+  let q = (uvIn - vec2f(0.5)) * p.scale * 2.4;
 
-  let disp = waves(uv * sp, t) * p.distortion * 0.045;
+  // Chromatic dispersion: each channel refracts with a slightly different
+  // offset \u2014 the signature of real thick glass.
+  let k = p.distortion * 0.05;
+  let base = vec2f(0.0);
+  let off = refract(q, t, k);
+  let disp = off * p.chromatic * 0.5;
 
-  // Chromatic split: sample the backdrop at slightly different distortions.
-  let cR = scene(uv + disp * (1.0 + p.chromatic * 0.35), t);
-  let cG = scene(uv + disp, t);
-  let cB = scene(uv + disp * (1.0 - p.chromatic * 0.35), t);
-  var col = vec3f(cR.r, cG.g, cB.b);
+  let src = uvIn * 2.0;
+  let colR = fbm((uvIn + off + disp) * 2.6 + vec2f(t * 0.03));
+  let colG = fbm((uvIn + off) * 2.6 + vec2f(t * 0.03));
+  let colB = fbm((uvIn + off - disp) * 2.6 + vec2f(t * 0.03));
 
-  // Specular from the wave-height gradient (procedural normal approximation).
-  let e = 0.012;
-  let hx = waves((uv + vec2f(e, 0.0)) * sp, t) - waves((uv - vec2f(e, 0.0)) * sp, t);
-  let hy = waves((uv + vec2f(0.0, e)) * sp, t) - waves((uv - vec2f(0.0, e)) * sp, t);
-  let slope = vec2f(hx.x + hx.y, hy.x + hy.y) * (0.5 / e);
-  let nrm = normalize(vec3f(-slope.x * 0.1, -slope.y * 0.1, 1.0));
-  let light = normalize(vec3f(0.35, -0.5, 0.8));
-  let facing = clamp(dot(nrm, light), 0.0, 1.0);
-  col += vec3f(1.0) * pow(facing, 22.0) * 0.30;
-  col += vec3f(0.88, 0.93, 1.0) * pow(facing, 3.0) * 0.05;
+  // Deep glass base from the refracted channels \u2014 dark, so ridges pop.
+  var col = vec3f(0.03, 0.045, 0.09);
+  col += vec3f(colR, colG, colB) * vec3f(0.22, 0.30, 0.46);
 
-  // Soft vignette.
-  let d = uv - vec2f(0.5, 0.5);
-  col = col * (1.0 - 0.22 * dot(d, d));
+  // Interference contour lines of the surface field, RGB-split: these are
+  // the visible "liquid" structures, not a blurry haze.
+  let phase = surface(q, t) * 9.0;
+  let lineR = abs(fract(phase * 0.96 + 0.19) - 0.5);
+  let lineG = abs(fract(phase) - 0.5);
+  let lineB = abs(fract(phase * 1.05 - 0.13) - 0.5);
+  let lineW = 0.10;
+  col += vec3f(
+    (1.0 - smoothstep(0.0, lineW, lineR)) * 0.85,
+    (1.0 - smoothstep(0.0, lineW, lineG)) * 0.75,
+    (1.0 - smoothstep(0.0, lineW, lineB)) * 0.7,
+  ) * vec3f(0.5, 0.65, 1.0);
 
-  return vec4f(col, 1.0);
+  // Steep-gradient caustic glow.
+  let ridge = pow(1.0 - clamp(length(off) * 4.2, 0.0, 1.0), 5.0);
+  col += vec3f(0.35, 0.5, 0.95) * ridge * 0.4;
+
+  // Sparse specular glints.
+  let glint = pow(noise(q * 3.4 + vec2f(t * 0.4, -t * 0.3)), 8.0);
+  col += vec3f(0.9, 0.94, 1.0) * glint * 0.35;
+
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.38 * dot(v, v) * 2.2;
+  col += vec3f((hash21(uvIn * 883.1 + t) - 0.5) / 255.0 * 1.5);
+  return vec4f(clamp(col, vec3f(0.0), vec3f(1.0)), 1.0);
 }
 `
 );
@@ -5871,8 +6104,9 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
   col = mix(col, cC, smoothstep(0.35, 0.75, minDist));
   col = mix(col, cD, smoothstep(0.6, 1.1, minDist) * (0.5 + 0.5 * w));
 
-  let edge = smoothstep(p.softness, 0.02, abs(minDist - 0.62)) * 0.12;
-  col += vec3f(edge);
+  let edge = smoothstep(p.softness, 0.02, abs(minDist - 0.62)) * 0.10;
+  col += mix(vec3f(1.0), cC, 0.55) * edge;
+  col *= 0.92 + 0.16 * w;
   return vec4f(col, 1.0);
 }
 `
@@ -6000,11 +6234,16 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
 
   let armMask = 0.5 + 0.5 * cos(a * p.arms + r * 4.0);
   let falloff = exp(-2.6 * r);
-  let dust = falloff * (0.35 + 0.65 * armMask);
+  let dust = falloff * (0.5 + 0.72 * armMask);
 
-  // Star speckles on a hashed grid, brighter along arms.
-  let g = floor((q + vec2f(t * 0.02)) * 42.0);
-  let star = pow(hash21(g), 24.0) * 2.4 * falloff * (0.4 + armMask);
+  // Star speckles: hashed per cell, rendered as soft round points.
+  let sg = (q + vec2f(t * 0.02)) * 42.0;
+  let sid = floor(sg);
+  let sf = fract(sg) - vec2f(0.5);
+  let sh = hash21(sid);
+  let sPos = (vec2f(hash21(sid + vec2f(3.1)), hash21(sid + vec2f(7.7))) - vec2f(0.5)) * 0.6;
+  let sDot = exp(-dot(sf - sPos, sf - sPos) * 90.0);
+  let star = step(0.94, sh) * sDot * 2.6 * falloff * (0.4 + armMask);
 
   let core = exp(-7.0 * r) * p.coreGlow;
 
@@ -6230,10 +6469,10 @@ struct Params {
 @group(0) @binding(0) var<uniform> params: Params;
 @group(0) @binding(1) var<uniform> pts: array<vec4f, ${MAX_POINTS}>;
 
-fn segmentDistance(p: vec2f, a: vec2f, b: vec2f) -> f32 {
+fn segmentDistance(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
   let ab = b - a;
   let t = clamp(dot(p - a, ab) / max(dot(ab, ab), 1e-6), 0.0, 1.0);
-  return length(p - (a + t * ab));
+  return vec2f(length(p - (a + t * ab)), t);
 }
 
 @fragment
@@ -6252,18 +6491,135 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
     // Aspect correction so the stroke width is isotropic on screen.
     let a = vec2f(x0, pts[i].y);
     let b = vec2f(x1, pts[i + 1].y);
-    let dd = segmentDistance(cs * vec2f(1.0, 0.5625 * 2.0), a * vec2f(1.0, 0.5625 * 2.0), b * vec2f(1.0, 0.5625 * 2.0));
-    if (dd < d) { d = dd; nearestY = mix(a.y, b.y, 0.5); }
+    let dr = segmentDistance(cs * vec2f(1.0, 1.125), a * vec2f(1.0, 1.125), b * vec2f(1.0, 1.125));
+    if (dr.x < d) { d = dr.x; nearestY = mix(a.y, b.y, dr.y); }
   }
 
   let lineMask = 1.0 - smoothstep(p.lineWidth * 0.6, p.lineWidth, d);
   let glowMask = (1.0 - smoothstep(p.lineWidth, p.lineWidth * 8.0, d)) * p.glow;
-  let fillMask = (1.0 - smoothstep(0.0, 0.35, cs.y - nearestY)) * p.fill;
+  // Area fill: bright right under the line, fading out downward.
+  let below = nearestY - cs.y;
+  let fillMask = smoothstep(0.0, 0.05, below) * p.fill;
+  let fillFade = 1.0 - smoothstep(0.05, 0.45, below);
 
   var col = vec3f(p.er, p.eg, p.eb) * glowMask + vec3f(p.cr, p.cg, p.cb) * lineMask;
-  col += vec3f(p.cr, p.cg, p.cb) * fillMask * 0.35;
-  let alpha = clamp(lineMask + glowMask + fillMask * 0.35, 0.0, 1.0);
+  col += vec3f(p.cr, p.cg, p.cb) * fillMask * fillFade * 1.4;
+  let alpha = clamp(lineMask + glowMask + fillMask * fillFade * 0.55, 0.0, 1.0);
   return vec4f(col, alpha);
+}
+`
+);
+
+// packages/react/src/components/EnergyOrb.tsx
+var import_jsx_runtime14 = __toESM(require_jsx_runtime(), 1);
+var ENERGY_ORB_SHADER = (
+  /* wgsl */
+  `
+struct Params {
+  time: f32,
+  speed: f32,
+  smokeScale: f32,
+  smokeStrength: f32,
+  smokeSpeed: f32,
+  hue: f32,
+  saturation: f32,
+  glow: f32,
+}
+@group(0) @binding(0) var<uniform> params: Params;
+
+fn hash13(p: vec3f) -> f32 {
+  var q = fract(p * 0.3183099 + vec3f(0.1, 0.2, 0.3));
+  q = q * 17.0;
+  return fract(q.x * q.y * q.z * (q.x + q.y + q.z));
+}
+
+fn noise3(x: vec3f) -> f32 {
+  let i = floor(x);
+  var f = fract(x);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(mix(hash13(i), hash13(i + vec3f(1.0, 0.0, 0.0)), f.x),
+        mix(hash13(i + vec3f(0.0, 1.0, 0.0)), hash13(i + vec3f(1.0, 1.0, 0.0)), f.x), f.y),
+    mix(mix(hash13(i + vec3f(0.0, 0.0, 1.0)), hash13(i + vec3f(1.0, 0.0, 1.0)), f.x),
+        mix(hash13(i + vec3f(0.0, 1.0, 1.0)), hash13(i + vec3f(1.0, 1.0, 1.0)), f.x), f.y),
+    f.z,
+  );
+}
+
+fn fbm(pIn: vec3f) -> f32 {
+  var v = 0.0;
+  var a = 0.5;
+  var p = pIn;
+  for (var i = 0; i < 5; i++) {
+    v += a * noise3(p);
+    p = p * 2.03 + vec3f(1.7);
+    a = a * 0.5;
+  }
+  return v;
+}
+
+/// Rodrigues rotation of color around the (1,1,1) axis \u2014 hue shift.
+fn gradeColor(color: vec3f, hue: f32, saturation: f32) -> vec3f {
+  let luminance = dot(color, vec3f(0.2126, 0.7152, 0.0722));
+  let sat = mix(vec3f(luminance), color, saturation);
+  let axis = normalize(vec3f(1.0));
+  return max(vec3f(0.0), sat * cos(hue) + cross(axis, sat) * sin(hue) + axis * dot(axis, sat) * (1.0 - cos(hue)));
+}
+
+fn dither(uv: vec2f) -> f32 {
+  return (fract(sin(dot(uv, vec2f(12.9898, 78.233))) * 43758.5453) - 0.5) / 255.0 * 1.5;
+}
+
+@fragment
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
+  let p = params;
+  let uv = (uvIn - vec2f(0.5)) * 2.0;
+  let r = length(uv);
+  let R = 0.62;
+  var col = vec3f(0.0);
+  var alpha = 0.0;
+
+  if (r < R) {
+    let z = sqrt(R * R - r * r);
+    let n = normalize(vec3f(uv, z));
+    let ca = p.time * p.speed * 0.15;
+    let rot = mat3x3f(
+      vec3f(cos(ca), 0.0, sin(ca)),
+      vec3f(0.0, 1.0, 0.0),
+      vec3f(-sin(ca), 0.0, cos(ca)),
+    );
+    let sp = rot * n;
+
+    let smokeTime = p.time * p.speed * p.smokeSpeed;
+    let f1 = fbm(sp * (2.6 * p.smokeScale) + vec3f(0.0, smokeTime * 0.12, 0.0));
+    let f2 = fbm(sp * (4.5 * p.smokeScale) - vec3f(smokeTime * 0.08, 0.0, smokeTime * 0.05) + f1 * 1.8);
+    let veil = smoothstep(0.35, 0.75, f2);
+
+    let deep = vec3f(0.04, 0.02, 0.12);
+    let mid = vec3f(0.22, 0.16, 0.55);
+    let bright = vec3f(0.62, 0.60, 0.98);
+    col = mix(deep, mid, f1 * 1.2);
+    col = mix(col, bright, clamp(veil * 0.65 * p.smokeStrength, 0.0, 1.0));
+
+    let fres = pow(1.0 - z / R, 2.2);
+    col += vec3f(0.55, 0.55, 1.0) * fres * 1.1 * p.glow;
+    let top = pow(max(dot(n, normalize(vec3f(0.0, 0.7, 0.7))), 0.0), 3.0);
+    col += vec3f(0.45, 0.42, 0.9) * top * 0.35 * p.glow;
+    alpha = 1.0;
+  }
+
+  let glow = clamp(exp(-(r - R) * 14.0), 0.0, 1.0);
+  if (r >= R) {
+    col = vec3f(0.55, 0.52, 1.0) * glow * 0.8 * p.glow;
+    alpha = glow * 0.85;
+  } else {
+    let rim = smoothstep(R - 0.03, R, r);
+    col += vec3f(0.6, 0.58, 1.0) * rim * 0.6 * p.glow;
+  }
+
+  col = gradeColor(col, p.hue, p.saturation);
+  col += dither(uvIn);
+  return vec4f(col * alpha, alpha);
 }
 `
 );
@@ -6284,7 +6640,8 @@ var CATALOG = {
   "iridescent": { shader: IRIDESCENT_SHADER, uniforms: { "time": 1.5, "speed": 0.8, "scale": 2.4, "hueShift": 0, "saturation": 1, "brightness": 0.9 } },
   "vortex": { shader: VORTEX_SHADER, uniforms: { "time": 0.6, "speed": 0.5, "swirl": 2.4, "arms": 2, "coreGlow": 1.2, "cr": 0.506, "cg": 0.549, "cb": 0.973, "er": 0.878, "eg": 0.949, "eb": 0.996 } },
   "web-globe": { shader: WEB_GLOBE_SHADER, uniforms: { "time": 0.8, "speed": 0.35, "phi": 0, "theta": 0.35, "dots": 520, "dotScale": 1.15, "diffuse": 1.2, "dark": 0.92, "atmosphere": 0.8, "seaLevel": 0.46, "globeScale": 0.98, "cr": 0.616, "cg": 0.706, "cb": 0.839, "gr": 0.49, "gg": 0.827, "gb": 0.988 } },
-  "live-chart": { shader: LIVE_CHART_SHADER, uniforms: { "time": 0, "count": 48, "lineWidth": 6e-3, "glow": 0.4, "fill": 0.6, "cr": 0.22, "cg": 0.74, "cb": 0.97, "er": 0.49, "eg": 0.83, "eb": 0.99, "pts": [[0.5, 0.5, 0, 0], [0.6880599893484928, 0.6880599893484928, 0, 0], [0.8035344230038807, 0.8035344230038807, 0, 0], [0.8203134202134684, 0.8203134202134684, 0, 0], [0.7710918692668219, 0.7710918692668219, 0, 0], [0.7171224912331501, 0.7171224912331501, 0, 0], [0.698950548572041, 0.698950548572041, 0, 0], [0.7057660947314762, 0.7057660947314762, 0, 0], [0.686562994434805, 0.686562994434805, 0, 0], [0.5942986619270211, 0.5942986619270211, 0, 0], [0.42896121566349726, 0.42896121566349726, 0, 0], [0.24604636676161443, 0.24604636676161443, 0, 0], [0.12300212982100277, 0.12300212982100277, 0, 0], [0.10801160688706112, 0.10801160688706112, 0, 0], [0.1889774686823272, 0.1889774686823272, 0, 0], [0.30551940475865264, 0.30551940475865264, 0, 0], [0.3945604535357848, 0.3945604535357848, 0, 0], [0.43501651655474394, 0.43501651655474394, 0, 0], [0.4581382495151453, 0.4581382495151453, 0, 0], [0.5163595326095315, 0.5163595326095315, 0, 0], [0.6351369869128449, 0.6351369869128449, 0, 0], [0.7852556171304038, 0.7852556171304038, 0, 0], [0.8975812085913506, 0.8975812085913506, 0, 0], [0.9099872198487396, 0.9099872198487396, 0, 0], [0.811596699753744, 0.811596699753744, 0, 0], [0.6511942139552905, 0.6511942139552905, 0, 0], [0.5034199201397278, 0.5034199201397278, 0, 0], [0.41795194464623986, 0.41795194464623986, 0, 0], [0.3894474858919309, 0.3894474858919309, 0, 0], [0.37007678085748924, 0.37007678085748924, 0, 0], [0.3141349496495159, 0.3141349496495159, 0, 0], [0.21994997802862945, 0.21994997802862945, 0, 0], [0.136484196569521, 0.136484196569521, 0, 0], [0.12898635820690899, 0.12898635820690899, 0, 0], [0.22936004730098952, 0.22936004730098952, 0, 0], [0.408839251975214, 0.408839251975214, 0, 0], [0.5940353236415418, 0.5940353236415418, 0, 0], [0.7149051942453203, 0.7149051942453203, 0, 0], [0.7492574607985786, 0.7492574607985786, 0, 0], [0.7311458185566903, 0.7311458185566903, 0, 0], [0.7178164684780469, 0.7178164684780469, 0, 0], [0.7411059493340727, 0.7411059493340727, 0, 0], [0.7807106956649897, 0.7807106956649897, 0, 0], [0.7798771578568919, 0.7798771578568919, 0, 0], [0.6915991324213161, 0.6915991324213161, 0, 0], [0.5199673248148136, 0.5199673248148136, 0, 0], [0.32467822872609775, 0.32467822872609775, 0, 0], [0.18436799405256069, 0.18436799405256069, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] } }
+  "live-chart": { shader: LIVE_CHART_SHADER, uniforms: { "time": 0, "count": 48, "lineWidth": 6e-3, "glow": 0.4, "fill": 0.6, "cr": 0.22, "cg": 0.74, "cb": 0.97, "er": 0.49, "eg": 0.83, "eb": 0.99, "pts": [[0.5, 0.5, 0, 0], [0.6880599893484928, 0.6880599893484928, 0, 0], [0.8035344230038807, 0.8035344230038807, 0, 0], [0.8203134202134684, 0.8203134202134684, 0, 0], [0.7710918692668219, 0.7710918692668219, 0, 0], [0.7171224912331501, 0.7171224912331501, 0, 0], [0.698950548572041, 0.698950548572041, 0, 0], [0.7057660947314762, 0.7057660947314762, 0, 0], [0.686562994434805, 0.686562994434805, 0, 0], [0.5942986619270211, 0.5942986619270211, 0, 0], [0.42896121566349726, 0.42896121566349726, 0, 0], [0.24604636676161443, 0.24604636676161443, 0, 0], [0.12300212982100277, 0.12300212982100277, 0, 0], [0.10801160688706112, 0.10801160688706112, 0, 0], [0.1889774686823272, 0.1889774686823272, 0, 0], [0.30551940475865264, 0.30551940475865264, 0, 0], [0.3945604535357848, 0.3945604535357848, 0, 0], [0.43501651655474394, 0.43501651655474394, 0, 0], [0.4581382495151453, 0.4581382495151453, 0, 0], [0.5163595326095315, 0.5163595326095315, 0, 0], [0.6351369869128449, 0.6351369869128449, 0, 0], [0.7852556171304038, 0.7852556171304038, 0, 0], [0.8975812085913506, 0.8975812085913506, 0, 0], [0.9099872198487396, 0.9099872198487396, 0, 0], [0.811596699753744, 0.811596699753744, 0, 0], [0.6511942139552905, 0.6511942139552905, 0, 0], [0.5034199201397278, 0.5034199201397278, 0, 0], [0.41795194464623986, 0.41795194464623986, 0, 0], [0.3894474858919309, 0.3894474858919309, 0, 0], [0.37007678085748924, 0.37007678085748924, 0, 0], [0.3141349496495159, 0.3141349496495159, 0, 0], [0.21994997802862945, 0.21994997802862945, 0, 0], [0.136484196569521, 0.136484196569521, 0, 0], [0.12898635820690899, 0.12898635820690899, 0, 0], [0.22936004730098952, 0.22936004730098952, 0, 0], [0.408839251975214, 0.408839251975214, 0, 0], [0.5940353236415418, 0.5940353236415418, 0, 0], [0.7149051942453203, 0.7149051942453203, 0, 0], [0.7492574607985786, 0.7492574607985786, 0, 0], [0.7311458185566903, 0.7311458185566903, 0, 0], [0.7178164684780469, 0.7178164684780469, 0, 0], [0.7411059493340727, 0.7411059493340727, 0, 0], [0.7807106956649897, 0.7807106956649897, 0, 0], [0.7798771578568919, 0.7798771578568919, 0, 0], [0.6915991324213161, 0.6915991324213161, 0, 0], [0.5199673248148136, 0.5199673248148136, 0, 0], [0.32467822872609775, 0.32467822872609775, 0, 0], [0.18436799405256069, 0.18436799405256069, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] } },
+  "energy-orb": { shader: ENERGY_ORB_SHADER, uniforms: { "time": 1.4, "speed": 1, "smokeScale": 1, "smokeStrength": 1, "smokeSpeed": 1, "hue": 0, "saturation": 1, "glow": 1 } }
 };
 var gpu = await init2();
 var out = [];
@@ -6311,7 +6668,8 @@ for (const [name, { shader, uniforms }] of Object.entries(CATALOG)) {
   for (let y = 0; y < 512; y++) {
     for (let x = 0; x < 512; x++) {
       const i = (y * 512 + x) * 4 + 1;
-      if (x > 0 && d[i] === d[i - 4]) {
+      const opaque = d[(y * 512 + x) * 4 + 3] > 8;
+      if (opaque && x > 0 && d[i] === d[i - 4] && d[i - 3] > 8) {
         run++;
         if (run > maxRun) maxRun = run;
       } else run = 0;

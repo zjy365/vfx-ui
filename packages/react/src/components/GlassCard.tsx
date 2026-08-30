@@ -15,70 +15,107 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn cardSdf(uv: vec2f, halfW: f32, halfH: f32, rad: f32) -> f32 {
-  let ctr = uv - vec2f(0.5, 0.5);
-  let q = abs(ctr) - vec2f(halfW - rad, halfH - rad);
-  return length(max(q, vec2f(0.0))) + min(max(q.x, q.y), 0.0) - rad;
+fn hash21(p: vec2f) -> f32 {
+  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
-fn backdrop(uv: vec2f, tint: vec3f) -> vec3f {
-  let d = uv - vec2f(0.5, 0.45);
-  let v = smoothstep(1.05, 0.2, length(d));
-  var c = mix(vec3f(0.030, 0.036, 0.054), vec3f(0.074, 0.086, 0.116), v);
-  c += tint * 0.035 * v;
-  return c;
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+fn fbm(p: vec2f) -> f32 {
+  var v = 0.0;
+  var amp = 0.5;
+  var q = p;
+  var m = 0.0;
+  for (var i = 0; i < 4; i++) {
+    v += amp * noise(q);
+    m += amp;
+    q = q * 2.05 + vec2f(3.3, 6.1);
+    amp = amp * 0.5;
+  }
+  return v / m;
+}
+
+/// Rounded-rect signed distance, centred, half-size (w, h).
+fn sdRoundRect(p: vec2f, w: f32, h: f32, r: f32) -> f32 {
+  let q = abs(p) - vec2f(w, h) + vec2f(r);
+  return length(max(q, vec2f(0.0))) + min(max(q.x, q.y), 0.0) - r;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
+  let t = p.time;
+
+  // Ambient backdrop: slow aurora-like colour field so the glass has
+  // something real to refract.
+  let bg = fbm(uvIn * 2.2 + vec2f(t * 0.03, -t * 0.02));
+  let bg2 = fbm(uvIn * 3.7 - vec2f(t * 0.02, t * 0.03));
+  var scene = mix(vec3f(0.05, 0.07, 0.13), vec3f(0.10, 0.14, 0.24), bg);
+  scene += vec3f(0.10, 0.06, 0.20) * pow(bg2, 2.2) * 0.9;
+
+  let aspect = vec2f(1.0, 1.0);
+  let card = (uvIn - vec2f(0.5)) * aspect;
+  let w = 0.36 * p.cardScale * 2.0;
+  let h = 0.24 * p.cardScale * 2.0;
+  let sd = sdRoundRect(card, w, h, p.radius);
+
+  // Refraction: bend the scene lookup by the glass surface normal.
+  let eps = 0.004;
+  let sdx = sdRoundRect(card + vec2f(eps, 0.0), w, h, p.radius) - sd;
+  let sdy = sdRoundRect(card + vec2f(0.0, eps), w, h, p.radius) - sd;
+  let normal = normalize(vec3f(sdx, sdy, 0.02));
+  let bend = normal.xy * 0.16;
+
+  let inside = smoothstep(0.0025, -0.0025, sd);
+
+  // What the glass shows: the scene, sampled through the bend + interior fbm.
+  let refr = fbm((uvIn + bend) * 3.4 + vec2f(t * 0.015, -t * 0.01));
+  var glassCol = scene * (0.55 + 0.5 * refr);
   let tint = vec3f(p.c0r, p.c0g, p.c0b);
+  glassCol = mix(glassCol, glassCol * tint * 1.6 + tint * 0.10, 0.45);
 
-  let halfW = 0.5 * p.cardScale;
-  let halfH = 0.5 * p.cardScale * 0.66;
-  let rad = min(p.radius, min(halfW, halfH) * 0.9);
+  // Sweeping specular highlight, diagonal, time-driven.
+  let sweep = fract(t * 0.11);
+  let sweepLine = card.x + card.y - sweep * 1.6 + 0.3;
+  let spec = exp(-abs(sweepLine) * 16.0) * p.shine;
 
-  let sd = cardSdf(uv, halfW, halfH, rad);
-  let px = 0.0022;
-  let inside = 1.0 - smoothstep(-px, px, sd);
+  // Edge treatment: bright outer rim + inner bevel line.
+  let edge = smoothstep(0.02, 0.0, abs(sd + 0.004)) ;
+  let bevel = smoothstep(0.05, 0.0, abs(sd + 0.016));
 
-  // Outward normal from the SDF gradient, used to bend the backdrop at the rim.
-  let e = 0.0045;
-  let nx = cardSdf(uv + vec2f(e, 0.0), halfW, halfH, rad) - cardSdf(uv - vec2f(e, 0.0), halfW, halfH, rad);
-  let ny = cardSdf(uv + vec2f(0.0, e), halfW, halfH, rad) - cardSdf(uv - vec2f(0.0, e), halfW, halfH, rad);
-  let n = normalize(vec2f(nx, ny) + vec2f(1e-5, 0.0));
+  var col = mix(scene, glassCol, inside);
+  // Interior grain: micro-texture so the pane never reads as flat plastic.
+  let grain = fbm(uvIn * 46.0 + vec2f(refr * 2.0)) * 0.14 + fbm(uvIn * 170.0) * 0.07;
+  col = mix(col, col * (0.78 + 0.44 * grain) + vec3f(grain * 0.07), inside * 0.95);
+  col += tint * edge * p.borderGlow * 1.02;
+  col += vec3f(0.75, 0.82, 1.0) * bevel * 0.3 * p.borderGlow;
+  col += vec3f(0.9, 0.94, 1.0) * spec * inside * 0.9;
 
-  let edgeBand = exp(-abs(sd) * 22.0);
-  let rimBand = exp(-abs(sd) * 70.0);
+  // Soft drop shadow below the card.
+  let shadow = smoothstep(0.12, 0.0, sd - 0.05) * (1.0 - inside);
+  col = mix(col, vec3f(0.0, 0.0, 0.0), shadow * 0.35);
 
-  // Background: quiet radial gradient with a whisper of tint.
-  var col = backdrop(uv, tint);
+  // Keep the backdrop alive: faint drifting texture outside the pane.
+  let outer = 1.0 - inside;
+  col += vec3f(0.030, 0.038, 0.062) * outer * (0.4 + 0.6 * fbm(uvIn * 5.5 - vec2f(t * 0.02, t * 0.014)));
 
-  // Card body: frosted tint over the refracted backdrop, top-lit for volume.
-  let refr = backdrop(uv + n * edgeBand * 0.05, tint);
-  var body = mix(refr, tint * 0.42 + vec3f(0.10, 0.11, 0.14), 0.38);
-  body = body * mix(0.88, 1.06, 1.0 - smoothstep(0.0, 1.0, uv.y));
-
-  // Bevel: bright rim toward the light, gentle shading opposite.
-  let lightDir = normalize(vec2f(-0.62, -0.78));
-  let bevel = pow(clamp(dot(n, lightDir), 0.0, 1.0), 3.0) * rimBand;
-  let shade = pow(clamp(dot(n, -lightDir), 0.0, 1.0), 3.0) * rimBand;
-  body += vec3f(0.88, 0.93, 1.0) * bevel * 0.22;
-  body = body * (1.0 - shade * 0.16);
-
-  // Shine: a soft diagonal highlight sweeping across the card.
-  let diag = (uv.x + uv.y) * 0.5;
-  let sweep = fract(p.time * 0.22) * 1.7 - 0.35;
-  let bandD = diag - sweep;
-  let shineBand = exp(-bandD * bandD / 0.01125);
-  body += vec3f(1.0) * shineBand * p.shine * 0.14;
-
-  col = mix(col, body, inside);
-
-  // Border glow just outside the rim.
-  let glow = exp(-max(sd, 0.0) * 60.0) * (1.0 - inside);
-  col = mix(col, col + tint * 0.85 + vec3f(0.10), glow * p.borderGlow * 0.40);
-
+  // Soft-clip highlights so rims never clamp into flat white plateaus.
+  let lum0 = dot(col, vec3f(0.2126, 0.7152, 0.0722));
+  if (lum0 > 0.8) {
+    col = col * (0.8 + 0.2 * lum0) / max(lum0, 1e-3) * lum0;
+  }
+  let d = hash21(uvIn * 991.0 + t);
+  let lum = dot(col, vec3f(0.2126, 0.7152, 0.0722));
+  col += vec3f((d - 0.5) / 255.0 * (3.2 + 5.0 * (1.0 - clamp(lum, 0.0, 1.0))) + (fbm(uvIn * 23.0 + t * 0.05) - 0.5) * 0.012);
   return vec4f(col, 1.0);
 }
 `;

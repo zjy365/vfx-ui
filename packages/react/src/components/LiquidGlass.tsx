@@ -13,59 +13,98 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn waves(p: vec2f, t: f32) -> vec2f {
-  var d = vec2f(
-    sin(p.y * 5.3 + t * 0.9) + 0.55 * sin(p.y * 11.7 - t * 0.6 + 1.7),
-    cos(p.x * 4.7 - t * 0.8) + 0.55 * cos(p.x * 10.3 + t * 0.7 + 2.3)
-  );
-  d += vec2f(
-    sin((p.x + p.y) * 8.1 + t * 1.15),
-    cos((p.x - p.y) * 7.3 + t * 0.95)
-  ) * 0.6;
-  return d;
+fn hash21(p: vec2f) -> f32 {
+  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
-fn scene(uv: vec2f, t: f32) -> vec3f {
-  var acc = vec3f(0.045, 0.052, 0.078);
-  let b1 = uv - vec2f(0.32 + 0.10 * sin(t * 0.21), 0.38 + 0.08 * cos(t * 0.17));
-  acc += vec3f(0.09, 0.30, 0.32) * exp(-dot(b1, b1) * 5.5);
-  let b2 = uv - vec2f(0.70 + 0.09 * cos(t * 0.19), 0.30 + 0.10 * sin(t * 0.23));
-  acc += vec3f(0.18, 0.15, 0.40) * exp(-dot(b2, b2) * 6.5);
-  let b3 = uv - vec2f(0.52 + 0.11 * sin(t * 0.15 + 2.0), 0.74 + 0.07 * cos(t * 0.20 + 1.0));
-  acc += vec3f(0.32, 0.15, 0.23) * exp(-dot(b3, b3) * 7.5);
-  return acc;
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+fn fbm(p: vec2f) -> f32 {
+  var v = 0.0;
+  var amp = 0.5;
+  var q = p;
+  var m = 0.0;
+  for (var i = 0; i < 4; i++) {
+    v += amp * noise(q);
+    m += amp;
+    q = q * 2.09 + vec2f(2.9, 7.1);
+    amp = amp * 0.5;
+  }
+  return v / m;
+}
+
+/// The liquid surface height field: two crossing wave families + fbm swell.
+fn surface(p: vec2f, t: f32) -> f32 {
+  let w1 = sin(p.x * 3.1 + fbm(p * 1.4 + t * 0.18) * 4.0 + t * 0.7);
+  let w2 = sin(p.y * 2.6 - fbm(p * 1.1 - t * 0.14) * 3.4 + t * 0.5);
+  return w1 * 0.6 + w2 * 0.4 + fbm(p * 2.4 - vec2f(t * 0.1)) * 0.8;
+}
+
+/// Refraction offset of the surface field at p (finite-difference gradient).
+fn refract(p: vec2f, t: f32, k: f32) -> vec2f {
+  let e = 0.006;
+  let h = surface(p, t);
+  let dx = surface(p + vec2f(e, 0.0), t) - h;
+  let dy = surface(p + vec2f(0.0, e), t) - h;
+  return vec2f(dx, dy) * k;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let sp = p.scale;
+  let q = (uvIn - vec2f(0.5)) * p.scale * 2.4;
 
-  let disp = waves(uv * sp, t) * p.distortion * 0.045;
+  // Chromatic dispersion: each channel refracts with a slightly different
+  // offset — the signature of real thick glass.
+  let k = p.distortion * 0.05;
+  let base = vec2f(0.0);
+  let off = refract(q, t, k);
+  let disp = off * p.chromatic * 0.5;
 
-  // Chromatic split: sample the backdrop at slightly different distortions.
-  let cR = scene(uv + disp * (1.0 + p.chromatic * 0.35), t);
-  let cG = scene(uv + disp, t);
-  let cB = scene(uv + disp * (1.0 - p.chromatic * 0.35), t);
-  var col = vec3f(cR.r, cG.g, cB.b);
+  let src = uvIn * 2.0;
+  let colR = fbm((uvIn + off + disp) * 2.6 + vec2f(t * 0.03));
+  let colG = fbm((uvIn + off) * 2.6 + vec2f(t * 0.03));
+  let colB = fbm((uvIn + off - disp) * 2.6 + vec2f(t * 0.03));
 
-  // Specular from the wave-height gradient (procedural normal approximation).
-  let e = 0.012;
-  let hx = waves((uv + vec2f(e, 0.0)) * sp, t) - waves((uv - vec2f(e, 0.0)) * sp, t);
-  let hy = waves((uv + vec2f(0.0, e)) * sp, t) - waves((uv - vec2f(0.0, e)) * sp, t);
-  let slope = vec2f(hx.x + hx.y, hy.x + hy.y) * (0.5 / e);
-  let nrm = normalize(vec3f(-slope.x * 0.1, -slope.y * 0.1, 1.0));
-  let light = normalize(vec3f(0.35, -0.5, 0.8));
-  let facing = clamp(dot(nrm, light), 0.0, 1.0);
-  col += vec3f(1.0) * pow(facing, 22.0) * 0.30;
-  col += vec3f(0.88, 0.93, 1.0) * pow(facing, 3.0) * 0.05;
+  // Deep glass base from the refracted channels — dark, so ridges pop.
+  var col = vec3f(0.03, 0.045, 0.09);
+  col += vec3f(colR, colG, colB) * vec3f(0.22, 0.30, 0.46);
 
-  // Soft vignette.
-  let d = uv - vec2f(0.5, 0.5);
-  col = col * (1.0 - 0.22 * dot(d, d));
+  // Interference contour lines of the surface field, RGB-split: these are
+  // the visible "liquid" structures, not a blurry haze.
+  let phase = surface(q, t) * 9.0;
+  let lineR = abs(fract(phase * 0.96 + 0.19) - 0.5);
+  let lineG = abs(fract(phase) - 0.5);
+  let lineB = abs(fract(phase * 1.05 - 0.13) - 0.5);
+  let lineW = 0.10;
+  col += vec3f(
+    (1.0 - smoothstep(0.0, lineW, lineR)) * 0.85,
+    (1.0 - smoothstep(0.0, lineW, lineG)) * 0.75,
+    (1.0 - smoothstep(0.0, lineW, lineB)) * 0.7,
+  ) * vec3f(0.5, 0.65, 1.0);
 
-  return vec4f(col, 1.0);
+  // Steep-gradient caustic glow.
+  let ridge = pow(1.0 - clamp(length(off) * 4.2, 0.0, 1.0), 5.0);
+  col += vec3f(0.35, 0.5, 0.95) * ridge * 0.4;
+
+  // Sparse specular glints.
+  let glint = pow(noise(q * 3.4 + vec2f(t * 0.4, -t * 0.3)), 8.0);
+  col += vec3f(0.9, 0.94, 1.0) * glint * 0.35;
+
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.38 * dot(v, v) * 2.2;
+  col += vec3f((hash21(uvIn * 883.1 + t) - 0.5) / 255.0 * 1.5);
+  return vec4f(clamp(col, vec3f(0.0), vec3f(1.0)), 1.0);
 }
 `;
 

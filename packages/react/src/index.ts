@@ -67,6 +67,12 @@ export {
   type VortexProps,
 } from "./components/Vortex.tsx";
 export {
+  EnergyOrb,
+  ENERGY_ORB_SHADER,
+  ENERGY_ORB_PRESETS,
+  type EnergyOrbProps,
+} from "./components/EnergyOrb.tsx";
+export {
   LiveChart,
   LIVE_CHART_SHADER,
   LIVE_CHART_PRESETS,

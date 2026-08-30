@@ -34,11 +34,16 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
 
   let armMask = 0.5 + 0.5 * cos(a * p.arms + r * 4.0);
   let falloff = exp(-2.6 * r);
-  let dust = falloff * (0.35 + 0.65 * armMask);
+  let dust = falloff * (0.5 + 0.72 * armMask);
 
-  // Star speckles on a hashed grid, brighter along arms.
-  let g = floor((q + vec2f(t * 0.02)) * 42.0);
-  let star = pow(hash21(g), 24.0) * 2.4 * falloff * (0.4 + armMask);
+  // Star speckles: hashed per cell, rendered as soft round points.
+  let sg = (q + vec2f(t * 0.02)) * 42.0;
+  let sid = floor(sg);
+  let sf = fract(sg) - vec2f(0.5);
+  let sh = hash21(sid);
+  let sPos = (vec2f(hash21(sid + vec2f(3.1)), hash21(sid + vec2f(7.7))) - vec2f(0.5)) * 0.6;
+  let sDot = exp(-dot(sf - sPos, sf - sPos) * 90.0);
+  let star = step(0.94, sh) * sDot * 2.6 * falloff * (0.4 + armMask);
 
   let core = exp(-7.0 * r) * p.coreGlow;
 

@@ -14,10 +14,33 @@ struct Params {
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
-fn hash(p: vec2f) -> f32 {
+fn hash21(p: vec2f) -> f32 {
   return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
+fn hash31(p: vec3f) -> f32 {
+  return fract(sin(dot(p, vec3f(127.1, 311.7, 74.7))) * 43758.5453);
+}
+
+fn noise(p: vec2f) -> f32 {
+  let i = floor(p);
+  let f = fract(p);
+  let u = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
+  let a = hash21(i);
+  let b = hash21(i + vec2f(1.0, 0.0));
+  let c = hash21(i + vec2f(0.0, 1.0));
+  let d = hash21(i + vec2f(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+
+/// Flow field the particles ride on: two-octave curl-ish drift.
+fn flow(p: vec2f, t: f32) -> vec2f {
+  let e = noise(p * 1.4 + vec2f(t * 0.22, -t * 0.13));
+  let g = noise(p * 1.4 + vec2f(7.3 - t * 0.15, 2.9 + t * 0.17));
+  return vec2f(e, g) - vec2f(0.5);
+}
+
+/// One depth layer of drifting soft particles.
 fn particleLayer(
   uv: vec2f,
   t: f32,
@@ -25,46 +48,66 @@ fn particleLayer(
   density: f32,
   size: f32,
   seed: f32,
-  drift: vec2f,
-) -> f32 {
-  let g = fract(uv + drift) * cells;
+  drift: f32,
+  base: vec3f,
+  twinkleK: f32,
+) -> vec3f {
+  let g = fract(uv * 1.0 + vec2f(drift * 0.6, -drift)) * cells;
   let id = floor(g);
   let f = fract(g);
 
-  let h1 = hash(id + vec2f(seed, seed * 1.7 + 1.9));
-  let h2 = hash(id + vec2f(seed + 7.7, 3.1));
-  let h3 = hash(id + vec2f(2.9, seed + 8.4));
+  let h1 = hash21(id + vec2f(seed, seed * 0.73 + 1.1));
+  let h2 = hash21(id + vec2f(seed + 4.3, 9.2));
+  let h3 = hash21(id + vec2f(2.6, seed + 5.8));
+  let h4 = hash31(vec3f(id, seed));
 
-  let exists = step(h1, clamp(density, 0.0, 1.0));
-
-  let phase = h2 * 6.2831;
-  let wob = vec2f(
-    sin(t * (0.35 + 0.4 * h3) + phase),
-    cos(t * (0.28 + 0.3 * h2) + phase * 1.37)
-  ) * 0.2;
-  let pos = vec2f(h1, h2) * 0.56 + 0.22 + wob;
+  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
+  // Per-particle wander: each drifts along the flow field with its own phase.
+  let wander = flow(id * 0.11 + h2 * 3.0, t) * 0.22;
+  let pos = vec2f(h2, h3) * 0.66 + 0.17 + wander;
   let d = length(f - pos);
 
-  let r = max(size * (0.72 + 0.28 * sin(t * (0.7 + 0.6 * h3) + h1 * 6.2831)), 0.001);
-  let core = 1.0 - smoothstep(r * 0.25, r, d);
-  let glow = exp(-d * d / (r * r * 6.0)) * 0.35;
-  let amp = 0.35 + 0.65 * h3;
+  // Breathing size + per-particle phase twinkle.
+  let breathe = 0.75 + 0.25 * sin(t * (0.5 + h3) + h2 * 6.2831);
+  // dotR is in cell-fraction units and must stay well inside the cell.
+  let dotR = clamp(size * (0.35 + 0.3 * h4) * breathe, 0.04, 0.24);
+  let core = exp(-d * d / max(dotR * dotR * 2.2, 1e-5));
+  let halo = exp(-d * d / max(dotR * dotR * 7.0, 1e-5)) * 0.14;
+  // Soft-fade before the cell border so glowing orbs never clip into squares.
+  let edgeFade = 1.0 - smoothstep(0.30, 0.48, max(abs(f.x - 0.5), abs(f.y - 0.5)));
 
-  return exists * amp * (core + glow);
+  let fade = smoothstep(0.0, 0.15, h2) * smoothstep(1.0, 0.85, h2);
+  let tw = mix(1.0, 0.6 + 0.4 * sin(t * 1.3 + h2 * 6.2831), twinkleK);
+  return exists * fade * tw * edgeFade * base * (core + halo) * (0.3 + 0.45 * h1);
+}
+
+fn dither(uv: vec2f) -> f32 {
+  return (hash21(uv * 517.3) - 0.5) / 255.0 * 1.5;
 }
 
 @fragment
-fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
+fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let pc = vec3f(p.c0r, p.c0g, p.c0b);
+  let base = vec3f(p.c0r, p.c0g, p.c0b);
 
-  var col = vec3f(0.018, 0.022, 0.038);
+  // Depth: far dust motes, mid field, near bokeh orbs — three drift rates.
+  var col = mix(vec3f(0.016, 0.022, 0.04), vec3f(0.035, 0.045, 0.075), uvIn.y);
+  col += base * 0.012 * noise(uvIn * 3.0 + vec2f(t * 0.05));
 
-  let far = particleLayer(uv, t, 5.5, p.density * 0.85, p.size * 0.55, 6.2, vec2f(t * 0.010, t * 0.004));
-  let near = particleLayer(uv, t, 3.2, p.density, p.size, 13.9, vec2f(-t * 0.016, t * 0.007));
-  col += pc * (far * 0.5 + near);
+  let far = particleLayer(uvIn, t, 30.0, p.density * 1.7, p.size * 0.55, 3.1, t * 0.02, base, 0.5);
+  let mid = particleLayer(uvIn, t, 15.0, p.density, p.size, 11.7, t * 0.045, base, 0.25);
+  let near = particleLayer(uvIn, t, 7.5, p.density * 0.5, p.size * 2.1, 27.3, t * 0.075, base, 0.1);
 
+  col += far * 0.35 + mid * 0.7 + near * 0.95;
+
+  // Faint glow pooling where particles cluster.
+  let cluster = noise(uvIn * 2.2 + flow(uvIn * 1.1, t) * 1.4 + vec2f(t * 0.03));
+  col += base * 0.05 * pow(cluster, 3.0);
+
+  let v = uvIn - vec2f(0.5);
+  col *= 1.0 - 0.32 * dot(v, v) * 2.2;
+  col += vec3f(dither(uvIn));
   return vec4f(col, 1.0);
 }
 `;

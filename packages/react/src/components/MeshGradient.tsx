@@ -65,8 +65,9 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
   col = mix(col, cC, smoothstep(0.35, 0.75, minDist));
   col = mix(col, cD, smoothstep(0.6, 1.1, minDist) * (0.5 + 0.5 * w));
 
-  let edge = smoothstep(p.softness, 0.02, abs(minDist - 0.62)) * 0.12;
-  col += vec3f(edge);
+  let edge = smoothstep(p.softness, 0.02, abs(minDist - 0.62)) * 0.10;
+  col += mix(vec3f(1.0), cC, 0.55) * edge;
+  col *= 0.92 + 0.16 * w;
   return vec4f(col, 1.0);
 }
 `;

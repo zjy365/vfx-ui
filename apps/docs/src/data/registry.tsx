@@ -10,6 +10,7 @@ import {
   IRIDESCENT_PRESETS,
   VORTEX_PRESETS,
   WEB_GLOBE_PRESETS,
+  ENERGY_ORB_PRESETS,
   LIVE_CHART_PRESETS,
 } from "@vfx-ui/react";
 
@@ -569,6 +570,44 @@ export function GlobeCard() {
       midnight: "Indigo dots with a silver rim.",
       wire: "Green wireframe feel, faster spin.",
       ember: "Amber globe tilted toward the viewer.",
+    }, paletteThumb),
+  }),
+
+  entry({
+    id: "energy-orb",
+    category: "Globe",
+    label: "Energy Orb",
+    tags: ["globe", "orb", "smoke", "glow"],
+    description: "Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT).",
+    importName: "EnergyOrb",
+    thumbnail: paletteThumb(ENERGY_ORB_PRESETS.amethyst),
+    sourceCode: `import { EnergyOrb, ENERGY_ORB_PRESETS } from "@vfx-ui/react";
+
+export function OrbHero() {
+  return (
+    <div style={{ position: "relative", width: 480, height: 480 }}>
+      <EnergyOrb {...ENERGY_ORB_PRESETS.amethyst} />
+    </div>
+  );
+}`,
+    agentNotes: [
+      "Purpose: mystical energy sphere for hero sections and empty states; rotating volumetric smoke (3D fBm) with fresnel rim and outer halo.",
+      "Mount: near-square container; transparent background — sits on dark surfaces.",
+      "Props: speed, smokeScale (pattern density), smokeStrength (veil brightness), smokeSpeed, hue (radians), saturation, glow.",
+      "Guardrails: transparent design — place over dark solids; hue rotates around the luminance axis so any palette is reachable; WebGPU required with fallback prop.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 3, 0.05, 1),
+      range("smokeScale", "Smoke scale", 0.4, 2, 0.05, 1),
+      range("smokeStrength", "Smoke strength", 0, 2, 0.05, 1),
+      range("hue", "Hue", 0, 6.28, 0.05, 0),
+      range("saturation", "Saturation", 0, 1.5, 0.05, 1),
+      range("glow", "Glow", 0, 2, 0.05, 1),
+    ],
+    variants: presetVariants(ENERGY_ORB_PRESETS, {
+      amethyst: "Original violet arcana.",
+      cyan: "Cold cyan storm orb.",
+      magma: "Warm ember sphere, denser smoke.",
     }, paletteThumb),
   }),
 
