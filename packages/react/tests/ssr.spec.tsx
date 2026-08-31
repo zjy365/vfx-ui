@@ -3,6 +3,7 @@ import { renderToString } from "react-dom/server";
 import {
   Aurora,
   EnergyOrb,
+  FiberFlow,
   FluidGradient,
   GlassCard,
   Iridescent,
@@ -38,12 +39,13 @@ describe("SSR safety", () => {
         <LiveChart data={[0.1, 0.5, 0.9, 0.3]} />
         <EnergyOrb />
         <RibbonField />
+        <FiberFlow />
         <TimelineArc />
         <VfxCanvas shader="/* empty */" fallback={<span>no webgpu</span>} />
       </div>,
     );
     const canvasCount = (tree.match(/<canvas/g) ?? []).length;
-    expect(canvasCount).toBe(16);
+    expect(canvasCount).toBe(17);
     expect(tree).not.toContain("no webgpu");
   });
 

@@ -23,10 +23,10 @@ export function Hero() {
 
 | Category | Components |
 |---|---|
-| Backgrounds | WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent |
+| Backgrounds | WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow |
 | Glass | GlassCard · LiquidGlass |
-| Data | LiveChart — real-time GPU line chart (uniform-array pipeline) |
-| Globe | WebGlobe — a WebGPU re-creation of [shuding/cobe](https://github.com/shuding/cobe) (MIT) |
+| Data | LiveChart — real-time GPU line chart (uniform-array pipeline) · TimelineArc — milestone timeline on a tilted 3D dial |
+| Globe | WebGlobe — a WebGPU re-creation of [shuding/cobe](https://github.com/shuding/cobe) (MIT) · EnergyOrb — fresnel plasma orb |
 
 Every component ships with ≥3 preset variants, typed props, SSR-safe rendering, `prefers-reduced-motion` handling, and a graceful fallback when WebGPU is unavailable.
 

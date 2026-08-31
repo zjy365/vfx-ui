@@ -1,6 +1,6 @@
-# Timeline Arc
+# Fiber Flow
 
-Milestone timeline on a tilted 3D dial — procedural ruler disk spins under scroll so the active year stays anchored, hexagon marker and dashed callout (sealos.run/about-us style).
+Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
 
 ## Install
 
@@ -9,10 +9,10 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { TimelineArc } from "@vfx-ui/react";
+import { FiberFlow } from "@vfx-ui/react";
 
 export function Demo() {
-  return <TimelineArc />;
+  return <FiberFlow />;
 }
 ```
 

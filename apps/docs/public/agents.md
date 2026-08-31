@@ -27,12 +27,14 @@ npm install @vfx-ui/react vgpu@0.3.1
 - [Live Chart](https://vfx-ui.dev/components/live-chart.md): Real-time streaming line chart rendered entirely on the GPU.
 - [Energy Orb](https://vfx-ui.dev/components/energy-orb.md): Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
 - [Ribbon Field](https://vfx-ui.dev/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
-- [Timeline Arc](https://vfx-ui.dev/components/timeline-arc.md): Milestone timeline on a sweeping elliptical arc — ruler ticks, hexagon node, dashed leader line (sealos.run/about-us style).
+- [Fiber Flow](https://vfx-ui.dev/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+- [Timeline Arc](https://vfx-ui.dev/components/timeline-arc.md): Milestone timeline on a tilted 3D dial — procedural ruler disk spins under scroll so the active year stays anchored, hexagon marker and dashed callout (sealos.run/about-us style).
 
 ## Per-component docs (machine-readable)
 
 - https://vfx-ui.dev/components/aurora.md
 - https://vfx-ui.dev/components/energy-orb.md
+- https://vfx-ui.dev/components/fiber-flow.md
 - https://vfx-ui.dev/components/fluid-gradient.md
 - https://vfx-ui.dev/components/glass-card.md
 - https://vfx-ui.dev/components/iridescent.md
@@ -97,6 +99,35 @@ import { EnergyOrb } from "@vfx-ui/react";
 
 export function Demo() {
   return <EnergyOrb />;
+}
+```
+
+## Props
+
+(see source)
+
+## Notes for agents
+
+- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
+- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
+- `prefers-reduced-motion` freezes animation automatically.
+- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
+# Fiber Flow
+
+Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+
+## Install
+
+```bash
+npm install @vfx-ui/react vgpu@0.3.1
+```
+
+```tsx
+import { FiberFlow } from "@vfx-ui/react";
+
+export function Demo() {
+  return <FiberFlow />;
 }
 ```
 
@@ -374,7 +405,7 @@ export function Demo() {
 
 # Timeline Arc
 
-Milestone timeline on a sweeping elliptical arc — ruler ticks, hexagon node, dashed leader line (sealos.run/about-us style).
+Milestone timeline on a tilted 3D dial — procedural ruler disk spins under scroll so the active year stays anchored, hexagon marker and dashed callout (sealos.run/about-us style).
 
 ## Install
 
