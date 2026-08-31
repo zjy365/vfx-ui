@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Domain-warped fbm noise blending a three-stop gradient into slow liquid motion.
@@ -13,6 +14,8 @@ struct Params {
   c0r: f32, c0g: f32, c0b: f32,
   c1r: f32, c1g: f32, c1b: f32,
   c2r: f32, c2g: f32, c2b: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -53,7 +56,8 @@ fn dither(uv: vec2f) -> f32 {
 fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  let uv = (uvIn - vec2f(0.5)) * p.scale * vec2f(1.0, 1.0);
+  // Pointer parallax: the liquid plane slides gently against the cursor.
+  let uv = (uvIn - vec2f(0.5) - (vec2f(p.px, p.py) - 0.5) * 0.16) * p.scale;
 
   // Triple nested domain warp (Iñigo Quilez's oil-paint recipe): q warps r,
   // r warps the final field. Each layer drifts at its own speed.
@@ -101,6 +105,8 @@ export interface FluidGradientProps {
   to?: string;
   /** Highlight gradient stop. */
   accent?: string;
+  /** When true (default), the liquid plane parallax-shifts with the pointer. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -128,6 +134,7 @@ export function FluidGradient({
   from = FLUID_DEFAULTS.from,
   to = FLUID_DEFAULTS.to,
   accent = FLUID_DEFAULTS.accent,
+  interactive = true,
   className,
   style,
   fallback,
@@ -135,22 +142,31 @@ export function FluidGradient({
   const a = hexToRgb01(from);
   const b = hexToRgb01(to);
   const c = hexToRgb01(accent);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={FLUID_SHADER}
-      label="fluid-gradient"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        speed,
-        warp,
-        scale,
-        c0r: a[0], c0g: a[1], c0b: a[2],
-        c1r: b[0], c1g: b[1], c1b: b[2],
-        c2r: c[0], c2g: c[1], c2b: c[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={FLUID_SHADER}
+        label="fluid-gradient"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          warp,
+          scale,
+          c0r: a[0], c0g: a[1], c0b: a[2],
+          c1r: b[0], c1g: b[1], c1b: b[2],
+          c2r: c[0], c2g: c[1], c2b: c[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }

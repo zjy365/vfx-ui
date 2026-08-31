@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Aurora curtains: fbm-perturbed Gaussian light bands drifting over a dark sky.
@@ -12,6 +13,8 @@ struct Params {
   bands: f32,
   c0r: f32, c0g: f32, c0b: f32,
   c1r: f32, c1g: f32, c1b: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -71,15 +74,18 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 
   var aurora = vec3f(0.0);
   let count = clamp(p.bands, 1.0, 5.0);
+  // The pointer sways the curtains sideways and lifts them gently.
+  let ax = uvIn.x + (p.px - 0.5) * 0.6;
+  let lift = (0.5 - p.py) * 0.1;
   for (var i = 0; i < 5; i++) {
     if (f32(i) >= count) { break; }
     let fi = f32(i);
 
     // Curtain lower edge: a fbm ridge drifting sideways, unique per band.
     let drift = t * (0.13 + 0.04 * fi);
-    let edge = 0.14 + 0.09 * fi
-      + (fbm(vec2(uvIn.x * (1.6 + 0.3 * fi) + fi * 9.4, drift)) - 0.5) * 0.13
-      + sin(uvIn.x * (2.1 + 0.4 * fi) + fi * 2.7 + t * 0.18) * 0.025;
+    let edge = 0.14 + 0.09 * fi + lift
+      + (fbm(vec2(ax * (1.6 + 0.3 * fi) + fi * 9.4, drift)) - 0.5) * 0.13
+      + sin(ax * (2.1 + 0.4 * fi) + fi * 2.7 + t * 0.18) * 0.025;
     // Height above the sharp lower edge (positive = up into the curtain).
     let h = edge - uvIn.y;
 
@@ -87,7 +93,7 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
     let body = exp(-h * (2.6 + fi * 0.35)) * smoothstep(-0.004, 0.014, h) * smoothstep(0.0, 0.22, uvIn.y);
 
     // Vertical rays along the curtain, animated.
-    let rays = 0.45 + 0.75 * fbm(vec2(uvIn.x * (16.0 + fi * 5.0) + fi * 13.0, drift * 2.2));
+    let rays = 0.45 + 0.75 * fbm(vec2(ax * (16.0 + fi * 5.0) + fi * 13.0, drift * 2.2));
 
     // Green at the edge fading to violet as rays rise.
     let heightMix = exp(-h * 1.1);
@@ -123,6 +129,8 @@ export interface AuroraProps {
   primary?: string;
   /** Secondary curtain color, mixed per band. */
   secondary?: string;
+  /** When true (default), the curtains sway and lift with the pointer. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -148,27 +156,37 @@ export function Aurora({
   bands = AURORA_DEFAULTS.bands,
   primary = AURORA_DEFAULTS.primary,
   secondary = AURORA_DEFAULTS.secondary,
+  interactive = true,
   className,
   style,
   fallback,
 }: AuroraProps) {
   const a = hexToRgb01(primary);
   const b = hexToRgb01(secondary);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={AURORA_SHADER}
-      label="aurora"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        speed,
-        intensity,
-        bands,
-        c0r: a[0], c0g: a[1], c0b: a[2],
-        c1r: b[0], c1g: b[1], c1b: b[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={AURORA_SHADER}
+        label="aurora"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          intensity,
+          bands,
+          c0r: a[0], c0g: a[1], c0b: a[2],
+          c1r: b[0], c1g: b[1], c1b: b[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }

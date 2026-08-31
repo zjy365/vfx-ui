@@ -40,19 +40,32 @@ const SHADER_IMPORTS = {
   "timeline-arc": ["TIMELINE_ARC_SHADER", "./TimelineArc.tsx"],
 };
 
-/** Default-prop uniform snapshots (mirrors component defaults / catalog "classic" variant). */
+/**
+ * Per-component gate overrides. The stddev floor (12) is calibrated for
+ * dark/rich canvases; timeline-arc is a deliberate near-white print design
+ * (sealos.run/about-us replica), so its floor is lowered — a truly blank
+ * white render still fails (stddev 0, colors≈1), and grain/ticks keep a real
+ * render well above the lowered bar.
+ */
+const GATE_OVERRIDES = {
+  "timeline-arc": { stddevMin: 8 },
+};
+
+/** Default-prop uniform snapshots (mirrors component defaults / catalog "classic" variant).
+ *  Interactive components pin px/py at the rest position (0.5) and pActive at 0,
+ *  so snapshots match what a browser shows before any pointer movement. */
 const UNIFORMS = {
-  "wave-background": { time: 1.0, speed: 1, amplitude: 1, frequency: 2.5, c0r: 0.0078, c0g: 0.0235, c0b: 0.0902, c1r: 0.1137, c1g: 0.3059, c1b: 0.8471, c2r: 0.2196, c2g: 0.7412, c2b: 0.9725 },
-  "fluid-gradient": { time: 1.1, speed: 0.55, warp: 2.4, scale: 1.6, c0r: 0.043, c0g: 0.071, c0b: 0.125, c1r: 0.29, c1g: 0.35, c1b: 0.65, c2r: 0.55, c2g: 0.75, c2b: 0.95 },
-  aurora: { time: 1.2, speed: 0.7, intensity: 1, bands: 4, c0r: 0.176, c0g: 0.831, c0b: 0.749, c1r: 0.506, c1g: 0.549, c1b: 0.973 },
-  starfield: { time: 1.3, density: 0.35, twinkle: 0.8, speed: 1, c0r: 0.812, c0g: 0.894, c0b: 1 },
-  "particle-field": { time: 1.4, density: 0.45, size: 0.16, speed: 0.8, c0r: 0.62, c0g: 0.796, c0b: 1 },
-  "glass-card": { time: 1.5, radius: 0.05, borderGlow: 0.7, shine: 0.8, cardScale: 0.62, c0r: 0.647, c0g: 0.784, c0b: 1 },
-  "liquid-glass": { time: 1.6, speed: 0.8, distortion: 0.45, chromatic: 0.6, scale: 1.2 },
-  "mesh-gradient": { time: 0.8, speed: 0.6, scale: 3.2, softness: 0.09, c0r: 0.043, c0g: 0.067, c0b: 0.125, c1r: 0.082, c1g: 0.369, c1b: 0.459, c2r: 0.486, c2g: 0.227, c2b: 0.929, c3r: 0.957, c3g: 0.447, c3b: 0.714 },
-  iridescent: { time: 1.5, speed: 0.8, scale: 2.4, hueShift: 0, saturation: 1, brightness: 0.9 },
-  vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996 },
-  "energy-orb": { time: 1.4, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1, hue: 0, saturation: 1, glow: 1 },
+  "wave-background": { time: 1.0, speed: 1, amplitude: 1, frequency: 2.5, c0r: 0.0078, c0g: 0.0235, c0b: 0.0902, c1r: 0.1137, c1g: 0.3059, c1b: 0.8471, c2r: 0.2196, c2g: 0.7412, c2b: 0.9725, px: 0.5, py: 0.5 },
+  "fluid-gradient": { time: 1.1, speed: 0.55, warp: 2.4, scale: 1.6, c0r: 0.043, c0g: 0.071, c0b: 0.125, c1r: 0.29, c1g: 0.35, c1b: 0.65, c2r: 0.55, c2g: 0.75, c2b: 0.95, px: 0.5, py: 0.5 },
+  aurora: { time: 1.2, speed: 0.7, intensity: 1, bands: 4, c0r: 0.176, c0g: 0.831, c0b: 0.749, c1r: 0.506, c1g: 0.549, c1b: 0.973, px: 0.5, py: 0.5 },
+  starfield: { time: 1.3, density: 0.35, twinkle: 0.8, speed: 1, c0r: 0.812, c0g: 0.894, c0b: 1, px: 0.5, py: 0.5 },
+  "particle-field": { time: 1.4, density: 0.45, size: 0.16, speed: 0.8, c0r: 0.62, c0g: 0.796, c0b: 1, px: 0.5, py: 0.5 },
+  "glass-card": { time: 1.5, radius: 0.05, borderGlow: 0.7, shine: 0.8, cardScale: 0.62, c0r: 0.647, c0g: 0.784, c0b: 1, px: 0.5, py: 0.5, pActive: 0 },
+  "liquid-glass": { time: 1.6, speed: 0.8, distortion: 0.45, chromatic: 0.6, scale: 1.2, px: 0.5, py: 0.5, pActive: 0 },
+  "mesh-gradient": { time: 0.8, speed: 0.6, scale: 3.2, softness: 0.09, c0r: 0.043, c0g: 0.067, c0b: 0.125, c1r: 0.082, c1g: 0.369, c1b: 0.459, c2r: 0.486, c2g: 0.227, c2b: 0.929, c3r: 0.957, c3g: 0.447, c3b: 0.714, px: 0.5, py: 0.5 },
+  iridescent: { time: 1.5, speed: 0.8, scale: 2.4, hueShift: 0, saturation: 1, brightness: 0.9, px: 0.5, py: 0.5 },
+  vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996, px: 0.5, py: 0.5 },
+  "energy-orb": { time: 1.4, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1, hue: 0, saturation: 1, glow: 1, px: 0.5, py: 0.5 },
   "ribbon-field": { time: 1.2, speed: 1, intensity: 1, drift: 0, grain: 1, resX: 512, resY: 512 },
   "timeline-arc": { time: 1.2, speed: 1, activeT: 0.5714, yearCount: 8, cr: 0.145, cg: 0.388, cb: 0.922, resX: 512, resY: 512 },
   "web-globe": { time: 0.8, speed: 0.35, phi: 0, theta: 0.35, dots: 520, dotScale: 1.15, diffuse: 1.2, dark: 0.92, atmosphere: 0.8, seaLevel: 0.46, globeScale: 0.98, cr: 0.616, cg: 0.706, cb: 0.839, gr: 0.49, gg: 0.827, gb: 0.988 },
@@ -63,7 +76,7 @@ function liveChartUniforms() {
   const data = Array.from({ length: 48 }, (_, i) => Math.max(0, Math.min(1, 0.5 + 0.32 * Math.sin(i * 0.35) + 0.1 * Math.sin(i * 0.9))));
   const pts = data.map((v) => [v, v, 0, 0]);
   while (pts.length < 64) pts.push([0, 0, 0, 0]);
-  return { time: 0, count: 48, lineWidth: 0.006, glow: 0.4, fill: 0.6, cr: 0.22, cg: 0.74, cb: 0.97, er: 0.49, eg: 0.83, eb: 0.99, pts };
+  return { time: 0, count: 48, lineWidth: 0.006, glow: 0.4, fill: 0.6, cr: 0.22, cg: 0.74, cb: 0.97, er: 0.49, eg: 0.83, eb: 0.99, px: 0.5, pActive: 0, pts };
 }
 
 function makeEntrySource(requested) {
@@ -79,6 +92,7 @@ import { init, effect, target, frame } from "vgpu/node";
 import { PNG } from "pngjs";
 import { writeFileSync } from "node:fs";
 
+const GATE_OVERRIDES = ${JSON.stringify(GATE_OVERRIDES)};
 const CATALOG = {
 ${table}
 };
@@ -114,7 +128,8 @@ for (const [name, { shader, uniforms }] of Object.entries(CATALOG)) {
       else run = 0;
     }
   }
-  const verdict = stddev < 12 ? "FLAT" : maxRun > 170 ? "BANDING" : "OK";
+  const stddevMin = (GATE_OVERRIDES[name] ?? {}).stddevMin ?? 12;
+  const verdict = stddev < stddevMin ? "FLAT" : maxRun > 170 ? "BANDING" : "OK";
   out.push({ name, stddev: +stddev.toFixed(1), colors: colors.size, maxRun, verdict });
 }
 console.log("REPORT:" + JSON.stringify(out));

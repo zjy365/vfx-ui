@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
+import { usePointerUniforms } from "../usePointerUniforms.ts";
 
 /**
  * RibbonField — a faithful WGSL port of ThreeUI's RibbonField (MIT,
@@ -86,10 +87,16 @@ export interface RibbonFieldProps {
   speed?: number;
   /** Ribbon/bloom brightness multiplier. */
   intensity?: number;
-  /** Horizontal drift of the ribbons (-1..1, like the original pointer x). */
+  /** Horizontal drift of the ribbons (-1..1). Overridden by pointer when interactive. */
   drift?: number;
   /** Micro-grain strength multiplier. */
   grain?: number;
+  /**
+   * When true (default), the ribbons' horizontal drift follows the pointer's
+   * x position across the component — the pointer interaction from the
+   * original threeui ribbon-field. Set false to pin drift to the prop.
+   */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -113,11 +120,12 @@ export function RibbonField({
   intensity = RIBBON_FIELD_DEFAULTS.intensity,
   drift = RIBBON_FIELD_DEFAULTS.drift,
   grain = RIBBON_FIELD_DEFAULTS.grain,
+  interactive = true,
   className,
   style,
   fallback,
 }: RibbonFieldProps) {
-  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
   const [res, setRes] = useState<[number, number]>([800, 600]);
 
   useEffect(() => {
@@ -133,7 +141,10 @@ export function RibbonField({
     const ro = new ResizeObserver(update);
     ro.observe(el);
     return () => ro.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const effectiveDrift = interactive ? drift + (pointer.x - 0.5) * 2 : drift;
 
   return (
     <div
@@ -150,7 +161,7 @@ export function RibbonField({
           time: 0,
           speed,
           intensity,
-          drift,
+          drift: effectiveDrift,
           grain,
           resX: res[0],
           resY: res[1],

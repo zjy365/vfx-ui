@@ -1,4 +1,5 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Fullscreen liquid glass: layered sine refraction with chromatic split and specular highlights.
@@ -10,6 +11,9 @@ struct Params {
   distortion: f32,
   chromatic: f32,
   scale: f32,
+  px: f32,
+  py: f32,
+  pActive: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -68,7 +72,10 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   // offset — the signature of real thick glass.
   let k = p.distortion * 0.05;
   let base = vec2f(0.0);
-  let off = refract(q, t, k);
+  // Cursor presses into the liquid: a soft lens that deepens refraction where
+  // the pointer rests. pActive is 0 at rest, so default render is unchanged.
+  let lens = exp(-pow(distance(uvIn, vec2f(p.px, p.py)), 2.0) / 0.05) * p.pActive;
+  let off = refract(q, t, k * (1.0 + lens * 2.5));
   let disp = off * p.chromatic * 0.5;
 
   let src = uvIn * 2.0;
@@ -117,6 +124,8 @@ export interface LiquidGlassProps {
   chromatic?: number;
   /** Wave frequency; lower is broader and calmer. */
   scale?: number;
+  /** When true (default), the pointer presses a refraction lens into the surface. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -140,24 +149,35 @@ export function LiquidGlass({
   distortion = LIQUID_GLASS_DEFAULTS.distortion,
   chromatic = LIQUID_GLASS_DEFAULTS.chromatic,
   scale = LIQUID_GLASS_DEFAULTS.scale,
+  interactive = true,
   className,
   style,
   fallback,
 }: LiquidGlassProps) {
+  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={LIQUID_GLASS_SHADER}
-      label="liquid-glass"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        speed,
-        distortion,
-        chromatic,
-        scale,
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={LIQUID_GLASS_SHADER}
+        label="liquid-glass"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          distortion,
+          chromatic,
+          scale,
+          px: ptr.x,
+          py: ptr.y,
+          pActive: interactive && pActive ? 1 : 0,
+        }}
+      />
+    </div>
   );
 }

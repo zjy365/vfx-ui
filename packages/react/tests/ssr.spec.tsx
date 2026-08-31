@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { renderToString } from "react-dom/server";
 import {
   Aurora,
+  EnergyOrb,
   FluidGradient,
   GlassCard,
   Iridescent,
@@ -9,7 +10,9 @@ import {
   LiveChart,
   MeshGradient,
   ParticleField,
+  RibbonField,
   Starfield,
+  TimelineArc,
   Vortex,
   VfxCanvas,
   WaveBackground,
@@ -33,11 +36,14 @@ describe("SSR safety", () => {
         <Vortex />
         <WebGlobe />
         <LiveChart data={[0.1, 0.5, 0.9, 0.3]} />
+        <EnergyOrb />
+        <RibbonField />
+        <TimelineArc />
         <VfxCanvas shader="/* empty */" fallback={<span>no webgpu</span>} />
       </div>,
     );
     const canvasCount = (tree.match(/<canvas/g) ?? []).length;
-    expect(canvasCount).toBe(13);
+    expect(canvasCount).toBe(16);
     expect(tree).not.toContain("no webgpu");
   });
 

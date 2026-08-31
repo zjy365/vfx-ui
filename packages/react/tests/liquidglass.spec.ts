@@ -13,6 +13,9 @@ function liquidGlassUniforms(time: number, distortion: number = LIQUID_GLASS_DEF
     distortion,
     chromatic: LIQUID_GLASS_DEFAULTS.chromatic,
     scale: LIQUID_GLASS_DEFAULTS.scale,
+    px: 0.5,
+    py: 0.5,
+    pActive: 0,
   };
 }
 

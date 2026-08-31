@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Deep-space starfield: hashed grid stars twinkling over slow parallax drift.
@@ -11,6 +12,8 @@ struct Params {
   density: f32,
   twinkle: f32,
   c0r: f32, c0g: f32, c0b: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -115,10 +118,12 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   col += base * milkyWay * 0.10;
   col += vec3f(0.05, 0.04, 0.09) * band * haze * 0.35;
 
-  // Three parallax layers: far dust, mid field, near bright stars.
-  let far = starLayer(uvIn, t, 26.0, p.density * 1.6 + band * 0.25, p.twinkle * 0.7, 3.7, vec2f(t * 0.010, t * 0.004), 240.0, base);
-  let mid = starLayer(uvIn, t, 13.0, p.density * 0.9 + band * 0.18, p.twinkle, 11.3, vec2f(t * 0.02, -t * 0.008), 120.0, base);
-  let near = starLayer(uvIn, t, 6.5, p.density * 0.45, p.twinkle * 0.85, 27.9, vec2f(t * 0.034, t * 0.012), 70.0, base);
+  // Three parallax layers: far dust, mid field, near bright stars. The pointer
+  // adds a viewpoint offset — near layers shift most, like looking out a window.
+  let ptr = vec2f(p.px, p.py) - 0.5;
+  let far = starLayer(uvIn, t, 26.0, p.density * 1.6 + band * 0.25, p.twinkle * 0.7, 3.7, vec2f(t * 0.010, t * 0.004) - ptr * 0.010, 240.0, base);
+  let mid = starLayer(uvIn, t, 13.0, p.density * 0.9 + band * 0.18, p.twinkle, 11.3, vec2f(t * 0.02, -t * 0.008) - ptr * 0.022, 120.0, base);
+  let near = starLayer(uvIn, t, 6.5, p.density * 0.45, p.twinkle * 0.85, 27.9, vec2f(t * 0.034, t * 0.012) - ptr * 0.045, 70.0, base);
 
   col += far * 0.35;
   col += mid * 0.7;
@@ -141,6 +146,8 @@ export interface StarfieldProps {
   twinkle?: number;
   /** Star color. */
   color?: string;
+  /** When true (default), star layers parallax-shift against the pointer. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -164,25 +171,35 @@ export function Starfield({
   speed = STARFIELD_DEFAULTS.speed,
   twinkle = STARFIELD_DEFAULTS.twinkle,
   color = STARFIELD_DEFAULTS.color,
+  interactive = true,
   className,
   style,
   fallback,
 }: StarfieldProps) {
   const c = hexToRgb01(color);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={STARFIELD_SHADER}
-      label="starfield"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        density,
-        speed,
-        twinkle,
-        c0r: c[0], c0g: c[1], c0b: c[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={STARFIELD_SHADER}
+        label="starfield"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          density,
+          speed,
+          twinkle,
+          c0r: c[0], c0g: c[1], c0b: c[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }

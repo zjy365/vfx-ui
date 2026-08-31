@@ -1,4 +1,9 @@
 export { VfxCanvas, type VfxCanvasProps } from "./VfxCanvas.tsx";
+export {
+  usePointerUniforms,
+  POINTER_REST,
+  type PointerUniform,
+} from "./usePointerUniforms.ts";
 export { WaveBackground, WAVE_SHADER, type WaveBackgroundProps } from "./components/WaveBackground.tsx";
 export {
   FluidGradient,

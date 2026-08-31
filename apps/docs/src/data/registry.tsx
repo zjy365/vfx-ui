@@ -171,6 +171,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
       "Purpose: ambient full-bleed animated background; three layered sine bands over a tri-color gradient. GPU-only via WebGPU.",
       "Mount: absolutely-positioned or fixed layer behind content; canvas fills its parent, give the parent an explicit size.",
       "Props: speed (0-4), amplitude (0-2.5), frequency (0.5-6), from/to/accent hex colors.",
+      "Pointer: moving the cursor sloshes the wave phase (x) and lifts the water level (y); interactive={false} pins the authored look.",
       "Guardrails: pass fallback for non-WebGPU clients; SSR renders an inert canvas; reduced-motion freezes automatically; do not stack multiple instances on one screen.",
     ],
     controls: [
@@ -201,6 +202,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
       "Purpose: organic animated background built from domain-warped fractal noise; every frame is computed on the GPU.",
       "Mount: full-bleed layer behind content; the canvas fills its parent.",
       "Props: from/to/accent hex palette, speed, warp (distortion strength), scale (blob size, lower = larger).",
+      "Pointer: the liquid plane parallax-shifts against the cursor; interactive={false} pins it.",
       "Guardrails: WebGPU required with fallback prop; reduced-motion aware; avoid more than one instance per viewport.",
     ],
     controls: [
@@ -242,6 +244,7 @@ export function NightHero() {
       "Purpose: cinematic night-sky background with up to five animated light curtains; pairs well with white or light-accent typography.",
       "Mount: full-bleed fixed or absolute layer; keep content z-index above.",
       "Props: primary/secondary hex curtain colors, speed, intensity (brightness), bands (1-5).",
+      "Pointer: the cursor sways the curtains sideways (x) and lifts them (y); interactive={false} pins them.",
       "Guardrails: designed for dark themes — on light themes lower intensity below 0.5; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -282,6 +285,7 @@ export function SpaceSection() {
       "Purpose: subtle animated star backdrop for dark sections; cheapest of the background effects (few ALU ops per pixel).",
       "Mount: absolute layer inside any sized container; safe to run several instances per page.",
       "Props: color (star tint), density (0-1 star coverage), twinkle (0-1), speed (drift rate).",
+      "Pointer: the three star layers parallax against the cursor, near layers shifting most; interactive={false} pins them.",
       "Guardrails: on light backgrounds set color to a dark tone or visibility suffers; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -319,6 +323,7 @@ export function AmbientBanner() {
       "Purpose: soft ambient particle texture for banners and cards; reads as depth rather than decoration when kept below 0.5 density.",
       "Mount: absolute layer inside a sized container.",
       "Props: color, density (0-1), size (0-1 dot scale), speed.",
+      "Pointer: parallax viewpoint offset, near bokeh orbs shifting most; interactive={false} pins it.",
       "Guardrails: keep density under 0.6 for legibility of overlaid text; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -358,6 +363,7 @@ export function GlassPanel() {
       "Purpose: decorative glass panel behind centered content; the shader draws card, border glow, and sheen.",
       "Mount: fills its container; overlay content with an absolutely-positioned sibling.",
       "Props: tint (glass color), radius (corner roundness), borderGlow, shine (sweep intensity), cardScale (card size relative to container).",
+      "Pointer: a specular glare pool tracks the cursor across the pane and fades on leave; interactive={false} disables it.",
       "Guardrails: the card is centered by design — do not try to place it manually; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -398,6 +404,7 @@ export function LiquidHero() {
       "Purpose: fullscreen animated glass surface for hero sections; strongest effect in the library — use sparingly.",
       "Mount: full-bleed layer behind content.",
       "Props: speed, distortion (wave amplitude), chromatic (RGB separation), scale.",
+      "Pointer: the cursor presses a refraction lens into the surface, released on leave; interactive={false} disables it.",
       "Guardrails: distortion above 1.2 makes overlaid text hard to read; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -437,6 +444,7 @@ export function MeshHero() {
       "Purpose: animated mesh-gradient background for product heroes and pricing walls.",
       "Mount: full-bleed layer behind content.",
       "Props: from/to/accent/deep palette, speed, scale (cell size, lower = larger), softness (edge crispness).",
+      "Pointer: the color field drifts with the cursor; interactive={false} pins it.",
       "Guardrails: four-color palette — keep at least one dark tone for text contrast; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -479,6 +487,7 @@ export function IridescentHero() {
       "Purpose: holographic/silk background for brand moments; reads best with dark overlays and white type.",
       "Mount: full-bleed layer behind content.",
       "Props: speed, scale, hueShift (palette rotation), saturation, brightness.",
+      "Pointer: cursor x rotates the hue and y tilts the silk sheen; interactive={false} pins both.",
       "Guardrails: saturation below 0.5 turns it gray — keep above 0.7 unless desaturation is intentional; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -519,6 +528,7 @@ export function GalaxyHero() {
       "Purpose: galaxy/swirl backdrop for launch heroes; center-weighted so content works best offset to one side.",
       "Mount: full-bleed layer behind content.",
       "Props: color (dust), emission (core/stars), speed, swirl (tightness), arms (arm count), coreGlow.",
+      "Pointer: the vortex center leans toward the cursor; interactive={false} pins it.",
       "Guardrails: transparent background by design — place over a dark solid; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -557,6 +567,7 @@ export function GlobeCard() {
       "Purpose: rotating dot-matrix globe for global/infra dashboards and landing pages; analytic sphere, no mesh assets.",
       "Mount: square-ish container sized to the globe; transparent background — sits on any dark surface.",
       "Props: speed (spin), phi (start longitude), theta (tilt), dotSize (fraction of cell, 0-1), globeScale, backside (far-side visibility), color/emission.",
+      "Pointer: cursor x rotates and y tilts the globe (drives the phi/theta uniforms); interactive={false} pins the authored orientation.",
       "Guardrails: keep container near-square to avoid ellipse clipping; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -634,6 +645,7 @@ export function RibbonHero() {
       "Purpose: dark hero/backdrop with three drifting light ribbons on a dot-matrix grid; reads as a high-tech data surface.",
       "Mount: wide container (hero band); opaque near-black base — no background needed behind it.",
       "Props: speed, intensity (ribbon brightness), drift (-1..1 horizontal sway), grain (micro-noise strength).",
+      "Pointer: ribbon drift follows the cursor x (the original threeui interaction); interactive={false} pins drift to the prop.",
       "Guardrails: the dot grid is pixel-true (component measures its own backing store); keep the canvas unscaled (no CSS transform) or dots blur; WebGPU required with fallback prop.",
     ],
     controls: [
@@ -714,6 +726,7 @@ export function LiveTelemetry() {
       "Purpose: streaming line chart rendered entirely on the GPU — feed it sensor/telemetry/price data at any tick rate.",
       "Mount: any sized container; data array is truncated to 64 points, values clamp to 0..1.",
       "Props: data (number[]), lineWidth, glow, fill, color/accent.",
+      "Pointer: hovering shows a vertical scrub line at the cursor x position; interactive={false} disables it.",
       "Guardrails: data is required; normalize values to 0..1 yourself (out-of-range values clamp silently); WebGPU required with fallback prop.",
     ],
     controls: [

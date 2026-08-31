@@ -11,6 +11,7 @@ const BASE = {
   c1r: 0.08, c1g: 0.37, c1b: 0.46,
   c2r: 0.49, c2g: 0.23, c2b: 0.93,
   c3r: 0.96, c3g: 0.45, c3b: 0.71,
+  px: 0.5, py: 0.5,
 };
 
 async function render(shader: string, uniforms: Record<string, unknown>): Promise<Uint8Array> {
@@ -33,7 +34,7 @@ describe("MeshGradient", () => {
 });
 
 describe("Iridescent", () => {
-  const u = { time: 0, speed: 1, scale: 2.4, hueShift: 0, saturation: 1, brightness: 1 };
+  const u = { time: 0, speed: 1, scale: 2.4, hueShift: 0, saturation: 1, brightness: 1, px: 0.5, py: 0.5 };
   it("renders and hue-shifts change the image", async () => {
     const a = await render(IRIDESCENT_SHADER, u);
     const b = await render(IRIDESCENT_SHADER, { ...u, hueShift: 0.5 });
@@ -46,6 +47,7 @@ describe("Vortex", () => {
   const u = {
     time: 0, speed: 1, swirl: 2.4, arms: 2, coreGlow: 1.2,
     cr: 0.5, cg: 0.55, cb: 0.97, er: 0.88, eg: 0.95, eb: 1,
+    px: 0.5, py: 0.5,
   };
   it("renders with a bright core and rotates over time", async () => {
     const a = await render(VORTEX_SHADER, u);
@@ -65,6 +67,7 @@ describe("LiveChart", () => {
   const u = {
     time: 0, count: 64, lineWidth: 0.01, glow: 0.5, fill: 0.6,
     cr: 0.22, cg: 0.74, cb: 0.97, er: 0.49, eg: 0.83, eb: 0.99,
+    px: 0.5, pActive: 0,
     pts,
   };
   it("draws the line (some pixels lit) and reacts to data changes", async () => {
@@ -73,5 +76,31 @@ describe("LiveChart", () => {
     expect(lit).toBeGreaterThan(8);
     const b = await render(LIVE_CHART_SHADER, { ...u, pts: pts.map(([v]) => [v! > 0.5 ? 0.1 : 0.9, v! > 0.5 ? 0.1 : 0.9, 0, 0]) });
     expect([...a]).not.toEqual([...b]);
+  }, 60_000);
+
+  it("the hover scrub line lights up only when the pointer is active", async () => {
+    const rest = await render(LIVE_CHART_SHADER, u);
+    const hover = await render(LIVE_CHART_SHADER, { ...u, px: 0.25, pActive: 1 });
+    expect([...rest]).not.toEqual([...hover]);
+  }, 60_000);
+});
+
+describe("Pointer uniforms", () => {
+  it("parallax components shift pixels when the pointer moves", async () => {
+    const a = await render(MESH_GRADIENT_SHADER, BASE);
+    const b = await render(MESH_GRADIENT_SHADER, { ...BASE, px: 0.1, py: 0.9 });
+    expect([...a]).not.toEqual([...b]);
+
+    const v0 = await render(VORTEX_SHADER, {
+      time: 0, speed: 1, swirl: 2.4, arms: 2, coreGlow: 1.2,
+      cr: 0.5, cg: 0.55, cb: 0.97, er: 0.88, eg: 0.95, eb: 1,
+      px: 0.5, py: 0.5,
+    });
+    const v1 = await render(VORTEX_SHADER, {
+      time: 0, speed: 1, swirl: 2.4, arms: 2, coreGlow: 1.2,
+      cr: 0.5, cg: 0.55, cb: 0.97, er: 0.88, eg: 0.95, eb: 1,
+      px: 0.9, py: 0.1,
+    });
+    expect([...v0]).not.toEqual([...v1]);
   }, 60_000);
 });

@@ -17,6 +17,8 @@ function auroraUniforms(time: number, primary: string = AURORA_DEFAULTS.primary)
     bands: AURORA_DEFAULTS.bands,
     c0r: a[0], c0g: a[1], c0b: a[2],
     c1r: b[0], c1g: b[1], c1b: b[2],
+    px: 0.5,
+    py: 0.5,
   };
 }
 

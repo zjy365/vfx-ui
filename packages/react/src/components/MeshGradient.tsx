@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * MeshGradient — animated Voronoi color cells over an fBM-warped field.
@@ -15,6 +16,8 @@ struct Params {
   c1r: f32, c1g: f32, c1b: f32,
   c2r: f32, c2g: f32, c2b: f32,
   c3r: f32, c3g: f32, c3b: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -39,7 +42,7 @@ fn noise(p: vec2f) -> f32 {
 fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
   let p = params;
   let t = p.time * p.speed;
-  var pt = uv * p.scale;
+  var pt = (uv - (vec2f(p.px, p.py) - 0.5) * 0.14) * p.scale;
   let w = noise(pt * 0.9 + t * 0.18) - 0.5;
   let w2 = noise(pt * 1.7 - t * 0.13) - 0.5;
   pt = pt + vec2f(w, w2) * 1.6;
@@ -82,6 +85,8 @@ export interface MeshGradientProps {
   to?: string;
   accent?: string;
   deep?: string;
+  /** When true (default), the color field drifts with the pointer. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -97,6 +102,7 @@ export function MeshGradient({
   to = DEFAULTS.to,
   accent = DEFAULTS.accent,
   deep = DEFAULTS.deep,
+  interactive = true,
   className,
   style,
   fallback,
@@ -105,21 +111,30 @@ export function MeshGradient({
   const b = hexToRgb01(to);
   const c = hexToRgb01(accent);
   const d = hexToRgb01(deep);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={MESH_GRADIENT_SHADER}
-      label="mesh-gradient"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0, speed, scale, softness,
-        c0r: a[0], c0g: a[1], c0b: a[2],
-        c1r: b[0], c1g: b[1], c1b: b[2],
-        c2r: c[0], c2g: c[1], c2b: c[2],
-        c3r: d[0], c3g: d[1], c3b: d[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={MESH_GRADIENT_SHADER}
+        label="mesh-gradient"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0, speed, scale, softness,
+          c0r: a[0], c0g: a[1], c0b: a[2],
+          c1r: b[0], c1g: b[1], c1b: b[2],
+          c2r: c[0], c2g: c[1], c2b: c[2],
+          c3r: d[0], c3g: d[1], c3b: d[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }
 

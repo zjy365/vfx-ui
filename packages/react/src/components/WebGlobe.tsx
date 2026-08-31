@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * WebGlobe v2 — a faithful WGSL port of shuding/cobe's rendering model (MIT,
@@ -227,6 +228,8 @@ export interface WebGlobeProps {
   color?: string;
   /** Rim/atmosphere color. */
   emission?: string;
+  /** When true (default), the pointer rotates (x) and tilts (y) the globe. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -247,35 +250,47 @@ export function WebGlobe({
   globeScale = 0.98,
   color = DEFAULTS.color,
   emission = DEFAULTS.emission,
+  interactive = true,
   className,
   style,
   fallback,
 }: WebGlobeProps) {
   const c = hexToRgb01(color);
   const e = hexToRgb01(emission);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
+  // The pointer steers the globe through the existing phi/theta uniforms —
+  // no shader change needed; rest is exactly the authored orientation.
+  const phiEff = phi + (ptr.x - 0.5) * 1.4;
+  const thetaEff = theta + (ptr.y - 0.5) * 0.7;
   return (
-    <VfxCanvas
-      shader={WEB_GLOBE_SHADER}
-      label="web-globe"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        speed,
-        phi,
-        theta,
-        dots,
-        dotScale,
-        diffuse,
-        dark,
-        atmosphere,
-        seaLevel,
-        globeScale,
-        cr: c[0], cg: c[1], cb: c[2],
-        gr: e[0], gg: e[1], gb: e[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={WEB_GLOBE_SHADER}
+        label="web-globe"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          phi: phiEff,
+          theta: thetaEff,
+          dots,
+          dotScale,
+          diffuse,
+          dark,
+          atmosphere,
+          seaLevel,
+          globeScale,
+          cr: c[0], cg: c[1], cb: c[2],
+          gr: e[0], gg: e[1], gb: e[2],
+        }}
+      />
+    </div>
   );
 }
 

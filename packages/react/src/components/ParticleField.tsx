@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Particle field: cell-hash particles wandering with breathing size and soft edges.
@@ -11,6 +12,8 @@ struct Params {
   density: f32,
   size: f32,
   c0r: f32, c0g: f32, c0b: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -51,8 +54,9 @@ fn particleLayer(
   drift: f32,
   base: vec3f,
   twinkleK: f32,
+  ptrOff: vec2f,
 ) -> vec3f {
-  let g = fract(uv * 1.0 + vec2f(drift * 0.6, -drift)) * cells;
+  let g = fract(uv * 1.0 + vec2f(drift * 0.6, -drift) - ptrOff) * cells;
   let id = floor(g);
   let f = fract(g);
 
@@ -92,12 +96,14 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let base = vec3f(p.c0r, p.c0g, p.c0b);
 
   // Depth: far dust motes, mid field, near bokeh orbs — three drift rates.
+  // The pointer adds a viewpoint offset; near layers shift most.
+  let ptr = vec2f(p.px, p.py) - 0.5;
   var col = mix(vec3f(0.016, 0.022, 0.04), vec3f(0.035, 0.045, 0.075), uvIn.y);
   col += base * 0.012 * noise(uvIn * 3.0 + vec2f(t * 0.05));
 
-  let far = particleLayer(uvIn, t, 30.0, p.density * 1.7, p.size * 0.55, 3.1, t * 0.02, base, 0.5);
-  let mid = particleLayer(uvIn, t, 15.0, p.density, p.size, 11.7, t * 0.045, base, 0.25);
-  let near = particleLayer(uvIn, t, 7.5, p.density * 0.5, p.size * 2.1, 27.3, t * 0.075, base, 0.1);
+  let far = particleLayer(uvIn, t, 30.0, p.density * 1.7, p.size * 0.55, 3.1, t * 0.02, base, 0.5, ptr * 0.012);
+  let mid = particleLayer(uvIn, t, 15.0, p.density, p.size, 11.7, t * 0.045, base, 0.25, ptr * 0.03);
+  let near = particleLayer(uvIn, t, 7.5, p.density * 0.5, p.size * 2.1, 27.3, t * 0.075, base, 0.1, ptr * 0.06);
 
   col += far * 0.35 + mid * 0.7 + near * 0.95;
 
@@ -121,6 +127,8 @@ export interface ParticleFieldProps {
   size?: number;
   /** Particle color. */
   color?: string;
+  /** When true (default), particle layers parallax-shift against the pointer. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -144,25 +152,35 @@ export function ParticleField({
   speed = PARTICLE_DEFAULTS.speed,
   size = PARTICLE_DEFAULTS.size,
   color = PARTICLE_DEFAULTS.color,
+  interactive = true,
   className,
   style,
   fallback,
 }: ParticleFieldProps) {
   const c = hexToRgb01(color);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={PARTICLE_SHADER}
-      label="particle-field"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        density,
-        speed,
-        size,
-        c0r: c[0], c0g: c[1], c0b: c[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={PARTICLE_SHADER}
+        label="particle-field"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          density,
+          speed,
+          size,
+          c0r: c[0], c0g: c[1], c0b: c[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }

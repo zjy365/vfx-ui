@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 const MAX_POINTS = 64;
 
@@ -23,6 +24,8 @@ struct Params {
   fill: f32,
   cr: f32, cg: f32, cb: f32,
   er: f32, eg: f32, eb: f32,
+  px: f32,
+  pActive: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 @group(0) @binding(1) var<uniform> pts: array<vec4f, ${MAX_POINTS}>;
@@ -31,6 +34,10 @@ fn segmentDistance(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
   let ab = b - a;
   let t = clamp(dot(p - a, ab) / max(dot(ab, ab), 1e-6), 0.0, 1.0);
   return vec2f(length(p - (a + t * ab)), t);
+}
+
+fn hash21(p: vec2f) -> f32 {
+  return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453);
 }
 
 @fragment
@@ -62,7 +69,17 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
 
   var col = vec3f(p.er, p.eg, p.eb) * glowMask + vec3f(p.cr, p.cg, p.cb) * lineMask;
   col += vec3f(p.cr, p.cg, p.cb) * fillMask * fillFade * 1.4;
-  let alpha = clamp(lineMask + glowMask + fillMask * fillFade * 0.55, 0.0, 1.0);
+  var alpha = clamp(lineMask + glowMask + fillMask * fillFade * 0.55, 0.0, 1.0);
+
+  // Hover scrub: a soft vertical marker tracking the cursor's x position.
+  // pActive is 0 at rest, so the default frame is unchanged.
+  let scrubD = abs(uv.x - p.px);
+  let scrub = (1.0 - smoothstep(0.0, 0.004, scrubD)) * p.pActive;
+  let scrubGlow = (1.0 - smoothstep(0.0, 0.05, scrubD)) * p.pActive * 0.25;
+  col += vec3f(1.0) * scrub * 0.5 + vec3f(p.er, p.eg, p.eb) * scrubGlow;
+  alpha = clamp(alpha + scrub * 0.4 + scrubGlow * 0.3, 0.0, 1.0);
+  // Dither the glow/fill so smooth fades never quantize into visible steps.
+  col += vec3f((hash21(uv * 653.0) - 0.5) / 255.0 * 2.0) * alpha;
   return vec4f(col, alpha);
 }
 `;
@@ -81,6 +98,8 @@ export interface LiveChartProps {
   color?: string;
   /** Glow color. */
   accent?: string;
+  /** When true (default), a scrub line tracks the pointer's x position. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -93,12 +112,15 @@ export function LiveChart({
   fill = 0.6,
   color = "#38bdf8",
   accent = "#7dd3fc",
+  interactive = true,
   className,
   style,
   fallback,
 }: LiveChartProps) {
   const c = hexToRgb01(color);
   const e = hexToRgb01(accent);
+  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   const series = data.slice(0, MAX_POINTS);
   const points: number[][] = [];
   for (let i = 0; i < MAX_POINTS; i++) {
@@ -114,16 +136,23 @@ export function LiveChart({
     fill,
     cr: c[0], cg: c[1], cb: c[2],
     er: e[0], eg: e[1], eb: e[2],
+    px: ptr.x,
+    pActive: interactive && pActive ? 1 : 0,
   };
   return (
-    <VfxCanvas
-      shader={LIVE_CHART_SHADER}
-      label="live-chart"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{ ...uniforms, pts: points }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={LIVE_CHART_SHADER}
+        label="live-chart"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{ ...uniforms, pts: points }}
+      />
+    </div>
   );
 }
 

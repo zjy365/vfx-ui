@@ -1,4 +1,5 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Iridescent — thin-film interference look: layered sine fields sampled
@@ -12,6 +13,8 @@ struct Params {
   hueShift: f32,
   saturation: f32,
   brightness: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -64,14 +67,14 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let bands = sin((q.x * 1.4 + q.y * 0.9) * 2.2 + w2 * 5.0 + t * 0.35);
   let thick = flow * 3.0 + bands * 0.32 + w1 * 1.4;
 
-  var col = cosinePalette(thick * 0.8 + p.hueShift + t * 0.015);
+  var col = cosinePalette(thick * 0.8 + p.hueShift + (p.px - 0.5) * 0.9 + t * 0.015);
 
   // Secondary interference highlight — thin bright iridescent streaks.
   let streak = pow(0.5 + 0.5 * bands, 6.0);
-  col = mix(col, cosinePalette(thick * 0.8 + 0.3 + p.hueShift), streak * 0.45);
+  col = mix(col, cosinePalette(thick * 0.8 + 0.3 + p.hueShift + (p.px - 0.5) * 0.9), streak * 0.45);
 
-  // Anisotropic silk sheen sweeping across the warp.
-  let sheen = pow(0.5 + 0.5 * sin(flow * 7.0 + q.y * 2.5 - t * 0.7), 10.0);
+  // Anisotropic silk sheen sweeping across the warp; the pointer y tilts it.
+  let sheen = pow(0.5 + 0.5 * sin(flow * 7.0 + q.y * 2.5 - t * 0.7 + (p.py - 0.5) * 3.0), 10.0);
   col += sheen * vec3f(0.42, 0.4, 0.38);
 
   // Grade: soft filmic S-curve, saturation, vignette, dither.
@@ -94,6 +97,8 @@ export interface IridescentProps {
   hueShift?: number;
   saturation?: number;
   brightness?: number;
+  /** When true (default), the pointer rotates hue (x) and tilts the sheen (y). */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -105,19 +110,36 @@ export function Iridescent({
   hueShift = 0,
   saturation = 1,
   brightness = 0.9,
+  interactive = true,
   className,
   style,
   fallback,
 }: IridescentProps) {
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={IRIDESCENT_SHADER}
-      label="iridescent"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{ time: 0, speed, scale, hueShift, saturation, brightness }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={IRIDESCENT_SHADER}
+        label="iridescent"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          scale,
+          hueShift,
+          saturation,
+          brightness,
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }
 

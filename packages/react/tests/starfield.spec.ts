@@ -15,6 +15,8 @@ function starfieldUniforms(time: number, density: number = STARFIELD_DEFAULTS.de
     speed: STARFIELD_DEFAULTS.speed,
     twinkle: STARFIELD_DEFAULTS.twinkle,
     c0r: c[0], c0g: c[1], c0b: c[2],
+    px: 0.5,
+    py: 0.5,
   };
 }
 

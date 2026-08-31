@@ -4,7 +4,7 @@ import { ENERGY_ORB_SHADER } from "../src/components/EnergyOrb.tsx";
 
 const BASE = {
   time: 0.8, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1,
-  hue: 0, saturation: 1, glow: 1,
+  hue: 0, saturation: 1, glow: 1, px: 0.5, py: 0.5,
 };
 
 async function render(gpu: Awaited<ReturnType<typeof init>>, uniforms: Record<string, unknown>): Promise<Uint8Array> {

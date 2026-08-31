@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Vortex — spiral galaxy: logarithmic arms, core glow, star speckles.
@@ -14,6 +15,8 @@ struct Params {
   coreGlow: f32,
   cr: f32, cg: f32, cb: f32,
   er: f32, eg: f32, eb: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -24,7 +27,8 @@ fn hash21(p: vec2f) -> f32 {
 @fragment
 fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
   let p = params;
-  let q = (uv - vec2f(0.5)) * 2.0;
+  // The galaxy's center leans toward the pointer.
+  let q = (uv - vec2f(0.5) - (vec2f(p.px, p.py) - 0.5) * 0.16) * 2.0;
   let r = length(q);
   let ang = atan2(q.y, q.x);
 
@@ -66,6 +70,8 @@ export interface VortexProps {
   color?: string;
   /** Core and star color. */
   emission?: string;
+  /** When true (default), the vortex center leans toward the pointer. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -80,25 +86,35 @@ export function Vortex({
   coreGlow = 1.2,
   color = DEFAULTS.color,
   emission = DEFAULTS.emission,
+  interactive = true,
   className,
   style,
   fallback,
 }: VortexProps) {
   const c = hexToRgb01(color);
   const e = hexToRgb01(emission);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={VORTEX_SHADER}
-      label="vortex"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0, speed, swirl, arms, coreGlow,
-        cr: c[0], cg: c[1], cb: c[2],
-        er: e[0], eg: e[1], eb: e[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={VORTEX_SHADER}
+        label="vortex"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0, speed, swirl, arms, coreGlow,
+          cr: c[0], cg: c[1], cb: c[2],
+          er: e[0], eg: e[1], eb: e[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }
 

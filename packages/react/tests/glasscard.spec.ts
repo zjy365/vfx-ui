@@ -16,6 +16,9 @@ function glassCardUniforms(time: number, cardScale: number = GLASS_CARD_DEFAULTS
     cardScale,
     radius: GLASS_CARD_DEFAULTS.radius,
     c0r: c[0], c0g: c[1], c0b: c[2],
+    px: 0.5,
+    py: 0.5,
+    pActive: 0,
   };
 }
 

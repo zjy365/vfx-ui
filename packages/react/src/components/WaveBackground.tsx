@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Wave shader: three layered sine bands over a tri-color gradient.
@@ -14,6 +15,8 @@ struct Params {
   c0r: f32, c0g: f32, c0b: f32,
   c1r: f32, c1g: f32, c1b: f32,
   c2r: f32, c2g: f32, c2b: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -53,11 +56,13 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 
   // Four travelling wave trains at different speeds and directions —
   // parallax between them is what makes water read as water.
-  let w1 = sin(uvIn.x * p.frequency + t * 1.00 + fbm(uvIn * 2.0 + t * 0.10) * 2.4) * 0.14;
-  let w2 = sin(uvIn.x * p.frequency * 1.7 - t * 1.35 + fbm(uvIn * 3.1 - t * 0.16) * 1.8) * 0.07;
-  let w3 = sin(uvIn.x * p.frequency * 0.6 + t * 0.55 + fbm(uvIn * 1.3 + t * 0.07) * 3.0) * 0.24;
+  // The cursor sloshes the water: x pushes the wave phase, y lifts the level.
+  let slosh = (p.px - 0.5) * 2.4;
+  let w1 = sin(uvIn.x * p.frequency + t * 1.00 + slosh + fbm(uvIn * 2.0 + t * 0.10) * 2.4) * 0.14;
+  let w2 = sin(uvIn.x * p.frequency * 1.7 - t * 1.35 - slosh * 0.7 + fbm(uvIn * 3.1 - t * 0.16) * 1.8) * 0.07;
+  let w3 = sin(uvIn.x * p.frequency * 0.6 + t * 0.55 + slosh * 0.4 + fbm(uvIn * 1.3 + t * 0.07) * 3.0) * 0.24;
   let w4 = sin((uvIn.x + uvIn.y) * p.frequency * 1.15 + t * 1.9) * 0.035;
-  let band = uvIn.y + (w1 + w2 + w3 + w4) * p.amplitude;
+  let band = uvIn.y + (0.5 - p.py) * 0.05 + (w1 + w2 + w3 + w4) * p.amplitude;
 
   let cA = vec3f(p.c0r, p.c0g, p.c0b);
   let cB = vec3f(p.c1r, p.c1g, p.c1b);
@@ -94,6 +99,8 @@ export interface WaveBackgroundProps {
   to?: string;
   /** Top gradient stop. */
   accent?: string;
+  /** When true (default), the pointer sloshes the waves (x) and water level (y). */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -108,6 +115,7 @@ export function WaveBackground({
   from = DEFAULTS.from,
   to = DEFAULTS.to,
   accent = DEFAULTS.accent,
+  interactive = true,
   className,
   style,
   fallback,
@@ -115,22 +123,31 @@ export function WaveBackground({
   const a = hexToRgb01(from);
   const b = hexToRgb01(to);
   const c = hexToRgb01(accent);
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={WAVE_SHADER}
-      label="wave-background"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        speed,
-        amplitude,
-        frequency,
-        c0r: a[0], c0g: a[1], c0b: a[2],
-        c1r: b[0], c1g: b[1], c1b: b[2],
-        c2r: c[0], c2g: c[1], c2b: c[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={WAVE_SHADER}
+        label="wave-background"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          amplitude,
+          frequency,
+          c0r: a[0], c0g: a[1], c0b: a[2],
+          c1r: b[0], c1g: b[1], c1b: b[2],
+          c2r: c[0], c2g: c[1], c2b: c[2],
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }

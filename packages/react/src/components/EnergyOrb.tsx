@@ -1,4 +1,5 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * EnergyOrb — a faithful WGSL port of ThreeUI's EnergyOrb (MIT,
@@ -17,6 +18,8 @@ struct Params {
   hue: f32,
   saturation: f32,
   glow: f32,
+  px: f32,
+  py: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -96,7 +99,9 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 
     let fres = pow(1.0 - z / R, 2.2);
     col += vec3f(0.55, 0.55, 1.0) * fres * 1.1 * p.glow;
-    let top = pow(max(dot(n, normalize(vec3f(0.0, 0.7, 0.7))), 0.0), 3.0);
+    // Top light follows the pointer (rest = straight overhead, the original look).
+    let lightDir = normalize(vec3f((p.px - 0.5) * 1.8, 0.7 + (0.5 - p.py) * 1.4, 0.7));
+    let top = pow(max(dot(n, lightDir), 0.0), 3.0);
     col += vec3f(0.45, 0.42, 0.9) * top * 0.35 * p.glow;
     alpha = 1.0;
   }
@@ -130,6 +135,8 @@ export interface EnergyOrbProps {
   saturation?: number;
   /** Rim/atmosphere glow multiplier. */
   glow?: number;
+  /** When true (default), the top light tracks the pointer across the orb. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -143,19 +150,38 @@ export function EnergyOrb({
   hue = 0,
   saturation = 1,
   glow = 1,
+  interactive = true,
   className,
   style,
   fallback,
 }: EnergyOrbProps) {
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={ENERGY_ORB_SHADER}
-      label="energy-orb"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{ time: 0, speed, smokeScale, smokeStrength, smokeSpeed, hue, saturation, glow }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={ENERGY_ORB_SHADER}
+        label="energy-orb"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          speed,
+          smokeScale,
+          smokeStrength,
+          smokeSpeed,
+          hue,
+          saturation,
+          glow,
+          px: ptr.x,
+          py: ptr.y,
+        }}
+      />
+    </div>
   );
 }
 

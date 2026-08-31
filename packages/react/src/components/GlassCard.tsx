@@ -1,5 +1,6 @@
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
+import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 
 /**
  * Liquid glass card: rounded-rect SDF with edge refraction, bevel light, and a shine sweep.
@@ -12,6 +13,9 @@ struct Params {
   cardScale: f32,
   radius: f32,
   c0r: f32, c0g: f32, c0b: f32,
+  px: f32,
+  py: f32,
+  pActive: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
 
@@ -88,6 +92,11 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let sweepLine = card.x + card.y - sweep * 1.6 + 0.3;
   let spec = exp(-abs(sweepLine) * 16.0) * p.shine;
 
+  // Pointer glare: a soft specular pool tracking the cursor across the pane.
+  // pActive is 0 at rest, so the default frame is unchanged.
+  let m = (vec2f(p.px, p.py) - vec2f(0.5)) * aspect;
+  let glare = exp(-dot(card - m, card - m) * 9.0) * p.pActive;
+
   // Edge treatment: bright outer rim + inner bevel line.
   let edge = smoothstep(0.02, 0.0, abs(sd + 0.004)) ;
   let bevel = smoothstep(0.05, 0.0, abs(sd + 0.016));
@@ -99,6 +108,7 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   col += tint * edge * p.borderGlow * 1.02;
   col += vec3f(0.75, 0.82, 1.0) * bevel * 0.3 * p.borderGlow;
   col += vec3f(0.9, 0.94, 1.0) * spec * inside * 0.9;
+  col += vec3f(0.9, 0.94, 1.0) * glare * inside * 0.45;
 
   // Soft drop shadow below the card.
   let shadow = smoothstep(0.12, 0.0, sd - 0.05) * (1.0 - inside);
@@ -131,6 +141,8 @@ export interface GlassCardProps {
   cardScale?: number;
   /** Glass tint color. */
   tint?: string;
+  /** When true (default), a specular glare follows the pointer over the card. */
+  interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
   fallback?: VfxCanvasProps["fallback"];
@@ -156,26 +168,37 @@ export function GlassCard({
   shine = GLASS_CARD_DEFAULTS.shine,
   cardScale = GLASS_CARD_DEFAULTS.cardScale,
   tint = GLASS_CARD_DEFAULTS.tint,
+  interactive = true,
   className,
   style,
   fallback,
 }: GlassCardProps) {
   const c = hexToRgb01(tint);
+  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>();
+  const ptr = interactive ? pointer : POINTER_REST;
   return (
-    <VfxCanvas
-      shader={GLASS_CARD_SHADER}
-      label="glass-card"
+    <div
+      ref={wrapRef}
       className={className}
-      style={style}
-      fallback={fallback}
-      uniforms={{
-        time: 0,
-        shine,
-        borderGlow,
-        cardScale,
-        radius,
-        c0r: c[0], c0g: c[1], c0b: c[2],
-      }}
-    />
+      style={{ position: "relative", width: "100%", height: "100%", ...style }}
+    >
+      <VfxCanvas
+        shader={GLASS_CARD_SHADER}
+        label="glass-card"
+        style={{ position: "absolute", inset: 0 }}
+        fallback={fallback}
+        uniforms={{
+          time: 0,
+          shine,
+          borderGlow,
+          cardScale,
+          radius,
+          c0r: c[0], c0g: c[1], c0b: c[2],
+          px: ptr.x,
+          py: ptr.y,
+          pActive: interactive && pActive ? 1 : 0,
+        }}
+      />
+    </div>
   );
 }

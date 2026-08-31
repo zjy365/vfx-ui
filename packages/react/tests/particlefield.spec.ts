@@ -15,6 +15,8 @@ function particleUniforms(time: number, size: number = PARTICLE_DEFAULTS.size): 
     speed: PARTICLE_DEFAULTS.speed,
     size,
     c0r: c[0], c0g: c[1], c0b: c[2],
+    px: 0.5,
+    py: 0.5,
   };
 }
 

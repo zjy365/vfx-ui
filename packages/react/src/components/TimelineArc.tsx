@@ -77,7 +77,7 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 
   var col = vec3f(0.986, 0.989, 0.996); // near-white paper
   // Paper grain: kills flat runs and reads as print texture.
-  col += (hash2(wp * vec2f(p.resX, p.resY) / max(p.resX, 1.0) * 512.0) - 0.5) * 0.012;
+  col += (hash2(wp * vec2f(p.resX, p.resY) / max(p.resX, 1.0) * 512.0) - 0.5) * 0.02;
 
   let arcMask = smoothstep(${f(ARC_A0)} - 0.01, ${f(ARC_A0)} + 0.01, ang) *
                 (1.0 - smoothstep(${f(ARC_A1)} - 0.01, ${f(ARC_A1)} + 0.01, ang));
