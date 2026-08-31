@@ -12,6 +12,7 @@ import {
   WEB_GLOBE_PRESETS,
   ENERGY_ORB_PRESETS,
   RIBBON_FIELD_PRESETS,
+  FIBER_FLOW_PRESETS,
   TIMELINE_ARC_PRESETS,
   LIVE_CHART_PRESETS,
 } from "@vfx-ui/react";
@@ -658,6 +659,47 @@ export function RibbonHero() {
       classic: "Original three-ribbon teal/cyan field.",
       calm: "Slower, dimmer, left-leaning drift.",
       vivid: "Brighter ribbons with heavier grain.",
+    }, paletteThumb),
+  }),
+
+  entry({
+    id: "fiber-flow",
+    category: "Backgrounds",
+    label: "Fiber Flow",
+    tags: ["background", "fibers", "silk", "flow", "waves"],
+    description: "Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.",
+    importName: "FiberFlow",
+    thumbnail: paletteThumb({}),
+    sourceCode: `import { FiberFlow, FIBER_FLOW_PRESETS } from "@vfx-ui/react";
+
+export function FiberHero() {
+  return (
+    <div style={{ position: "relative", width: "100%", height: 420 }}>
+      <FiberFlow {...FIBER_FLOW_PRESETS.classic} />
+    </div>
+  );
+}`,
+    agentNotes: [
+      "Purpose: dark hero/backdrop of flowing luminous fiber strands (silk-wave family) — an original vfx-ui implementation (value-noise fbm + domain warp + ridge comb), not a port of any third-party code.",
+      "Mount: full-bleed hero band (100% x 420px+); opaque near-black indigo base — no background needed behind it.",
+      "Props: speed, intensity, scale (field zoom), strands (fiber density), sharp (edge crispness), from/to/accent (deep/mid/sheen colors).",
+      "Pointer: the field parallaxes toward the cursor and a soft glow pocket follows it; interactive={false} pins the field to center.",
+      "Guardrails: pointer glow is gated by pActive so the resting render is pointer-independent; text overlays sit fine above (z-index); WebGPU required with fallback prop.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 3, 0.05, 1),
+      range("intensity", "Intensity", 0, 2, 0.05, 1),
+      range("scale", "Scale", 0.5, 3.5, 0.05, 1.6),
+      range("strands", "Strands", 8, 40, 1, 22),
+      range("sharp", "Sharpness", 2, 12, 0.5, 6),
+      color("from", "Deep", "#1e1b4b"),
+      color("to", "Mid", "#4f46e5"),
+      color("accent", "Sheen", "#a5b4fc"),
+    ],
+    variants: presetVariants(FIBER_FLOW_PRESETS, {
+      classic: "Indigo silk under moonlight.",
+      ocean: "Cool cyan current, denser strands.",
+      ember: "Slow warm ember ribbons.",
     }, paletteThumb),
   }),
 

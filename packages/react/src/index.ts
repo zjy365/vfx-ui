@@ -85,6 +85,13 @@ export {
   type RibbonFieldProps,
 } from "./components/RibbonField.tsx";
 export {
+  FiberFlow,
+  FIBER_FLOW_SHADER,
+  FIBER_FLOW_DEFAULTS,
+  FIBER_FLOW_PRESETS,
+  type FiberFlowProps,
+} from "./components/FiberFlow.tsx";
+export {
   TimelineArc,
   TimelineArcScrollDemo,
   useScrollProgress,
