@@ -129,7 +129,7 @@ export interface AuroraProps {
   primary?: string;
   /** Secondary curtain color, mixed per band. */
   secondary?: string;
-  /** When true (default), the curtains sway and lift with the pointer. */
+  /** When true, the curtains sway and lift with the pointer. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -156,7 +156,7 @@ export function Aurora({
   bands = AURORA_DEFAULTS.bands,
   primary = AURORA_DEFAULTS.primary,
   secondary = AURORA_DEFAULTS.secondary,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

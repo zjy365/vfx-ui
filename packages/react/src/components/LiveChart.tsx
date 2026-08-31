@@ -98,7 +98,7 @@ export interface LiveChartProps {
   color?: string;
   /** Glow color. */
   accent?: string;
-  /** When true (default), a scrub line tracks the pointer's x position. */
+  /** When true, a scrub line tracks the pointer's x position. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -112,7 +112,7 @@ export function LiveChart({
   fill = 0.6,
   color = "#38bdf8",
   accent = "#7dd3fc",
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

@@ -228,7 +228,7 @@ export interface WebGlobeProps {
   color?: string;
   /** Rim/atmosphere color. */
   emission?: string;
-  /** When true (default), the pointer rotates (x) and tilts (y) the globe. */
+  /** When true, the pointer rotates (x) and tilts (y) the globe. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -250,7 +250,7 @@ export function WebGlobe({
   globeScale = 0.98,
   color = DEFAULTS.color,
   emission = DEFAULTS.emission,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

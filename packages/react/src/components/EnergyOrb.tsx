@@ -135,7 +135,7 @@ export interface EnergyOrbProps {
   saturation?: number;
   /** Rim/atmosphere glow multiplier. */
   glow?: number;
-  /** When true (default), the top light tracks the pointer across the orb. */
+  /** When true, the top light tracks the pointer across the orb. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -150,7 +150,7 @@ export function EnergyOrb({
   hue = 0,
   saturation = 1,
   glow = 1,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

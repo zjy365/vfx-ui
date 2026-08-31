@@ -85,7 +85,7 @@ export interface MeshGradientProps {
   to?: string;
   accent?: string;
   deep?: string;
-  /** When true (default), the color field drifts with the pointer. */
+  /** When true, the color field drifts with the pointer. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -102,7 +102,7 @@ export function MeshGradient({
   to = DEFAULTS.to,
   accent = DEFAULTS.accent,
   deep = DEFAULTS.deep,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

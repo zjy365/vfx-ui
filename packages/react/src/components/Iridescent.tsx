@@ -97,7 +97,7 @@ export interface IridescentProps {
   hueShift?: number;
   saturation?: number;
   brightness?: number;
-  /** When true (default), the pointer rotates hue (x) and tilts the sheen (y). */
+  /** When true, the pointer rotates hue (x) and tilts the sheen (y). */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -110,7 +110,7 @@ export function Iridescent({
   hueShift = 0,
   saturation = 1,
   brightness = 0.9,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

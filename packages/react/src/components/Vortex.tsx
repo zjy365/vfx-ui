@@ -70,7 +70,7 @@ export interface VortexProps {
   color?: string;
   /** Core and star color. */
   emission?: string;
-  /** When true (default), the vortex center leans toward the pointer. */
+  /** When true, the vortex center leans toward the pointer. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -86,7 +86,7 @@ export function Vortex({
   coreGlow = 1.2,
   color = DEFAULTS.color,
   emission = DEFAULTS.emission,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

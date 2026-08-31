@@ -105,7 +105,7 @@ export interface FluidGradientProps {
   to?: string;
   /** Highlight gradient stop. */
   accent?: string;
-  /** When true (default), the liquid plane parallax-shifts with the pointer. */
+  /** When true, the liquid plane parallax-shifts with the pointer. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -134,7 +134,7 @@ export function FluidGradient({
   from = FLUID_DEFAULTS.from,
   to = FLUID_DEFAULTS.to,
   accent = FLUID_DEFAULTS.accent,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

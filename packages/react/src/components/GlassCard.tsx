@@ -141,7 +141,7 @@ export interface GlassCardProps {
   cardScale?: number;
   /** Glass tint color. */
   tint?: string;
-  /** When true (default), a specular glare follows the pointer over the card. */
+  /** When true, a specular glare follows the pointer over the card. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -168,7 +168,7 @@ export function GlassCard({
   shine = GLASS_CARD_DEFAULTS.shine,
   cardScale = GLASS_CARD_DEFAULTS.cardScale,
   tint = GLASS_CARD_DEFAULTS.tint,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

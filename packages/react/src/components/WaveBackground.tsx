@@ -99,7 +99,7 @@ export interface WaveBackgroundProps {
   to?: string;
   /** Top gradient stop. */
   accent?: string;
-  /** When true (default), the pointer sloshes the waves (x) and water level (y). */
+  /** When true, the pointer sloshes the waves (x) and water level (y). */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -115,7 +115,7 @@ export function WaveBackground({
   from = DEFAULTS.from,
   to = DEFAULTS.to,
   accent = DEFAULTS.accent,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

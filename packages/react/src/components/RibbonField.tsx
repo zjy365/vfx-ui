@@ -92,7 +92,7 @@ export interface RibbonFieldProps {
   /** Micro-grain strength multiplier. */
   grain?: number;
   /**
-   * When true (default), the ribbons' horizontal drift follows the pointer's
+   * When true, the ribbons' horizontal drift follows the pointer's
    * x position across the component — the pointer interaction from the
    * original threeui ribbon-field. Set false to pin drift to the prop.
    */
@@ -120,7 +120,7 @@ export function RibbonField({
   intensity = RIBBON_FIELD_DEFAULTS.intensity,
   drift = RIBBON_FIELD_DEFAULTS.drift,
   grain = RIBBON_FIELD_DEFAULTS.grain,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

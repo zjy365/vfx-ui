@@ -124,7 +124,7 @@ export interface LiquidGlassProps {
   chromatic?: number;
   /** Wave frequency; lower is broader and calmer. */
   scale?: number;
-  /** When true (default), the pointer presses a refraction lens into the surface. */
+  /** When true, the pointer presses a refraction lens into the surface. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -149,7 +149,7 @@ export function LiquidGlass({
   distortion = LIQUID_GLASS_DEFAULTS.distortion,
   chromatic = LIQUID_GLASS_DEFAULTS.chromatic,
   scale = LIQUID_GLASS_DEFAULTS.scale,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

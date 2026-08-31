@@ -146,7 +146,7 @@ export interface StarfieldProps {
   twinkle?: number;
   /** Star color. */
   color?: string;
-  /** When true (default), star layers parallax-shift against the pointer. */
+  /** When true, star layers parallax-shift against the pointer. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -171,7 +171,7 @@ export function Starfield({
   speed = STARFIELD_DEFAULTS.speed,
   twinkle = STARFIELD_DEFAULTS.twinkle,
   color = STARFIELD_DEFAULTS.color,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

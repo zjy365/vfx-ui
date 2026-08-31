@@ -127,7 +127,7 @@ export interface ParticleFieldProps {
   size?: number;
   /** Particle color. */
   color?: string;
-  /** When true (default), particle layers parallax-shift against the pointer. */
+  /** When true, particle layers parallax-shift against the pointer. */
   interactive?: boolean;
   className?: string;
   style?: VfxCanvasProps["style"];
@@ -152,7 +152,7 @@ export function ParticleField({
   speed = PARTICLE_DEFAULTS.speed,
   size = PARTICLE_DEFAULTS.size,
   color = PARTICLE_DEFAULTS.color,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,
