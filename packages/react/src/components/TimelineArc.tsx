@@ -356,3 +356,46 @@ export function TimelineArc({
     </div>
   );
 }
+
+/**
+ * Self-contained scroll-driven demo: an inner scroll region drives the
+ * milestone progress, so the interaction works inside a docs preview without
+ * wiring page scroll. This is how sealos.run/about-us behaves on page scroll;
+ * here the scroll region stands in for the page.
+ */
+export function TimelineArcScrollDemo(props: TimelineArcProps) {
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const total = el.scrollHeight - el.clientHeight;
+      setProgress(total > 0 ? Math.min(1, Math.max(0, el.scrollTop / total)) : 0);
+    };
+    onScroll();
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <div
+      ref={scrollRef}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+        overflowY: "auto",
+        background: "#ffffff",
+      }}
+    >
+      {/* tall spacer creates the scroll distance; the arc is sticky */}
+      <div style={{ height: "320%" }}>
+        <div style={{ position: "sticky", top: 0, height: "31.25%" }}>
+          <TimelineArc {...props} scrollProgress={progress} />
+        </div>
+      </div>
+    </div>
+  );
+}

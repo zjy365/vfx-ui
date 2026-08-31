@@ -81,6 +81,7 @@ export {
 } from "./components/RibbonField.tsx";
 export {
   TimelineArc,
+  TimelineArcScrollDemo,
   useScrollProgress,
   TIMELINE_ARC_SHADER,
   TIMELINE_ARC_DEFAULTS,

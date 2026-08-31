@@ -654,8 +654,8 @@ export function RibbonHero() {
     category: "Data",
     label: "Timeline Arc",
     tags: ["timeline", "milestone", "arc", "history"],
-    description: "Milestone timeline on a sweeping elliptical arc — ruler ticks, milestone dot, dashed leader to an annotation (sealos.run/about-us style). Scroll-driven via useScrollProgress.",
-    importName: "TimelineArc",
+    description: "Milestone timeline on a sweeping elliptical arc — ruler ticks, milestone dot, dashed leader to an annotation (sealos.run/about-us style). Scroll inside the preview to advance years.",
+    importName: "TimelineArcScrollDemo",
     thumbnail: paletteThumb({}),
     sourceCode: `import { TimelineArc } from "@vfx-ui/react";
 
@@ -673,7 +673,8 @@ export function Milestones() {
     agentNotes: [
       "Purpose: company/product milestone timeline — a huge elliptical arc with ruler ticks, year labels, a highlighted milestone dot and a dashed leader to an annotation.",
       "Mount: wide tall container (e.g. 100% x 520px); opaque near-white background — designed for light pages.",
-      "Props: years (string[]), activeIndex, annotation (leader-line text), speed (dash march + node pulse), accent (hex color).",
+      "Props: years (string[]), activeIndex, annotation (leader-line text), speed (dash march + node pulse), accent (hex color), scrollProgress (0..1 drives the active milestone from scroll).",
+      "Interaction: use scrollProgress + useScrollProgress to scrub milestones with page scroll (sealos.run behavior), or TimelineArcScrollDemo for a self-contained scrollable preview; activeIndex is the static fallback.",
       "Guardrails: year labels are DOM spans positioned by the same arc math — do not CSS-transform-scale the wrapper or labels drift from the arc; text inherits page font; WebGPU required with fallback prop.",
     ],
     controls: [
