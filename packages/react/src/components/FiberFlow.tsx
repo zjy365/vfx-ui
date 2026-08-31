@@ -134,8 +134,8 @@ export interface FiberFlowProps {
   /** Strand-peak sheen color (default indigo-300). */
   accent?: string;
   /**
-   * When true (default), the field parallaxes toward the pointer and a soft
-   * glow pocket follows it. Set false to pin the field to the center.
+   * When true, the field parallaxes toward the pointer and a soft glow pocket
+   * follows it. Off by default — the field stays pinned to the center.
    */
   interactive?: boolean;
   className?: string;
@@ -169,7 +169,7 @@ export function FiberFlow({
   from = FIBER_FLOW_DEFAULTS.from,
   to = FIBER_FLOW_DEFAULTS.to,
   accent = FIBER_FLOW_DEFAULTS.accent,
-  interactive = true,
+  interactive = false,
   className,
   style,
   fallback,

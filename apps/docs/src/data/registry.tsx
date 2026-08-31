@@ -683,7 +683,7 @@ export function FiberHero() {
       "Purpose: dark hero/backdrop of flowing luminous fiber strands (silk-wave family) — an original vfx-ui implementation (value-noise fbm + domain warp + ridge comb), not a port of any third-party code.",
       "Mount: full-bleed hero band (100% x 420px+); opaque near-black indigo base — no background needed behind it.",
       "Props: speed, intensity, scale (field zoom), strands (fiber density), sharp (edge crispness), from/to/accent (deep/mid/sheen colors).",
-      "Pointer: the field parallaxes toward the cursor and a soft glow pocket follows it; interactive={false} pins the field to center.",
+      "Pointer: interactive is off by default (field stays pinned to center); set interactive to parallax the field toward the cursor with a soft glow pocket — keep off for a calm static backdrop.",
       "Guardrails: pointer glow is gated by pActive so the resting render is pointer-independent; text overlays sit fine above (z-index); WebGPU required with fallback prop.",
     ],
     controls: [
