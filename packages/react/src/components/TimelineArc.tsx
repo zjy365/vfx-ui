@@ -533,15 +533,15 @@ export function TimelineArc({
  * through the milestones, so the interaction works inside a docs preview
  * without wiring page scroll. Mirrors the sealos.run/about-us scroll pacing
  * (56vh per milestone + 72vh extra). When used with the default milestone
- * years and no annotation props, it shows the sealos.run milestone copy.
+ * years and no annotation props, it shows built-in VFX UI demo copy.
  */
 const DEMO_ANNOTATIONS: Record<string, string> = {
-  "2018": "2018 年 8 月，提交第一行代码，解决 Kubernetes 高可用安装复杂、缺乏文档的问题。",
-  "2021": "2021 年，项目霸榜 GitHub 趋势榜，并获得奇绩创坛（陆奇团队）投资。",
-  "2022": "2022 年 3 月，推出 v4.0 版本，引入集群镜像能力，实现“一次构建，到处运行”。",
-  "2023": "2023 年 6 月，Sealos 公有云版本正式上线。",
-  "2024": "2024 年 12 月，获得阿里云战略投资，并发布 Sealos 5.0。",
-  "2025": "2025 年，累计注册用户超 30 万，在线应用服务超 5 万。",
+  "2018": "2018 — the first commit: one fragment shader and a dream.",
+  "2021": "2021 — trending on GitHub, past the first 10k stars.",
+  "2022": "2022 — v4.0 lands the vgpu effect protocol: fullscreen fragment + f32 uniforms.",
+  "2023": "2023 — the public component catalog opens.",
+  "2024": "2024 — v5.0 ships pointer-linked uniforms across every component.",
+  "2025": "2025 — over 300k developers shipping with VFX UI.",
 };
 
 export function TimelineArcScrollDemo(props: TimelineArcProps) {

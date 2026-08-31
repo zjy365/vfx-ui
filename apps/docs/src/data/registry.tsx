@@ -678,12 +678,12 @@ export function Milestones() {
         years={["2018", "2021", "2022", "2023", "2024", "2025"]}
         activeIndex={1}
         annotations={[
-          "2018 年 8 月，提交第一行代码。",
-          "2021 年，项目霸榜 GitHub 趋势榜。",
-          "2022 年 3 月，推出 v4.0 版本。",
-          "2023 年 6 月，公有云版本正式上线。",
-          "2024 年 12 月，发布 5.0。",
-          "2025 年，注册用户超 30 万。",
+          "2018 — the first commit.",
+          "2021 — trending on GitHub.",
+          "2022 — the vgpu protocol lands.",
+          "2023 — the catalog opens.",
+          "2024 — v5.0 ships.",
+          "2025 — 300k developers.",
         ]}
       />
     </div>
