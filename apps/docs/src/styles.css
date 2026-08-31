@@ -1820,6 +1820,13 @@ pre {
   aspect-ratio: auto;
 }
 
+/* The timeline-arc dial is sized for a full-height stage (1:1 sealos.run
+   about-us); a 16:9 pane clips the active marker + callout below the fold. */
+.preview.shader-preview.timeline-arc {
+  height: 720px;
+  aspect-ratio: auto;
+}
+
 .capture-shell {
   position: fixed;
   inset: 0;

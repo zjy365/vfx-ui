@@ -666,36 +666,43 @@ export function RibbonHero() {
     category: "Data",
     label: "Timeline Arc",
     tags: ["timeline", "milestone", "arc", "history"],
-    description: "Milestone timeline on a sweeping elliptical arc — ruler ticks, milestone dot, dashed leader to an annotation (sealos.run/about-us style). Scroll inside the preview to advance years.",
+    description: "Milestone dial tilted into 3D (perspective 900px, rotateX −60°) — a procedural ruler disk spins under scroll so the active year stays anchored, with a hexagon marker and a dashed callout (1:1 sealos.run/about-us replica). Scroll inside the preview to spin the dial.",
     importName: "TimelineArcScrollDemo",
     thumbnail: paletteThumb({}),
     sourceCode: `import { TimelineArc } from "@vfx-ui/react";
 
 export function Milestones() {
   return (
-    <div style={{ position: "relative", width: "100%", height: 520 }}>
+    <div style={{ position: "relative", width: "100%", height: 560 }}>
       <TimelineArc
-        years={["2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025"]}
-        activeIndex={4}
-        annotation="2022 年 3 月，推出 v4.0 版本，引入集群镜像能力。"
+        years={["2018", "2021", "2022", "2023", "2024", "2025"]}
+        activeIndex={1}
+        annotations={[
+          "2018 年 8 月，提交第一行代码。",
+          "2021 年，项目霸榜 GitHub 趋势榜。",
+          "2022 年 3 月，推出 v4.0 版本。",
+          "2023 年 6 月，公有云版本正式上线。",
+          "2024 年 12 月，发布 5.0。",
+          "2025 年，注册用户超 30 万。",
+        ]}
       />
     </div>
   );
 }`,
     agentNotes: [
-      "Purpose: company/product milestone timeline — a huge elliptical arc with ruler ticks, year labels, a highlighted milestone dot and a dashed leader to an annotation.",
-      "Mount: wide tall container (e.g. 100% x 520px); opaque near-white background — designed for light pages.",
-      "Props: years (string[]), activeIndex, annotation (leader-line text), speed (dash march + node pulse), accent (hex color), scrollProgress (0..1 drives the active milestone from scroll).",
-      "Interaction: use scrollProgress + useScrollProgress to scrub milestones with page scroll (sealos.run behavior), or TimelineArcScrollDemo for a self-contained scrollable preview; activeIndex is the static fallback.",
-      "Guardrails: year labels are DOM spans positioned by the same arc math — do not CSS-transform-scale the wrapper or labels drift from the arc; text inherits page font; WebGPU required with fallback prop.",
+      "Purpose: company/product milestone dial — a 3D-tilted ruler disk (1:1 sealos.run/about-us replica) whose WebGPU canvas is a static procedural dial (paper disk, gray/dark minor ticks every 3°, accent majors every 18°, accent dot ring), warped by real CSS perspective + rotateX/rotateY; year labels and hexagon markers ride the same tilted plane.",
+      "Mount: wide tall container (e.g. 100% x 560px) on light pages; the dial plane is sized min(200%, 1536px) and overhangs the container like the source layout.",
+      "Props: years (string[]), activeIndex, annotation / annotations[] (callout text per milestone), speed (active hexagon pulse, 0 disables), accent (hex, default #005bff sealos brand blue), scrollProgress (0..1 spins the dial, 18° per milestone).",
+      "Interaction: use scrollProgress + useScrollProgress to spin the dial with page scroll (sealos.run behavior — the active year stays anchored at the callout), or TimelineArcScrollDemo for a self-contained scrollable preview; activeIndex is the static fallback.",
+      "Guardrails: the callout is measured from the active marker's projected screen position (getBoundingClientRect) — it needs real layout, so keep the component visible on mount; text inherits page font; WebGPU required with fallback prop (canvas is static, animate is off).",
     ],
     controls: [
       range("speed", "Speed", 0, 3, 0.05, 1),
-      range("activeIndex", "Active index", 0, 7, 1, 4),
-      color("accent", "Accent", "#2563eb"),
+      range("activeIndex", "Active index", 0, 5, 1, 1),
+      color("accent", "Accent", "#005bff"),
     ],
     variants: presetVariants(TIMELINE_ARC_PRESETS, {
-      classic: "Sealos blue accent.",
+      classic: "Sealos brand blue accent (#005bff).",
       emerald: "Green milestones.",
       violet: "Violet milestones, faster march.",
     }, paletteThumb),

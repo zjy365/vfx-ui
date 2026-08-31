@@ -6773,39 +6773,32 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 // packages/react/src/components/TimelineArc.tsx
 var import_react4 = __toESM(require_react(), 1);
 var import_jsx_runtime16 = __toESM(require_jsx_runtime(), 1);
-var CX_T = 0.52;
-var CY = 1.18;
-var RX_T = 0.58;
-var RY = 1.06;
-var ARC_A0 = -2.7053;
-var ARC_A1 = -0.3142;
-var YEAR_A0 = -2.6012;
-var YEAR_A1 = -1.1868;
-var MINORS = 5;
-var RING_GAP = 0.03;
-var LEADER_DX = 0.16;
-var LEADER_DY = 0.3;
+var CALLOUT = {
+  kinkSlope: 28.26 / 33.52,
+  baselineYRatio: 0.62,
+  endPaddingPx: 16,
+  textOffsetYPx: 10,
+  minGapAboveMarkerPx: 24,
+  minSegmentWidthPx: 160,
+  dash: "2 2"
+};
+var DISK_R = 456.5 / 499;
+var TICK_GRAY = [438.4 / 499, 476.5 / 499];
+var TICK_DARK = [410.8 / 499, 446.5 / 499];
+var TICK_MAJOR = [406.2 / 499, 483.5 / 499];
+var DOT_R = 371.6 / 499;
+var DOT_SIZE = 1.238 / 499;
+var TICK_W = 1 / 499;
 var f = (n) => n.toFixed(6);
 var TIMELINE_ARC_SHADER = (
   /* wgsl */
   `
 struct Params {
-  time: f32,
-  speed: f32,
-  activeT: f32,
-  yearCount: f32,
-  cr: f32, cg: f32, cb: f32,
   resX: f32,
   resY: f32,
+  cr: f32, cg: f32, cb: f32,
 }
 @group(0) @binding(0) var<uniform> params: Params;
-
-fn sdSeg(p: vec2f, a: vec2f, b: vec2f) -> vec2f {
-  let pa = p - a;
-  let ba = b - a;
-  let h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
-  return vec2f(length(pa - ba * h), h);
-}
 
 fn hash2(pIn: vec2f) -> f32 {
   var p = fract(pIn * vec2f(123.34, 456.21));
@@ -6813,97 +6806,72 @@ fn hash2(pIn: vec2f) -> f32 {
   return fract(p.x * p.y);
 }
 
+// Coverage of a radial ruler tick: nearest segment at fixed angle, r in [r0, r1],
+// dev = arc-length distance from the tick's centerline.
+fn tickCov(dev: f32, r: f32, r0: f32, r1: f32, halfW: f32, pxU: f32) -> f32 {
+  let dr = max(max(r0 - r, r - r1), 0.0);
+  let dist = length(vec2f(dev, dr));
+  return 1.0 - smoothstep(halfW - pxU * 0.6, halfW + pxU, dist);
+}
+
 @fragment
 fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
   let p = params;
-  let aspect = p.resX / p.resY;
-  let wp = vec2f(uvIn.x * aspect, 1.0 - uvIn.y); // y-up, isotropic
-  let pxU = 1.0 / p.resY; // one pixel in workspace units
-  let C = vec2f(${f(CX_T)} * aspect, ${f(CY)});
-  let rad = vec2f(${f(RX_T)} * aspect, ${f(RY)});
-  let minRad = min(rad.x, rad.y);
+  let halfMin = 0.5 * min(p.resX, p.resY);
+  let d = (uvIn - vec2f(0.5)) * vec2f(p.resX, p.resY) / halfMin; // y-down, 1 = half canvas
+  let r = length(d);
+  let theta = atan2(d.y, d.x);
+  let pxU = 1.0 / halfMin;
   let accent = vec3f(p.cr, p.cg, p.cb);
-  let t = p.time * p.speed;
 
-  let q = (wp - C) / rad; // unit-circle space of the ellipse
-  let lq = length(q);
-  let ang = atan2(q.y, q.x);
-  let activeAng = mix(${f(YEAR_A0)}, ${f(YEAR_A1)}, p.activeT);
+  // premultiplied compositor: dst over src
+  var acc = vec4f(0.0);
 
-  var col = vec3f(0.986, 0.989, 0.996); // near-white paper
-  // Paper grain: kills flat runs and reads as print texture.
-  col += (hash2(wp * vec2f(p.resX, p.resY) / max(p.resX, 1.0) * 512.0) - 0.5) * 0.02;
-
-  let arcMask = smoothstep(${f(ARC_A0)} - 0.01, ${f(ARC_A0)} + 0.01, ang) *
-                (1.0 - smoothstep(${f(ARC_A1)} - 0.01, ${f(ARC_A1)} + 0.01, ang));
-
-  // --- twin concentric arcs, hairline-thin and faint ---
-  let dOuter = abs(lq - 1.0) * minRad;
-  let qIn = (wp - C) / (rad - vec2f(${f(RING_GAP)}));
-  let dInner = abs(length(qIn) - 1.0) * minRad;
-  let hairline = pxU * 1.1; // ~1 device pixel
-  let arcA = (1.0 - smoothstep(hairline, hairline * 2.2, dOuter)) +
-             (1.0 - smoothstep(hairline, hairline * 2.2, dInner));
-  col = mix(col, vec3f(0.741, 0.792, 0.878), clamp(arcA, 0.0, 1.0) * arcMask * 0.85);
-
-  // --- ruler ticks radiating OUTWARD from the arc ---
-  let tickStep = (${f(YEAR_A1)} - ${f(YEAR_A0)}) / ((p.yearCount - 1.0) * ${f(MINORS)});
-  let tickA0 = ${f(YEAR_A0)} - 2.0 * tickStep;
-  for (var i = 0; i < 128; i++) {
-    let a = tickA0 + f32(i) * tickStep;
-    if (a > ${f(ARC_A1)}) { break; }
-    let dir = vec2f(cos(a), sin(a));
-    let n = normalize(vec2f(dir.x / rad.x, dir.y / rad.y)); // outward ellipse normal
-    let T = C + rad * dir;
-    let j = (f32(i) - 2.0) / ${f(MINORS)};
-    let isMajor = abs(j - round(j)) < 0.01 && j >= 0.0 && j < p.yearCount;
-    let len = select(0.026, 0.062, isMajor);
-    // ticks extend outward from the arc line
-    let seg = sdSeg(wp, T + n * 0.004, T + n * (0.004 + len));
-    let aa = 1.0 - smoothstep(pxU * 0.8, pxU * 1.9, seg.x);
-    let past = select(0.0, 1.0, a <= activeAng);
-    // mostly neutral gray; only the active year tick picks up the accent
-    var tickCol = mix(vec3f(0.698, 0.745, 0.831), vec3f(0.56, 0.604, 0.686), select(0.0, 1.0, isMajor));
-    tickCol = mix(tickCol, accent, past * select(0.0, 0.85, isMajor));
-    col = mix(col, tickCol, aa * select(0.7, 0.95, isMajor));
+  // --- paper disk (#fafafa) with print grain ---
+  let disk = 1.0 - smoothstep(${f(DISK_R)} - pxU, ${f(DISK_R)} + pxU, r);
+  if (disk > 0.0) {
+    var paper = vec3f(0.980, 0.980, 0.980);
+    paper += (hash2(uvIn * vec2f(p.resX, p.resY)) - 0.5) * 0.012;
+    acc = vec4f(paper * disk, disk);
   }
 
-  // --- dotted future path along the inner arc, after the active node ---
-  if (ang > activeAng && ang < ${f(ARC_A1)}) {
-    let q2 = (wp - C) / (rad - vec2f(${f(RING_GAP)}));
-    let dDot = abs(length(q2) - 1.0) * minRad;
-    let dash = fract((ang - activeAng) * 40.0 - t * 0.3);
-    let dotA = (1.0 - smoothstep(pxU * 0.7, pxU * 1.5, dDot)) * step(dash, 0.4);
-    col = mix(col, accent * 0.6 + vec3f(0.4), dotA * 0.7);
+  let halfW = max(${f(TICK_W)} * 0.5, pxU * 0.55);
+
+  // --- minor ruler ticks, every 3\xB0 ---
+  let stepMin = 0.0523599;
+  let aMin = round(theta / stepMin) * stepMin;
+  let devMin = (theta - aMin) * r;
+  let dark = tickCov(devMin, r, ${f(TICK_DARK[0])}, ${f(TICK_DARK[1])}, halfW, pxU);
+  if (dark > 0.0) {
+    let c = vec3f(0.376, 0.365, 0.365);
+    acc = vec4f(c * dark + acc.rgb * (1.0 - dark), dark + acc.a * (1.0 - dark));
+  }
+  let gray = tickCov(devMin, r, ${f(TICK_GRAY[0])}, ${f(TICK_GRAY[1])}, halfW, pxU);
+  if (gray > 0.0) {
+    let c = vec3f(0.851, 0.851, 0.851);
+    acc = vec4f(c * gray + acc.rgb * (1.0 - gray), gray + acc.a * (1.0 - gray));
   }
 
-  // --- 1px dashed leader: node -> diagonal -> long horizontal run ---
-  let N = C + rad * vec2f(cos(activeAng), sin(activeAng));
-  let E = N + vec2f(${f(LEADER_DX)}, ${f(LEADER_DY)});
-  let End = vec2f(aspect * 0.995, E.y);
-  let dashLen = 0.008; // matches the site's 2px-on 2px-off rhythm
-  let s1 = sdSeg(wp, N, E);
-  let s2 = sdSeg(wp, E, End);
-  let len1 = distance(N, E);
-  let ph1 = fract(s1.y * len1 / dashLen - t * 0.15);
-  let ph2 = fract((s2.y * distance(E, End) + len1) / dashLen - t * 0.15);
-  let hair = pxU * 0.9;
-  let leadA = (1.0 - smoothstep(hair, hair * 2.0, s1.x)) * step(ph1, 0.5) +
-              (1.0 - smoothstep(hair, hair * 2.0, s2.x)) * step(ph2, 0.5);
-  col = mix(col, accent * 0.7 + vec3f(0.3), clamp(leadA, 0.0, 1.0) * 0.75);
+  // --- dotted ring, every 2.5\xB0 at r = ${f(DOT_R)} ---
+  let stepDot = 0.0436332;
+  let aDot = round(theta / stepDot) * stepDot;
+  let dotPos = vec2f(cos(aDot), sin(aDot)) * ${f(DOT_R)};
+  let dotR = max(${f(DOT_SIZE)}, pxU * 1.1);
+  let dotA = 1.0 - smoothstep(dotR - pxU * 0.6, dotR + pxU, distance(d, dotPos));
+  if (dotA > 0.0) {
+    acc = vec4f(accent * dotA + acc.rgb * (1.0 - dotA), dotA + acc.a * (1.0 - dotA));
+  }
 
-  // --- milestone node: solid dot + thin outer ring ---
-  let dNode = distance(wp, N);
-  let dotR = 0.013;
-  col = mix(col, accent, (1.0 - smoothstep(dotR - pxU, dotR + pxU, dNode)) * 0.97);
-  let ringR = 0.026;
-  let ring = (1.0 - smoothstep(pxU * 0.9, pxU * 2.0, abs(dNode - ringR)));
-  col = mix(col, accent * 0.75 + vec3f(0.25), ring * 0.8);
-  let pulseR = 0.036 + 0.010 * sin(t * 1.8);
-  let pulse = smoothstep(0.005, 0.0012, abs(dNode - pulseR)) * (0.4 + 0.4 * sin(t * 1.8 - 1.2));
-  col = mix(col, accent, pulse * 0.28);
+  // --- major ruler ticks, every 18\xB0 (one per milestone step) ---
+  let stepMaj = 0.3141593;
+  let aMaj = round(theta / stepMaj) * stepMaj;
+  let devMaj = (theta - aMaj) * r;
+  let maj = tickCov(devMaj, r, ${f(TICK_MAJOR[0])}, ${f(TICK_MAJOR[1])}, halfW, pxU);
+  if (maj > 0.0) {
+    acc = vec4f(accent * maj + acc.rgb * (1.0 - maj), maj + acc.a * (1.0 - maj));
+  }
 
-  return vec4f(col, 1.0);
+  return acc;
 }
 `
 );
@@ -6912,7 +6880,7 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 var import_pngjs = __toESM(require_png(), 1);
 import { init as init2, effect as effect2, target, frame } from "vgpu/node";
 import { writeFileSync } from "node:fs";
-var GATE_OVERRIDES = { "timeline-arc": { "stddevMin": 8 } };
+var GATE_OVERRIDES = {};
 var CATALOG = {
   "wave-background": { shader: WAVE_SHADER, uniforms: { "time": 1, "speed": 1, "amplitude": 1, "frequency": 2.5, "c0r": 78e-4, "c0g": 0.0235, "c0b": 0.0902, "c1r": 0.1137, "c1g": 0.3059, "c1b": 0.8471, "c2r": 0.2196, "c2g": 0.7412, "c2b": 0.9725, "px": 0.5, "py": 0.5 } },
   "fluid-gradient": { shader: FLUID_SHADER, uniforms: { "time": 1.1, "speed": 0.55, "warp": 2.4, "scale": 1.6, "c0r": 0.043, "c0g": 0.071, "c0b": 0.125, "c1r": 0.29, "c1g": 0.35, "c1b": 0.65, "c2r": 0.55, "c2g": 0.75, "c2b": 0.95, "px": 0.5, "py": 0.5 } },
@@ -6928,7 +6896,7 @@ var CATALOG = {
   "live-chart": { shader: LIVE_CHART_SHADER, uniforms: { "time": 0, "count": 48, "lineWidth": 6e-3, "glow": 0.4, "fill": 0.6, "cr": 0.22, "cg": 0.74, "cb": 0.97, "er": 0.49, "eg": 0.83, "eb": 0.99, "px": 0.5, "pActive": 0, "pts": [[0.5, 0.5, 0, 0], [0.6880599893484928, 0.6880599893484928, 0, 0], [0.8035344230038807, 0.8035344230038807, 0, 0], [0.8203134202134684, 0.8203134202134684, 0, 0], [0.7710918692668219, 0.7710918692668219, 0, 0], [0.7171224912331501, 0.7171224912331501, 0, 0], [0.698950548572041, 0.698950548572041, 0, 0], [0.7057660947314762, 0.7057660947314762, 0, 0], [0.686562994434805, 0.686562994434805, 0, 0], [0.5942986619270211, 0.5942986619270211, 0, 0], [0.42896121566349726, 0.42896121566349726, 0, 0], [0.24604636676161443, 0.24604636676161443, 0, 0], [0.12300212982100277, 0.12300212982100277, 0, 0], [0.10801160688706112, 0.10801160688706112, 0, 0], [0.1889774686823272, 0.1889774686823272, 0, 0], [0.30551940475865264, 0.30551940475865264, 0, 0], [0.3945604535357848, 0.3945604535357848, 0, 0], [0.43501651655474394, 0.43501651655474394, 0, 0], [0.4581382495151453, 0.4581382495151453, 0, 0], [0.5163595326095315, 0.5163595326095315, 0, 0], [0.6351369869128449, 0.6351369869128449, 0, 0], [0.7852556171304038, 0.7852556171304038, 0, 0], [0.8975812085913506, 0.8975812085913506, 0, 0], [0.9099872198487396, 0.9099872198487396, 0, 0], [0.811596699753744, 0.811596699753744, 0, 0], [0.6511942139552905, 0.6511942139552905, 0, 0], [0.5034199201397278, 0.5034199201397278, 0, 0], [0.41795194464623986, 0.41795194464623986, 0, 0], [0.3894474858919309, 0.3894474858919309, 0, 0], [0.37007678085748924, 0.37007678085748924, 0, 0], [0.3141349496495159, 0.3141349496495159, 0, 0], [0.21994997802862945, 0.21994997802862945, 0, 0], [0.136484196569521, 0.136484196569521, 0, 0], [0.12898635820690899, 0.12898635820690899, 0, 0], [0.22936004730098952, 0.22936004730098952, 0, 0], [0.408839251975214, 0.408839251975214, 0, 0], [0.5940353236415418, 0.5940353236415418, 0, 0], [0.7149051942453203, 0.7149051942453203, 0, 0], [0.7492574607985786, 0.7492574607985786, 0, 0], [0.7311458185566903, 0.7311458185566903, 0, 0], [0.7178164684780469, 0.7178164684780469, 0, 0], [0.7411059493340727, 0.7411059493340727, 0, 0], [0.7807106956649897, 0.7807106956649897, 0, 0], [0.7798771578568919, 0.7798771578568919, 0, 0], [0.6915991324213161, 0.6915991324213161, 0, 0], [0.5199673248148136, 0.5199673248148136, 0, 0], [0.32467822872609775, 0.32467822872609775, 0, 0], [0.18436799405256069, 0.18436799405256069, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]] } },
   "energy-orb": { shader: ENERGY_ORB_SHADER, uniforms: { "time": 1.4, "speed": 1, "smokeScale": 1, "smokeStrength": 1, "smokeSpeed": 1, "hue": 0, "saturation": 1, "glow": 1, "px": 0.5, "py": 0.5 } },
   "ribbon-field": { shader: RIBBON_FIELD_SHADER, uniforms: { "time": 1.2, "speed": 1, "intensity": 1, "drift": 0, "grain": 1, "resX": 512, "resY": 512 } },
-  "timeline-arc": { shader: TIMELINE_ARC_SHADER, uniforms: { "time": 1.2, "speed": 1, "activeT": 0.5714, "yearCount": 8, "cr": 0.145, "cg": 0.388, "cb": 0.922, "resX": 512, "resY": 512 } }
+  "timeline-arc": { shader: TIMELINE_ARC_SHADER, uniforms: { "cr": 0, "cg": 0.357, "cb": 1, "resX": 512, "resY": 512 } }
 };
 var gpu = await init2();
 var out = [];

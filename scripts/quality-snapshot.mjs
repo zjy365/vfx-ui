@@ -40,16 +40,8 @@ const SHADER_IMPORTS = {
   "timeline-arc": ["TIMELINE_ARC_SHADER", "./TimelineArc.tsx"],
 };
 
-/**
- * Per-component gate overrides. The stddev floor (12) is calibrated for
- * dark/rich canvases; timeline-arc is a deliberate near-white print design
- * (sealos.run/about-us replica), so its floor is lowered — a truly blank
- * white render still fails (stddev 0, colors≈1), and grain/ticks keep a real
- * render well above the lowered bar.
- */
-const GATE_OVERRIDES = {
-  "timeline-arc": { stddevMin: 8 },
-};
+/** Per-component gate overrides (stddev floor is 12 unless listed here). */
+const GATE_OVERRIDES = {};
 
 /** Default-prop uniform snapshots (mirrors component defaults / catalog "classic" variant).
  *  Interactive components pin px/py at the rest position (0.5) and pActive at 0,
@@ -67,7 +59,7 @@ const UNIFORMS = {
   vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996, px: 0.5, py: 0.5 },
   "energy-orb": { time: 1.4, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1, hue: 0, saturation: 1, glow: 1, px: 0.5, py: 0.5 },
   "ribbon-field": { time: 1.2, speed: 1, intensity: 1, drift: 0, grain: 1, resX: 512, resY: 512 },
-  "timeline-arc": { time: 1.2, speed: 1, activeT: 0.5714, yearCount: 8, cr: 0.145, cg: 0.388, cb: 0.922, resX: 512, resY: 512 },
+  "timeline-arc": { cr: 0, cg: 0.357, cb: 1, resX: 512, resY: 512 },
   "web-globe": { time: 0.8, speed: 0.35, phi: 0, theta: 0.35, dots: 520, dotScale: 1.15, diffuse: 1.2, dark: 0.92, atmosphere: 0.8, seaLevel: 0.46, globeScale: 0.98, cr: 0.616, cg: 0.706, cb: 0.839, gr: 0.49, gg: 0.827, gb: 0.988 },
   "live-chart": null, // data-driven; generated in the entry below
 };
