@@ -7,3 +7,6 @@ references/
 coverage/
 private/
 .smoke/
+
+# quality-snapshot build artifacts
+packages/core/.cache/
