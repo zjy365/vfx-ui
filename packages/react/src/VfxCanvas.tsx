@@ -67,7 +67,18 @@ export function VfxCanvas({
         rendererRef.current = r;
         onReady?.(r);
       })
-      .catch(() => {
+      .catch((err: unknown) => {
+        // Swallowed errors make "WebGPU unavailable" indistinguishable from a
+        // shader bug — log loudly and expose the message for host diagnostics.
+        console.error(`[vfx-ui] renderer init failed (${label ?? "vfx"}):`, err);
+        try {
+          window.localStorage.setItem(
+            "vfx-ui:last-init-error",
+            `${label ?? "vfx"}: ${err instanceof Error ? (err.stack ?? err.message) : String(err)}`,
+          );
+        } catch {
+          /* storage unavailable — the console line above is the record */
+        }
         if (!disposed) setFailed(true);
       });
 

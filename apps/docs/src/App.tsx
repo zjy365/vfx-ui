@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { BrandMark } from "./components/BrandMark";
 import { BrowsePage } from "./components/BrowsePage";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { InstallationDocumentation } from "./components/InstallationDocumentation";
 import { MainContentFooter } from "./components/MainContentFooter";
 import { SearchDialog } from "./components/SearchDialog";
@@ -349,13 +350,15 @@ function VfxUiApp() {
         <div className="pane">
           <div className="pane-scroll scroll-area">
             {page === "browse" ? (
-              <BrowsePage
-                activeCategory={browseCategory}
-                activeTag={browseTag}
-                onCategorySelect={selectBrowseCategory}
-                onSelect={selectShader}
-                onTagSelect={selectBrowseTag}
-              />
+              <ErrorBoundary>
+                <BrowsePage
+                  activeCategory={browseCategory}
+                  activeTag={browseTag}
+                  onCategorySelect={selectBrowseCategory}
+                  onSelect={selectShader}
+                  onTagSelect={selectBrowseTag}
+                />
+              </ErrorBoundary>
             ) : page === "installation" ? (
               <InstallationDocumentation onSelect={selectShader} />
             ) : page === "not-found" ? (
@@ -370,14 +373,15 @@ function VfxUiApp() {
                 </header>
               </main>
             ) : active ? (
-              <ShaderDocumentation
-                key={active.id}
-                shader={active}
-                activeVariantId={activeVariantId}
-                onSearchTag={openSearch}
-                onSelect={selectShader}
-                onVariantSelect={selectVariant}
-              />
+              <ErrorBoundary key={active.id}>
+                <ShaderDocumentation
+                  shader={active}
+                  activeVariantId={activeVariantId}
+                  onSearchTag={openSearch}
+                  onSelect={selectShader}
+                  onVariantSelect={selectVariant}
+                />
+              </ErrorBoundary>
             ) : null}
             <MainContentFooter onNavigate={selectFooterRoute} />
           </div>

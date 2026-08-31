@@ -3,6 +3,11 @@ import { hexToRgb01 } from "../utils/color";
 
 const MAX_POINTS = 64;
 
+/** Built-in wave shown when no data is supplied (docs/catalog previews). */
+const DEMO_SERIES: number[] = Array.from({ length: 48 }, (_, i) =>
+  Math.min(1, Math.max(0, 0.5 + 0.3 * Math.sin(i * 0.35) + 0.1 * Math.sin(i * 0.9))),
+);
+
 /**
  * LiveChart — real-time GPU line chart. Data flows through a uniform
  * array (one vec4 per point); the fragment shader builds an analytic
@@ -63,8 +68,9 @@ fn main(@location(0) uv: vec2f) -> @location(0) vec4f {
 `;
 
 export interface LiveChartProps {
-  /** Series values in 0..1, rendered left-to-right. Truncated to 64 points. */
-  data: number[];
+  /** Series values in 0..1, rendered left-to-right. Truncated to 64 points.
+   *  Omit to show a built-in demo wave (catalog previews rely on this). */
+  data?: number[];
   /** Stroke half-width in normalized units. */
   lineWidth?: number;
   /** Glow strength (0 = off). */
@@ -81,7 +87,7 @@ export interface LiveChartProps {
 }
 
 export function LiveChart({
-  data,
+  data = DEMO_SERIES,
   lineWidth = 0.006,
   glow = 0.4,
   fill = 0.6,
@@ -116,7 +122,7 @@ export function LiveChart({
       className={className}
       style={style}
       fallback={fallback}
-      uniforms={{ ...uniforms, points }}
+      uniforms={{ ...uniforms, pts: points }}
     />
   );
 }
