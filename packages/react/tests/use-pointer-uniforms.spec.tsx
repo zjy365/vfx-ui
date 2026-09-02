@@ -3,7 +3,7 @@ import { act } from "react";
 import { createElement, type RefObject } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { POINTER_REST, usePointerUniforms, type PointerUniform } from "../src/usePointerUniforms.ts";
+import { POINTER_REST, POINTER_STILL, usePointerUniforms, type PointerUniform, type PointerVelocity } from "../src/usePointerUniforms.ts";
 
 (globalThis as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -34,13 +34,14 @@ interface Probe {
   ref: RefObject<HTMLDivElement>;
   pointer: PointerUniform;
   active: boolean;
+  velocity: PointerVelocity;
 }
 
 let latest: Probe;
 
 function ProbeComponent() {
-  const [ref, pointer, active] = usePointerUniforms<HTMLDivElement>();
-  latest = { ref, pointer, active };
+  const [ref, pointer, active, velocity] = usePointerUniforms<HTMLDivElement>();
+  latest = { ref, pointer, active, velocity };
   return createElement("div", { ref });
 }
 
@@ -79,6 +80,7 @@ describe("usePointerUniforms", () => {
 
   it("rests at POINTER_REST with no scheduled frames", () => {
     expect(latest.pointer).toEqual(POINTER_REST);
+    expect(latest.velocity).toEqual(POINTER_STILL);
     expect(latest.active).toBe(false);
     expect(flushFrames()).toBe(0);
   });
@@ -91,7 +93,24 @@ describe("usePointerUniforms", () => {
     expect(latest.pointer.x).toBeCloseTo(0.25, 3);
     expect(latest.pointer.y).toBeCloseTo(0.75, 3);
     expect(latest.active).toBe(true);
+    expect(latest.velocity).toEqual(POINTER_STILL); // converged: sweep killed
     expect(rafQueue.length).toBe(0); // loop stopped after converging
+  });
+
+  it("reports the sweep direction while moving and decays it to still", () => {
+    const el = latest.ref.current!;
+    move(el, 75, 25);
+    // Drain exactly one frame: the eased step is right/down at 0.08 ease.
+    act(() => {
+      const cb = rafQueue.shift()!;
+      cb(performance.now());
+    });
+    expect(latest.velocity.vx).toBeGreaterThan(0.01); // sweeping right
+    expect(latest.velocity.vy).toBeLessThan(-0.01); // and up (y-down coords)
+    // Later frames shrink the step; convergence zeroes it.
+    move(el, 95, 5);
+    flushFrames();
+    expect(latest.velocity).toEqual(POINTER_STILL);
   });
 
   it("tracks successive moves through the same loop", () => {

@@ -43,7 +43,44 @@ fn flow(p: vec2f, t: f32) -> vec2f {
   return vec2f(e, g) - vec2f(0.5);
 }
 
-/// One depth layer of drifting soft particles.
+/// One depth layer of drifting soft particles. Each pixel accumulates the
+/// 3x3 neighborhood of cells so a particle's halo is never clipped by its
+/// cell border into a square blob (the old edgeFade shortcut's failure).
+fn particleCell(
+  f: vec2f,
+  id: vec2f,
+  t: f32,
+  density: f32,
+  size: f32,
+  seed: f32,
+  drift: f32,
+  base: vec3f,
+  twinkleK: f32,
+) -> vec3f {
+  let h1 = hash21(id + vec2f(seed, seed * 0.73 + 1.1));
+  let h2 = hash21(id + vec2f(seed + 4.3, 9.2));
+  let h3 = hash21(id + vec2f(2.6, seed + 5.8));
+  let h4 = hash31(vec3f(id, seed));
+
+  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
+  if (exists < 0.5) { return vec3f(0.0); }
+
+  // Per-particle wander: each drifts along the flow field with its own phase.
+  let wander = flow(id * 0.11 + h2 * 3.0, t) * 0.22;
+  let pos = vec2f(h2, h3) * 0.66 + 0.17 + wander;
+  let d = length(f - pos);
+
+  // Breathing size + per-particle phase twinkle.
+  let breathe = 0.75 + 0.25 * sin(t * (0.5 + h3) + h2 * 6.2831);
+  let dotR = clamp(size * (0.35 + 0.3 * h4) * breathe, 0.04, 0.24);
+  let core = exp(-d * d / max(dotR * dotR * 2.2, 1e-5));
+  let halo = exp(-d * d / max(dotR * dotR * 7.0, 1e-5)) * 0.14;
+
+  let fade = smoothstep(0.0, 0.15, h2) * smoothstep(1.0, 0.85, h2);
+  let tw = mix(1.0, 0.6 + 0.4 * sin(t * 1.3 + h2 * 6.2831), twinkleK);
+  return fade * tw * base * (core + halo) * (0.3 + 0.45 * h1);
+}
+
 fn particleLayer(
   uv: vec2f,
   t: f32,
@@ -60,29 +97,14 @@ fn particleLayer(
   let id = floor(g);
   let f = fract(g);
 
-  let h1 = hash21(id + vec2f(seed, seed * 0.73 + 1.1));
-  let h2 = hash21(id + vec2f(seed + 4.3, 9.2));
-  let h3 = hash21(id + vec2f(2.6, seed + 5.8));
-  let h4 = hash31(vec3f(id, seed));
-
-  let exists = step(1.0 - clamp(density, 0.0, 1.0), h1);
-  // Per-particle wander: each drifts along the flow field with its own phase.
-  let wander = flow(id * 0.11 + h2 * 3.0, t) * 0.22;
-  let pos = vec2f(h2, h3) * 0.66 + 0.17 + wander;
-  let d = length(f - pos);
-
-  // Breathing size + per-particle phase twinkle.
-  let breathe = 0.75 + 0.25 * sin(t * (0.5 + h3) + h2 * 6.2831);
-  // dotR is in cell-fraction units and must stay well inside the cell.
-  let dotR = clamp(size * (0.35 + 0.3 * h4) * breathe, 0.04, 0.24);
-  let core = exp(-d * d / max(dotR * dotR * 2.2, 1e-5));
-  let halo = exp(-d * d / max(dotR * dotR * 7.0, 1e-5)) * 0.14;
-  // Soft-fade before the cell border so glowing orbs never clip into squares.
-  let edgeFade = 1.0 - smoothstep(0.30, 0.48, max(abs(f.x - 0.5), abs(f.y - 0.5)));
-
-  let fade = smoothstep(0.0, 0.15, h2) * smoothstep(1.0, 0.85, h2);
-  let tw = mix(1.0, 0.6 + 0.4 * sin(t * 1.3 + h2 * 6.2831), twinkleK);
-  return exists * fade * tw * edgeFade * base * (core + halo) * (0.3 + 0.45 * h1);
+  var col = vec3f(0.0);
+  for (var oy = -1.0; oy <= 1.0; oy += 1.0) {
+    for (var ox = -1.0; ox <= 1.0; ox += 1.0) {
+      let off = vec2f(ox, oy);
+      col += particleCell(f - off, id + off, t, density, size, seed, drift, base, twinkleK);
+    }
+  }
+  return col;
 }
 
 fn dither(uv: vec2f) -> f32 {

@@ -47,19 +47,22 @@ fn fbm(p: vec2f) -> f32 {
   return v / m;
 }
 
-// Two-layer starfield, dimmed wherever the aurora is bright.
+// Two-layer starfield, dimmed wherever the aurora is bright. Stars are
+// distance-decayed points inside their cell, never hard-lit full cells.
 fn stars(uv: vec2f, t: f32, suppress: f32) -> vec3f {
   var col = vec3f(0.0);
   let g1 = floor(uv * 220.0);
   let s1 = hash21(g1);
   if (s1 > 0.9965) {
     let tw = 0.55 + 0.45 * sin(t * 2.1 + s1 * 40.0);
-    col += vec3f(0.9, 0.93, 1.0) * tw * 0.7;
+    let d1 = length(fract(uv * 220.0) - 0.5) * 2.0;
+    col += vec3f(0.9, 0.93, 1.0) * tw * 0.7 * exp(-d1 * d1 * 9.0);
   }
   let g2 = floor(uv * 90.0 + vec2f(31.7));
   let s2 = hash21(g2);
   if (s2 > 0.998) {
-    col += vec3f(1.0, 0.98, 0.9) * 1.1;
+    let d2 = length(fract(uv * 90.0 + vec2f(31.7)) - 0.5) * 2.0;
+    col += vec3f(1.0, 0.98, 0.9) * 1.1 * exp(-d2 * d2 * 7.0);
   }
   return col * suppress;
 }
