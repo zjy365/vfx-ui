@@ -15,7 +15,8 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@vfx-ui/core": "workspace:*"
+    "@vfx-ui/core": "workspace:*",
+    "cobe": "^2.0.1"
   },
   "peerDependencies": {
     "react": ">=18"
