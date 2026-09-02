@@ -7,6 +7,8 @@ references/
 coverage/
 private/
 .smoke/
+.playwright-cli/
+output/
 
 # quality-snapshot build artifacts
 packages/core/.cache/

@@ -1,11 +1,14 @@
 import { catalogSlug } from "./catalogPresentation.js";
 
 export const STATIC_ROUTE_PATHS = {
-  browse: "/browse",
+  home: "/",
+  browse: "/components",
   installation: "/installation",
 };
 
-export const TAG_ROUTE_PREFIX = "/browse/tag";
+export const TAG_ROUTE_PREFIX = "/components/tag";
+
+const LEGACY_BROWSE_PREFIX = "/browse";
 
 export function categoryRouteSegment(category) {
   return category
@@ -136,14 +139,21 @@ export function resolveAppRoute(locationLike, catalog) {
   const searchParams = new URLSearchParams(locationLike.search || "");
   const hasLegacyRoute = searchParams.has("page") || searchParams.has("shader") || searchParams.has("variant");
 
+  /* The browse catalog used to live at / and /browse; both now resolve to
+     /components and get their canonical URL replaced in place. */
+  if (pathname === LEGACY_BROWSE_PREFIX || pathname.startsWith(`${LEGACY_BROWSE_PREFIX}/`)) {
+    const migrated = pathname.replace(/^\/browse/, STATIC_ROUTE_PATHS.browse);
+    const resolved = resolveAppRoute({ pathname: migrated, search: locationLike.search }, catalog);
+    return { ...resolved, legacy: true };
+  }
+
   if (hasLegacyRoute && (pathname === "/" || pathname === STATIC_ROUTE_PATHS.browse)) {
     const legacyRoute = resolveLegacyRoute(searchParams, catalog);
     if (legacyRoute) return { ...legacyRoute, legacy: true };
   }
 
-  if (pathname === "/" || pathname === STATIC_ROUTE_PATHS.browse) {
-    return { ...staticRoute("browse"), legacy: pathname === "/" };
-  }
+  if (pathname === STATIC_ROUTE_PATHS.home) return staticRoute("home");
+  if (pathname === STATIC_ROUTE_PATHS.browse) return staticRoute("browse");
   if (pathname === STATIC_ROUTE_PATHS.installation) return staticRoute("installation");
 
   const segments = pathname.slice(1).split("/").map(decodePathSegment);

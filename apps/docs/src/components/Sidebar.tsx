@@ -7,7 +7,7 @@ import { VISIBLE_READY_SHADERS } from "../data/publicShaders";
 import { BrandMark } from "./BrandMark";
 import { ChevronIcon, MaximizeIcon, SearchIcon } from "./icons";
 import { ThemeButtons } from "./ThemeButtons";
-import type { ThemeMode, ThemePalette } from "../theme";
+import type { ThemeMode } from "../theme";
 
 type SidebarProps = {
   active: ReadyShader;
@@ -15,8 +15,8 @@ type SidebarProps = {
   installationActive: boolean;
   open: boolean;
   theme: ThemeMode;
-  palette: ThemePalette;
   onSelect: (id: ReadyShader["id"]) => void;
+  onHome: () => void;
   onBrowse: () => void;
   onInstallation: () => void;
   onSearch: () => void;
@@ -145,7 +145,7 @@ function SidebarCatalogSection({ label, shaders, active, installationActive, onS
   );
 }
 
-export function Sidebar({ active, browseActive, installationActive, open, theme, palette, onSelect, onBrowse, onInstallation, onSearch, onTheme }: SidebarProps) {
+export function Sidebar({ active, browseActive, installationActive, open, theme, onSelect, onHome, onBrowse, onInstallation, onSearch, onTheme }: SidebarProps) {
   const [preview, setPreview] = useState<SidebarPreview | null>(null);
   const Preview = preview?.shader.component;
 
@@ -166,7 +166,7 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
     <aside className={`sidebar${open ? " open" : ""}`} id="sidebar">
       <div className="sb-head">
         <div className="sb-brand-row">
-          <button className="brand-button" aria-label="Browse vfx-ui" onClick={onBrowse}>
+          <button className="brand-button" aria-label="vfx-ui home" onClick={onHome}>
             <BrandMark />
           </button>
         </div>
@@ -209,7 +209,7 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
         </nav>
       </div>
       <div className="sb-foot">
-        <ThemeButtons mode={theme} palette={palette} onChange={onTheme} />
+        <ThemeButtons mode={theme} onChange={onTheme} />
       </div>
       {preview && typeof document !== "undefined" ? createPortal(
         <div

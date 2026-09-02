@@ -1,24 +1,21 @@
 import { MoonIcon, SunIcon, SystemIcon } from "./icons";
-import { THEME_PALETTE_LABELS, type ThemeMode, type ThemePalette } from "../theme";
+import type { ThemeMode } from "../theme";
 
 type ThemeButtonsProps = {
   compact?: boolean;
   mode: ThemeMode;
-  palette: ThemePalette;
   onChange: (mode: ThemeMode) => void;
 };
 
-export function ThemeButtons({ compact = false, mode, palette, onChange }: ThemeButtonsProps) {
-  const paletteLabel = THEME_PALETTE_LABELS[palette];
-
+export function ThemeButtons({ compact = false, mode, onChange }: ThemeButtonsProps) {
   return (
     <div className={`theme-buttons${compact ? " compact" : ""}`} role="group" aria-label="Appearance">
       <button
         className={`theme-button${mode === "light" ? " active" : ""}`}
         type="button"
-        aria-label={mode === "light" ? `Light mode, ${paletteLabel}. Click to cycle palette` : "Use light mode"}
+        aria-label="Use light mode"
         aria-pressed={mode === "light"}
-        title={mode === "light" ? `Light · ${paletteLabel}` : "Light"}
+        title="Light"
         onClick={() => onChange("light")}
       >
         <SunIcon />
@@ -27,9 +24,9 @@ export function ThemeButtons({ compact = false, mode, palette, onChange }: Theme
       <button
         className={`theme-button${mode === "dark" ? " active" : ""}`}
         type="button"
-        aria-label={mode === "dark" ? `Dark mode, ${paletteLabel}. Click to cycle palette` : "Use dark mode"}
+        aria-label="Use dark mode"
         aria-pressed={mode === "dark"}
-        title={mode === "dark" ? `Dark · ${paletteLabel}` : "Dark"}
+        title="Dark"
         onClick={() => onChange("dark")}
       >
         <MoonIcon />
@@ -50,4 +47,4 @@ export function ThemeButtons({ compact = false, mode, palette, onChange }: Theme
   );
 }
 
-export type { ThemeMode, ThemePalette };
+export type { ThemeMode };

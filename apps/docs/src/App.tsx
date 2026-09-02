@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from "react";
 import { BrandMark } from "./components/BrandMark";
 import { BrowsePage } from "./components/BrowsePage";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { HomePage } from "./components/HomePage";
 import { InstallationDocumentation } from "./components/InstallationDocumentation";
 import { MainContentFooter } from "./components/MainContentFooter";
 import { SearchDialog } from "./components/SearchDialog";
@@ -21,19 +22,13 @@ import {
 } from "./routes.js";
 import { applyRouteSeo } from "./seo.js";
 import {
-  DARK_PALETTE_STORAGE_KEY,
-  LIGHT_PALETTE_STORAGE_KEY,
   THEME_STORAGE_KEY,
   applyAppearance,
-  nextThemePalette,
-  readStoredPalette,
   readStoredTheme,
-  resolveScheme,
   type ThemeMode,
-  type ThemePalette,
 } from "./theme";
 
-type AppPage = "shader" | "browse" | "installation" | "not-found";
+type AppPage = "home" | "shader" | "browse" | "installation" | "not-found";
 
 type RouteState = {
   active: ReadyShader;
@@ -106,7 +101,7 @@ function ShaderCapturePage() {
   const Preview = shader?.component;
 
   useEffect(() => {
-    applyAppearance("dark", "mono", "mono");
+    applyAppearance("dark");
     if (!shader) return;
     applyRouteSeo({
       page: "capture",
@@ -137,10 +132,6 @@ function VfxUiApp() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [theme, setTheme] = useState<ThemeMode>(() => readStoredTheme());
-  const [lightPalette, setLightPalette] = useState<ThemePalette>(() => readStoredPalette(LIGHT_PALETTE_STORAGE_KEY));
-  const [darkPalette, setDarkPalette] = useState<ThemePalette>(() => readStoredPalette(DARK_PALETTE_STORAGE_KEY));
-  const activeScheme = resolveScheme(theme);
-  const activePalette = activeScheme === "dark" ? darkPalette : lightPalette;
   const seoVariant = active?.variants?.find((variant) => variant.id === routedVariantId);
 
   const openSearch = (query = "") => {
@@ -234,36 +225,25 @@ function VfxUiApp() {
   };
 
   const selectTheme = (mode: ThemeMode) => {
-    if (mode !== "system" && mode === theme) {
-      if (mode === "light") {
-        const next = nextThemePalette(lightPalette);
-        setLightPalette(next);
-        applyAppearance(mode, next, darkPalette);
-        try {
-          localStorage.setItem(LIGHT_PALETTE_STORAGE_KEY, next);
-        } catch {
-          // Palette still applies when storage is unavailable.
-        }
-        return;
-      }
-      const next = nextThemePalette(darkPalette);
-      setDarkPalette(next);
-      applyAppearance(mode, lightPalette, next);
-      try {
-        localStorage.setItem(DARK_PALETTE_STORAGE_KEY, next);
-      } catch {
-        // Palette still applies when storage is unavailable.
-      }
-      return;
-    }
-
     setTheme(mode);
-    applyAppearance(mode, lightPalette, darkPalette);
+    applyAppearance(mode);
     try {
       localStorage.setItem(THEME_STORAGE_KEY, mode);
     } catch {
       // The selected theme still applies when storage is unavailable.
     }
+  };
+
+  const selectHome = () => {
+    setRouteState((current) => ({
+      ...current,
+      browseCategory: undefined,
+      browseTag: undefined,
+      page: "home",
+      canonicalPath: STATIC_ROUTE_PATHS.home,
+    }));
+    setSidebarOpen(false);
+    window.history.pushState({}, "", navigationUrl(STATIC_ROUTE_PATHS.home));
   };
 
   useEffect(() => {
@@ -283,14 +263,14 @@ function VfxUiApp() {
   }, []);
 
   useEffect(() => {
-    applyAppearance(theme, lightPalette, darkPalette);
+    applyAppearance(theme);
     const media = window.matchMedia("(prefers-color-scheme: dark)");
     const onSchemeChange = () => {
-      if (theme === "system") applyAppearance("system", lightPalette, darkPalette, media.matches);
+      if (theme === "system") applyAppearance("system", media.matches);
     };
     media.addEventListener("change", onSchemeChange);
     return () => media.removeEventListener("change", onSchemeChange);
-  }, [theme, lightPalette, darkPalette]);
+  }, [theme]);
 
   useEffect(() => {
     document.querySelector<HTMLElement>(".pane-scroll")?.scrollTo({ top: 0, behavior: "smooth" });
@@ -319,17 +299,38 @@ function VfxUiApp() {
     };
   }, []);
 
+  if (page === "home") {
+    return (
+      <>
+        <ErrorBoundary>
+          <HomePage
+            theme={theme}
+            onNavigate={selectFooterRoute}
+            onSearch={() => openSearch()}
+            onTheme={selectTheme}
+          />
+        </ErrorBoundary>
+        <SearchDialog
+          open={searchOpen}
+          initialQuery={searchQuery}
+          onClose={() => setSearchOpen(false)}
+          onSelect={selectShader}
+        />
+      </>
+    );
+  }
+
   return (
     <>
       <header className="topbar">
         <button className="icon-btn" aria-label="Open navigation" onClick={() => setSidebarOpen(true)}>
           <MenuIcon />
         </button>
-        <button className="topbar-brand-button" aria-label="Browse vfx-ui" onClick={selectBrowse}>
+        <button className="topbar-brand-button" aria-label="vfx-ui home" onClick={selectHome}>
           <BrandMark compact />
         </button>
         <div className="topbar-actions">
-          <ThemeButtons compact mode={theme} palette={activePalette} onChange={selectTheme} />
+          <ThemeButtons compact mode={theme} onChange={selectTheme} />
         </div>
       </header>
       <div className="app">
@@ -339,8 +340,8 @@ function VfxUiApp() {
           installationActive={page === "installation"}
           open={sidebarOpen}
           theme={theme}
-          palette={activePalette}
           onSelect={selectShader}
+          onHome={selectHome}
           onBrowse={selectBrowse}
           onInstallation={selectInstallation}
           onSearch={() => openSearch()}

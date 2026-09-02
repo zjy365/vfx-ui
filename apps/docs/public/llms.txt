@@ -3,6 +3,12 @@
 > Shader-native visual effect components for React, rendered via WebGPU (vgpu).
 > All effects are GPU-only by design: they cannot be reproduced with DOM/CSS.
 
+## Site
+
+- [Home](https://vfx-ui.dev/): Marketing page with live hero demos.
+- [Component gallery](https://vfx-ui.dev/components): Live previews of every component.
+- [Installation](https://vfx-ui.dev/installation): Setup guide.
+
 ## Install
 
 ```bash

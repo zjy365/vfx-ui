@@ -2,7 +2,7 @@ import { shaderRoutePath, STATIC_ROUTE_PATHS } from "./routes.js";
 import { browseRouteContent, browseRouteFaqs } from "./browseTaxonomy.js";
 
 export const SITE_TITLE = "Shader effect components for React";
-export const SITE_DESCRIPTION = "Browse copy-ready WebGPU shader components for React — GPU backgrounds, text effects, glass surfaces, data visuals, and globes. Copy, paste, and ship.";
+export const SITE_DESCRIPTION = "Shader-native visual effect components for React, rendered on the GPU via WebGPU. Wave backgrounds, auroras, liquid glass, globes, and live charts. Copy, paste, and ship.";
 
 const CATEGORY_DESCRIPTORS = {
   Heroes: "Hero Section",
@@ -68,7 +68,18 @@ export function buildRouteSeo(route, origin, catalog = []) {
   let image = defaultImage;
   let structuredData;
 
-  if (route.page === "installation") {
+  if (route.page === "home") {
+    title = brandedTitle(SITE_TITLE);
+    description = SITE_DESCRIPTION;
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "VFX UI",
+      description,
+      url: absoluteUrl(origin, "/"),
+      about: { "@type": "SoftwareApplication", name: "vfx-ui for React", applicationCategory: "DeveloperApplication" },
+    };
+  } else if (route.page === "installation") {
     title = brandedTitle("Install vfx-ui for React");
     description = "Install @vfx-ui/react, check WebGPU requirements, and render your first GPU shader component.";
     structuredData = {
