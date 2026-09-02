@@ -1,6 +1,6 @@
-# Iridescent
+# Hero Iridescent
 
-Silky thin-film interference colors drifting across the surface.
+Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
 
 ## Install
 
@@ -9,31 +9,33 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { HeroIridescent } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <HeroIridescent />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `scheme?: "dark" | "light"`
 - `speed?: number`
 - `scale?: number`
 - `hueShift?: number`
 - `saturation?: number`
 - `brightness?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_IRIDESCENT_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader

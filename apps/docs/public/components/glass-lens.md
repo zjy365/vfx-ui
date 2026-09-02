@@ -1,6 +1,6 @@
-# Iridescent
+# Glass Lens
 
-Silky thin-film interference colors drifting across the surface.
+Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
 
 ## Install
 
@@ -9,20 +9,21 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { GlassLens } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <GlassLens />;
 }
 ```
 
 ## Props
 
 - `speed?: number`
-- `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
+- `refraction?: number`
+- `dispersion?: number`
+- `blur?: number`
+- `rim?: number`
+- `tint?: string`
 - `interactive?: boolean`
 - `className?: string`
 - `style?: VfxCanvasProps["style"]`
@@ -33,12 +34,12 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { GLASS_LENS_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `GLASS_LENS_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

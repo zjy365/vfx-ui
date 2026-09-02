@@ -18,7 +18,28 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `data?: number[]`
+- `lineWidth?: number`
+- `glow?: number`
+- `fill?: number`
+- `color?: string`
+- `accent?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { LIVE_CHART_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `LIVE_CHART_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

@@ -1,6 +1,6 @@
-# Iridescent
+# Hero Mesh
 
-Silky thin-film interference colors drifting across the surface.
+Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
 
 ## Install
 
@@ -9,36 +9,40 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { HeroMesh } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <HeroMesh />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `scheme?: "dark" | "light"`
 - `speed?: number`
 - `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
+- `softness?: number`
+- `from?: string`
+- `to?: string`
+- `accent?: string`
+- `deep?: string`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `MESH_GRADIENT_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

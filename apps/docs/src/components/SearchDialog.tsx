@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
   CATALOG_RESULTS,
   catalogResultId,
@@ -132,7 +132,7 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
               const label = catalogResultLabel(result);
               const description = variant?.description ?? shader.description;
               const thumbnail = variant?.thumbnail ?? shader.thumbnail;
-              const preview = variant?.preview ?? shader.preview;
+              const Preview = shader.component;
               return (
                 <button
                   key={resultId}
@@ -152,22 +152,15 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
                 >
                   <span className="search-result-thumbnail" aria-hidden="true">
                     <img src={thumbnail} alt="" width="320" height="180" decoding="async" />
-                    {activePreview === resultId && preview ? (
-                      <video
-                        className="search-result-preview-video"
-                        src={preview}
-                        poster={thumbnail}
-                        muted
-                        loop
-                        playsInline
-                        autoPlay
-                        preload="metadata"
-                        tabIndex={-1}
-                        onLoadedData={(event) => {
-                          event.currentTarget.dataset.ready = "true";
-                          void event.currentTarget.play().catch(() => undefined);
-                        }}
-                      />
+                    {activePreview === resultId && Preview ? (
+                      <Suspense fallback={null}>
+                        <span
+                          className="search-result-preview-live"
+                          style={{ "--hero-min-height": "0px" } as CSSProperties}
+                        >
+                          <Preview {...(variant?.props ?? {})} />
+                        </span>
+                      </Suspense>
                     ) : null}
                   </span>
                 </button>

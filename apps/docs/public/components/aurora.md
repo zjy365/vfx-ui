@@ -18,7 +18,27 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `speed?: number`
+- `intensity?: number`
+- `bands?: number`
+- `primary?: string`
+- `secondary?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { AURORA_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `AURORA_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from "react";
+import { Suspense, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import type { ReadyShader, ReadyShaderCategory } from "../data/registry";
 import { READY_SHADER_CATEGORIES } from "../data/registry";
@@ -31,6 +31,7 @@ type SidebarCatalogSectionProps = Pick<SidebarProps, "active" | "installationAct
 };
 
 type SidebarPreview = {
+  shader: ReadyShader;
   thumbnail: string;
   top: number;
   left: number;
@@ -146,6 +147,7 @@ function SidebarCatalogSection({ label, shaders, active, installationActive, onS
 
 export function Sidebar({ active, browseActive, installationActive, open, theme, palette, onSelect, onBrowse, onInstallation, onSearch, onTheme }: SidebarProps) {
   const [preview, setPreview] = useState<SidebarPreview | null>(null);
+  const Preview = preview?.shader.component;
 
   const showPreview = (shader: ReadyShader, target: HTMLButtonElement) => {
     const bounds = target.getBoundingClientRect();
@@ -157,7 +159,7 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
       Math.max(viewportPadding, bounds.top + bounds.height / 2 - height / 2),
     );
     const left = Math.min(window.innerWidth - width - viewportPadding, bounds.right + 12);
-    setPreview({ thumbnail: getSidebarPreviewThumbnail(shader), top, left });
+    setPreview({ shader, thumbnail: getSidebarPreviewThumbnail(shader), top, left });
   };
 
   return (
@@ -216,6 +218,13 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
           aria-hidden="true"
         >
           <img src={preview.thumbnail} alt="" />
+          {preview.shader.component ? (
+            <Suspense fallback={null}>
+              <span className="sidebar-preview-live" style={{ "--hero-min-height": "0px" } as CSSProperties}>
+                <preview.shader.component {...(preview.shader.variants?.[0]?.props ?? {})} />
+              </span>
+            </Suspense>
+          ) : null}
         </div>,
         document.body,
       ) : null}

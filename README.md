@@ -1,6 +1,8 @@
 # VFX UI
 
-**Shader-native visual effect components for React.** Rendered on the GPU via [WebGPU](https://www.w3.org/TR/webgpu/) ([vgpu](https://github.com/vercel-labs/vgpu)). Every effect here is something **DOM/CSS cannot reproduce** — that is the whole charter.
+**Shader-native visual effect components for React — and drop-in Hero sections built on them.** Rendered on the GPU via [WebGPU](https://www.w3.org/TR/webgpu/) ([vgpu](https://github.com/vercel-labs/vgpu)). Every effect's core visual is something **DOM/CSS cannot reproduce** — that is the whole charter.
+
+> Positioning: paid template sites (Aceternity, magicui pro) ship whole pages; **we ship their first screen** — a copy-paste Hero section whose background only WebGPU can draw.
 
 ```bash
 npm install @vfx-ui/react vgpu
@@ -23,16 +25,17 @@ export function Hero() {
 
 | Category | Components |
 |---|---|
-| Backgrounds | WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow |
-| Glass | GlassCard · LiquidGlass |
-| Data | LiveChart — real-time GPU line chart (uniform-array pipeline) · TimelineArc — milestone timeline on a tilted 3D dial |
+| Heroes | HeroFluid · HeroAurora · HeroFiber · HeroGlobe · HeroMesh · HeroIridescent · HeroVortex · HeroRibbon · HeroParticles · HeroStarfield · HeroBlackHole · HeroChroma |
+| Backgrounds | WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow · ChromaFlow |
+| Glass | GlassCard · LiquidGlass · GlassLens · LightPrism |
+| Data | LiveChart — real-time GPU line chart (uniform-array pipeline) |
 | Globe | WebGlobe — a WebGPU re-creation of [shuding/cobe](https://github.com/shuding/cobe) (MIT) · EnergyOrb — fresnel plasma orb |
 
 Every component ships with ≥3 preset variants, typed props, SSR-safe rendering, `prefers-reduced-motion` handling, and a graceful fallback when WebGPU is unavailable.
 
 ## What it is not
 
-By charter (see `PLAN.md` §0): **no DOM animation** (use [motion](https://motion.dev)), **no heavy 3D scenes** (use threeui/Orillusion), no UI primitives (use [base-ui](https://base-ui.com)). Shader-native effects only.
+By charter: **no DOM animation libraries** (standalone toasts/dropdowns — use [motion](https://motion.dev)), **no heavy 3D scenes** (use threeui/Orillusion), no UI primitives (use [base-ui](https://base-ui.com)), no generic interactive widgets (carousels/counters — reactbits owns that mindshare), no full-page templates — **we only do the hero**. Hero sections may embed the minimal DOM text/CTA/entrance animation they need; the core visual must be a GPU effect.
 
 ## Copy-paste instead of install
 
@@ -51,7 +54,7 @@ Machine-readable docs: [`public/llms.txt`](apps/docs/public/llms.txt), [`public/
 
 ```bash
 pnpm install
-pnpm -r typecheck && pnpm -r test   # 25 deterministic tests incl. Dawn pixel readback
+pnpm -r typecheck && pnpm -r test   # 47 deterministic tests incl. Dawn pixel readback
 pnpm -r build
 pnpm dev:docs                        # catalog at localhost:5173
 node registry/build.mjs              # rebuild copy-paste registry from sources

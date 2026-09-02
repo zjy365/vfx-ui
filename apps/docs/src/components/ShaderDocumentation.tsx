@@ -31,8 +31,19 @@ const TOC_ITEMS = [
 
 type TocSectionId = (typeof TOC_ITEMS)[number]["id"];
 
-function defaultSettings(controls: readonly ShaderControl[]): PreviewSettings {
-  return Object.fromEntries(controls.map((control) => [control.key, control.default]));
+function defaultSettings(
+  controls: readonly ShaderControl[],
+  variantProps?: Readonly<Record<string, boolean | number | string | number[]>>,
+): PreviewSettings {
+  // Variant presets seed the controls they touch — otherwise the registry's
+  // control defaults would silently override the variant's own values (e.g.
+  // black-hole/interstellar framing at centerX 0.8 vs the control default 0).
+  return Object.fromEntries(
+    controls.map((control) => {
+      const preset = variantProps?.[control.key];
+      return [control.key, typeof preset === "number" || typeof preset === "string" ? preset : control.default];
+    }),
+  );
 }
 
 function isChoiceControl(control: ShaderControl): control is ChoiceControl {
@@ -171,7 +182,10 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
   const [exportMenuOpen, setExportMenuOpen] = useState(false);
   const [exportBusy, setExportBusy] = useState(false);
   const previewSettingsKey = `${shader.id}:${activeVariant?.id ?? "default"}`;
-  const defaultPreviewSettings = useMemo(() => defaultSettings(activeControls), [activeControls]);
+  const defaultPreviewSettings = useMemo(
+    () => defaultSettings(activeControls, activeVariant?.props),
+    [activeControls, activeVariant],
+  );
   const [previewSettingsByComponent, setPreviewSettingsByComponent] = useState<Record<string, PreviewSettings>>({});
   const previewSettings = previewSettingsByComponent[previewSettingsKey] ?? defaultPreviewSettings;
   const [activeTocSection, setActiveTocSection] = useState<TocSectionId>("usage");
@@ -503,7 +517,7 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
                   <button
                     className="icon-btn inset-shadow"
                     aria-label={`Reset ${shader.label} props`}
-                    onClick={() => setPreviewSettings(defaultSettings(activeControls))}
+                    onClick={() => setPreviewSettings(defaultSettings(activeControls, activeVariant?.props))}
                   >
                     <RestartIcon />
                   </button>
@@ -660,7 +674,7 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
               ) : null}
               <div className="controls renderer-facts" aria-label="Renderer facts">
                 <div className="control inset-shadow">
-                  <span>Runtime</span><strong title={shader.runtime}>WebGPU</strong>
+                  <span>Runtime</span><strong title={shader.runtime}>{shader.runtime === "webgl" ? "WebGL" : "WebGPU"}</strong>
                 </div>
                 <div className="control inset-shadow">
                   <span>Import</span><strong title={shader.importName}>{shader.importName}</strong>

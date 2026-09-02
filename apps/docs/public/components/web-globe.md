@@ -18,7 +18,34 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `speed?: number`
+- `phi?: number`
+- `theta?: number`
+- `dots?: number`
+- `dotScale?: number`
+- `diffuse?: number`
+- `dark?: number`
+- `atmosphere?: number`
+- `seaLevel?: number`
+- `globeScale?: number`
+- `color?: string`
+- `emission?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { WEB_GLOBE_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `WEB_GLOBE_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

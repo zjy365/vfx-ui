@@ -1,6 +1,6 @@
-# Iridescent
+# Hero Fluid
 
-Silky thin-film interference colors drifting across the surface.
+Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
 
 ## Install
 
@@ -9,36 +9,39 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { HeroFluid } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <HeroFluid />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `scheme?: "dark" | "light"`
 - `speed?: number`
+- `warp?: number`
 - `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
+- `from?: string`
+- `to?: string`
+- `accent?: string`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_FLUID_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `FLUID_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

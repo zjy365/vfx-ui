@@ -1,6 +1,6 @@
-# Iridescent
+# Hero Ribbon
 
-Silky thin-film interference colors drifting across the surface.
+Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
 
 ## Install
 
@@ -9,36 +9,37 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { HeroRibbon } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <HeroRibbon />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `scheme?: "dark" | "light"`
 - `speed?: number`
-- `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
+- `intensity?: number`
+- `drift?: number`
+- `grain?: number`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `RIBBON_FIELD_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

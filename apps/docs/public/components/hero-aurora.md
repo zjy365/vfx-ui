@@ -1,6 +1,6 @@
-# Iridescent
+# Hero Aurora
 
-Silky thin-film interference colors drifting across the surface.
+Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
 
 ## Install
 
@@ -9,36 +9,38 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { HeroAurora } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <HeroAurora />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `scheme?: "dark" | "light"`
 - `speed?: number`
-- `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
+- `intensity?: number`
+- `bands?: number`
+- `primary?: string`
+- `secondary?: string`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `AURORA_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

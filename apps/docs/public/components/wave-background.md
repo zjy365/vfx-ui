@@ -18,7 +18,20 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `speed?: number`
+- `amplitude?: number`
+- `frequency?: number`
+- `from?: string`
+- `to?: string`
+- `accent?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Shader
+
+WGSL source is exported as `WAVE_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

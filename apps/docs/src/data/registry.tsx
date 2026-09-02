@@ -6,6 +6,8 @@ import {
   PARTICLE_PRESETS,
   GLASS_CARD_PRESETS,
   LIQUID_GLASS_PRESETS,
+  GLASS_LENS_PRESETS,
+  BLACK_HOLE_PRESETS,
   MESH_GRADIENT_PRESETS,
   IRIDESCENT_PRESETS,
   VORTEX_PRESETS,
@@ -13,8 +15,21 @@ import {
   ENERGY_ORB_PRESETS,
   RIBBON_FIELD_PRESETS,
   FIBER_FLOW_PRESETS,
-  TIMELINE_ARC_PRESETS,
+  CHROMA_FLOW_PRESETS,
+  LIGHT_PRISM_PRESETS,
   LIVE_CHART_PRESETS,
+  HERO_FLUID_PRESETS,
+  HERO_AURORA_PRESETS,
+  HERO_FIBER_PRESETS,
+  HERO_GLOBE_PRESETS,
+  HERO_MESH_PRESETS,
+  HERO_IRIDESCENT_PRESETS,
+  HERO_VORTEX_PRESETS,
+  HERO_RIBBON_PRESETS,
+  HERO_PARTICLES_PRESETS,
+  HERO_STARFIELD_PRESETS,
+  HERO_BLACK_HOLE_PRESETS,
+  HERO_CHROMA_PRESETS,
 } from "@vfx-ui/react";
 
 /*
@@ -40,7 +55,7 @@ export type ShaderVariant = {
   props: Readonly<Record<string, boolean | number | string | number[]>>;
   controls?: readonly ShaderControl[];
 };
-export const READY_SHADER_CATEGORIES = ["Backgrounds", "Glass", "Data", "Globe"] as const;
+export const READY_SHADER_CATEGORIES = ["Heroes", "Backgrounds", "Glass", "Data", "Globe"] as const;
 export type ReadyShaderCategory = (typeof READY_SHADER_CATEGORIES)[number];
 export type ReadyShader = {
   id: string;
@@ -51,7 +66,7 @@ export type ReadyShader = {
   preview?: string;
   tags: readonly string[];
   description: string;
-  runtime: "webgpu";
+  runtime: "webgpu" | "webgl";
   component?: ComponentType<any>;
   importName: string;
   sourceCode?: string;
@@ -69,13 +84,16 @@ function gradientThumbnail(from: string, to: string, accent: string) {
 function presetVariants(
   presets: Record<string, Record<string, number | string | number[]>>,
   descriptions: Record<string, string>,
-  thumbnail?: (props: Record<string, number | string | number[]>) => string,
+  thumbnail?: (
+    props: Record<string, number | string | number[]>,
+    id: string,
+  ) => string,
 ): ShaderVariant[] {
   return Object.entries(presets).map(([id, props]) => ({
     id,
     label: id.charAt(0).toUpperCase() + id.slice(1),
     description: descriptions[id] ?? "",
-    thumbnail: thumbnail ? thumbnail(props) : gradientThumbnail("#111318", "#1d2130", "#3b4252"),
+    thumbnail: thumbnail ? thumbnail(props, id) : gradientThumbnail("#111318", "#1d2130", "#3b4252"),
     props,
   }));
 }
@@ -85,10 +103,67 @@ const color = (key: string, label: string, default_: `#${string}`): ColorControl
 
 function paletteThumb(props: Record<string, number | string | number[]>): string {
   const from = (props.from as string) ?? "#111318";
-  const to = (props.to as string) ?? (props.color as string) ?? "#1d2130";
-  const accent = (props.accent as string) ?? (props.emission as string) ?? "#3b4252";
+  const to = (props.to as string) ?? (props.color as string) ?? (props.primary as string) ?? "#1d2130";
+  const accent = (props.accent as string) ?? (props.emission as string) ?? (props.secondary as string) ?? "#3b4252";
   return gradientThumbnail(from, to, accent);
 }
+
+function rgb01ToHex(c: [number, number, number]): string {
+  return `#${c.map((v) => Math.round(Math.max(0, Math.min(1, v)) * 255).toString(16).padStart(2, "0")).join("")}`;
+}
+
+/**
+ * Thumbnail for hue-graded shaders (EnergyOrb, Iridescent): rotates the base
+ * cosine palette around the (1,1,1) axis with the same Rodrigues formula the
+ * WGSL uses, so the swatch shows the variant's actual hue.
+ */
+function hueThumb(base: [number, number, number], hue: number, saturation = 1): string {
+  const axis: [number, number, number] = [0.57735027, 0.57735027, 0.57735027];
+  const sat: [number, number, number] = [
+    axis[0] + (base[0] - axis[0]) * saturation,
+    axis[1] + (base[1] - axis[1]) * saturation,
+    axis[2] + (base[2] - axis[2]) * saturation,
+  ];
+  const ch = Math.cos(hue);
+  const sh = Math.sin(hue);
+  const cross: [number, number, number] = [
+    sat[1] * axis[2] - sat[2] * axis[1],
+    sat[2] * axis[0] - sat[0] * axis[2],
+    sat[0] * axis[1] - sat[1] * axis[0],
+  ];
+  const dot = axis[0] * sat[0] + axis[1] * sat[1] + axis[2] * sat[2];
+  const out = sat.map((s, i) => Math.max(0, s * ch + cross[i] * sh + axis[i] * dot * (1 - ch))) as [number, number, number];
+  return rgb01ToHex(out);
+}
+
+/** Thumbnail for Iridescent: mirrors the WGSL cosinePalette at thickness v. */
+function cosineThumb(v: number): string {
+  const a: [number, number, number] = [1, 0.81, 0.62];
+  const b: [number, number, number] = [0.12, 0.34, 0.62];
+  const out = a.map((ai, i) => 0.5 + 0.5 * Math.cos(6.28318 * (ai * v + b[i]))) as [number, number, number];
+  return rgb01ToHex(out);
+}
+
+const glassThumb = (props: Record<string, number | string | number[]>) =>
+  gradientThumbnail("#0f172a", (props.tint as string) ?? "#a5c8ff", "#f8fafc");
+
+const liquidThumb = () => gradientThumbnail("#020617", "#7dd3fc", "#c4b5fd");
+
+const orbThumb = (props: Record<string, number | string | number[]>) =>
+  gradientThumbnail("#0a0a12", hueThumb([0.55, 0.52, 1.0], (props.hue as number) ?? 0, (props.saturation as number) ?? 1), "#f5f3ff");
+
+const ribbonThumb = () => gradientThumbnail("#05060a", "#38bdf8", "#818cf8");
+
+const iridescentThumb = (props: Record<string, number | string | number[]>) => {
+  const v = 0.5 + ((props.hueShift as number) ?? 0);
+  return gradientThumbnail("#111014", cosineThumb(v), cosineThumb(v + 0.25));
+};
+
+const globeThumb = (props: Record<string, number | string | number[]>) => {
+  const glow = rgb01ToHex(((props.glowColor as number[]) ?? [0.4, 0.6, 1]) as [number, number, number]);
+  const marker = rgb01ToHex(((props.markerColor as number[]) ?? [1, 0.5, 1]) as [number, number, number]);
+  return gradientThumbnail("#020617", marker, glow);
+};
 
 function entry(
   config: {
@@ -103,6 +178,7 @@ function entry(
     agentNotes: string[];
     controls: readonly ShaderControl[];
     variants: ShaderVariant[];
+    runtime?: "webgpu" | "webgl";
   },
 ): ReadyShader {
   return {
@@ -113,7 +189,7 @@ function entry(
     thumbnail: config.thumbnail,
     tags: config.tags,
     description: config.description,
-    runtime: "webgpu",
+    runtime: config.runtime ?? "webgpu",
     importName: config.importName,
     component: lazy(() =>
       import("@vfx-ui/react").then((m) => ({ default: (m as unknown as Record<string, ComponentType<any>>)[config.importName] })),
@@ -124,6 +200,24 @@ function entry(
     variants: config.variants,
   };
 }
+
+const heroUsage = (name: string) => `import { ${name} } from "@vfx-ui/react";
+
+export function Landing() {
+  return (
+    <div style={{ height: "100dvh" }}>
+      <${name} />
+    </div>
+  );
+}`;
+
+const HERO_NOTES = (base: string, layout: string) => [
+  `Purpose: drop-in hero section — a full first screen with real, selectable DOM text (${layout} layout) over a GPU ${base} background. Copy it, ship it.`,
+  `Mount: give the parent an explicit height (e.g. height: 100dvh or a min-height); the shell fills it and clamps its own type with container queries.`,
+  `Props: eyebrow, title, subtitle, primaryCta, secondaryCta, badges, scheme ("dark" | "light"), accent, plus the ${base} shader uniforms. All have opinionated defaults — zero props is production-grade.`,
+  `Interaction: the ${base} background animates on its own; text and CTAs are plain DOM (WCAG AA scrim, screen-reader readable).`,
+  `Guardrails: WebGPU required with graceful degradation; SSR renders inert DOM; prefers-reduced-motion freezes the shader and skips the entrance animation. Do not stack two heroes on one screen.`,
+];
 
 const WAVE_USAGE = `import { WaveBackground } from "@vfx-ui/react";
 
@@ -159,6 +253,219 @@ export function Hero() {
 }`;
 
 export const READY_SHADERS: readonly ReadyShader[] = [
+  entry({
+    id: "hero-fluid",
+    category: "Heroes",
+    label: "Hero Fluid",
+    tags: ["hero", "landing", "gradient", "fluid"],
+    description: "Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.",
+    importName: "HeroFluid",
+    thumbnail: paletteThumb({ from: "#0b1026", to: "#1d4ed8", accent: "#7dd3fc" }),
+    sourceCode: heroUsage("HeroFluid"),
+    agentNotes: HERO_NOTES("liquid-gradient", "centered"),
+    controls: [],
+    variants: presetVariants(HERO_FLUID_PRESETS, {
+      midnight: "Navy depths rising into electric blue.",
+      magma: "Charcoal into rose with a hot highlight.",
+      moss: "Deep green sea at a calm drift.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-aurora",
+    category: "Heroes",
+    label: "Hero Aurora",
+    tags: ["hero", "landing", "aurora", "night"],
+    description: "Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.",
+    importName: "HeroAurora",
+    thumbnail: paletteThumb({ from: "#010409", primary: "#2dd4bf", secondary: "#818cf8" }),
+    sourceCode: heroUsage("HeroAurora"),
+    agentNotes: HERO_NOTES("aurora", "left"),
+    controls: [],
+    variants: presetVariants(HERO_AURORA_PRESETS, {
+      glacier: "Teal curtains under a violet sky.",
+      ember: "Orange-to-crimson fire aurora.",
+      violet: "Violet and cyan bands, five curtains.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-fiber",
+    category: "Heroes",
+    label: "Hero Fiber",
+    tags: ["hero", "landing", "fibers", "silk"],
+    description: "Drop-in hero: top-weighted headline over luminous silk fibers streaming through the dark.",
+    importName: "HeroFiber",
+    thumbnail: paletteThumb({ from: "#1e1b4b", to: "#4f46e5", accent: "#a5b4fc" }),
+    sourceCode: heroUsage("HeroFiber"),
+    agentNotes: HERO_NOTES("fiber-flow", "stacked"),
+    controls: [],
+    variants: presetVariants(HERO_FIBER_PRESETS, {
+      indigo: "Indigo silk with a periwinkle sheen.",
+      gold: "Molten gold threads, crisper edges.",
+      rose: "Rose fibers at higher density.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-globe",
+    category: "Heroes",
+    label: "Hero Globe",
+    tags: ["hero", "landing", "globe", "split"],
+    description: "Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.",
+    importName: "HeroGlobe",
+    thumbnail: paletteThumb({ from: "#020617", color: "#9db4d8", accent: "#7da7fc" }),
+    sourceCode: heroUsage("HeroGlobe"),
+    agentNotes: [
+      "Purpose: drop-in hero section — a full first screen with real, selectable DOM text (split layout) over the cobe dot-matrix globe (MIT, the globe behind vercel.com). Copy it, ship it.",
+      "Mount: give the parent an explicit height (e.g. height: 100dvh or a min-height); the shell fills it and clamps its own type with container queries.",
+      "Props: eyebrow, title (\\n breaks lines), subtitle, primaryCta, secondaryCta, scheme (\"dark\" | \"light\"), spin (rad/s, 0 holds the authored view), mapSamples, baseColor/markerColor/glowColor (0-1 rgb tuples), markers ([lat, lng, size]), globeProps (escape hatch merged into cobe update()).",
+      "Interaction: the globe auto-rotates via a rAF loop driving cobe.update(); text and CTAs are plain DOM (WCAG AA scrim, screen-reader readable).",
+      "Guardrails: requires the cobe peer (npm install cobe); the globe loads client-side only (SSR renders an inert canvas); prefers-reduced-motion renders one static frame; no texture or network assets — the dot matrix is procedural.",
+    ],
+    runtime: "webgl",
+    controls: [],
+    variants: presetVariants(HERO_GLOBE_PRESETS, {
+      azure: "Blue glow with magenta city markers.",
+      teal: "Teal glow for infra brands.",
+      ember: "Amber glow, slower spin.",
+    }, globeThumb),
+  }),
+  entry({
+    id: "hero-mesh",
+    category: "Heroes",
+    label: "Hero Mesh",
+    tags: ["hero", "landing", "gradient", "mesh"],
+    description: "Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.",
+    importName: "HeroMesh",
+    thumbnail: paletteThumb({ from: "#0b1120", to: "#134e4a", accent: "#7c3aed", deep: "#f472b6" }),
+    sourceCode: heroUsage("HeroMesh"),
+    agentNotes: HERO_NOTES("mesh-gradient", "centered"),
+    controls: [],
+    variants: presetVariants(HERO_MESH_PRESETS, {
+      orchid: "Teal-violet-pink poster field.",
+      citrus: "Amber and cream over charcoal.",
+      arctic: "Ice-blue cells on deep navy.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-iridescent",
+    category: "Heroes",
+    label: "Hero Iridescent",
+    tags: ["hero", "landing", "holographic", "silk"],
+    description: "Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.",
+    importName: "HeroIridescent",
+    thumbnail: paletteThumb({ from: "#111014", to: "#3b3150", accent: "#f0abfc" }),
+    sourceCode: heroUsage("HeroIridescent"),
+    agentNotes: HERO_NOTES("iridescent", "left"),
+    controls: [],
+    variants: presetVariants(HERO_IRIDESCENT_PRESETS, {
+      hologram: "Full-saturation holographic silk.",
+      oil: "Oil-slick sheen, wider scale.",
+      pearl: "Desaturated pearl finish.",
+    }, iridescentThumb),
+  }),
+  entry({
+    id: "hero-vortex",
+    category: "Heroes",
+    label: "Hero Vortex",
+    tags: ["hero", "landing", "galaxy", "spiral"],
+    description: "Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.",
+    importName: "HeroVortex",
+    thumbnail: paletteThumb({ from: "#0a0a12", color: "#818cf8", emission: "#e0e7ff" }),
+    sourceCode: heroUsage("HeroVortex"),
+    agentNotes: HERO_NOTES("vortex", "centered"),
+    controls: [],
+    variants: presetVariants(HERO_VORTEX_PRESETS, {
+      indigo: "Indigo spiral with a pale core.",
+      sol: "Three-arm golden galaxy.",
+      nebula: "Pink nebula with a hotter core glow.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-ribbon",
+    category: "Heroes",
+    label: "Hero Ribbon",
+    tags: ["hero", "landing", "ribbon", "split"],
+    description: "Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.",
+    importName: "HeroRibbon",
+    thumbnail: paletteThumb({ from: "#05060a", to: "#0e2a47", accent: "#7dd3fc" }),
+    sourceCode: heroUsage("HeroRibbon"),
+    agentNotes: HERO_NOTES("ribbon-field", "split"),
+    controls: [],
+    variants: presetVariants(HERO_RIBBON_PRESETS, {
+      signal: "Balanced ribbons drifting right.",
+      quiet: "Dimmer, slower — for dense pages.",
+      surge: "Bright, fast, strong drift.",
+    }, ribbonThumb),
+  }),
+  entry({
+    id: "hero-particles",
+    category: "Heroes",
+    label: "Hero Particles",
+    tags: ["hero", "landing", "particles"],
+    description: "Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.",
+    importName: "HeroParticles",
+    thumbnail: paletteThumb({ from: "#060913", color: "#9ccaff" }),
+    sourceCode: heroUsage("HeroParticles"),
+    agentNotes: HERO_NOTES("particle-field", "stacked"),
+    controls: [],
+    variants: presetVariants(HERO_PARTICLES_PRESETS, {
+      azure: "Classic blue particles.",
+      mint: "Mint field, larger grains.",
+      dune: "Amber dust at lower speed.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-starfield",
+    category: "Heroes",
+    label: "Hero Starfield",
+    tags: ["hero", "landing", "stars", "space"],
+    description: "Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax drift.",
+    importName: "HeroStarfield",
+    thumbnail: paletteThumb({ from: "#01030a", color: "#d0e4ff" }),
+    sourceCode: heroUsage("HeroStarfield"),
+    agentNotes: HERO_NOTES("starfield", "left"),
+    controls: [],
+    variants: presetVariants(HERO_STARFIELD_PRESETS, {
+      classic: "Steady blue-white field.",
+      deep: "Denser, slower, violet-leaning.",
+      warm: "Sparse gold stars, fast twinkle.",
+    }, paletteThumb),
+  }),
+
+  entry({
+    id: "hero-black-hole",
+    category: "Heroes",
+    label: "Hero Black Hole",
+    tags: ["hero", "landing", "space", "black-hole", "physics"],
+    description: "Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.",
+    importName: "HeroBlackHole",
+    thumbnail: paletteThumb({ from: "#020103", to: "#7c2d12", accent: "#fbbf24" }),
+    sourceCode: heroUsage("HeroBlackHole"),
+    agentNotes: HERO_NOTES("black-hole", "left"),
+    controls: [],
+    variants: presetVariants(HERO_BLACK_HOLE_PRESETS, {
+      interstellar: "The default Gargantua-adjacent disk.",
+      gargantua: "Closer orbit, bigger disk, near edge-on.",
+      ember: "Hotter, faster, denser smoke.",
+    }, paletteThumb),
+  }),
+  entry({
+    id: "hero-chroma",
+    category: "Heroes",
+    label: "Hero Chroma",
+    tags: ["hero", "landing", "chromatic", "gradient", "pointer"],
+    description: "Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.",
+    importName: "HeroChroma",
+    thumbnail: gradientThumbnail("#071021", "#1d4ed8", "#f59e0b"),
+    sourceCode: heroUsage("HeroChroma"),
+    agentNotes: HERO_NOTES("chroma-flow", "left"),
+    controls: [],
+    variants: presetVariants(HERO_CHROMA_PRESETS, {
+      classic: "Midnight navy with blue above and amber at right.",
+      dusk: "Violet dusk with pink and gold edges.",
+      tide: "Cyan tide, wider bleed.",
+    }, (props) => gradientThumbnail((props.baseColor as string) ?? "#071021", (props.upColor as string) ?? "#1d4ed8", (props.rightColor as string) ?? "#f59e0b")),
+  }),
+
   entry({
     id: "wave-background",
     category: "Backgrounds",
@@ -207,7 +514,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
       "Guardrails: WebGPU required with fallback prop; reduced-motion aware; avoid more than one instance per viewport.",
     ],
     controls: [
-      range("speed", "Speed", 0, 3, 0.05, 0.5),
+      range("speed", "Speed", 0, 3, 0.05, 0.45),
       range("warp", "Warp", 0.5, 4, 0.05, 2.6),
       range("scale", "Scale", 0.5, 5, 0.1, 1.5),
       color("from", "From", "#355c7d"),
@@ -250,7 +557,7 @@ export function NightHero() {
     ],
     controls: [
       range("speed", "Speed", 0, 3, 0.05, 0.7),
-      range("intensity", "Intensity", 0, 2, 0.05, 0.85),
+      range("intensity", "Intensity", 0, 2, 0.05, 0.45),
       range("bands", "Bands", 1, 5, 1, 3),
       color("primary", "Primary", "#2dd4bf"),
       color("secondary", "Secondary", "#818cf8"),
@@ -378,7 +685,7 @@ export function GlassPanel() {
       frosted: "Cool blue frost, the default look.",
       champagne: "Warm champagne tint with a strong sheen.",
       rose: "Soft rose glass with a subtle glow.",
-    }, paletteThumb),
+    }, glassThumb),
   }),
 
   entry({
@@ -418,7 +725,49 @@ export function LiquidHero() {
       calm: "Gentle refraction, safe under text.",
       storm: "Aggressive waves with heavy dispersion.",
       velvet: "Slow, tight ripples in a muted field.",
-    }, paletteThumb),
+    }, liquidThumb),
+  }),
+
+  entry({
+    id: "glass-lens",
+    category: "Glass",
+    label: "Glass Lens",
+    tags: ["glass", "refraction", "lens", "liquid-glass"],
+    description: "A floating liquid-glass pill over a living color field — cylindrical rim refraction, RGB dispersion, and a rotating specular sweep, all computed as real lens optics.",
+    importName: "GlassLens",
+    thumbnail: paletteThumb({ from: "#05070f", color: "#38bdf8", accent: "#e9d5ff" }),
+    sourceCode: `import { GlassLens, GLASS_LENS_PRESETS } from "@vfx-ui/react";
+
+export function FeatureBand() {
+  return (
+    <section style={{ position: "relative", height: 520 }}>
+      <GlassLens {...GLASS_LENS_PRESETS.aqua} />
+      <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
+        <h2 style={{ color: "#f8fafc" }}>Look through it</h2>
+      </div>
+    </section>
+  );
+}`,
+    agentNotes: [
+      "Purpose: single floating lens element (the Apple Liquid Glass pill look) over an animated color field — the bending is real cylindrical-lens math, thickest at the rim.",
+      "Mount: fills its container; the pill is centered by design, so overlay copy above or below it, not on top.",
+      "Props: speed, refraction (bending strength), dispersion (RGB split), blur (rim depth-of-field), rim (edge highlight), tint (glass color).",
+      "Pointer: interactive={true} adds a specular glare pool inside the lens that tracks the cursor; off by default.",
+      "Guardrails: refraction above ~1.6 stops reading as glass; WebGPU required with fallback prop.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 3, 0.05, 1),
+      range("refraction", "Refraction", 0, 2, 0.05, 0.45),
+      range("dispersion", "Dispersion", 0, 2, 0.05, 0.7),
+      range("blur", "Blur", 0, 2, 0.05, 0.8),
+      range("rim", "Rim", 0, 2, 0.05, 0.9),
+      color("tint", "Tint", "#cfe4ff"),
+    ],
+    variants: presetVariants(GLASS_LENS_PRESETS, {
+      aqua: "Cool blue glass over the default field.",
+      prism: "Strong bending with heavy spectral fringes.",
+      honey: "Warm, slow, and soft-focus.",
+    }, glassThumb),
   }),
 
   entry({
@@ -502,7 +851,7 @@ export function IridescentHero() {
       pearl: "Soft pearl sheen at a calm pace.",
       oil: "Oil-slick saturation, fast and loud.",
       deepSea: "Muted teal-silk at low brightness.",
-    }, paletteThumb),
+    }, iridescentThumb),
   }),
 
   entry({
@@ -533,7 +882,7 @@ export function GalaxyHero() {
       "Guardrails: transparent background by design — place over a dark solid; WebGPU required with fallback prop.",
     ],
     controls: [
-      range("speed", "Speed", 0, 3, 0.05, 0.5),
+      range("speed", "Speed", 0, 3, 0.05, 0.45),
       range("swirl", "Swirl", 0.5, 6, 0.05, 2.4),
       range("arms", "Arms", 1, 6, 1, 2),
       range("coreGlow", "Core glow", 0, 3, 0.05, 1.2),
@@ -544,6 +893,53 @@ export function GalaxyHero() {
       galaxy: "Violet arms with a white-hot core.",
       hurricane: "Tight cyan spiral, fast rotation.",
       ember: "Orange inferno with a heavy core.",
+    }, paletteThumb),
+  }),
+
+  entry({
+    id: "black-hole",
+    category: "Backgrounds",
+    label: "Black Hole",
+    tags: ["background", "space", "black-hole", "ray-tracing", "physics"],
+    description: "The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).",
+    importName: "BlackHole",
+    thumbnail: paletteThumb({ from: "#020103", to: "#7c2d12", accent: "#fde68a" }),
+    sourceCode: `import { BlackHole, BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+
+export function PhysicsHero() {
+  return (
+    <section style={{ position: "relative", minHeight: "100dvh" }}>
+      <BlackHole {...BLACK_HOLE_PRESETS.interstellar} />
+      <div style={{ position: "relative", zIndex: 1, padding: "8rem 2rem" }}>
+        <h1>Bend spacetime, not your budget</h1>
+      </div>
+    </section>
+  );
+}`,
+    agentNotes: [
+      "Purpose: the most physics-accurate background in the library — the real vgpu optimized-black-hole pipeline. Bake pass integrates one null geodesic per pixel (a = -1.5·h²·x/r⁵) into a G-buffer; refine measures 4×4 photon-ring coverage; shade animates the disk (thermal ramp, shear, Doppler beaming, redshift) over a prefiltered lensed star field; bloom + ACES composite the output.",
+      "Mount: full-bleed opaque layer (near-black sky + stars) in a sized container; it owns its own canvas and resize handling. centerX/centerY frame the hole in NDC -1..1 (the example's desktop defaults are 0.8/0.3).",
+      "Props: distance (camera orbit, horizon=1), diskRadius, fov, tilt (elevation rad), brightness, turbulence, density, doppler, stars (tint spread), roll, centerFade, bloom.",
+      "Performance: the expensive bake runs once per geometry change; animation only re-shades (the example's core trick). Still the heaviest component here — one instance per page, desktop-first.",
+      "Pointer: interactive={true} leans the scene yaw toward the cursor (the example's mouseYaw), applied per-frame without re-baking.",
+      "Guardrails: WebGPU required with graceful fallback; SSR renders an inert canvas; prefers-reduced-motion bakes one static frame.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 2, 0.05, 0.75),
+      range("distance", "Distance", 8, 24, 0.1, 13.5),
+      range("diskRadius", "Disk radius", 4, 16, 0.1, 9),
+      range("tilt", "Tilt", 0, 1.3, 0.01, 0.16),
+      range("brightness", "Brightness", 0.1, 2, 0.05, 0.75),
+      range("doppler", "Doppler", 0, 2.5, 0.05, 1.21),
+      range("centerX", "Center X", -1, 1, 0.01, 0),
+      range("centerY", "Center Y", -1, 1, 0.01, 0),
+    ],
+    variants: presetVariants(BLACK_HOLE_PRESETS, {
+      interstellar: "The example's desktop framing — hole right of center.",
+      centered: "Hole dead center for symmetric layouts.",
+      gargantua: "Closer orbit, taller disk, almost edge-on.",
+      topDown: "High camera elevation, full spiral visible.",
+      ember: "Hotter, denser, faster smoke.",
     }, paletteThumb),
   }),
 
@@ -576,7 +972,7 @@ export function GlobeCard() {
       range("phi", "Phi", 0, 6.28, 0.05, 0),
       range("theta", "Theta", 0, 1.5, 0.05, 0.35),
       range("dotSize", "Dot size", 0.2, 0.9, 0.01, 0.62),
-      range("backside", "Backside", 0, 1, 0.05, 0.5),
+      range("backside", "Backside", 0, 1, 0.05, 0.45),
       color("color", "Dots", "#94a3b8"),
       color("emission", "Rim", "#f8fafc"),
     ],
@@ -622,7 +1018,7 @@ export function OrbHero() {
       amethyst: "Original violet arcana.",
       cyan: "Cold cyan storm orb.",
       magma: "Warm ember sphere, denser smoke.",
-    }, paletteThumb),
+    }, orbThumb),
   }),
 
   entry({
@@ -659,7 +1055,7 @@ export function RibbonHero() {
       classic: "Original three-ribbon teal/cyan field.",
       calm: "Slower, dimmer, left-leaning drift.",
       vivid: "Brighter ribbons with heavier grain.",
-    }, paletteThumb),
+    }, ribbonThumb),
   }),
 
   entry({
@@ -704,49 +1100,90 @@ export function FiberHero() {
   }),
 
   entry({
-    id: "timeline-arc",
-    category: "Data",
-    label: "Timeline Arc",
-    tags: ["timeline", "milestone", "arc", "history"],
-    description: "Milestone dial tilted into 3D (perspective 900px, rotateX −60°) — a procedural ruler disk spins under scroll so the active year stays anchored, with a hexagon marker and a dashed callout (1:1 sealos.run/about-us replica). Scroll inside the preview to spin the dial.",
-    importName: "TimelineArcScrollDemo",
-    thumbnail: paletteThumb({}),
-    sourceCode: `import { TimelineArc } from "@vfx-ui/react";
+    id: "chroma-flow",
+    category: "Backgrounds",
+    label: "Chroma Flow",
+    tags: ["background", "gradient", "chromatic", "pointer", "hero"],
+    description: "Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design.",
+    importName: "ChromaFlow",
+    thumbnail: gradientThumbnail("#071021", "#1d4ed8", "#f59e0b"),
+    sourceCode: `import { ChromaFlow, CHROMA_FLOW_PRESETS } from "@vfx-ui/react";
 
-export function Milestones() {
+export function ChromaHero() {
   return (
-    <div style={{ position: "relative", width: "100%", height: 560 }}>
-      <TimelineArc
-        years={["2018", "2021", "2022", "2023", "2024", "2025"]}
-        activeIndex={1}
-        annotations={[
-          "2018 — the first commit.",
-          "2021 — trending on GitHub.",
-          "2022 — the vgpu protocol lands.",
-          "2023 — the catalog opens.",
-          "2024 — v5.0 ships.",
-          "2025 — 300k developers.",
-        ]}
-      />
+    <div style={{ position: "relative", width: "100%", height: 420 }}>
+      <ChromaFlow {...CHROMA_FLOW_PRESETS.classic} />
     </div>
   );
 }`,
     agentNotes: [
-      "Purpose: company/product milestone dial — a 3D-tilted ruler disk (1:1 sealos.run/about-us replica) whose WebGPU canvas is a static procedural dial (paper disk, gray/dark minor ticks every 3°, accent majors every 18°, accent dot ring), warped by real CSS perspective + rotateX/rotateY; year labels and hexagon markers ride the same tilted plane.",
-      "Mount: wide tall container (e.g. 100% x 560px) on light pages; the dial plane is sized min(200%, 1536px) and overhangs the container like the source layout.",
-      "Props: years (string[]), activeIndex, annotation / annotations[] (callout text per milestone), speed (active hexagon pulse, 0 disables), accent (hex, default #005bff sealos brand blue), scrollProgress (0..1 spins the dial, 18° per milestone).",
-      "Interaction: use scrollProgress + useScrollProgress to spin the dial with page scroll (sealos.run behavior — the active year stays anchored at the callout), or TimelineArcScrollDemo for a self-contained scrollable preview; activeIndex is the static fallback.",
-      "Guardrails: the callout is measured from the active marker's projected screen position (getBoundingClientRect) — it needs real layout, so keep the component visible on mount; text inherits page font; WebGPU required with fallback prop (canvas is static, animate is off).",
+      "Purpose: full-bleed living color backdrop — base gradient with top/bottom/left/right edge colors that bleed inward; an original vfx-ui implementation (fbm-noise bleed boundaries + pointer velocity), not a port of any third-party code.",
+      "Mount: full-bleed hero band (100% x 420px+); opaque base — no background needed behind it.",
+      "Props: speed (ambient drift), intensity, radius (how far edges bleed), momentum (sweep sensitivity), ambient (resting bleed 0..1), baseColor/upColor/downColor/leftColor/rightColor.",
+      "Pointer: interactive is off by default (calm ambient slosh, pointer-independent); set interactive to flood edge colors toward the cursor's sweep direction — the effect self-decays as the pointer settles.",
+      "Guardrails: velocity is per-frame eased delta so it never gets stuck; pActive gates the glow pocket; WebGPU required with fallback prop.",
     ],
     controls: [
       range("speed", "Speed", 0, 3, 0.05, 1),
-      range("activeIndex", "Active index", 0, 5, 1, 1),
-      color("accent", "Accent", "#005bff"),
+      range("intensity", "Intensity", 0, 2, 0.05, 1),
+      range("radius", "Bleed radius", 0.2, 1.4, 0.05, 0.45),
+      range("momentum", "Momentum", 4, 40, 1, 16),
+      range("ambient", "Ambient", 0, 0.8, 0.02, 0.55),
+      color("baseColor", "Base", "#071021"),
+      color("upColor", "Top", "#1d4ed8"),
+      color("downColor", "Bottom", "#cbd5e1"),
+      color("leftColor", "Left", "#0ea5e9"),
+      color("rightColor", "Right", "#f59e0b"),
     ],
-    variants: presetVariants(TIMELINE_ARC_PRESETS, {
-      classic: "Sealos brand blue accent (#005bff).",
-      emerald: "Green milestones.",
-      violet: "Violet milestones, faster march.",
+    variants: presetVariants(CHROMA_FLOW_PRESETS, {
+      classic: "Midnight navy, electric blue above, amber at right.",
+      dusk: "Violet dusk with pink and gold edges.",
+      tide: "Cyan tide with a wider bleed.",
+    }, (props) => gradientThumbnail((props.baseColor as string) ?? "#071021", (props.upColor as string) ?? "#1d4ed8", (props.rightColor as string) ?? "#f59e0b")),
+  }),
+
+  entry({
+    id: "light-prism",
+    category: "Glass",
+    label: "Light Prism",
+    tags: ["glass", "prism", "refraction", "hero", "paper"],
+    description: "A frosted glass prism floating on warm paper with a white light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion in one pass.",
+    importName: "LightPrism",
+    thumbnail: paletteThumb({ from: "#e9e6df", to: "#a8a49b", accent: "#ffffff" }),
+    sourceCode: `import { LightPrism, LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
+
+export function PrismHero() {
+  return (
+    <section style={{ position: "relative", minHeight: "100dvh" }}>
+      <LightPrism {...LIGHT_PRISM_PRESETS.paper} />
+      <div style={{ position: "relative", zIndex: 1, padding: "8rem 2rem" }}>
+        <h1>Refract the ordinary</h1>
+      </div>
+    </section>
+  );
+}`,
+    agentNotes: [
+      "Purpose: the minimal 'paper + glass prism + light beam' hero backdrop — bright, editorial, and text-safe by construction (the paper base is light).",
+      "Mount: full-bleed layer behind content; opaque warm-paper base — no background needed behind it.",
+      "Props: prismSize (triangle circumradius), beamWidth, refraction (how far the beam bends crossing the glass), dispersion (spectral fringe strength), shadow (cast-shadow opacity), from/to/accent (paper/glass/beam colors).",
+      "Pointer: interactive is off by default (a calm pointer-free backdrop); set interactive to tilt the beam and drift the light pools toward the cursor.",
+      "Guardrails: pair with dark text (the surface is light); refraction above 0.35 reads as a glitch, not glass; WebGPU required with fallback prop.",
+    ],
+    controls: [
+      range("speed", "Speed", 0, 3, 0.05, 1),
+      range("prismSize", "Prism size", 0.15, 0.45, 0.005, 0.3),
+      range("beamWidth", "Beam width", 0.002, 0.012, 0.0005, 0.0045),
+      range("refraction", "Refraction", 0, 0.4, 0.01, 0.16),
+      range("dispersion", "Dispersion", 0, 3, 0.05, 0.22),
+      range("shadow", "Shadow", 0, 1.5, 0.05, 1),
+      color("from", "Paper", "#e9e6df"),
+      color("to", "Glass", "#a8a49b"),
+      color("accent", "Beam", "#ffffff"),
+    ],
+    variants: presetVariants(LIGHT_PRISM_PRESETS, {
+      paper: "Warm paper, white beam — the default editorial look.",
+      moonstone: "Cool blue-grey paper with strong spectral fringes.",
+      amber: "Kraft paper under a warm amber beam.",
     }, paletteThumb),
   }),
 

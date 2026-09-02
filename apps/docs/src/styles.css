@@ -1122,6 +1122,30 @@ kbd {
   object-fit: cover;
 }
 
+/* Live component overlay: fades in over the thumbnail once the renderer
+   mounts, so a hover always ends on the real effect, not a flat swatch. */
+.sidebar-preview-live {
+  position: absolute;
+  inset: 0;
+  display: block;
+  animation: sidebar-preview-live-in 220ms ease-in both;
+}
+
+.sidebar-preview-live > * {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes sidebar-preview-live-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @keyframes sidebar-preview-in {
   from {
     opacity: 0;
@@ -1820,13 +1844,6 @@ pre {
   aspect-ratio: auto;
 }
 
-/* The timeline-arc dial is sized for a full-height stage (1:1 sealos.run
-   about-us); a 16:9 pane clips the active marker + callout below the fold. */
-.preview.shader-preview.timeline-arc {
-  height: 720px;
-  aspect-ratio: auto;
-}
-
 .capture-shell {
   position: fixed;
   inset: 0;
@@ -1854,6 +1871,12 @@ pre {
   height: 1px;
   opacity: 0;
   pointer-events: none;
+}
+
+/* Capture renders the resting state: entrance animations never advance in a
+   hidden tab, so screenshots would freeze hero copy at opacity 0. */
+.capture-shell .vfx-hero-anim > * {
+  animation: none;
 }
 
 .shader-preview.condensation {
@@ -3732,19 +3755,16 @@ tbody tr:not(:last-child) {
   object-fit: cover;
 }
 
-.search-result-preview-video {
+.search-result-preview-live {
   position: absolute;
   inset: 0;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.16s ease;
+  animation: sidebar-preview-live-in 220ms ease-in both;
 }
 
-.search-result-preview-video[data-ready="true"] {
-  opacity: 1;
+.search-result-preview-live > * {
+  width: 100%;
+  height: 100%;
 }
 
 .search-pro-badge {

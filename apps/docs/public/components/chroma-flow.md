@@ -1,6 +1,6 @@
-# Iridescent
+# Chroma Flow
 
-Silky thin-film interference colors drifting across the surface.
+Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
 
 ## Install
 
@@ -9,20 +9,25 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { ChromaFlow } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <ChromaFlow />;
 }
 ```
 
 ## Props
 
 - `speed?: number`
-- `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
+- `intensity?: number`
+- `radius?: number`
+- `momentum?: number`
+- `ambient?: number`
+- `baseColor?: string`
+- `upColor?: string`
+- `downColor?: string`
+- `leftColor?: string`
+- `rightColor?: string`
 - `interactive?: boolean`
 - `className?: string`
 - `style?: VfxCanvasProps["style"]`
@@ -33,12 +38,12 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { CHROMA_FLOW_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `CHROMA_FLOW_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

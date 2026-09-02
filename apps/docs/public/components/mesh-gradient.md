@@ -18,7 +18,29 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `speed?: number`
+- `scale?: number`
+- `softness?: number`
+- `from?: string`
+- `to?: string`
+- `accent?: string`
+- `deep?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { MESH_GRADIENT_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `MESH_GRADIENT_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

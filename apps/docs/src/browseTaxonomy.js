@@ -5,6 +5,11 @@ const DEFAULT_BROWSE_CONTENT = Object.freeze({
 });
 
 const CATEGORY_CONTENT = Object.freeze({
+  Heroes: Object.freeze({
+    title: "Hero Section Components for React",
+    heading: "Drop-in WebGPU hero sections",
+    description: "Copy-paste hero sections: GPU-rendered backgrounds with real selectable text, CTAs, and production-grade defaults. The first screen of paid templates, as a component.",
+  }),
   Backgrounds: Object.freeze({
     title: "WebGPU Background Components",
     heading: "WebGPU shader backgrounds",

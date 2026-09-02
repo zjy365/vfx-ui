@@ -57,8 +57,8 @@ const BROWSE_RESULTS = [
 
 const COMING_SOON_SHADERS = READY_SHADERS.filter((shader) => !shader.visible);
 
-function useInView(rootMargin = "256px 0px") {
-  const ref = useRef<HTMLElement | null>(null);
+function useInView<T extends HTMLElement = HTMLElement>(rootMargin = "256px 0px") {
+  const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
@@ -87,11 +87,11 @@ type LivePreviewProps = {
 // Small live instance of the component. Mounts on viewport entry and unmounts
 // on exit so a large grid never keeps dozens of WebGPU renderers alive.
 function LivePreview({ shader, props, thumbnail }: LivePreviewProps) {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView<HTMLSpanElement>();
   const Preview = shader.component;
 
   return (
-    <span className="browse-media" aria-hidden="true" style={{ pointerEvents: "none" }}>
+    <span ref={ref} className="browse-media" aria-hidden="true" style={{ pointerEvents: "none" }}>
       {inView && Preview ? (
         <Suspense fallback={<img src={thumbnail} alt="" width="640" height="360" decoding="async" />}>
           <Preview {...props} />

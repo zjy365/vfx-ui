@@ -18,7 +18,26 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `density?: number`
+- `speed?: number`
+- `size?: number`
+- `color?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { PARTICLE_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `PARTICLE_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

@@ -1,6 +1,6 @@
-# Iridescent
+# Light Prism
 
-Silky thin-film interference colors drifting across the surface.
+Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
 
 ## Install
 
@@ -9,20 +9,24 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { LightPrism } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <LightPrism />;
 }
 ```
 
 ## Props
 
 - `speed?: number`
-- `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
+- `prismSize?: number`
+- `beamWidth?: number`
+- `refraction?: number`
+- `dispersion?: number`
+- `shadow?: number`
+- `from?: string`
+- `to?: string`
+- `accent?: string`
 - `interactive?: boolean`
 - `className?: string`
 - `style?: VfxCanvasProps["style"]`
@@ -33,12 +37,12 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `LIGHT_PRISM_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

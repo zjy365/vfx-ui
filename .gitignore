@@ -10,3 +10,4 @@ private/
 
 # quality-snapshot build artifacts
 packages/core/.cache/
+packages/react/.cache/

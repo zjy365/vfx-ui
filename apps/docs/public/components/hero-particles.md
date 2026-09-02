@@ -1,6 +1,6 @@
-# Iridescent
+# Hero Particles
 
-Silky thin-film interference colors drifting across the surface.
+Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
 
 ## Install
 
@@ -9,36 +9,38 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { HeroParticles } from "@vfx-ui/react";
 
 export function Demo() {
-  return <Iridescent />;
+  return <HeroParticles />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `badges?: readonly string[]`
+- `scheme?: "dark" | "light"`
+- `density?: number`
 - `speed?: number`
-- `scale?: number`
-- `hueShift?: number`
-- `saturation?: number`
-- `brightness?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
+- `size?: number`
+- `color?: string`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader
 
-WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effect works.
+WGSL source is exported as `PARTICLE_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

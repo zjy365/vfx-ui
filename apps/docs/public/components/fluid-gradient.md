@@ -18,7 +18,28 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `speed?: number`
+- `warp?: number`
+- `scale?: number`
+- `from?: string`
+- `to?: string`
+- `accent?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { FLUID_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `FLUID_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

@@ -5,6 +5,7 @@ export const SITE_TITLE = "Shader effect components for React";
 export const SITE_DESCRIPTION = "Browse copy-ready WebGPU shader components for React — GPU backgrounds, text effects, glass surfaces, data visuals, and globes. Copy, paste, and ship.";
 
 const CATEGORY_DESCRIPTORS = {
+  Heroes: "Hero Section",
   Backgrounds: "Shader Background",
   Text: "Text Effect",
   Glass: "Glass Effect",

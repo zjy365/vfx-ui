@@ -1,6 +1,6 @@
-# Fiber Flow
+# Hero Fiber
 
-Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
 
 ## Install
 
@@ -9,15 +9,22 @@ npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx
-import { FiberFlow } from "@vfx-ui/react";
+import { HeroFiber } from "@vfx-ui/react";
 
 export function Demo() {
-  return <FiberFlow />;
+  return <HeroFiber />;
 }
 ```
 
 ## Props
 
+- `eyebrow?: string`
+- `title?: string`
+- `subtitle?: string`
+- `primaryCta?: string`
+- `secondaryCta?: string`
+- `badges?: readonly string[]`
+- `scheme?: "dark" | "light"`
 - `speed?: number`
 - `intensity?: number`
 - `scale?: number`
@@ -26,17 +33,13 @@ export function Demo() {
 - `from?: string`
 - `to?: string`
 - `accent?: string`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
 
 ## Variants
 
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FIBER_FLOW_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_PRESETS } from "@vfx-ui/react";
 ```
 
 ## Shader

@@ -18,7 +18,27 @@ export function Demo() {
 
 ## Props
 
-(see source)
+- `radius?: number`
+- `borderGlow?: number`
+- `shine?: number`
+- `cardScale?: number`
+- `tint?: string`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: VfxCanvasProps["style"]`
+- `fallback?: VfxCanvasProps["fallback"]`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { GLASS_CARD_PRESETS } from "@vfx-ui/react";
+```
+
+## Shader
+
+WGSL source is exported as `GLASS_CARD_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 
