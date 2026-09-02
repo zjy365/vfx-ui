@@ -2,18 +2,33 @@ import { describe, expect, it } from "vitest";
 import { renderToString } from "react-dom/server";
 import {
   Aurora,
+  BlackHole,
+  ChromaFlow,
   EnergyOrb,
   FiberFlow,
   FluidGradient,
   GlassCard,
+  GlassLens,
+  HeroAurora,
+  HeroBlackHole,
+  HeroChroma,
+  HeroFiber,
+  HeroFluid,
+  HeroGlobe,
+  HeroIridescent,
+  HeroMesh,
+  HeroParticles,
+  HeroRibbon,
+  HeroStarfield,
+  HeroVortex,
   Iridescent,
+  LightPrism,
   LiquidGlass,
   LiveChart,
   MeshGradient,
   ParticleField,
   RibbonField,
   Starfield,
-  TimelineArc,
   Vortex,
   VfxCanvas,
   WaveBackground,
@@ -31,7 +46,9 @@ describe("SSR safety", () => {
         <Starfield />
         <ParticleField />
         <GlassCard />
+        <GlassLens />
         <LiquidGlass />
+        <BlackHole />
         <MeshGradient />
         <Iridescent />
         <Vortex />
@@ -40,13 +57,33 @@ describe("SSR safety", () => {
         <EnergyOrb />
         <RibbonField />
         <FiberFlow />
-        <TimelineArc />
+        <LightPrism />
+        <ChromaFlow />
+        <HeroFluid />
+        <HeroAurora />
+        <HeroFiber />
+        <HeroGlobe />
+        <HeroMesh />
+        <HeroIridescent />
+        <HeroVortex />
+        <HeroRibbon />
+        <HeroParticles />
+        <HeroStarfield />
+        <HeroBlackHole />
+        <HeroChroma />
         <VfxCanvas shader="/* empty */" fallback={<span>no webgpu</span>} />
       </div>,
     );
     const canvasCount = (tree.match(/<canvas/g) ?? []).length;
-    expect(canvasCount).toBe(17);
+    // 32 canvases: 19 shader components (incl. GlassLens, BlackHole, ChromaFlow) +
+    // 11 WebGPU heroes + HeroGlobe's inert cobe canvas (the WebGL globe
+    // itself mounts client-side only) + the bare VfxCanvas below.
+    expect(canvasCount).toBe(32);
     expect(tree).not.toContain("no webgpu");
+    // Heroes must ship real selectable DOM text, not texture-rendered type.
+    expect(tree).toContain("<h1");
+    expect(tree).toContain("Your product, in one sentence.");
+    expect(tree).toContain("aria-hidden");
   });
 
   it("keeps uniform props out of the server payload", () => {
