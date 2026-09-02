@@ -9,7 +9,7 @@
  *
  * Usage: node registry/build.mjs [--out <dir>]
  */
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -86,6 +86,24 @@ const CATALOG = [
     files: ["components/LiquidGlass.tsx"],
   },
   {
+    name: "glass-lens",
+    component: "GlassLens",
+    title: "Glass Lens",
+    description: "Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.",
+    categories: ["Glass"],
+    tags: ["glass", "refraction", "lens", "liquid-glass"],
+    files: ["components/GlassLens.tsx"],
+  },
+  {
+    name: "black-hole",
+    component: "BlackHole",
+    title: "Black Hole",
+    description: "The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).",
+    categories: ["Backgrounds"],
+    tags: ["background", "space", "black-hole", "ray-tracing"],
+    files: ["components/BlackHole.tsx"],
+  },
+  {
     name: "mesh-gradient",
     component: "MeshGradient",
     title: "Mesh Gradient",
@@ -158,13 +176,144 @@ const CATALOG = [
     files: ["components/FiberFlow.tsx"],
   },
   {
-    name: "timeline-arc",
-    component: "TimelineArc",
-    title: "Timeline Arc",
-    description: "Milestone timeline on a tilted 3D dial — procedural ruler disk spins under scroll so the active year stays anchored, hexagon marker and dashed callout (sealos.run/about-us style).",
-    categories: ["Data"],
-    tags: ["timeline", "milestone", "arc", "history"],
-    files: ["components/TimelineArc.tsx"],
+    name: "light-prism",
+    component: "LightPrism",
+    title: "Light Prism",
+    description: "Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).",
+    categories: ["Glass"],
+    tags: ["glass", "prism", "refraction", "hero", "paper"],
+    files: ["components/LightPrism.tsx"],
+  },
+  {
+    name: "hero-fluid",
+    component: "HeroFluid",
+    title: "Hero Fluid",
+    description: "Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "gradient", "fluid"],
+    files: ["components/HeroFluid.tsx"],
+    deps: ["HeroShell", "FluidGradient"],
+  },
+  {
+    name: "hero-aurora",
+    component: "HeroAurora",
+    title: "Hero Aurora",
+    description: "Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "aurora", "night"],
+    files: ["components/HeroAurora.tsx"],
+    deps: ["HeroShell", "Aurora"],
+  },
+  {
+    name: "hero-fiber",
+    component: "HeroFiber",
+    title: "Hero Fiber",
+    description: "Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "fibers", "silk"],
+    files: ["components/HeroFiber.tsx"],
+    deps: ["HeroShell", "FiberFlow"],
+  },
+  {
+    name: "hero-globe",
+    component: "HeroGlobe",
+    title: "Hero Globe",
+    description: "Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "globe", "split"],
+    files: ["components/HeroGlobe.tsx"],
+    deps: ["HeroShell"],
+    sharedFiles: false,
+    npmDependencies: ["cobe@^2.0.1"],
+  },
+  {
+    name: "hero-mesh",
+    component: "HeroMesh",
+    title: "Hero Mesh",
+    description: "Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "gradient", "mesh"],
+    files: ["components/HeroMesh.tsx"],
+    deps: ["HeroShell", "MeshGradient"],
+  },
+  {
+    name: "hero-iridescent",
+    component: "HeroIridescent",
+    title: "Hero Iridescent",
+    description: "Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "holographic", "silk"],
+    files: ["components/HeroIridescent.tsx"],
+    deps: ["HeroShell", "Iridescent"],
+  },
+  {
+    name: "hero-vortex",
+    component: "HeroVortex",
+    title: "Hero Vortex",
+    description: "Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "galaxy", "spiral"],
+    files: ["components/HeroVortex.tsx"],
+    deps: ["HeroShell", "Vortex"],
+  },
+  {
+    name: "hero-ribbon",
+    component: "HeroRibbon",
+    title: "Hero Ribbon",
+    description: "Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "ribbon", "split"],
+    files: ["components/HeroRibbon.tsx"],
+    deps: ["HeroShell", "RibbonField"],
+  },
+  {
+    name: "hero-particles",
+    component: "HeroParticles",
+    title: "Hero Particles",
+    description: "Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "particles"],
+    files: ["components/HeroParticles.tsx"],
+    deps: ["HeroShell", "ParticleField"],
+  },
+  {
+    name: "hero-starfield",
+    component: "HeroStarfield",
+    title: "Hero Starfield",
+    description: "Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "stars", "space"],
+    files: ["components/HeroStarfield.tsx"],
+    deps: ["HeroShell", "Starfield"],
+  },
+  {
+    name: "hero-black-hole",
+    component: "HeroBlackHole",
+    title: "Hero Black Hole",
+    description: "Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "space", "black-hole"],
+    files: ["components/HeroBlackHole.tsx"],
+    deps: ["HeroShell", "BlackHole"],
+  },
+  {
+    name: "chroma-flow",
+    component: "ChromaFlow",
+    title: "Chroma Flow",
+    description: "Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.",
+    categories: ["Backgrounds"],
+    tags: ["background", "gradient", "chromatic", "pointer"],
+    files: ["components/ChromaFlow.tsx"],
+  },
+  {
+    name: "hero-chroma",
+    component: "HeroChroma",
+    title: "Hero Chroma",
+    description: "Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.",
+    categories: ["Heroes"],
+    tags: ["hero", "landing", "chromatic", "gradient"],
+    files: ["components/HeroChroma.tsx"],
+    deps: ["HeroShell", "ChromaFlow"],
   },
 ];
 
@@ -172,10 +321,51 @@ const CATALOG = [
 const SHARED_FILES = [
   { path: "vfx/VfxCanvas.tsx", from: join(reactSrc, "VfxCanvas.tsx") },
   { path: "vfx/color.ts", from: join(reactSrc, "utils/color.ts") },
+  { path: "vfx/usePointerUniforms.tsx", from: join(reactSrc, "usePointerUniforms.ts") },
 ];
 
 function read(p) {
   return readFileSync(p, "utf8");
+}
+
+/**
+ * The copy-paste bundle has no @vfx-ui/core — inline its sources into the
+ * top of VfxCanvas.tsx so the emitted file is self-contained (npm users get
+ * the same behavior via the package dependency).
+ */
+function inlinedVfxCanvas() {
+  const coreSrc = join(root, "packages", "core", "src");
+  const core = ["types.ts", "capability.ts", "renderer.ts"]
+    .map((f) =>
+      read(join(coreSrc, f))
+        .split("\n")
+        .filter((l) => !/^(import|export)[^;\n]*from "\.\//.test(l))
+        .join("\n"),
+    )
+    .join("\n\n");
+  const canvas = read(join(reactSrc, "VfxCanvas.tsx")).replace(
+    /import\s*\{[^}]*\}\s*from\s*["']@vfx-ui\/core["'];?\n/,
+    "",
+  );
+  return `/* @vfx-ui/core (inlined by registry/build.mjs — do not edit) */\n${core}\n${canvas}`;
+}
+
+/**
+ * Rewrite workspace-relative imports to the bundled layout:
+ * item file lands at components/<Name>.tsx, every dependency at
+ * components/vfx/<Name>.tsx. Files emitted inside vfx/ resolve siblings
+ * with "./"; the item file reaches into "./vfx/".
+ */
+function rewriteImports(content, depNames, inVfx) {
+  const p = inVfx ? "./" : "./vfx/";
+  let out = content
+    .replace(/from "\.\.\/VfxCanvas"/g, `from "${p}VfxCanvas"`)
+    .replace(/from "\.\.\/utils\/color"/g, `from "${p}color"`)
+    .replace(/from "\.\.\/usePointerUniforms(\.ts)?"/g, `from "${p}usePointerUniforms"`);
+  for (const dep of depNames) {
+    out = out.replace(new RegExp(`from "\\./${dep}"`, "g"), `from "${p}${dep}"`);
+  }
+  return out;
 }
 
 function componentCode(component) {
@@ -186,6 +376,17 @@ function componentCode(component) {
 function buildItem(entry) {
   const source = componentCode(entry.component);
   if (source == null) return null;
+  const deps = entry.deps ?? [];
+  const depFiles = deps.map((dep) => {
+    const depSource = componentCode(dep);
+    if (depSource == null) throw new Error(`registry: missing dependency component ${dep} (item ${entry.name})`);
+    return {
+      path: `vfx/${dep}.tsx`,
+      type: "registry:component",
+      content: rewriteImports(depSource, deps, true),
+      target: `components/vfx/${dep}.tsx`,
+    };
+  });
   const item = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name: entry.name,
@@ -193,20 +394,25 @@ function buildItem(entry) {
     description: entry.description,
     type: "registry:component",
     registryDependencies: [],
-    dependencies: ["vgpu@0.3.1"],
+    dependencies: entry.sharedFiles === false
+      ? [...(entry.npmDependencies ?? [])]
+      : ["vgpu@0.3.1", ...(entry.npmDependencies ?? [])],
     categories: entry.categories,
     docs: entry.description,
     files: [
-      ...SHARED_FILES.map((f) => ({
-        path: f.path,
-        type: "registry:component",
-        content: read(f.from),
-        target: `components/${f.path}`,
-      })),
+      ...(entry.sharedFiles === false
+        ? []
+        : SHARED_FILES.map((f) => ({
+            path: f.path,
+            type: "registry:component",
+            content: f.path === "vfx/VfxCanvas.tsx" ? inlinedVfxCanvas() : read(f.from),
+            target: `components/${f.path}`,
+          }))),
+      ...depFiles,
       {
         path: `components/${entry.component}.tsx`,
         type: "registry:component",
-        content: source,
+        content: rewriteImports(source, deps, false),
         target: `components/${entry.component}.tsx`,
       },
     ],
@@ -227,6 +433,11 @@ function main() {
   }
 
   mkdirSync(join(outDir, "r"), { recursive: true });
+  // Drop stale per-item JSON so removed components don't linger in the
+  // generated docs (generate-agentic.mjs enumerates this directory).
+  for (const f of readdirSync(join(outDir, "r"))) {
+    if (f.endsWith(".json")) rmSync(join(outDir, "r", f));
+  }
   for (const { item } of items) {
     writeFileSync(join(outDir, "r", `${item.name}.json`), JSON.stringify(item, null, 2) + "\n");
   }

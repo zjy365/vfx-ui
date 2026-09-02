@@ -9,7 +9,7 @@
  *
  * Usage: node scripts/generate-agentic.mjs [--out <dir>]
  */
-import { existsSync, readFileSync, readdirSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -28,11 +28,16 @@ const index = JSON.parse(readFileSync(join(registryDir, "index.json"), "utf8"));
 
 function itemDoc(name) {
   const item = JSON.parse(readFileSync(join(registryDir, "r", `${name}.json`), "utf8"));
-  const componentFile = item.files.find((f) => (f.target ?? f.path).includes("/components/") && (f.target ?? f.path).endsWith(".tsx") && !(f.target ?? f.path).includes("vfx/"));
+  // The item's own component lands at components/<Name>.tsx; every dependency
+  // (shared runtime + base shaders) is namespaced under components/vfx/.
+  const componentFile = item.files.find((f) => (f.target ?? f.path).endsWith(".tsx") && !(f.target ?? f.path).includes("vfx/"));
   const source = componentFile?.content ?? "";
   const propsMatch = source.match(/export interface (\w+Props)[^{]*\{([\s\S]*?)\n\}/);
   const presetsMatch = source.match(/export const (\w+_PRESETS)/);
-  const shaderMatch = source.match(/export const (\w+_SHADER)/);
+  // Shader detection spans the whole bundle: heroes carry their base shader's
+  // WGSL export inside the embedded vfx/ dependency file.
+  const shaderMatch = source.match(/export const (\w+_SHADER)/)
+    ?? item.files.map((f) => f.content.match(/export const (\w+_SHADER)/)).find(Boolean);
   const props = propsMatch
     ? propsMatch[2]
         .split("\n")
@@ -40,6 +45,9 @@ function itemDoc(name) {
         .filter((l) => l && !l.startsWith("/") && !l.startsWith("*"))
         .map((l) => l.replace(/\s*;$/, ""))
     : [];
+  const deps = item.dependencies ?? [];
+  const needsVgpu = deps.some((d) => d.startsWith("vgpu"));
+  const extraDeps = deps.filter((d) => !d.startsWith("vgpu"));
   const lines = [
     `# ${item.title ?? name}`,
     "",
@@ -48,7 +56,7 @@ function itemDoc(name) {
     "## Install",
     "",
     "```bash",
-    "npm install @vfx-ui/react vgpu@0.3.1",
+    `npm install @vfx-ui/react${needsVgpu ? " vgpu@0.3.1" : ""}${extraDeps.length ? ` ${extraDeps.join(" ")}` : ""}`,
     "```",
     "",
     "```tsx",
@@ -73,10 +81,18 @@ function itemDoc(name) {
   lines.push(
     "## Notes for agents",
     "",
-    "- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).",
-    "- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.",
-    "- `prefers-reduced-motion` freezes animation automatically.",
-    "- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.",
+    ...(shaderMatch
+      ? [
+          "- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).",
+          "- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.",
+          "- `prefers-reduced-motion` freezes animation automatically.",
+          "- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.",
+        ]
+      : [
+          "- Not a WGSL shader component: the visual is provided by a third-party renderer (see Install deps).",
+          "- SSR-safe: the visual mounts client-side only; server output is the inert DOM layer.",
+          "- `prefers-reduced-motion` skips animation automatically.",
+        ]),
     "",
   );
   return lines.join("\n");
@@ -112,8 +128,9 @@ function main() {
     "",
     "## Scope guard",
     "",
-    "This library only ships shader-native effects. Do not request DOM animation,",
-    "layout components, or heavy 3D scenes (meshes/lights/cameras) — out of scope by charter.",
+    "This library ships GPU-only visuals and drop-in hero sections.",
+    "Do not request standalone DOM animation widgets, carousels/counters, layout components,",
+    "full-page templates, or heavy 3D scenes (meshes/lights/cameras) — out of scope by charter.",
     "",
   ].join("\n");
   writeFileSync(join(outDir, "llms.txt"), llms);
@@ -129,6 +146,11 @@ function main() {
 
   for (const n of names) {
     writeFileSync(join(outDir, "components", `${n}.md`), itemDoc(n));
+  }
+  // Drop stale docs for components that no longer exist in the registry.
+  const keep = new Set(names.map((n) => `${n}.md`));
+  for (const f of readdirSync(join(outDir, "components"))) {
+    if (f.endsWith(".md") && !keep.has(f)) rmSync(join(outDir, "components", f));
   }
   console.log(`agentic: wrote llms.txt, agents.md, and ${names.length} component docs to ${outDir}`);
 }
