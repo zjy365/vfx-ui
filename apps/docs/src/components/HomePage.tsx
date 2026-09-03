@@ -14,8 +14,8 @@ const BlackHoleBg = lazy(() => import("@vfx-ui/react").then((m) => ({ default: m
 const ChromaFlowBg = lazy(() => import("@vfx-ui/react").then((m) => ({ default: m.ChromaFlow })));
 
 const HERO_BACKGROUNDS = [
-  { id: "black-hole", label: "Black Hole", component: "BlackHole", render: () => <BlackHoleBg /> },
   { id: "aurora", label: "Aurora", component: "Aurora", render: () => <AuroraBg bands={4} primary="#2dd4bf" secondary="#818cf8" /> },
+  { id: "black-hole", label: "Black Hole", component: "BlackHole", render: () => <BlackHoleBg /> },
   { id: "liquid-glass", label: "Liquid Glass", component: "LiquidGlass", render: () => <LiquidGlassBg /> },
   { id: "chroma-flow", label: "Chroma Flow", component: "ChromaFlow", render: () => <ChromaFlowBg /> },
 ] as const;
@@ -102,7 +102,7 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 }
 
 export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps) {
-  const [heroBg, setHeroBg] = useState<HeroBackgroundId>("black-hole");
+  const [heroBg, setHeroBg] = useState<HeroBackgroundId>("aurora");
   const activeBackground = HERO_BACKGROUNDS.find((item) => item.id === heroBg) ?? HERO_BACKGROUNDS[0];
 
   const showcaseItems = SHOWCASE_IDS
