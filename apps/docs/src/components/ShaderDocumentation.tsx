@@ -212,11 +212,18 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
     });
   };
 
+  const settingsDirty = useMemo(
+    () => activeControls.some((control) => previewSettings[control.key] !== defaultPreviewSettings[control.key]),
+    [activeControls, previewSettings, defaultPreviewSettings],
+  );
+
   const usageExample = useMemo(
-    () => shader.sourceCode ?? generatedExample(shader, activeControls, previewSettings),
+    // Pristine: the curated example. Once the user touches the params panel the
+    // code switches to the live-generated example so tweaks sync into the snippet.
+    () => (shader.sourceCode && !settingsDirty ? shader.sourceCode : generatedExample(shader, activeControls, previewSettings)),
     // The generated example intentionally tracks live control values.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [shader, activeControls, previewSettings],
+    [shader, activeControls, previewSettings, settingsDirty],
   );
 
   const installExample = useMemo(
@@ -449,10 +456,11 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
           </div>
 
           <section className="demo inset-shadow" id="usage" aria-label="Usage">
-            <div
-              className={`preview shader-preview ${shader.id}`}
-              data-variant={activeVariant?.id}
-            >
+            <div className="stage-grid">
+              <div
+                className={`preview shader-preview ${shader.id}`}
+                data-variant={activeVariant?.id}
+              >
               <Suspense fallback={<div className="preview-loading" role="status">Loading renderer…</div>}>
                 {Preview ? (
                   <Preview key={`${shader.id}-${activeVariant?.id ?? "default"}-${restartKey}`} {...previewProps} />
@@ -684,6 +692,7 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
                 </div>
               </div>
             </div>
+            </div>
 
             <div className="code-card card source-card">
               <div className="tabbar">
@@ -700,6 +709,9 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
                     </button>
                   ))}
                 </div>
+                {sourceTab === "usage" && settingsDirty ? (
+                  <span className="live-params-badge" title="Code reflects the current params panel values">Live params</span>
+                ) : null}
                 <button
                   className="icon-btn inset-shadow"
                   aria-label="Copy source"

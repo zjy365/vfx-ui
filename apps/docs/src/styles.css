@@ -1583,6 +1583,128 @@ pre {
   background: var(--background-inset);
 }
 
+/* Stage grid: the playground unit — live preview with a compact variant dock
+   below it, params panel pinned alongside so tweaks and the canvas share a
+   viewport. Stacks to a single column under 1024px. */
+.stage-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 288px;
+  grid-template-rows: auto auto;
+  gap: 6px;
+}
+
+.stage-grid .preview {
+  grid-column: 1;
+  grid-row: 1;
+  aspect-ratio: 16 / 10;
+}
+
+.stage-grid .variant-picker {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0;
+}
+
+.stage-grid .panel {
+  grid-column: 2;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-top: 0;
+}
+
+.stage-grid .panel-head {
+  flex: none;
+}
+
+.stage-grid .shader-controls {
+  flex: 1 1 auto;
+  grid-template-columns: 1fr;
+  align-content: start;
+  min-height: 0;
+  overflow-y: auto;
+  scrollbar-color: var(--border) transparent;
+  scrollbar-width: thin;
+}
+
+.stage-grid .renderer-facts {
+  flex: none;
+  grid-template-columns: 1fr;
+  padding-top: 0;
+}
+
+/* Compact variant dock: fixed-width tiles, label overlaid on the still. */
+.stage-grid .variant-option {
+  position: relative;
+  flex: 0 0 148px;
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.stage-grid .variant-option-thumbnail {
+  aspect-ratio: 16 / 9;
+  border-radius: 0;
+}
+
+.stage-grid .variant-option-label {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 16px 8px 6px;
+  background: linear-gradient(to top, rgba(3, 5, 7, 0.72), transparent);
+  color: #f4f6f8;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.stage-grid .variant-option.active {
+  border-color: var(--brand);
+  background: var(--background-inset);
+}
+
+.stage-grid .variant-option.active .variant-option-label {
+  color: var(--brand-strong);
+}
+
+.live-params-badge {
+  align-self: center;
+  margin-right: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--brand-tint);
+  color: var(--brand-strong);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1023px) {
+  .stage-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage-grid .preview {
+    aspect-ratio: 16 / 9;
+  }
+
+  .stage-grid .panel {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .stage-grid .shader-controls {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    overflow: visible;
+  }
+
+  .stage-grid .renderer-facts {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
 .preview {
   position: relative;
   display: flex;
@@ -2095,6 +2217,9 @@ pre {
 }
 
 .slider-control .slider-knob {
+  /* The fill edge already marks progress; a knob at the fill's tip lands on
+     top of the label/value text at extreme values, so it stays hidden. */
+  display: none;
   position: absolute;
   top: 50%;
   right: 4px;

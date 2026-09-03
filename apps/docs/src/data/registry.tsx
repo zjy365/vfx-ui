@@ -75,6 +75,8 @@ export type ReadyShader = {
   variants?: readonly ShaderVariant[];
 };
 
+const GENERIC_VARIANT_THUMBNAIL_COLORS = ["#111318", "#1d2130", "#3b4252"] as const;
+
 function gradientThumbnail(from: string, to: string, accent: string) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360"><defs><linearGradient id="g" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="${from}"/><stop offset="0.6" stop-color="${to}"/><stop offset="1" stop-color="${accent}"/></linearGradient></defs><rect width="640" height="360" fill="url(#g)"/></svg>`;
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
@@ -197,7 +199,13 @@ function entry(
     sourceCode: config.sourceCode,
     agentNotes: config.agentNotes.join("\n"),
     controls: config.controls,
-    variants: config.variants,
+    // Variants without a meaningful thumbnail (numeric presets fall through
+    // paletteThumb to the generic gradient) inherit the shader's real still.
+    variants: config.variants.map((variant) =>
+      variant.thumbnail === gradientThumbnail(...GENERIC_VARIANT_THUMBNAIL_COLORS)
+        ? { ...variant, thumbnail: config.thumbnail }
+        : variant
+    ),
   };
 }
 
@@ -260,7 +268,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "gradient", "fluid"],
     description: "Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.",
     importName: "HeroFluid",
-    thumbnail: paletteThumb({ from: "#0b1026", to: "#1d4ed8", accent: "#7dd3fc" }),
+    thumbnail: "/showcase/hero-fluid.png",
     sourceCode: heroUsage("HeroFluid"),
     agentNotes: HERO_NOTES("liquid-gradient", "centered"),
     controls: [],
@@ -277,7 +285,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "aurora", "night"],
     description: "Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.",
     importName: "HeroAurora",
-    thumbnail: paletteThumb({ from: "#010409", primary: "#2dd4bf", secondary: "#818cf8" }),
+    thumbnail: "/showcase/hero-aurora.png",
     sourceCode: heroUsage("HeroAurora"),
     agentNotes: HERO_NOTES("aurora", "left"),
     controls: [],
@@ -294,7 +302,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "fibers", "silk"],
     description: "Drop-in hero: top-weighted headline over luminous silk fibers streaming through the dark.",
     importName: "HeroFiber",
-    thumbnail: paletteThumb({ from: "#1e1b4b", to: "#4f46e5", accent: "#a5b4fc" }),
+    thumbnail: "/showcase/hero-fiber.png",
     sourceCode: heroUsage("HeroFiber"),
     agentNotes: HERO_NOTES("fiber-flow", "stacked"),
     controls: [],
@@ -311,7 +319,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "globe", "split"],
     description: "Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.",
     importName: "HeroGlobe",
-    thumbnail: paletteThumb({ from: "#020617", color: "#9db4d8", accent: "#7da7fc" }),
+    thumbnail: "/showcase/hero-globe.png",
     sourceCode: heroUsage("HeroGlobe"),
     agentNotes: [
       "Purpose: drop-in hero section — a full first screen with real, selectable DOM text (split layout) over the cobe dot-matrix globe (MIT, the globe behind vercel.com). Copy it, ship it.",
@@ -335,7 +343,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "gradient", "mesh"],
     description: "Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.",
     importName: "HeroMesh",
-    thumbnail: paletteThumb({ from: "#0b1120", to: "#134e4a", accent: "#7c3aed", deep: "#f472b6" }),
+    thumbnail: "/showcase/hero-mesh.png",
     sourceCode: heroUsage("HeroMesh"),
     agentNotes: HERO_NOTES("mesh-gradient", "centered"),
     controls: [],
@@ -352,7 +360,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "holographic", "silk"],
     description: "Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.",
     importName: "HeroIridescent",
-    thumbnail: paletteThumb({ from: "#111014", to: "#3b3150", accent: "#f0abfc" }),
+    thumbnail: "/showcase/hero-iridescent.png",
     sourceCode: heroUsage("HeroIridescent"),
     agentNotes: HERO_NOTES("iridescent", "left"),
     controls: [],
@@ -369,7 +377,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "galaxy", "spiral"],
     description: "Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.",
     importName: "HeroVortex",
-    thumbnail: paletteThumb({ from: "#0a0a12", color: "#818cf8", emission: "#e0e7ff" }),
+    thumbnail: "/showcase/hero-vortex.png",
     sourceCode: heroUsage("HeroVortex"),
     agentNotes: HERO_NOTES("vortex", "centered"),
     controls: [],
@@ -386,7 +394,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "ribbon", "split"],
     description: "Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.",
     importName: "HeroRibbon",
-    thumbnail: paletteThumb({ from: "#05060a", to: "#0e2a47", accent: "#7dd3fc" }),
+    thumbnail: "/showcase/hero-ribbon.png",
     sourceCode: heroUsage("HeroRibbon"),
     agentNotes: HERO_NOTES("ribbon-field", "split"),
     controls: [],
@@ -403,7 +411,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "particles"],
     description: "Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.",
     importName: "HeroParticles",
-    thumbnail: paletteThumb({ from: "#060913", color: "#9ccaff" }),
+    thumbnail: "/showcase/hero-particles.png",
     sourceCode: heroUsage("HeroParticles"),
     agentNotes: HERO_NOTES("particle-field", "stacked"),
     controls: [],
@@ -420,7 +428,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "stars", "space"],
     description: "Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax drift.",
     importName: "HeroStarfield",
-    thumbnail: paletteThumb({ from: "#01030a", color: "#d0e4ff" }),
+    thumbnail: "/showcase/hero-starfield.png",
     sourceCode: heroUsage("HeroStarfield"),
     agentNotes: HERO_NOTES("starfield", "left"),
     controls: [],
@@ -438,7 +446,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "space", "black-hole", "physics"],
     description: "Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.",
     importName: "HeroBlackHole",
-    thumbnail: paletteThumb({ from: "#020103", to: "#7c2d12", accent: "#fbbf24" }),
+    thumbnail: "/showcase/hero-black-hole.png",
     sourceCode: heroUsage("HeroBlackHole"),
     agentNotes: HERO_NOTES("black-hole", "left"),
     controls: [],
@@ -455,7 +463,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["hero", "landing", "chromatic", "gradient", "pointer"],
     description: "Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.",
     importName: "HeroChroma",
-    thumbnail: gradientThumbnail("#071021", "#1d4ed8", "#f59e0b"),
+    thumbnail: "/showcase/hero-chroma.png",
     sourceCode: heroUsage("HeroChroma"),
     agentNotes: HERO_NOTES("chroma-flow", "left"),
     controls: [],
@@ -473,7 +481,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["background", "gradient", "waves", "hero"],
     description: "Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU.",
     importName: "WaveBackground",
-    thumbnail: gradientThumbnail("#020617", "#1d4ed8", "#38bdf8"),
+    thumbnail: "/showcase/wave-background.png",
     sourceCode: WAVE_USAGE,
     agentNotes: [
       "Purpose: ambient full-bleed animated background; three layered sine bands over a tri-color gradient. GPU-only via WebGPU.",
@@ -504,7 +512,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["background", "fluid", "noise"],
     description: "Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video.",
     importName: "FluidGradient",
-    thumbnail: paletteThumb(FLUID_PRESETS.sunset),
+    thumbnail: "/showcase/fluid-gradient.png",
     sourceCode: fluidUsage("sunset"),
     agentNotes: [
       "Purpose: organic animated background built from domain-warped fractal noise; every frame is computed on the GPU.",
@@ -535,7 +543,7 @@ export const READY_SHADERS: readonly ReadyShader[] = [
     tags: ["background", "aurora", "night"],
     description: "Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky.",
     importName: "Aurora",
-    thumbnail: paletteThumb({ from: "#010409", to: "#134e4a", accent: "#2dd4bf" }),
+    thumbnail: "/showcase/aurora.png",
     sourceCode: `import { Aurora, AURORA_PRESETS } from "@vfx-ui/react";
 
 export function NightHero() {
@@ -576,7 +584,7 @@ export function NightHero() {
     tags: ["background", "stars", "space"],
     description: "Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.",
     importName: "Starfield",
-    thumbnail: paletteThumb({ from: "#020617", color: "#d6e4ff", accent: "#818cf8" }),
+    thumbnail: "/showcase/starfield.png",
     sourceCode: `import { Starfield, STARFIELD_PRESETS } from "@vfx-ui/react";
 
 export function SpaceSection() {
@@ -616,7 +624,7 @@ export function SpaceSection() {
     tags: ["background", "particles"],
     description: "Procedural cell-hashed particles with drift and size breathing — a living texture, no sprite sheet.",
     importName: "ParticleField",
-    thumbnail: paletteThumb({ from: "#0b1120", color: "#a8d8ff", accent: "#e2e8f0" }),
+    thumbnail: "/showcase/particle-field.png",
     sourceCode: `import { ParticleField, PARTICLE_PRESETS } from "@vfx-ui/react";
 
 export function AmbientBanner() {
@@ -654,7 +662,7 @@ export function AmbientBanner() {
     tags: ["glass", "card", "sdf"],
     description: "Rounded-rect SDF glass card with a sweeping inner highlight and edge refraction — all in one fullscreen pass.",
     importName: "GlassCard",
-    thumbnail: paletteThumb({ from: "#0f172a", color: "#a5c8ff", accent: "#f8fafc" }),
+    thumbnail: "/showcase/glass-card.png",
     sourceCode: `import { GlassCard, GLASS_CARD_PRESETS } from "@vfx-ui/react";
 
 export function GlassPanel() {
@@ -695,7 +703,7 @@ export function GlassPanel() {
     tags: ["glass", "refraction", "liquid"],
     description: "Fullscreen liquid refraction with approximate chromatic dispersion — the page breathes.",
     importName: "LiquidGlass",
-    thumbnail: paletteThumb({ from: "#020617", color: "#7dd3fc", accent: "#c4b5fd" }),
+    thumbnail: "/showcase/liquid-glass.png",
     sourceCode: `import { LiquidGlass, LIQUID_GLASS_PRESETS } from "@vfx-ui/react";
 
 export function LiquidHero() {
@@ -735,7 +743,7 @@ export function LiquidHero() {
     tags: ["glass", "refraction", "lens", "liquid-glass"],
     description: "A floating liquid-glass pill over a living color field — cylindrical rim refraction, RGB dispersion, and a rotating specular sweep, all computed as real lens optics.",
     importName: "GlassLens",
-    thumbnail: paletteThumb({ from: "#05070f", color: "#38bdf8", accent: "#e9d5ff" }),
+    thumbnail: "/showcase/glass-lens.png",
     sourceCode: `import { GlassLens, GLASS_LENS_PRESETS } from "@vfx-ui/react";
 
 export function FeatureBand() {
@@ -777,7 +785,7 @@ export function FeatureBand() {
     tags: ["background", "gradient", "voronoi"],
     description: "Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.",
     importName: "MeshGradient",
-    thumbnail: paletteThumb(MESH_GRADIENT_PRESETS.aurora),
+    thumbnail: "/showcase/mesh-gradient.png",
     sourceCode: `import { MeshGradient, MESH_GRADIENT_PRESETS } from "@vfx-ui/react";
 
 export function MeshHero() {
@@ -820,7 +828,7 @@ export function MeshHero() {
     tags: ["background", "holographic", "silk"],
     description: "Thin-film interference colors drifting as silk — cosine-palette holography in a single pass.",
     importName: "Iridescent",
-    thumbnail: paletteThumb({ from: "#0f0c29", color: "#c3a3ff", accent: "#f5d0fe" }),
+    thumbnail: "/showcase/iridescent.png",
     sourceCode: `import { Iridescent, IRIDESCENT_PRESETS } from "@vfx-ui/react";
 
 export function IridescentHero() {
@@ -861,7 +869,7 @@ export function IridescentHero() {
     tags: ["background", "galaxy", "spiral"],
     description: "Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.",
     importName: "Vortex",
-    thumbnail: paletteThumb(VORTEX_PRESETS.galaxy),
+    thumbnail: "/showcase/vortex.png",
     sourceCode: `import { Vortex, VORTEX_PRESETS } from "@vfx-ui/react";
 
 export function GalaxyHero() {
@@ -903,7 +911,7 @@ export function GalaxyHero() {
     tags: ["background", "space", "black-hole", "ray-tracing", "physics"],
     description: "The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).",
     importName: "BlackHole",
-    thumbnail: paletteThumb({ from: "#020103", to: "#7c2d12", accent: "#fde68a" }),
+    thumbnail: "/showcase/black-hole.png",
     sourceCode: `import { BlackHole, BLACK_HOLE_PRESETS } from "@vfx-ui/react";
 
 export function PhysicsHero() {
@@ -950,7 +958,7 @@ export function PhysicsHero() {
     tags: ["globe", "map", "3d"],
     description: "WebGPU re-creation of shuding/cobe (MIT): a lat/lon dot-matrix globe with fresnel rim and far-side shading.",
     importName: "WebGlobe",
-    thumbnail: paletteThumb(WEB_GLOBE_PRESETS.midnight),
+    thumbnail: "/showcase/web-globe.png",
     sourceCode: `import { WebGlobe, WEB_GLOBE_PRESETS } from "@vfx-ui/react";
 
 export function GlobeCard() {
@@ -990,7 +998,7 @@ export function GlobeCard() {
     tags: ["globe", "orb", "smoke", "glow"],
     description: "Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT).",
     importName: "EnergyOrb",
-    thumbnail: paletteThumb(ENERGY_ORB_PRESETS.amethyst),
+    thumbnail: "/showcase/energy-orb.png",
     sourceCode: `import { EnergyOrb, ENERGY_ORB_PRESETS } from "@vfx-ui/react";
 
 export function OrbHero() {
@@ -1028,7 +1036,7 @@ export function OrbHero() {
     tags: ["background", "ribbon", "dots", "glow"],
     description: "Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores and film grain — WGSL port of ThreeUI's RibbonField (MIT).",
     importName: "RibbonField",
-    thumbnail: paletteThumb({}),
+    thumbnail: "/showcase/ribbon-field.png",
     sourceCode: `import { RibbonField, RIBBON_FIELD_PRESETS } from "@vfx-ui/react";
 
 export function RibbonHero() {
@@ -1065,7 +1073,7 @@ export function RibbonHero() {
     tags: ["background", "fibers", "silk", "flow", "waves"],
     description: "Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.",
     importName: "FiberFlow",
-    thumbnail: paletteThumb({}),
+    thumbnail: "/showcase/fiber-flow.png",
     sourceCode: `import { FiberFlow, FIBER_FLOW_PRESETS } from "@vfx-ui/react";
 
 export function FiberHero() {
@@ -1106,7 +1114,7 @@ export function FiberHero() {
     tags: ["background", "gradient", "chromatic", "pointer", "hero"],
     description: "Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design.",
     importName: "ChromaFlow",
-    thumbnail: gradientThumbnail("#071021", "#1d4ed8", "#f59e0b"),
+    thumbnail: "/showcase/chroma-flow.png",
     sourceCode: `import { ChromaFlow, CHROMA_FLOW_PRESETS } from "@vfx-ui/react";
 
 export function ChromaHero() {
@@ -1149,7 +1157,7 @@ export function ChromaHero() {
     tags: ["glass", "prism", "refraction", "hero", "paper"],
     description: "A frosted glass prism floating on warm paper with a white light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion in one pass.",
     importName: "LightPrism",
-    thumbnail: paletteThumb({ from: "#e9e6df", to: "#a8a49b", accent: "#ffffff" }),
+    thumbnail: "/showcase/light-prism.png",
     sourceCode: `import { LightPrism, LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
 
 export function PrismHero() {
@@ -1194,7 +1202,7 @@ export function PrismHero() {
     tags: ["data", "chart", "realtime"],
     description: "Real-time GPU line chart: analytic stroke + glow + area fill from a uniform array of points.",
     importName: "LiveChart",
-    thumbnail: paletteThumb({ from: "#082f49", color: "#38bdf8", accent: "#7dd3fc" }),
+    thumbnail: "/showcase/live-chart.png",
     sourceCode: `import { useEffect, useState } from "react";
 import { LiveChart } from "@vfx-ui/react";
 
