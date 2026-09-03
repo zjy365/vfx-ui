@@ -1,6 +1,6 @@
 {
   "name": "@vfx-ui/react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Shader-native visual effect components for React. WebGPU via vgpu.",
   "license": "MIT",
   "type": "module",
@@ -37,5 +37,25 @@
     "typescript": "^5.7.3",
     "vgpu": "0.3.1",
     "vitest": "^2.1.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjy365/vfx-ui.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/zjy365/vfx-ui/issues"
+  },
+  "homepage": "https://vfx-ui.com",
+  "keywords": [
+    "react",
+    "webgpu",
+    "shader",
+    "wgsl",
+    "vgpu",
+    "visual-effects",
+    "hero-section",
+    "gpu",
+    "animation"
+  ]
 }

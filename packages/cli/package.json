@@ -1,6 +1,6 @@
 {
   "name": "@vfx-ui/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Copy-paste vfx-ui shader components into your project (shadcn registry format).",
   "license": "MIT",
   "type": "module",
@@ -15,5 +15,23 @@
   ],
   "engines": {
     "node": ">=18"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjy365/vfx-ui.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/zjy365/vfx-ui/issues"
+  },
+  "homepage": "https://vfx-ui.com",
+  "keywords": [
+    "cli",
+    "shadcn",
+    "registry",
+    "webgpu",
+    "shader",
+    "copy-paste",
+    "code-generation"
+  ]
 }
