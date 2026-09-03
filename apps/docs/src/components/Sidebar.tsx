@@ -38,6 +38,9 @@ type SidebarPreview = {
 };
 
 function getSidebarPreviewThumbnail(shader: ReadyShader) {
+  // Heroes render as stills in the tooltip (no live mini render) — show the
+  // real Dawn render, not the first variant's flat palette gradient.
+  if (shader.category === "Heroes") return shader.thumbnail;
   return shader.variants?.[0]?.thumbnail ?? shader.thumbnail;
 }
 
@@ -218,7 +221,9 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
           aria-hidden="true"
         >
           <img src={preview.thumbnail} alt="" />
-          {preview.shader.component ? (
+          {/* Heroes are full-page layouts — miniaturized into a 240px card
+              their copy overflows and reads broken, so they show the still. */}
+          {preview.shader.component && preview.shader.category !== "Heroes" ? (
             <Suspense fallback={null}>
               <span className="sidebar-preview-live" style={{ "--hero-min-height": "0px" } as CSSProperties}>
                 <preview.shader.component {...(preview.shader.variants?.[0]?.props ?? {})} />
