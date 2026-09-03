@@ -3,12 +3,6 @@
 > Shader-native visual effect components for React, rendered via WebGPU (vgpu).
 > All effects are GPU-only by design: they cannot be reproduced with DOM/CSS.
 
-## Site
-
-- [Home](https://vfx-ui.dev/): Marketing page with live hero demos.
-- [Component gallery](https://vfx-ui.dev/components): Live previews of every component.
-- [Installation](https://vfx-ui.dev/installation): Setup guide.
-
 ## Install
 
 ```bash
@@ -17,71 +11,71 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Component catalog
 
-- [Wave Background](https://vfx-ui.dev/components/wave-background.md): Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
-- [Fluid Gradient](https://vfx-ui.dev/components/fluid-gradient.md): Domain-warped fBm noise flowing through a tri-color palette.
-- [Aurora](https://vfx-ui.dev/components/aurora.md): Vertical light curtains driven by fBm perturbation and gaussian bands.
-- [Starfield](https://vfx-ui.dev/components/starfield.md): Hashed star grid with twinkle and slow parallax drift.
-- [Particle Field](https://vfx-ui.dev/components/particle-field.md): Procedural cell-hashed particles with drift and size breathing.
-- [Glass Card](https://vfx-ui.dev/components/glass-card.md): Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.
-- [Liquid Glass](https://vfx-ui.dev/components/liquid-glass.md): Fullscreen liquid refraction with approximate chromatic dispersion.
-- [Glass Lens](https://vfx-ui.dev/components/glass-lens.md): Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
-- [Black Hole](https://vfx-ui.dev/components/black-hole.md): The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
-- [Mesh Gradient](https://vfx-ui.dev/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette.
-- [Iridescent](https://vfx-ui.dev/components/iridescent.md): Silky thin-film interference colors drifting across the surface.
-- [Vortex](https://vfx-ui.dev/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
-- [Web Globe](https://vfx-ui.dev/components/web-globe.md): WebGPU re-creation of shuding/cobe (MIT): a tiny dot-matrix globe.
-- [Live Chart](https://vfx-ui.dev/components/live-chart.md): Real-time streaming line chart rendered entirely on the GPU.
-- [Energy Orb](https://vfx-ui.dev/components/energy-orb.md): Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
-- [Ribbon Field](https://vfx-ui.dev/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
-- [Fiber Flow](https://vfx-ui.dev/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
-- [Light Prism](https://vfx-ui.dev/components/light-prism.md): Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
-- [Hero Fluid](https://vfx-ui.dev/components/hero-fluid.md): Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
-- [Hero Aurora](https://vfx-ui.dev/components/hero-aurora.md): Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
-- [Hero Fiber](https://vfx-ui.dev/components/hero-fiber.md): Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
-- [Hero Globe](https://vfx-ui.dev/components/hero-globe.md): Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.
-- [Hero Mesh](https://vfx-ui.dev/components/hero-mesh.md): Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
-- [Hero Iridescent](https://vfx-ui.dev/components/hero-iridescent.md): Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
-- [Hero Vortex](https://vfx-ui.dev/components/hero-vortex.md): Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
-- [Hero Ribbon](https://vfx-ui.dev/components/hero-ribbon.md): Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
-- [Hero Particles](https://vfx-ui.dev/components/hero-particles.md): Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
-- [Hero Starfield](https://vfx-ui.dev/components/hero-starfield.md): Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.
-- [Hero Black Hole](https://vfx-ui.dev/components/hero-black-hole.md): Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
-- [Chroma Flow](https://vfx-ui.dev/components/chroma-flow.md): Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
-- [Hero Chroma](https://vfx-ui.dev/components/hero-chroma.md): Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.
+- [Wave Background](https://vfx-ui.com/components/wave-background.md): Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
+- [Fluid Gradient](https://vfx-ui.com/components/fluid-gradient.md): Domain-warped fBm noise flowing through a tri-color palette.
+- [Aurora](https://vfx-ui.com/components/aurora.md): Vertical light curtains driven by fBm perturbation and gaussian bands.
+- [Starfield](https://vfx-ui.com/components/starfield.md): Hashed star grid with twinkle and slow parallax drift.
+- [Particle Field](https://vfx-ui.com/components/particle-field.md): Procedural cell-hashed particles with drift and size breathing.
+- [Glass Card](https://vfx-ui.com/components/glass-card.md): Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.
+- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): Fullscreen liquid refraction with approximate chromatic dispersion.
+- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
+- [Black Hole](https://vfx-ui.com/components/black-hole.md): The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
+- [Mesh Gradient](https://vfx-ui.com/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette.
+- [Iridescent](https://vfx-ui.com/components/iridescent.md): Silky thin-film interference colors drifting across the surface.
+- [Vortex](https://vfx-ui.com/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
+- [Web Globe](https://vfx-ui.com/components/web-globe.md): WebGPU re-creation of shuding/cobe (MIT): a tiny dot-matrix globe.
+- [Live Chart](https://vfx-ui.com/components/live-chart.md): Real-time streaming line chart rendered entirely on the GPU.
+- [Energy Orb](https://vfx-ui.com/components/energy-orb.md): Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
+- [Ribbon Field](https://vfx-ui.com/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
+- [Fiber Flow](https://vfx-ui.com/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+- [Light Prism](https://vfx-ui.com/components/light-prism.md): Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
+- [Hero Fluid](https://vfx-ui.com/components/hero-fluid.md): Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
+- [Hero Aurora](https://vfx-ui.com/components/hero-aurora.md): Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
+- [Hero Fiber](https://vfx-ui.com/components/hero-fiber.md): Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
+- [Hero Globe](https://vfx-ui.com/components/hero-globe.md): Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.
+- [Hero Mesh](https://vfx-ui.com/components/hero-mesh.md): Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
+- [Hero Iridescent](https://vfx-ui.com/components/hero-iridescent.md): Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
+- [Hero Vortex](https://vfx-ui.com/components/hero-vortex.md): Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
+- [Hero Ribbon](https://vfx-ui.com/components/hero-ribbon.md): Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
+- [Hero Particles](https://vfx-ui.com/components/hero-particles.md): Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
+- [Hero Starfield](https://vfx-ui.com/components/hero-starfield.md): Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.
+- [Hero Black Hole](https://vfx-ui.com/components/hero-black-hole.md): Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
+- [Chroma Flow](https://vfx-ui.com/components/chroma-flow.md): Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
+- [Hero Chroma](https://vfx-ui.com/components/hero-chroma.md): Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.
 
 ## Per-component docs (machine-readable)
 
-- https://vfx-ui.dev/components/aurora.md
-- https://vfx-ui.dev/components/black-hole.md
-- https://vfx-ui.dev/components/chroma-flow.md
-- https://vfx-ui.dev/components/energy-orb.md
-- https://vfx-ui.dev/components/fiber-flow.md
-- https://vfx-ui.dev/components/fluid-gradient.md
-- https://vfx-ui.dev/components/glass-card.md
-- https://vfx-ui.dev/components/glass-lens.md
-- https://vfx-ui.dev/components/hero-aurora.md
-- https://vfx-ui.dev/components/hero-black-hole.md
-- https://vfx-ui.dev/components/hero-chroma.md
-- https://vfx-ui.dev/components/hero-fiber.md
-- https://vfx-ui.dev/components/hero-fluid.md
-- https://vfx-ui.dev/components/hero-globe.md
-- https://vfx-ui.dev/components/hero-iridescent.md
-- https://vfx-ui.dev/components/hero-mesh.md
-- https://vfx-ui.dev/components/hero-particles.md
-- https://vfx-ui.dev/components/hero-ribbon.md
-- https://vfx-ui.dev/components/hero-starfield.md
-- https://vfx-ui.dev/components/hero-vortex.md
-- https://vfx-ui.dev/components/iridescent.md
-- https://vfx-ui.dev/components/light-prism.md
-- https://vfx-ui.dev/components/liquid-glass.md
-- https://vfx-ui.dev/components/live-chart.md
-- https://vfx-ui.dev/components/mesh-gradient.md
-- https://vfx-ui.dev/components/particle-field.md
-- https://vfx-ui.dev/components/ribbon-field.md
-- https://vfx-ui.dev/components/starfield.md
-- https://vfx-ui.dev/components/vortex.md
-- https://vfx-ui.dev/components/wave-background.md
-- https://vfx-ui.dev/components/web-globe.md
+- https://vfx-ui.com/components/aurora.md
+- https://vfx-ui.com/components/black-hole.md
+- https://vfx-ui.com/components/chroma-flow.md
+- https://vfx-ui.com/components/energy-orb.md
+- https://vfx-ui.com/components/fiber-flow.md
+- https://vfx-ui.com/components/fluid-gradient.md
+- https://vfx-ui.com/components/glass-card.md
+- https://vfx-ui.com/components/glass-lens.md
+- https://vfx-ui.com/components/hero-aurora.md
+- https://vfx-ui.com/components/hero-black-hole.md
+- https://vfx-ui.com/components/hero-chroma.md
+- https://vfx-ui.com/components/hero-fiber.md
+- https://vfx-ui.com/components/hero-fluid.md
+- https://vfx-ui.com/components/hero-globe.md
+- https://vfx-ui.com/components/hero-iridescent.md
+- https://vfx-ui.com/components/hero-mesh.md
+- https://vfx-ui.com/components/hero-particles.md
+- https://vfx-ui.com/components/hero-ribbon.md
+- https://vfx-ui.com/components/hero-starfield.md
+- https://vfx-ui.com/components/hero-vortex.md
+- https://vfx-ui.com/components/iridescent.md
+- https://vfx-ui.com/components/light-prism.md
+- https://vfx-ui.com/components/liquid-glass.md
+- https://vfx-ui.com/components/live-chart.md
+- https://vfx-ui.com/components/mesh-gradient.md
+- https://vfx-ui.com/components/particle-field.md
+- https://vfx-ui.com/components/ribbon-field.md
+- https://vfx-ui.com/components/starfield.md
+- https://vfx-ui.com/components/vortex.md
+- https://vfx-ui.com/components/wave-background.md
+- https://vfx-ui.com/components/web-globe.md
 
 ## Scope guard
 

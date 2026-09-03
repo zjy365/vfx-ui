@@ -4,7 +4,7 @@
  *
  *   npx @vfx-ui/cli add wave-background
  *   npx @vfx-ui/cli add wave-background fluid-gradient --overwrite
- *   npx @vfx-ui/cli add wave-background --registry ./registry/dist
+ *   npx @vfx-ui/cli add wave-background --registry ./registry/dist/r
  *
  * Zero runtime dependencies by design: the CLI must run anywhere npx runs.
  */
@@ -12,7 +12,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import process from "node:process";
 
-const DEFAULT_REGISTRY = "https://vfx-ui.dev/r";
+const DEFAULT_REGISTRY = "https://vfx-ui.com/r";
 const TARGET_ROOT = "components/vfx";
 
 function parseArgs(argv) {

@@ -1,0 +1,91 @@
+name: Deploy docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/docs/**"
+      - "packages/react/**"
+      - "packages/core/**"
+      - "registry/**"
+      - "scripts/generate-agentic.mjs"
+      - ".github/workflows/deploy-docs.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "apps/docs/**"
+      - "packages/react/**"
+      - "packages/core/**"
+      - "registry/**"
+      - "scripts/generate-agentic.mjs"
+      - ".github/workflows/deploy-docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 8.15.9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # Rebuild the copy-paste registry from live component sources so the
+      # served catalog can never drift from the published package.
+      - name: Build registry
+        run: node registry/build.mjs
+
+      # llms.txt, agents.md, and one .md per component — consumed by coding agents.
+      - name: Generate agentic docs
+        run: node scripts/generate-agentic.mjs
+
+      # Serve the shadcn-format registry at vfx-ui.com/r/<name>.json, which is
+      # the DEFAULT_REGISTRY the CLI fetches from (packages/cli/bin/cli.mjs).
+      - name: Stage registry into docs site
+        run: |
+          mkdir -p apps/docs/public/r
+          cp registry/dist/r/*.json apps/docs/public/r/
+          cp registry/dist/index.json apps/docs/public/r/index.json
+
+      - name: Build docs site
+        run: pnpm --filter @vfx-ui/docs build
+
+      # pushState SPA routing: unknown paths must fall back to the app shell.
+      - name: Add SPA 404 fallback
+        run: |
+          cp apps/docs/dist/index.html apps/docs/dist/404.html
+          touch apps/docs/dist/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/docs/dist
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

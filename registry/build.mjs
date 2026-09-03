@@ -445,7 +445,7 @@ function main() {
   const index = {
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: "vfx-ui",
-    homepage: "https://vfx-ui.dev",
+    homepage: "https://vfx-ui.com",
     items: items.map(({ item, entry }) => ({
       $schema: "https://ui.shadcn.com/schema/registry-item.json",
       name: item.name,

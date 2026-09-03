@@ -54,7 +54,7 @@ Machine-readable docs: [`public/llms.txt`](apps/docs/public/llms.txt), [`public/
 
 ```bash
 pnpm install
-pnpm -r typecheck && pnpm -r test   # 47 deterministic tests incl. Dawn pixel readback
+pnpm -r typecheck && pnpm -r test   # 62 deterministic tests incl. Dawn pixel readback
 pnpm -r build
 pnpm dev:docs                        # catalog at localhost:5173
 node registry/build.mjs              # rebuild copy-paste registry from sources
