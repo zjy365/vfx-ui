@@ -5060,12 +5060,11 @@ tbody tr:not(:last-child) {
 
 .demo {
   padding: 10px;
-  background-color: var(--background-inset);
-  background-image:
-    linear-gradient(color-mix(in oklab, var(--foreground) 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 8%, transparent) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: center;
+  /* Transparent stage: the blueprint canvas shows through the frame, so
+     dark artwork reads as a screen floating on the graph paper instead of
+     a dead black rectangle against the textured page. */
+  background: transparent;
+  border: 0.5px solid color-mix(in oklab, var(--foreground) 10%, transparent);
 }
 
 .stage-grid {
