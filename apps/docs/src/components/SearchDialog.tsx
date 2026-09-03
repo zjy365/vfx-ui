@@ -16,30 +16,17 @@ type SearchDialogProps = {
   onSelect: (id: ReadyShader["id"], variantId?: string) => void;
 };
 
-type SearchResultTooltip = {
-  result: CatalogResult;
-  left: number;
-  top: number;
-  side: "top" | "bottom";
-};
-
-const TOOLTIP_WIDTH = 280;
-const TOOLTIP_HEIGHT = 96;
-const TOOLTIP_GAP = 10;
-const TOOLTIP_DISMISS_DELAY = 180;
-const MAX_TOOLTIP_TAGS = 5;
-
-function tooltipId(id: string) {
-  return `search-result-tooltip-${id}`;
-}
-
+const DISMISS_DELAY = 180;
+/* Hovering down the result list would otherwise mount a full WebGPU pipeline
+   (Black Hole's bake, WebGlobe's three.js) per row it crosses. The delay only
+   pays that cost for rows the pointer actually rests on. */
+const PREVIEW_DELAY = 160;
 export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: SearchDialogProps) {
   const [query, setQuery] = useState("");
   const [activePreview, setActivePreview] = useState<string | null>(null);
-  const [tooltip, setTooltip] = useState<SearchResultTooltip | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
   const dismissTimerRef = useRef<number | undefined>(undefined);
+  const previewTimerRef = useRef<number | undefined>(undefined);
   const results = useMemo(
     () => CATALOG_RESULTS.filter((result) => catalogResultMatchesQuery(result, query)),
     [query],
@@ -51,9 +38,15 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
     dismissTimerRef.current = undefined;
   };
 
+  const cancelPreview = () => {
+    if (previewTimerRef.current === undefined) return;
+    window.clearTimeout(previewTimerRef.current);
+    previewTimerRef.current = undefined;
+  };
+
   const dismissResult = (id: string) => {
+    cancelPreview();
     setActivePreview((current) => current === id ? null : current);
-    setTooltip((current) => current && catalogResultId(current.result) === id ? null : current);
   };
 
   const scheduleDismiss = (id: string) => {
@@ -61,14 +54,14 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
     dismissTimerRef.current = window.setTimeout(() => {
       dismissTimerRef.current = undefined;
       dismissResult(id);
-    }, TOOLTIP_DISMISS_DELAY);
+    }, DISMISS_DELAY);
   };
 
   useEffect(() => {
     cancelDismiss();
+    cancelPreview();
     if (!open) {
       setActivePreview(null);
-      setTooltip(null);
       return;
     }
     setQuery(initialQuery);
@@ -76,34 +69,23 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
     return () => cancelAnimationFrame(frame);
   }, [initialQuery, open]);
 
-  useEffect(() => () => cancelDismiss(), []);
+  useEffect(() => () => { cancelDismiss(); cancelPreview(); }, []);
 
   const beginPreview = (id: string) => {
     cancelDismiss();
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) setActivePreview(id);
-  };
-
-  const showTooltip = (result: CatalogResult, trigger: HTMLButtonElement) => {
-    cancelDismiss();
-    const dialog = dialogRef.current;
-    if (!dialog) return;
-    const triggerRect = trigger.getBoundingClientRect();
-    const dialogRect = dialog.getBoundingClientRect();
-    const side = triggerRect.top - dialogRect.top >= TOOLTIP_HEIGHT + TOOLTIP_GAP ? "top" : "bottom";
-    const halfWidth = Math.min(TOOLTIP_WIDTH, dialogRect.width - 24) / 2;
-    const centeredLeft = triggerRect.left + triggerRect.width / 2 - dialogRect.left;
-    const left = Math.min(dialogRect.width - halfWidth - 12, Math.max(halfWidth + 12, centeredLeft));
-    const top = side === "top"
-      ? triggerRect.top - dialogRect.top - TOOLTIP_GAP
-      : triggerRect.bottom - dialogRect.top + TOOLTIP_GAP;
-    setTooltip({ result, left, top, side });
+    cancelPreview();
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    previewTimerRef.current = window.setTimeout(() => {
+      previewTimerRef.current = undefined;
+      setActivePreview(id);
+    }, PREVIEW_DELAY);
   };
 
   if (!open) return null;
   return (
     <>
       <button className="scrim open" aria-label="Close search" onClick={onClose} />
-      <div ref={dialogRef} className="dialog card open" role="dialog" aria-modal="true" aria-label="Search verified shaders">
+      <div className="dialog card open" role="dialog" aria-modal="true" aria-label="Search verified shaders">
         <div className="field">
           <SearchIcon width={18} height={18} style={{ opacity: 0.6 }} />
           <input
@@ -122,8 +104,8 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
         </div>
         <div className="results" onScroll={() => {
           cancelDismiss();
+          cancelPreview();
           setActivePreview(null);
-          setTooltip(null);
         }}>
           {results.length ? (
             results.map((result) => {
@@ -131,28 +113,27 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
               const resultId = catalogResultId(result);
               const label = catalogResultLabel(result);
               const description = variant?.description ?? shader.description;
-              const thumbnail = variant?.thumbnail ?? shader.thumbnail;
+              // Heroes show the real still (palette gradients say nothing);
+              // shaders keep the variant-level thumbnail.
+              const thumbnail = shader.category === "Heroes"
+                ? shader.thumbnail
+                : variant?.thumbnail ?? shader.thumbnail;
               const Preview = shader.component;
               return (
                 <button
                   key={resultId}
                   aria-label={`${label}: ${description} ${shader.category}, ${shader.runtime}. Tags: ${shader.tags.join(", ")}`}
-                  aria-describedby={tooltip && catalogResultId(tooltip.result) === resultId ? tooltipId(resultId) : undefined}
-                  onMouseEnter={(event) => {
-                    beginPreview(resultId);
-                    showTooltip(result, event.currentTarget);
-                  }}
+                  onMouseEnter={() => beginPreview(resultId)}
                   onMouseLeave={() => scheduleDismiss(resultId)}
-                  onFocus={(event) => {
-                    beginPreview(resultId);
-                    showTooltip(result, event.currentTarget);
-                  }}
+                  onFocus={() => beginPreview(resultId)}
                   onBlur={() => scheduleDismiss(resultId)}
                   onClick={() => onSelect(shader.id, variant?.id)}
                 >
                   <span className="search-result-thumbnail" aria-hidden="true">
                     <img src={thumbnail} alt="" width="320" height="180" decoding="async" />
-                    {activePreview === resultId && Preview ? (
+                    {/* Heroes are full-page layouts — a thumbnail-sized live
+                        render reads broken and costs the heaviest init. */}
+                    {activePreview === resultId && Preview && shader.category !== "Heroes" ? (
                       <Suspense fallback={null}>
                         <span
                           className="search-result-preview-live"
@@ -163,6 +144,11 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
                       </Suspense>
                     ) : null}
                   </span>
+                  <span className="search-result-meta">
+                    <span className="search-result-label">{label}</span>
+                    <span className="search-result-desc">{description}</span>
+                  </span>
+                  <span className="search-result-category" aria-hidden="true">{shader.category}</span>
                 </button>
               );
             })
@@ -170,24 +156,6 @@ export function SearchDialog({ open, initialQuery = "", onClose, onSelect }: Sea
             <div className="empty">No verified shader found.</div>
           )}
         </div>
-        {tooltip ? (
-          <div
-            id={tooltipId(catalogResultId(tooltip.result))}
-            className="search-result-tooltip"
-            data-side={tooltip.side}
-            role="tooltip"
-            style={{ left: tooltip.left, top: tooltip.top }}
-            onMouseEnter={cancelDismiss}
-            onMouseLeave={() => scheduleDismiss(catalogResultId(tooltip.result))}
-          >
-            <div className="search-result-tooltip-title">
-              <strong>{catalogResultLabel(tooltip.result)}</strong>
-            </div>
-            <div className="search-result-tooltip-tags" aria-label="Tags">
-              {tooltip.result.shader.tags.slice(0, MAX_TOOLTIP_TAGS).map((tag) => <span key={tag}>{tag}</span>)}
-            </div>
-          </div>
-        ) : null}
       </div>
     </>
   );

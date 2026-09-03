@@ -4,6 +4,9 @@
   "description": "Copy-paste vfx-ui shader components into your project (shadcn registry format).",
   "license": "MIT",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "vfx-ui": "./bin/cli.mjs"
   },
