@@ -10,6 +10,26 @@ export interface CreateVfxRendererOptions extends VfxRendererOptions {
   gpu?: Gpu;
 }
 
+/*
+ * One Gpu per page: init() creates a fresh kernel every call, and vgpu's
+ * surface-duplicate guard is per kernel — so two in-flight mounts on the same
+ * canvas (React StrictMode double-mount) would both configure the shared
+ * canvas context, and the stale mount's dispose() unconfigures it out from
+ * under the live one. Sharing the Gpu makes the duplicate guard authoritative:
+ * the stale attach throws VGPU-SURFACE-DUPLICATE instead of poisoning the
+ * context, and the live mount renders on undisturbed.
+ */
+let browserGpu: Promise<Gpu> | null = null;
+
+function sharedBrowserGpu(): Promise<Gpu> {
+  browserGpu ??= init().catch((err: unknown) => {
+    // A failed init (WebGPU unavailable) must not wedge every future canvas.
+    browserGpu = null;
+    throw err;
+  });
+  return browserGpu;
+}
+
 /**
  * vgpu-backed renderer: the primary (and currently only) implementation
  * of the vfx-ui renderer contract. Browser entry point.
@@ -17,7 +37,7 @@ export interface CreateVfxRendererOptions extends VfxRendererOptions {
 export const createVfxRenderer: VfxRendererFactory & { withGpu: (gpu: Gpu) => VfxRendererFactory } =
   Object.assign(
     async (canvas: HTMLCanvasElement, options: CreateVfxRendererOptions): Promise<VfxRenderer> => {
-      const gpu = options.gpu ?? (await init());
+      const gpu = options.gpu ?? (await sharedBrowserGpu());
       return attachRenderer(gpu, canvas, options);
     },
     {
@@ -32,6 +52,9 @@ async function attachRenderer(
   canvas: HTMLCanvasElement,
   options: CreateVfxRendererOptions,
 ): Promise<VfxRenderer> {
+  if (options.signal?.aborted) {
+    throw new DOMException("vfx renderer attach aborted", "AbortError");
+  }
   const label = options.label ?? "vfx";
   const surf = surface(gpu, canvas, {
     dpr: options.dpr,

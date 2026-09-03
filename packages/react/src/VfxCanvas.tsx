@@ -46,6 +46,7 @@ export function VfxCanvas({
     if (!canvas) return;
     let disposed = false;
     let renderer: VfxRenderer | null = null;
+    const abort = new AbortController();
     const reduced =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -57,6 +58,7 @@ export function VfxCanvas({
       dpr,
       fps,
       label,
+      signal: abort.signal,
     })
       .then((r) => {
         if (disposed) {
@@ -68,6 +70,10 @@ export function VfxCanvas({
         onReady?.(r);
       })
       .catch((err: unknown) => {
+        // A stale mount (StrictMode double-mount) rejects with
+        // VGPU-SURFACE-DUPLICATE once the live mount owns the canvas — that is
+        // the guard working, not a failure, so only the live mount reports.
+        if (disposed) return;
         // Swallowed errors make "WebGPU unavailable" indistinguishable from a
         // shader bug — log loudly and expose the message for host diagnostics.
         console.error(`[vfx-ui] renderer init failed (${label ?? "vfx"}):`, err);
@@ -79,11 +85,12 @@ export function VfxCanvas({
         } catch {
           /* storage unavailable — the console line above is the record */
         }
-        if (!disposed) setFailed(true);
+        setFailed(true);
       });
 
     return () => {
       disposed = true;
+      abort.abort();
       renderer?.dispose();
       rendererRef.current = null;
     };

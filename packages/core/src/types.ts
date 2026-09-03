@@ -28,6 +28,12 @@ export interface VfxRendererOptions {
   fps?: number;
   /** Debug label surfaced in vgpu errors. */
   label?: string;
+  /**
+   * Aborted before attach = the mount is stale (e.g. StrictMode double-mount):
+   * the factory rejects with an AbortError instead of touching the canvas, so a
+   * stale mount can never configure — or unconfigure — a canvas it no longer owns.
+   */
+  signal?: AbortSignal;
 }
 
 export interface VfxRenderer {
