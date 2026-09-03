@@ -18,7 +18,6 @@ const PRODUCT_LINKS = [
 
 const EXPLORE_LINKS = [
   { href: browseCategoryRoutePath("Backgrounds"), label: "Shader Backgrounds" },
-  { href: browseCategoryRoutePath("Text"), label: "Text Effects" },
   { href: browseCategoryRoutePath("Glass"), label: "Glass Surfaces" },
   { href: browseCategoryRoutePath("Data"), label: "Data Visuals" },
 ] as const;

@@ -60,7 +60,7 @@ function faqPage(faqs, name, url) {
 }
 
 export function buildRouteSeo(route, origin, catalog = []) {
-  const defaultImage = absoluteUrl(origin, "/vfx-ui-mark.svg");
+  const defaultImage = absoluteUrl(origin, "/og-cover.png");
   const indexable = route.page !== "not-found" && route.page !== "capture";
   let title = brandedTitle(SITE_TITLE);
   let description = SITE_DESCRIPTION;
@@ -69,7 +69,8 @@ export function buildRouteSeo(route, origin, catalog = []) {
   let structuredData;
 
   if (route.page === "home") {
-    title = brandedTitle(SITE_TITLE);
+    // Brand leads on the homepage; the catalog pages keep the keyword-led title.
+    title = "VFX UI — Shader-native WebGPU Components for React";
     description = SITE_DESCRIPTION;
     structuredData = {
       "@context": "https://schema.org",
@@ -93,9 +94,15 @@ export function buildRouteSeo(route, origin, catalog = []) {
   } else if ((route.page === "shader" || route.page === "capture") && route.shader) {
     const { shader, variant } = route;
     const descriptor = CATEGORY_DESCRIPTORS[shader.category] ?? "Shader Component";
+    // Skip the descriptor when the label already carries its leading word —
+    // "Hero Aurora Hero Section" reads as a stutter.
+    const descriptorWord = descriptor.split(" ")[0].toLowerCase();
+    const labelWithDescriptor = shader.label.toLowerCase().includes(descriptorWord)
+      ? shader.label
+      : `${shader.label} ${descriptor}`;
     const primary = variant
       ? `${variant.label} ${descriptor} — ${shader.label}`
-      : `${shader.label} ${descriptor}`;
+      : labelWithDescriptor;
     title = brandedTitle(primary);
     description = compactText(variant?.description ?? shader.description, 160);
     canonicalPath = shaderRoutePath(shader, variant?.id);

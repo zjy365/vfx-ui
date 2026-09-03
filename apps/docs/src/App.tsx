@@ -335,7 +335,7 @@ function VfxUiApp() {
       </header>
       <div className="app">
         <Sidebar
-          active={active}
+          active={page === "shader" ? active : undefined}
           browseActive={page === "browse"}
           installationActive={page === "installation"}
           open={sidebarOpen}

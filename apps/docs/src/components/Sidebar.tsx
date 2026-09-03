@@ -10,7 +10,7 @@ import { ThemeButtons } from "./ThemeButtons";
 import type { ThemeMode } from "../theme";
 
 type SidebarProps = {
-  active: ReadyShader;
+  active?: ReadyShader;
   browseActive: boolean;
   installationActive: boolean;
   open: boolean;
@@ -107,9 +107,9 @@ function SidebarCatalogSection({ label, shaders, active, installationActive, onS
                     <div className="nav-list">
                       {shaders.filter((shader) => shader.category === category).map((shader) => (
                         <button
-                          className={`nav-link${!installationActive && active.id === shader.id ? " active" : ""}`}
+                          className={`nav-link${!installationActive && active?.id === shader.id ? " active" : ""}`}
                           key={shader.id}
-                          aria-current={!installationActive && active.id === shader.id ? "page" : undefined}
+                          aria-current={!installationActive && active?.id === shader.id ? "page" : undefined}
                           onPointerEnter={(event) => onPreview(shader, event.currentTarget)}
                           onPointerLeave={onPreviewEnd}
                           onFocus={(event) => onPreview(shader, event.currentTarget)}
