@@ -109,12 +109,14 @@ export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps
     .map((id) => VISIBLE_READY_SHADERS.find((shader) => shader.id === id))
     .filter((shader): shader is NonNullable<typeof shader> => Boolean(shader));
 
-  // SPA navigation for every in-page anchor; external links pass through.
+  // SPA navigation for every in-page anchor; external links and static
+  // files (llms.txt, agents.md, …) pass through to a real browser navigation.
   const onClick = (event: MouseEvent<HTMLDivElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const anchor = (event.target as HTMLElement).closest("a[href]");
+    const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href]");
     const href = anchor?.getAttribute("href");
     if (!anchor || !href?.startsWith("/")) return;
+    if (anchor.target || /\.[a-z0-9]+$/i.test(href)) return;
     event.preventDefault();
     onNavigate(href);
   };
@@ -142,7 +144,7 @@ export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps
         <nav className="home-nav-links" aria-label="Site">
           <a href={STATIC_ROUTE_PATHS.browse}>Components</a>
           <a href={STATIC_ROUTE_PATHS.installation}>Installation</a>
-          <a href="/llms.txt">llms.txt</a>
+          <a href="/llms.txt" target="_blank" rel="noreferrer">llms.txt</a>
           <a href="https://github.com/zjy365/vfx-ui" target="_blank" rel="noreferrer" aria-label="GitHub repository">
             <GitHubIcon />
           </a>
@@ -280,8 +282,8 @@ export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps
         <nav className="home-footer-links" aria-label="Footer">
           <a href={STATIC_ROUTE_PATHS.browse}>Components</a>
           <a href={STATIC_ROUTE_PATHS.installation}>Installation</a>
-          <a href="/llms.txt">llms.txt</a>
-          <a href="/agents.md">agents.md</a>
+          <a href="/llms.txt" target="_blank" rel="noreferrer">llms.txt</a>
+          <a href="/agents.md" target="_blank" rel="noreferrer">agents.md</a>
           <a href="https://github.com/zjy365/vfx-ui" target="_blank" rel="noreferrer">GitHub</a>
         </nav>
       </footer>
