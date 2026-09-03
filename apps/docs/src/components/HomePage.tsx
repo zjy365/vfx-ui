@@ -78,19 +78,6 @@ type HomePageProps = {
   onTheme: (mode: ThemeMode) => void;
 };
 
-function usePrefersDark(theme: ThemeMode) {
-  const [systemDark, setSystemDark] = useState(
-    () => typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
-  );
-  useEffect(() => {
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => setSystemDark(media.matches);
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
-  }, []);
-  return theme === "system" ? systemDark : theme === "dark";
-}
-
 function CopyButton({ text, label }: { text: string; label: string }) {
   const [copied, setCopied] = useState(false);
   return (
@@ -116,7 +103,6 @@ function CopyButton({ text, label }: { text: string; label: string }) {
 
 export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps) {
   const [heroBg, setHeroBg] = useState<HeroBackgroundId>("aurora");
-  const dark = usePrefersDark(theme);
   const activeBackground = HERO_BACKGROUNDS.find((item) => item.id === heroBg) ?? HERO_BACKGROUNDS[0];
 
   const showcaseItems = SHOWCASE_IDS
@@ -175,14 +161,14 @@ export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps
         <HeroShell
           key={activeBackground.id}
           layout="centered"
-          scheme={dark ? "dark" : "light"}
+          scheme="dark"
           eyebrow="WebGPU component library"
           title={"Shaders you can\ndrop into React."}
           subtitle="Auroras, liquid glass, dot-matrix globes, live GPU charts — shader-native components rendered per-pixel on the GPU. One import, no WebGL boilerplate, MIT."
           primaryCta={{ label: "Browse components", href: STATIC_ROUTE_PATHS.browse }}
           secondaryCta={{ label: "npm i @vfx-ui/react", href: STATIC_ROUTE_PATHS.installation }}
           badges={["WebGPU", "TypeScript", "MIT", "Agentic-first"]}
-          accent={dark ? "#2dd4bf" : "#0d9488"}
+          accent="#2dd4bf"
           background={(
             <Suspense fallback={null}>
               {activeBackground.render()}
