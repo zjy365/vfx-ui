@@ -5049,3 +5049,31 @@ tbody tr:not(:last-child) {
   line-height: 17px;
   color: var(--foreground-muted);
 }
+
+/* --- Style experiment: Authkit blueprint canvas + glass edges --- */
+.pane-scroll {
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.demo {
+  padding: 10px;
+  background-color: var(--background-inset);
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--foreground) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--foreground) 8%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: center;
+}
+
+.stage-grid {
+  gap: 10px;
+}
+
+.stage-grid .panel,
+.stage-grid .variant-picker,
+.stage-grid + .code-card {
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--foreground) 5%, transparent);
+}
