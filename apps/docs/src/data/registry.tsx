@@ -11,13 +11,10 @@ import {
   MESH_GRADIENT_PRESETS,
   IRIDESCENT_PRESETS,
   VORTEX_PRESETS,
-  WEB_GLOBE_PRESETS,
-  ENERGY_ORB_PRESETS,
   RIBBON_FIELD_PRESETS,
   FIBER_FLOW_PRESETS,
   CHROMA_FLOW_PRESETS,
   LIGHT_PRISM_PRESETS,
-  LIVE_CHART_PRESETS,
   HERO_FLUID_PRESETS,
   HERO_AURORA_PRESETS,
   HERO_FIBER_PRESETS,
@@ -45,7 +42,8 @@ export type ChoiceControl = { kind: "choice"; key: string; label: string; option
 export type CheckpointControl = { kind: "checkpoint"; key: string; label: string; options: readonly { value: string; label: string }[]; default: string };
 export type ColorControl = { kind: "color"; key: string; label: string; default: `#${string}` };
 export type TextControl = { kind: "text"; key: string; label: string; default: string; maxLength?: number; placeholder?: string };
-export type ShaderControl = RangeControl | ChoiceControl | CheckpointControl | ColorControl | TextControl;
+export type ToggleControl = { kind: "toggle"; key: string; label: string; default: boolean };
+export type ShaderControl = ToggleControl | RangeControl | ChoiceControl | CheckpointControl | ColorControl | TextControl;
 export type ShaderVariant = {
   id: string;
   label: string;
@@ -55,7 +53,7 @@ export type ShaderVariant = {
   props: Readonly<Record<string, boolean | number | string | number[]>>;
   controls?: readonly ShaderControl[];
 };
-export const READY_SHADER_CATEGORIES = ["Heroes", "Backgrounds", "Glass", "Data", "Globe"] as const;
+export const READY_SHADER_CATEGORIES = ["Heroes", "Footers", "Backgrounds", "Glass", "Text", "Interactions"] as const;
 export type ReadyShaderCategory = (typeof READY_SHADER_CATEGORIES)[number];
 export type ReadyShader = {
   id: string;
@@ -64,14 +62,16 @@ export type ReadyShader = {
   label: string;
   thumbnail: string;
   preview?: string;
+  previewProps?: Readonly<Record<string, unknown>>;
   tags: readonly string[];
   description: string;
-  runtime: "webgpu" | "webgl";
+  runtime: "webgpu" | "webgl" | "dom";
   component?: ComponentType<any>;
   importName: string;
   sourceCode?: string;
   agentNotes?: string;
   controls?: readonly ShaderControl[];
+  api?: readonly ContractRow[];
   variants?: readonly ShaderVariant[];
 };
 
@@ -114,30 +114,6 @@ function rgb01ToHex(c: [number, number, number]): string {
   return `#${c.map((v) => Math.round(Math.max(0, Math.min(1, v)) * 255).toString(16).padStart(2, "0")).join("")}`;
 }
 
-/**
- * Thumbnail for hue-graded shaders (EnergyOrb, Iridescent): rotates the base
- * cosine palette around the (1,1,1) axis with the same Rodrigues formula the
- * WGSL uses, so the swatch shows the variant's actual hue.
- */
-function hueThumb(base: [number, number, number], hue: number, saturation = 1): string {
-  const axis: [number, number, number] = [0.57735027, 0.57735027, 0.57735027];
-  const sat: [number, number, number] = [
-    axis[0] + (base[0] - axis[0]) * saturation,
-    axis[1] + (base[1] - axis[1]) * saturation,
-    axis[2] + (base[2] - axis[2]) * saturation,
-  ];
-  const ch = Math.cos(hue);
-  const sh = Math.sin(hue);
-  const cross: [number, number, number] = [
-    sat[1] * axis[2] - sat[2] * axis[1],
-    sat[2] * axis[0] - sat[0] * axis[2],
-    sat[0] * axis[1] - sat[1] * axis[0],
-  ];
-  const dot = axis[0] * sat[0] + axis[1] * sat[1] + axis[2] * sat[2];
-  const out = sat.map((s, i) => Math.max(0, s * ch + cross[i] * sh + axis[i] * dot * (1 - ch))) as [number, number, number];
-  return rgb01ToHex(out);
-}
-
 /** Thumbnail for Iridescent: mirrors the WGSL cosinePalette at thickness v. */
 function cosineThumb(v: number): string {
   const a: [number, number, number] = [1, 0.81, 0.62];
@@ -150,9 +126,6 @@ const glassThumb = (props: Record<string, number | string | number[]>) =>
   gradientThumbnail("#0f172a", (props.tint as string) ?? "#a5c8ff", "#f8fafc");
 
 const liquidThumb = () => gradientThumbnail("#020617", "#7dd3fc", "#c4b5fd");
-
-const orbThumb = (props: Record<string, number | string | number[]>) =>
-  gradientThumbnail("#0a0a12", hueThumb([0.55, 0.52, 1.0], (props.hue as number) ?? 0, (props.saturation as number) ?? 1), "#f5f3ff");
 
 const ribbonThumb = () => gradientThumbnail("#05060a", "#38bdf8", "#818cf8");
 
@@ -180,7 +153,8 @@ function entry(
     agentNotes: string[];
     controls: readonly ShaderControl[];
     variants: ShaderVariant[];
-    runtime?: "webgpu" | "webgl";
+    runtime?: "webgpu" | "webgl" | "dom";
+    previewProps?: Readonly<Record<string, unknown>>;
   },
 ): ReadyShader {
   return {
@@ -197,8 +171,47 @@ function entry(
       import("@vfx-ui/react").then((m) => ({ default: (m as unknown as Record<string, ComponentType<any>>)[config.importName] })),
     ),
     sourceCode: config.sourceCode,
+    previewProps: config.previewProps,
     agentNotes: config.agentNotes.join("\n"),
-    controls: config.controls,
+    controls: [
+      ...(config.runtime === "dom" ? [] : [{ kind: "toggle" as const, key: "interactive", label: "Follow pointer", default: true }]),
+      ...(config.category === "Heroes" ? [
+        { kind: "text" as const, key: "title", label: "Your headline", default: "Make something memorable." },
+        { kind: "text" as const, key: "subtitle", label: "Your description", default: "Your story. Your words. A little atmosphere from us." },
+      ] : []),
+      ...config.controls,
+    ],
+    api: config.category === "Footers" ? [
+      { name: "brand", type: "string", value: "Your brand; the artwork is generated from this text" },
+      { name: "title / description", type: "ReactNode", value: "Replaceable example copy" },
+      { name: "cta", type: "FooterLink | null", value: "{ label, href }; omitted by default" },
+      { name: "groups", type: "FooterLinkGroup[]", value: "[{ label, links: [{ label, href }] }]; empty by default" },
+      { name: "legal", type: "FooterLink[]", value: "Optional legal or social links" },
+      { name: "copyright", type: "ReactNode", value: "Optional bottom line" },
+      { name: "children", type: "ReactNode", value: "Replaces the introduction and navigation; artwork remains" },
+      { name: "interactive", type: "boolean", value: "true; pointer motion respects reduced-motion and touch" },
+      { name: "className / style", type: "string / CSSProperties", value: "Applied to footer; --vfx-footer-display sets the display font" },
+    ] : config.category === "Heroes" ? [
+      { name: "title / subtitle", type: "ReactNode", value: "Your content; named heroes include example copy" },
+      { name: "eyebrow", type: "string", value: "Optional short label" },
+      { name: "primaryCta / secondaryCta", type: "string | HeroCta | null", value: "{ label, href } or { label, onClick }; null hides the action" },
+      { name: "children", type: "ReactNode", value: "Replaces the entire default content stack" },
+      { name: "interactive", type: "boolean", value: "false in the library; enabled in this preview" },
+      { name: "scheme", type: '"dark" | "light"', value: "dark" },
+      { name: "className / style", type: "string / CSSProperties", value: "Applied to the hero section" },
+      { name: "fallback", type: "ReactNode", value: "Content shown if the background renderer is unavailable" },
+    ] : [
+      ...(config.runtime === "dom" ? [
+        ...(config.id === "kinetic-text" ? [] : [{ name: "children", type: "ReactNode", value: "Your own content; the default is a demonstration" }]),
+        { name: "disabled", type: "boolean", value: "false; motion also respects system preferences" },
+        ...(config.id === "spectral-card" ? [{ name: "radius", type: "number", value: "24 pixels" }] : []),
+      ] : [
+        { name: "interactive", type: "boolean", value: "false in the library; enabled in this preview" },
+        { name: "fallback", type: "ReactNode", value: "Shown when the renderer is unavailable" },
+        ...(config.id === "glass-card" ? [{ name: "children", type: "ReactNode", value: "DOM content above the decorative glass field" }] : []),
+      ]),
+      { name: "className / style", type: "string / CSSProperties", value: "Applied to the outer container" },
+    ],
     // Variants without a meaningful thumbnail (numeric presets fall through
     // paletteThumb to the generic gradient) inherit the shader's real still.
     variants: config.variants.map((variant) =>
@@ -213,16 +226,22 @@ const heroUsage = (name: string) => `import { ${name} } from "@vfx-ui/react";
 
 export function Landing() {
   return (
-    <div style={{ height: "100dvh" }}>
-      <${name} />
-    </div>
+    <section style={{ height: "max(640px, 100svh)" }}>
+      <${name}
+        title="Your next big idea."
+        subtitle="Replace this with your own story."
+        primaryCta={{ label: "Get started", href: "/start" }}
+        secondaryCta={null}
+        interactive
+      />
+    </section>
   );
 }`;
 
 const HERO_NOTES = (base: string, layout: string) => [
   `Purpose: drop-in hero section — a full first screen with real, selectable DOM text (${layout} layout) over a GPU ${base} background. Copy it, ship it.`,
   `Mount: give the parent an explicit height (e.g. height: 100dvh or a min-height); the shell fills it and clamps its own type with container queries.`,
-  `Props: eyebrow, title, subtitle, primaryCta, secondaryCta, badges, scheme ("dark" | "light"), accent, plus the ${base} shader uniforms. All have opinionated defaults — zero props is production-grade.`,
+  `Props: eyebrow, title, subtitle, primaryCta, secondaryCta, badges, scheme ("dark" | "light"), accent, plus the ${base} shader uniforms. Default copy is for demonstration. Supply your own content and CTA href or onClick; children replaces the content stack.`,
   `Interaction: the ${base} background animates on its own; text and CTAs are plain DOM (WCAG AA scrim, screen-reader readable).`,
   `Guardrails: WebGPU required with graceful degradation; SSR renders inert DOM; prefers-reduced-motion freezes the shader and skips the entrance animation. Do not stack two heroes on one screen.`,
 ];
@@ -260,7 +279,88 @@ export function Hero() {
   );
 }`;
 
+
+const FOOTER_PREVIEW = {
+  cta: { label: "Start a conversation", href: "mailto:hello@example.com" },
+  groups: [
+    { label: "Explore", links: [{ label: "Our work", href: "/heroes" }, { label: "The collection", href: "/footers" }, { label: "Get started", href: "/installation" }] },
+    { label: "Elsewhere", links: [{ label: "GitHub", href: "https://github.com/zjy365/vfx-ui" }, { label: "For agents", href: "/llms.txt" }] },
+  ],
+  copyright: "© 2026 Your studio",
+  legal: [{ label: "Back to the collection", href: "/footers" }],
+};
+export function footerUsage(name: string, settings: Readonly<Record<string, unknown>> = {}) {
+  const props = { ...FOOTER_PREVIEW, ...settings };
+  const lines = Object.entries(props).map(([key, value]) => `      ${key}={${JSON.stringify(value)}}`).join("\n");
+  return `import { ${name} } from "@vfx-ui/react";\n\nexport function PageFooter() {\n  return (\n    <${name}\n${lines}\n    />\n  );\n}`;
+}
+const FOOTER_ENTRIES = [
+  { id: "footer-tidal", name: "FooterTidal", label: "Footer Tidal", brand: "AFTER", title: "Every ending. A new beginning.", color: "#e8b58b", background: "#151b20", description: "Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.", extra: [{ kind: "toggle" as const, key: "animate", label: "Flowing tide", default: true }] },
+  { id: "footer-fold", name: "FooterFold", label: "Footer Fold", brand: "FORM", title: "Leave it wide open.", color: "#292454", background: "#e5e0f0", description: "Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.", extra: [range("depth", "Fold depth", 0, 55, 1, 32)] },
+  { id: "footer-phosphor", name: "FooterPhosphor", label: "Footer Phosphor", brand: "STILL", title: "Keep in touch.", color: "#d2f8a2", background: "#17201b", description: "A wordmark made of light. Its cells scatter around your pointer and settle back into place.", extra: [] },
+].map((footer) => entry({
+  id: footer.id, category: "Footers", label: footer.label, runtime: "dom", importName: footer.name,
+  tags: ["footer", "typography", "pointer"], description: footer.description, thumbnail: `/showcase/${footer.id}.png`,
+  previewProps: { ...FOOTER_PREVIEW, copyright: `© 2026 ${footer.brand}`, cta: { label: footer.id === "footer-fold" ? "Begin a project" : footer.id === "footer-phosphor" ? "Say hello" : "Start a conversation", href: "mailto:hello@example.com" } },
+  sourceCode: footerUsage(footer.name, { brand: footer.brand, title: footer.title, color: footer.color, background: footer.background, copyright: `© 2026 ${footer.brand}`, cta: { label: footer.id === "footer-fold" ? "Begin a project" : footer.id === "footer-phosphor" ? "Say hello" : "Start a conversation", href: "mailto:hello@example.com" } }),
+  controls: [
+    { kind: "text", key: "brand", label: "Your brand", default: footer.brand, maxLength: 24 },
+    { kind: "text", key: "title", label: "Your headline", default: footer.title, maxLength: 120 },
+    { kind: "toggle", key: "interactive", label: "Follow pointer", default: true },
+    color("color", "Ink / light", footer.color as `#${string}`), color("background", "Surface", footer.background as `#${string}`),
+    ...footer.extra,
+  ], variants: [],
+  agentNotes: ["A semantic footer with customizable brand, title, description, CTA, navigation groups, copyright and legal links. Example links belong to the demo; replace them with your own routes. children replaces the intro and navigation. No WebGPU or animation library required. Touch and reduced-motion preserve a composed static design. Canvas work sleeps offscreen. Set --vfx-footer-display through style to use your brand font."],
+}));
+
 export const READY_SHADERS: readonly ReadyShader[] = [
+  ...FOOTER_ENTRIES,
+  entry({
+    id: "spectral-card", category: "Interactions", label: "Spectral Card", runtime: "dom",
+    tags: ["card", "holographic", "pointer"], importName: "SpectralCard",
+    description: "A touch of iridescence. Real content, spatial tilt, and light that follows you.",
+    thumbnail: "/showcase/spectral-card.png",
+    sourceCode: `import { SpectralCard } from "@vfx-ui/react";
+
+export function Card() {
+  return <SpectralCard><div style={{ padding: 40 }}><h2>Your content, in a new light.</h2><p>Any text, image or link belongs here.</p></div></SpectralCard>;
+}`,
+    controls: [
+      { key: "tilt", label: "Tilt", min: 0, max: 24, step: 1, digits: 0, default: 12 },
+      { key: "glare", label: "Light", min: 0, max: 1, step: .05, digits: 2, default: .6 },
+    ], variants: [],
+    agentNotes: ["Accepts children, tilt, glare, radius, disabled, className and style. Works without WebGPU. Touch and reduced-motion keep content still. Use native links/buttons inside children."],
+  }),
+  entry({
+    id: "kinetic-text", category: "Text", label: "Kinetic Text", runtime: "dom",
+    tags: ["text", "pointer", "typography"], importName: "KineticText",
+    description: "Letters lift into a soft wave as your cursor passes through.",
+    thumbnail: "/showcase/kinetic-text.png",
+    sourceCode: `import { KineticText } from "@vfx-ui/react";
+
+export function Headline() {
+  return <h1><KineticText text="Feel something." strength={32} /></h1>;
+}`,
+    controls: [
+      { kind: "text", key: "text", label: "Your words", default: "Feel something.", maxLength: 60 },
+      { key: "strength", label: "Lift", min: 0, max: 60, step: 1, digits: 0, default: 32 },
+      { key: "spread", label: "Field width", min: .05, max: .6, step: .01, digits: 2, default: .28 },
+    ], variants: [],
+    agentNotes: ["Accepts text, strength, spread, disabled, className and style. Wrap in a heading for heading semantics. Text has one accessible label; individual letters are hidden from screen readers. Respects reduced motion; no GPU dependency."],
+  }),
+  entry({
+    id: "magnetic", category: "Interactions", label: "Magnetic", runtime: "dom",
+    tags: ["button", "pointer", "magnetic"], importName: "Magnetic",
+    description: "Give a button, link, or any small piece of content a gentle pull.",
+    thumbnail: "/showcase/magnetic.png",
+    sourceCode: `import { Magnetic } from "@vfx-ui/react";
+
+export function Action() {
+  return <Magnetic strength={18}><a href="/start">Get started</a></Magnetic>;
+}`,
+    controls: [{ key: "strength", label: "Pull", min: 0, max: 40, step: 1, digits: 0, default: 18 }],
+    variants: [], agentNotes: ["Accepts children, strength, disabled, className and style. Supply your own link or button; its semantics are preserved. Stable outer hit area. Touch and reduced-motion disable movement. No WebGPU dependency."],
+  }),
   entry({
     id: "hero-fluid",
     category: "Heroes",
@@ -951,83 +1051,7 @@ export function PhysicsHero() {
     }, paletteThumb),
   }),
 
-  entry({
-    id: "web-globe",
-    category: "Globe",
-    label: "Web Globe",
-    tags: ["globe", "map", "3d"],
-    description: "WebGPU re-creation of shuding/cobe (MIT): a lat/lon dot-matrix globe with fresnel rim and far-side shading.",
-    importName: "WebGlobe",
-    thumbnail: "/showcase/web-globe.png",
-    sourceCode: `import { WebGlobe, WEB_GLOBE_PRESETS } from "@vfx-ui/react";
 
-export function GlobeCard() {
-  return (
-    <div style={{ position: "relative", width: 420, height: 420 }}>
-      <WebGlobe {...WEB_GLOBE_PRESETS.midnight} />
-    </div>
-  );
-}`,
-    agentNotes: [
-      "Purpose: rotating dot-matrix globe for global/infra dashboards and landing pages; analytic sphere, no mesh assets.",
-      "Mount: square-ish container sized to the globe; transparent background — sits on any dark surface.",
-      "Props: speed (spin), phi (start longitude), theta (tilt), dotSize (fraction of cell, 0-1), globeScale, backside (far-side visibility), color/emission.",
-      "Pointer: cursor x rotates and y tilts the globe (drives the phi/theta uniforms); interactive={false} pins the authored orientation.",
-      "Guardrails: keep container near-square to avoid ellipse clipping; WebGPU required with fallback prop.",
-    ],
-    controls: [
-      range("speed", "Speed", 0, 2, 0.05, 0.35),
-      range("phi", "Phi", 0, 6.28, 0.05, 0),
-      range("theta", "Theta", 0, 1.5, 0.05, 0.35),
-      range("dotSize", "Dot size", 0.2, 0.9, 0.01, 0.62),
-      range("backside", "Backside", 0, 1, 0.05, 0.45),
-      color("color", "Dots", "#94a3b8"),
-      color("emission", "Rim", "#f8fafc"),
-    ],
-    variants: presetVariants(WEB_GLOBE_PRESETS, {
-      midnight: "Indigo dots with a silver rim.",
-      wire: "Green wireframe feel, faster spin.",
-      ember: "Amber globe tilted toward the viewer.",
-    }, paletteThumb),
-  }),
-
-  entry({
-    id: "energy-orb",
-    category: "Globe",
-    label: "Energy Orb",
-    tags: ["globe", "orb", "smoke", "glow"],
-    description: "Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT).",
-    importName: "EnergyOrb",
-    thumbnail: "/showcase/energy-orb.png",
-    sourceCode: `import { EnergyOrb, ENERGY_ORB_PRESETS } from "@vfx-ui/react";
-
-export function OrbHero() {
-  return (
-    <div style={{ position: "relative", width: 480, height: 480 }}>
-      <EnergyOrb {...ENERGY_ORB_PRESETS.amethyst} />
-    </div>
-  );
-}`,
-    agentNotes: [
-      "Purpose: mystical energy sphere for hero sections and empty states; rotating volumetric smoke (3D fBm) with fresnel rim and outer halo.",
-      "Mount: near-square container; transparent background — sits on dark surfaces.",
-      "Props: speed, smokeScale (pattern density), smokeStrength (veil brightness), smokeSpeed, hue (radians), saturation, glow.",
-      "Guardrails: transparent design — place over dark solids; hue rotates around the luminance axis so any palette is reachable; WebGPU required with fallback prop.",
-    ],
-    controls: [
-      range("speed", "Speed", 0, 3, 0.05, 1),
-      range("smokeScale", "Smoke scale", 0.4, 2, 0.05, 1),
-      range("smokeStrength", "Smoke strength", 0, 2, 0.05, 1),
-      range("hue", "Hue", 0, 6.28, 0.05, 0),
-      range("saturation", "Saturation", 0, 1.5, 0.05, 1),
-      range("glow", "Glow", 0, 2, 0.05, 1),
-    ],
-    variants: presetVariants(ENERGY_ORB_PRESETS, {
-      amethyst: "Original violet arcana.",
-      cyan: "Cold cyan storm orb.",
-      magma: "Warm ember sphere, denser smoke.",
-    }, orbThumb),
-  }),
 
   entry({
     id: "ribbon-field",
@@ -1195,55 +1219,11 @@ export function PrismHero() {
     }, paletteThumb),
   }),
 
-  entry({
-    id: "live-chart",
-    category: "Data",
-    label: "Live Chart",
-    tags: ["data", "chart", "realtime"],
-    description: "Real-time GPU line chart: analytic stroke + glow + area fill from a uniform array of points.",
-    importName: "LiveChart",
-    thumbnail: "/showcase/live-chart.png",
-    sourceCode: `import { useEffect, useState } from "react";
-import { LiveChart } from "@vfx-ui/react";
-
-export function LiveTelemetry() {
-  const [data, setData] = useState(() => Array.from({ length: 64 }, () => 0.5));
-  useEffect(() => {
-    const id = setInterval(() => {
-      setData((prev) => [...prev.slice(1), Math.random()]);
-    }, 200);
-    return () => clearInterval(id);
-  }, []);
-  return <LiveChart data={data} glow={0.5} fill={0.6} />;
-}`,
-    agentNotes: [
-      "Purpose: streaming line chart rendered entirely on the GPU — feed it sensor/telemetry/price data at any tick rate.",
-      "Mount: any sized container; data array is truncated to 64 points, values clamp to 0..1.",
-      "Props: data (number[]), lineWidth, glow, fill, color/accent.",
-      "Pointer: hovering shows a vertical scrub line at the cursor x position; interactive={false} disables it.",
-      "Guardrails: data is required; normalize values to 0..1 yourself (out-of-range values clamp silently); WebGPU required with fallback prop.",
-    ],
-    controls: [
-      range("lineWidth", "Line width", 0.002, 0.02, 0.001, 0.006),
-      range("glow", "Glow", 0, 1, 0.01, 0.4),
-      range("fill", "Fill", 0, 1, 0.01, 0.6),
-      color("color", "Line", "#38bdf8"),
-      color("accent", "Glow", "#7dd3fc"),
-    ],
-    variants: presetVariants(LIVE_CHART_PRESETS, {
-      signal: "Green telemetry line with a soft fill.",
-      plasma: "Magenta line with a hot glow.",
-      minimal: "Quiet slate line for dense dashboards.",
-    }, paletteThumb),
-  }),
 ];
 
 export const VISIBLE_READY_SHADERS = READY_SHADERS.filter((shader) => shader.visible);
 
-export const READY_SHADER_COLLECTION_COUNT = VISIBLE_READY_SHADERS.reduce(
-  (total, shader) => total + (shader.variants?.length || 1),
-  0,
-);
+export const READY_SHADER_COLLECTION_COUNT = VISIBLE_READY_SHADERS.length;
 
 export function getReadyShader(id: string): ReadyShader {
   return READY_SHADERS.find((shader) => shader.id === id) ?? VISIBLE_READY_SHADERS[0]!;

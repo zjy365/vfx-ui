@@ -174,7 +174,7 @@ export function FiberFlow({
   style,
   fallback,
 }: FiberFlowProps) {
-  const [wrapRef, pointer, pointerActive] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer, pointerActive] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const [res, setRes] = useState<[number, number]>([800, 600]);
 
   useEffect(() => {

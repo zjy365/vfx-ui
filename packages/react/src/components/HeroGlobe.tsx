@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { HeroShell } from "./HeroShell";
+import { useEffect, useRef, useState } from "react";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 
 /**
  * cobe (MIT, Copyright 2026 Shu Ding) — the dot-matrix globe behind
@@ -53,12 +53,7 @@ function frontMarkers(markers: CobeMarker[], phi: number, theta: number): CobeMa
   });
 }
 
-export interface HeroGlobeProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroGlobeProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Spin speed in radians/second; 0 holds the authored framing. */
   spin?: number;
@@ -91,13 +86,17 @@ export function HeroGlobe({
   glowColor = [0.4, 0.6, 1],
   markers = DEFAULT_MARKERS,
   globeProps,
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroGlobeProps) {
+  const [failed, setFailed] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
   // Latest props for the mount-only rAF loop; re-running the effect would
   // tear down and re-create the WebGL context on every parent render.
-  const optsRef = useRef({ spin, mapSamples, baseColor, markerColor, glowColor, markers, globeProps });
-  optsRef.current = { spin, mapSamples, baseColor, markerColor, glowColor, markers, globeProps };
+  const optsRef = useRef({ spin, mapSamples, baseColor, markerColor, glowColor, markers, globeProps, interactive });
+  optsRef.current = { spin, mapSamples, baseColor, markerColor, glowColor, markers, globeProps, interactive };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -123,14 +122,27 @@ export function HeroGlobe({
     };
     measure();
 
+    const host = stage.closest(".vfx-hero");
+    let target = { x: 0, y: 0 };
+    let pointer = { x: 0, y: 0 };
+    const onMove = (event: Event) => {
+      const e = event as PointerEvent;
+      if (!optsRef.current.interactive || reduced || e.pointerType === "touch" || !host) return;
+      const rect = host.getBoundingClientRect();
+      target = { x: (e.clientX - rect.left) / rect.width - .5, y: (e.clientY - rect.top) / rect.height - .5 };
+    };
+    const onLeave = () => { target = { x: 0, y: 0 }; };
+    host?.addEventListener("pointermove", onMove, { passive: true });
+    host?.addEventListener("pointerleave", onLeave);
     const buildState = (): Record<string, unknown> => {
       const { mapSamples: samples, baseColor: base, markerColor: marker, glowColor: glow, markers: nodes, globeProps: extra } = optsRef.current;
-      const theta = 0.4;
+      const theta = 0.4 + pointer.y * .3;
+      const viewPhi = phi + pointer.x * .8;
       return {
         width,
         height,
         devicePixelRatio: Math.min(2, window.devicePixelRatio || 1),
-        phi,
+        phi: viewPhi,
         theta,
         dark: 0.9,
         diffuse: 1.2,
@@ -142,7 +154,7 @@ export function HeroGlobe({
         glowColor: glow,
         offset: [0, 0],
         markerElevation: 0,
-        markers: frontMarkers(nodes, phi, theta),
+        markers: frontMarkers(nodes, viewPhi, theta),
         ...extra,
       };
     };
@@ -151,7 +163,10 @@ export function HeroGlobe({
       if (!globe) return;
       const dt = last ? Math.min(0.05, (now - last) / 1000) : 0;
       last = now;
-      phi += optsRef.current.spin * dt;
+      if (!optsRef.current.interactive) target = { x: 0, y: 0 };
+      pointer.x += (target.x - pointer.x) * .08;
+      pointer.y += (target.y - pointer.y) * .08;
+      if (!reduced) phi += optsRef.current.spin * dt;
       globe.update(buildState());
     };
 
@@ -165,12 +180,12 @@ export function HeroGlobe({
       if (disposed) return;
       const create = m.default as unknown as (el: HTMLCanvasElement, opts: Record<string, unknown>) => CobeGlobe;
       globe = create(canvas, buildState());
-      if (reduced || optsRef.current.spin <= 0) {
+      if (reduced) {
         renderFrame(performance.now());
       } else {
         raf = requestAnimationFrame(loop);
       }
-    });
+    }).catch(() => { if (!disposed) setFailed(true); });
 
     const observer = new ResizeObserver(measure);
     observer.observe(stage);
@@ -179,24 +194,27 @@ export function HeroGlobe({
       disposed = true;
       cancelAnimationFrame(raf);
       observer.disconnect();
+      host?.removeEventListener("pointermove", onMove);
+      host?.removeEventListener("pointerleave", onLeave);
       globe?.destroy();
     };
   }, []);
 
   return (
     <HeroShell
+      {...shellProps}
       layout="split"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent="#7da7fc"
       background={
         // Shift the planet into the right half so the split scrim never slices
         // the sphere — it reads as a planet rising behind the copy column.
-        <div ref={stageRef} style={{ position: "absolute", inset: 0, transform: "translateX(22%)" }}>
+        failed ? fallback ?? <div style={{ height: "100%", background: "#060b18" }} /> : <div ref={stageRef} style={{ position: "absolute", inset: 0, transform: "translateX(22%)" }}>
           <canvas ref={canvasRef} style={{ width: "100%", height: "100%", display: "block" }} />
         </div>
       }

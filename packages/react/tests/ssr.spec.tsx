@@ -4,7 +4,6 @@ import {
   Aurora,
   BlackHole,
   ChromaFlow,
-  EnergyOrb,
   FiberFlow,
   FluidGradient,
   GlassCard,
@@ -24,7 +23,6 @@ import {
   Iridescent,
   LightPrism,
   LiquidGlass,
-  LiveChart,
   MeshGradient,
   ParticleField,
   RibbonField,
@@ -32,7 +30,6 @@ import {
   Vortex,
   VfxCanvas,
   WaveBackground,
-  WebGlobe,
 } from "../src/index.ts";
 
 /** SSR contract: every component must render an inert canvas with zero server-side GPU access. */
@@ -52,9 +49,6 @@ describe("SSR safety", () => {
         <MeshGradient />
         <Iridescent />
         <Vortex />
-        <WebGlobe />
-        <LiveChart data={[0.1, 0.5, 0.9, 0.3]} />
-        <EnergyOrb />
         <RibbonField />
         <FiberFlow />
         <LightPrism />
@@ -75,10 +69,8 @@ describe("SSR safety", () => {
       </div>,
     );
     const canvasCount = (tree.match(/<canvas/g) ?? []).length;
-    // 32 canvases: 19 shader components (incl. GlassLens, BlackHole, ChromaFlow) +
-    // 11 WebGPU heroes + HeroGlobe's inert cobe canvas (the WebGL globe
-    // itself mounts client-side only) + the bare VfxCanvas below.
-    expect(canvasCount).toBe(32);
+    // 16 base effects, 12 Heroes, and the bare VfxCanvas.
+    expect(canvasCount).toBe(29);
     expect(tree).not.toContain("no webgpu");
     // Heroes must ship real selectable DOM text, not texture-rendered type.
     expect(tree).toContain("<h1");

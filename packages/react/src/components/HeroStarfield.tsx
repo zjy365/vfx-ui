@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { Starfield } from "./Starfield";
 
-export interface HeroStarfieldProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroStarfieldProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: fraction of cells carrying a star (0..1). */
   density?: number;
@@ -32,18 +27,22 @@ export function HeroStarfield({
   speed = 1,
   twinkle = 0.8,
   color = "#d0e4ff",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroStarfieldProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="left"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent={color}
-      background={<Starfield density={density} speed={speed} twinkle={twinkle} color={color} />}
+      background={<Starfield interactive={interactive} fallback={fallback} density={density} speed={speed} twinkle={twinkle} color={color} />}
     />
   );
 }

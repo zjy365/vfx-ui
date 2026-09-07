@@ -1,4 +1,4 @@
-import { Suspense, useState, type CSSProperties } from "react";
+import { Suspense, useEffect, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import type { ReadyShader, ReadyShaderCategory } from "../data/registry";
 import { READY_SHADER_CATEGORIES } from "../data/registry";
@@ -40,7 +40,7 @@ type SidebarPreview = {
 function getSidebarPreviewThumbnail(shader: ReadyShader) {
   // Heroes render as stills in the tooltip (no live mini render) — show the
   // real Dawn render, not the first variant's flat palette gradient.
-  if (shader.category === "Heroes") return shader.thumbnail;
+  if (["Heroes", "Footers"].includes(shader.category)) return shader.thumbnail;
   return shader.variants?.[0]?.thumbnail ?? shader.thumbnail;
 }
 
@@ -67,8 +67,9 @@ const COMMUNITY_SHADERS = orderNewestFirst(VISIBLE_READY_SHADERS);
 function SidebarCatalogSection({ label, shaders, active, installationActive, onSelect, onPreview, onPreviewEnd }: SidebarCatalogSectionProps) {
   const [expanded, setExpanded] = useState(true);
   const [openCategories, setOpenCategories] = useState<Set<ReadyShaderCategory>>(
-    () => new Set(READY_SHADER_CATEGORIES),
+    () => new Set<ReadyShaderCategory>([active?.category ?? "Heroes"]),
   );
+  useEffect(() => { if (active) setOpenCategories((current) => new Set([...current, active.category])); }, [active?.category]);
   const categories = READY_SHADER_CATEGORIES.filter((category) => (
     shaders.some((shader) => shader.category === category)
   ));
@@ -86,7 +87,7 @@ function SidebarCatalogSection({ label, shaders, active, installationActive, onS
           <MaximizeIcon className="maximize-icon" />
         </button>
       </h2>
-      <div className={`nav-children${expanded ? " is-open" : ""}`}>
+      <div className={`nav-children${expanded ? " is-open" : ""}`} hidden={!expanded}>
         <div>
           {categories.map((category) => {
             const categoryExpanded = openCategories.has(category);
@@ -105,7 +106,7 @@ function SidebarCatalogSection({ label, shaders, active, installationActive, onS
                   {category}
                   <ChevronIcon className="chev" />
                 </button>
-                <div className={`nav-children${categoryExpanded ? " is-open" : ""}`}>
+                <div className={`nav-children${categoryExpanded ? " is-open" : ""}`} hidden={!categoryExpanded}>
                   <div>
                     <div className="nav-list">
                       {shaders.filter((shader) => shader.category === category).map((shader) => (
@@ -223,7 +224,7 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
           <img src={preview.thumbnail} alt="" />
           {/* Heroes are full-page layouts — miniaturized into a 240px card
               their copy overflows and reads broken, so they show the still. */}
-          {preview.shader.component && preview.shader.category !== "Heroes" ? (
+          {preview.shader.component && !["Heroes", "Footers"].includes(preview.shader.category) ? (
             <Suspense fallback={null}>
               <span className="sidebar-preview-live" style={{ "--hero-min-height": "0px" } as CSSProperties}>
                 <preview.shader.component {...(preview.shader.variants?.[0]?.props ?? {})} />

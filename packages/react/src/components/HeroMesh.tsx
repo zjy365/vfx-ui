@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { MeshGradient } from "./MeshGradient";
 
-export interface HeroMeshProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroMeshProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: animation speed. */
   speed?: number;
@@ -37,18 +32,22 @@ export function HeroMesh({
   to = "#134e4a",
   accent = "#7c3aed",
   deep = "#f472b6",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroMeshProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="centered"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent={deep}
-      background={<MeshGradient speed={speed} scale={scale} softness={softness} from={from} to={to} accent={accent} deep={deep} />}
+      background={<MeshGradient interactive={interactive} fallback={fallback} speed={speed} scale={scale} softness={softness} from={from} to={to} accent={accent} deep={deep} />}
     />
   );
 }

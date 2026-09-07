@@ -12,22 +12,27 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroStarfield } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroStarfield />;
+  return <HeroStarfield title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `density?: number`
 - `speed?: number`
 - `twinkle?: number`
 - `color?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 

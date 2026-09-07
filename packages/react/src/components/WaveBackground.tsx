@@ -123,7 +123,7 @@ export function WaveBackground({
   const a = hexToRgb01(from);
   const b = hexToRgb01(to);
   const c = hexToRgb01(accent);
-  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   return (
     <div

@@ -18,6 +18,7 @@ export function Demo() {
 
 ## Props
 
+- `children?: ReactNode`
 - `radius?: number`
 - `borderGlow?: number`
 - `shine?: number`

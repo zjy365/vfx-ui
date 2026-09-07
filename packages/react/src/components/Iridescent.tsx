@@ -115,7 +115,7 @@ export function Iridescent({
   style,
   fallback,
 }: IridescentProps) {
-  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   return (
     <div

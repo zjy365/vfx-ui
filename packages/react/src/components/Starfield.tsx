@@ -177,7 +177,7 @@ export function Starfield({
   fallback,
 }: StarfieldProps) {
   const c = hexToRgb01(color);
-  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   return (
     <div

@@ -12,17 +12,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroMesh } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroMesh />;
+  return <HeroMesh title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `scale?: number`
@@ -31,6 +26,16 @@ export function Demo() {
 - `to?: string`
 - `accent?: string`
 - `deep?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 

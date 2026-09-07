@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { ParticleField } from "./ParticleField";
 
-export interface HeroParticlesProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroParticlesProps extends HeroContentProps {
   badges?: readonly string[];
   scheme?: "dark" | "light";
   /** Shader: fraction of cells carrying a particle (0..1). */
@@ -34,19 +29,23 @@ export function HeroParticles({
   speed = 0.8,
   size = 0.16,
   color = "#9ccaff",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroParticlesProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="stacked"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       badges={badges}
       accent={color}
-      background={<ParticleField density={density} speed={speed} size={size} color={color} />}
+      background={<ParticleField interactive={interactive} fallback={fallback} density={density} speed={speed} size={size} color={color} />}
     />
   );
 }

@@ -40,6 +40,11 @@ export function VfxCanvas({
   const rendererRef = useRef<VfxRenderer | null>(null);
   const [failed, setFailed] = useState(false);
   const uniformsKey = JSON.stringify(uniforms ?? {});
+  const latestRef = useRef({ uniforms, animate, onReady });
+  latestRef.current = { uniforms, animate, onReady };
+  const mayAnimate = () => latestRef.current.animate !== false
+    && !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,7 +72,9 @@ export function VfxCanvas({
         }
         renderer = r;
         rendererRef.current = r;
-        onReady?.(r);
+        r.setUniforms(latestRef.current.uniforms ?? {});
+        r.setAnimate(mayAnimate());
+        latestRef.current.onReady?.(r);
       })
       .catch((err: unknown) => {
         // A stale mount (StrictMode double-mount) rejects with
@@ -103,7 +110,11 @@ export function VfxCanvas({
   }, [uniformsKey]);
 
   useEffect(() => {
-    rendererRef.current?.setAnimate(animate !== false);
+    const media = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    const sync = () => rendererRef.current?.setAnimate(mayAnimate());
+    sync();
+    media?.addEventListener?.("change", sync);
+    return () => media?.removeEventListener?.("change", sync);
   }, [animate]);
 
   if (failed) {

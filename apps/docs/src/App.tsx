@@ -82,7 +82,7 @@ function captureSchemeFromUrl() {
 
 function capturePropsForShader(shader: ReadyShader, scheme: "light" | "dark", variant?: NonNullable<ReadyShader["variants"]>[number]) {
   const controls = variant?.controls ?? shader.controls ?? [];
-  const props = Object.fromEntries(controls.map((control) => {
+  const props = Object.fromEntries(controls.filter((control) => !(shader.category === "Heroes" && ["title", "subtitle"].includes(control.key))).map((control) => {
     if (control.kind === "choice" && control.key === "mode" && control.options.some((option) => option.value === scheme)) {
       return [control.key, scheme];
     }
@@ -97,7 +97,7 @@ function ShaderCapturePage() {
   const shader = route.active;
   const variant = shader?.variants?.find((item) => item.id === route.activeVariantId);
   const captureScheme = captureSchemeFromUrl();
-  const captureProps = { ...variant?.props, ...capturePropsForShader(shader, captureScheme, variant) };
+  const captureProps = { ...shader.previewProps, ...variant?.props, ...capturePropsForShader(shader, captureScheme, variant) };
   const Preview = shader?.component;
 
   useEffect(() => {
@@ -115,9 +115,9 @@ function ShaderCapturePage() {
 
   return (
     <main className="capture-shell" aria-label={`${shader.label} preview capture`}>
-      <div className={`capture-preview shader-preview ${shader.id}`} data-variant={variant?.id}>
+      <div className={`capture-preview preview shader-preview ${shader.id} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""}`} data-variant={variant?.id}>
         <Suspense fallback={<div className="preview-loading" role="status">Loading renderer…</div>}>
-          {Preview ? <Preview {...captureProps} /> : null}
+          {Preview ? <Preview {...captureProps} interactive={false} style={shader.id === "spectral-card" ? { width: 460, height: 560 } : undefined} /> : null}
         </Suspense>
         <span className="capture-ready" data-capture-ready={shader.id} aria-hidden="true" />
       </div>

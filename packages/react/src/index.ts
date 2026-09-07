@@ -71,12 +71,6 @@ export {
   type BlackHoleSettings,
 } from "./components/BlackHole.tsx";
 export {
-  WebGlobe,
-  WEB_GLOBE_SHADER,
-  WEB_GLOBE_PRESETS,
-  type WebGlobeProps,
-} from "./components/WebGlobe.tsx";
-export {
   MeshGradient,
   MESH_GRADIENT_SHADER,
   MESH_GRADIENT_PRESETS,
@@ -94,12 +88,6 @@ export {
   VORTEX_PRESETS,
   type VortexProps,
 } from "./components/Vortex.tsx";
-export {
-  EnergyOrb,
-  ENERGY_ORB_SHADER,
-  ENERGY_ORB_PRESETS,
-  type EnergyOrbProps,
-} from "./components/EnergyOrb.tsx";
 export {
   RibbonField,
   RIBBON_FIELD_SHADER,
@@ -128,12 +116,6 @@ export {
   LIGHT_PRISM_PRESETS,
   type LightPrismProps,
 } from "./components/LightPrism.tsx";
-export {
-  LiveChart,
-  LIVE_CHART_SHADER,
-  LIVE_CHART_PRESETS,
-  type LiveChartProps,
-} from "./components/LiveChart.tsx";
 export { HeroShell, type HeroShellProps, type HeroLayout, type HeroCta } from "./components/HeroShell.tsx";
 export { HeroFluid, HERO_FLUID_PRESETS, type HeroFluidProps } from "./components/HeroFluid.tsx";
 export { HeroAurora, HERO_AURORA_PRESETS, type HeroAuroraProps } from "./components/HeroAurora.tsx";
@@ -148,3 +130,12 @@ export { HeroStarfield, HERO_STARFIELD_PRESETS, type HeroStarfieldProps } from "
 export { HeroBlackHole, HERO_BLACK_HOLE_PRESETS, type HeroBlackHoleProps } from "./components/HeroBlackHole.tsx";
 export { HeroChroma, HERO_CHROMA_PRESETS, type HeroChromaProps } from "./components/HeroChroma.tsx";
 export { hexToRgb01 } from "./utils/color.ts";
+export { Magnetic, type MagneticProps } from "./components/Magnetic";
+export { SpectralCard, type SpectralCardProps } from "./components/SpectralCard";
+export { KineticText, type KineticTextProps } from "./components/KineticText";
+export { type HeroContentProps } from "./components/HeroShell";
+
+export { FooterTidal, type FooterTidalProps } from "./components/FooterTidal.tsx";
+export { FooterFold, type FooterFoldProps } from "./components/FooterFold.tsx";
+export { FooterPhosphor, type FooterPhosphorProps } from "./components/FooterPhosphor.tsx";
+export type { FooterContentProps, FooterLink, FooterLinkGroup } from "./components/FooterFrame.tsx";

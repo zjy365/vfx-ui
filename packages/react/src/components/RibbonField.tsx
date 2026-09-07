@@ -125,7 +125,7 @@ export function RibbonField({
   style,
   fallback,
 }: RibbonFieldProps) {
-  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const [res, setRes] = useState<[number, number]>([800, 600]);
 
   useEffect(() => {

@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { Vortex } from "./Vortex";
 
-export interface HeroVortexProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroVortexProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: animation speed. */
   speed?: number;
@@ -38,18 +33,22 @@ export function HeroVortex({
   coreGlow = 1.2,
   color = "#818cf8",
   emission = "#e0e7ff",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroVortexProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="centered"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent={emission}
-      background={<Vortex speed={speed} swirl={swirl} arms={arms} coreGlow={coreGlow} color={color} emission={emission} />}
+      background={<Vortex interactive={interactive} fallback={fallback} speed={speed} swirl={swirl} arms={arms} coreGlow={coreGlow} color={color} emission={emission} />}
     />
   );
 }

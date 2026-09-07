@@ -154,7 +154,7 @@ export function LiquidGlass({
   style,
   fallback,
 }: LiquidGlassProps) {
-  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   return (
     <div

@@ -1,6 +1,15 @@
-import { Suspense, lazy, useEffect, useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
-import { HeroShell } from "@vfx-ui/react";
-import { VISIBLE_READY_SHADERS, READY_SHADER_COLLECTION_COUNT } from "../data/publicShaders";
+import { FooterCollection } from "./FooterCollection";
+import {
+  Suspense,
+  lazy,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type MouseEvent,
+} from "react";
+import { HeroShell, KineticText, Magnetic, SpectralCard } from "@vfx-ui/react";
+import { VISIBLE_READY_SHADERS } from "../data/publicShaders";
 import { shaderRoutePath, STATIC_ROUTE_PATHS } from "../routes.js";
 import { BrandMark } from "./BrandMark";
 import { ThemeButtons } from "./ThemeButtons";
@@ -8,68 +17,47 @@ import { CheckIcon, CopyIcon, GitHubIcon, SearchIcon } from "./icons";
 import type { ThemeMode } from "../theme";
 import "./home.css";
 
-const AuroraBg = lazy(() => import("@vfx-ui/react").then((m) => ({ default: m.Aurora })));
-const LiquidGlassBg = lazy(() => import("@vfx-ui/react").then((m) => ({ default: m.LiquidGlass })));
-const BlackHoleBg = lazy(() => import("@vfx-ui/react").then((m) => ({ default: m.BlackHole })));
-const ChromaFlowBg = lazy(() => import("@vfx-ui/react").then((m) => ({ default: m.ChromaFlow })));
-
-const HERO_BACKGROUNDS = [
-  { id: "aurora", label: "Aurora", component: "Aurora", render: () => <AuroraBg bands={4} primary="#2dd4bf" secondary="#818cf8" /> },
-  { id: "black-hole", label: "Black Hole", component: "BlackHole", render: () => <BlackHoleBg /> },
-  { id: "liquid-glass", label: "Liquid Glass", component: "LiquidGlass", render: () => <LiquidGlassBg /> },
-  { id: "chroma-flow", label: "Chroma Flow", component: "ChromaFlow", render: () => <ChromaFlowBg /> },
-] as const;
-
-type HeroBackgroundId = (typeof HERO_BACKGROUNDS)[number]["id"];
-
-const SHOWCASE_IDS = [
-  "aurora",
-  "liquid-glass",
-  "black-hole",
-  "chroma-flow",
-  "web-globe",
-  "iridescent",
-  "fluid-gradient",
-  "energy-orb",
-  "live-chart",
-  "glass-lens",
-  "starfield",
-  "wave-background",
-  "vortex",
-  "fiber-flow",
-  "mesh-gradient",
-  "particle-field",
-  "ribbon-field",
-  "light-prism",
-  "glass-card",
-] as const;
-
-const FEATURES = [
+const BlackHole = lazy(() =>
+  import("@vfx-ui/react").then((m) => ({ default: m.BlackHole })),
+);
+const Aurora = lazy(() =>
+  import("@vfx-ui/react").then((m) => ({ default: m.Aurora })),
+);
+const ChromaFlow = lazy(() =>
+  import("@vfx-ui/react").then((m) => ({ default: m.ChromaFlow })),
+);
+const ARTWORKS = [
   {
-    title: "WebGPU-native",
-    body: "Every component renders per-pixel on the GPU through vgpu — dot-matrix globes, volumetric smoke, liquid refraction. Effects DOM and CSS literally cannot produce.",
-    meta: "WGSL shaders · zero canvas hacks",
+    id: "black-hole",
+    name: "Event horizon",
+    caption: "Bend a little space.",
+    component: "BlackHole",
   },
   {
-    title: "Deterministically tested",
-    body: "Each component ships with pixel-level render tests that run with or without a GPU — Dawn in CI, mock adapter locally. A shader that stops animating fails the build.",
-    meta: "Pixel-diff gates · Dawn + mock",
+    id: "aurora",
+    name: "Northern lights",
+    caption: "Give the light a nudge.",
+    component: "Aurora",
   },
   {
-    title: "Agentic-first",
-    body: "llms.txt, per-component markdown docs, and a shadcn-style registry your AI agent can install from directly. Copy a prompt, or let the agent do it.",
-    meta: "llms.txt · registry · SKILL.md",
+    id: "chroma-flow",
+    name: "Color in motion",
+    caption: "Push the color around.",
+    component: "ChromaFlow",
   },
 ] as const;
-
-const INSTALL_SNIPPET = "npm install @vfx-ui/react vgpu";
-const USAGE_SNIPPET = `import { Aurora } from "@vfx-ui/react";
-
-export function Landing() {
-  return (
-    <Aurora bands={4} primary="#2dd4bf" secondary="#818cf8" />
-  );
-}`;
+const INSTALL = "npm install @vfx-ui/react vgpu";
+const Arrow = ({ diagonal = false }: { diagonal?: boolean }) => (
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path
+      d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h15m-6-6 6 6-6 6"}
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 type HomePageProps = {
   theme: ThemeMode;
@@ -78,62 +66,116 @@ type HomePageProps = {
   onTheme: (mode: ThemeMode) => void;
 };
 
-function CopyButton({ text, label }: { text: string; label: string }) {
-  const [copied, setCopied] = useState(false);
+function CopyInstall() {
+  const [state, setState] = useState("Copy command");
+  const timer = useRef<ReturnType<typeof setTimeout>>();
+  useEffect(() => () => clearTimeout(timer.current), []);
   return (
     <button
+      className="install-command"
       type="button"
-      className={`home-copy-btn${copied ? " copied" : ""}`}
-      aria-label={label}
+      aria-label={state}
       onClick={async () => {
         try {
-          await navigator.clipboard.writeText(text);
-          setCopied(true);
-          window.setTimeout(() => setCopied(false), 1600);
+          await navigator.clipboard.writeText(INSTALL);
+          setState("Copied");
         } catch {
-          // Clipboard unavailable; the snippet stays selectable.
+          setState("Select the command to copy");
         }
+        clearTimeout(timer.current);
+        timer.current = setTimeout(() => setState("Copy command"), 2400);
       }}
     >
-      {copied ? <CheckIcon /> : <CopyIcon />}
-      <span>{copied ? "Copied" : "Copy"}</span>
+      <code>{INSTALL}</code>
+      {state === "Copied" ? <CheckIcon /> : <CopyIcon />}
+      <span className="sr-only" role="status">
+        {state}
+      </span>
     </button>
   );
 }
 
-export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps) {
-  const [heroBg, setHeroBg] = useState<HeroBackgroundId>("aurora");
-  const activeBackground = HERO_BACKGROUNDS.find((item) => item.id === heroBg) ?? HERO_BACKGROUNDS[0];
-
-  const showcaseItems = SHOWCASE_IDS
-    .map((id) => VISIBLE_READY_SHADERS.find((shader) => shader.id === id))
-    .filter((shader): shader is NonNullable<typeof shader> => Boolean(shader));
-
-  // SPA navigation for every in-page anchor; external links and static
-  // files (llms.txt, agents.md, …) pass through to a real browser navigation.
+export function HomePage({
+  theme,
+  onNavigate,
+  onSearch,
+  onTheme,
+}: HomePageProps) {
+  const [art, setArt] = useState(0);
+  const [presses, setPresses] = useState(0);
+  const [motion, setMotion] = useState(true);
+  const active = ARTWORKS[art];
+  const heroRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(true);
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) =>
+      setInView(entry.isIntersecting),
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
   const onClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href]");
+    if (
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey ||
+      event.button !== 0
+    )
+      return;
+    const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>(
+      "a[href]",
+    );
     const href = anchor?.getAttribute("href");
-    if (!anchor || !href?.startsWith("/")) return;
-    if (anchor.target || /\.[a-z0-9]+$/i.test(href)) return;
+    if (
+      !anchor ||
+      !href?.startsWith("/") ||
+      anchor.target ||
+      /\.[a-z0-9]+$/i.test(href)
+    )
+      return;
     event.preventDefault();
     onNavigate(href);
   };
-
-  const marqueeRow = (ariaHidden: boolean): ReactNode => (
-    <div className="home-marquee-track" aria-hidden={ariaHidden || undefined}>
-      {showcaseItems.map((shader) => (
-        <a className="home-marquee-card" href={shaderRoutePath(shader)} key={shader.id} tabIndex={ariaHidden ? -1 : undefined}>
-          <img src={`/showcase/${shader.id}.png`} alt="" width="512" height="512" loading="lazy" decoding="async" />
-          <span className="home-marquee-label">
-            <strong>{shader.label}</strong>
-            <span>{shader.category}</span>
-          </span>
-        </a>
-      ))}
-    </div>
+  const componentPath = (id: string) =>
+    shaderRoutePath(VISIBLE_READY_SHADERS.find((item) => item.id === id)!);
+  const poster = (
+    <img
+      className="exhibition-poster"
+      src={`/showcase/${active.id}.png`}
+      alt=""
+    />
   );
+  const background =
+    inView && motion ? (
+      <Suspense fallback={poster}>
+        {art === 0 ? (
+          <BlackHole
+            interactive
+            centerX={0.42}
+            centerY={0.08}
+            distance={13.5}
+            brightness={0.8}
+            tilt={0.16}
+            fallback={poster}
+          />
+        ) : art === 1 ? (
+          <Aurora
+            interactive
+            primary="#81ded3"
+            secondary="#8192ef"
+            bands={4}
+            fallback={poster}
+          />
+        ) : (
+          <ChromaFlow interactive momentum={24} fallback={poster} />
+        )}
+      </Suspense>
+    ) : (
+      poster
+    );
 
   return (
     <div className="home-page" onClick={onClick}>
@@ -142,151 +184,305 @@ export function HomePage({ theme, onNavigate, onSearch, onTheme }: HomePageProps
           <BrandMark />
         </a>
         <nav className="home-nav-links" aria-label="Site">
-          <a href={STATIC_ROUTE_PATHS.browse}>Components</a>
-          <a href={STATIC_ROUTE_PATHS.installation}>Installation</a>
-          <a href="/llms.txt" target="_blank" rel="noreferrer">llms.txt</a>
-          <a href="https://github.com/zjy365/vfx-ui" target="_blank" rel="noreferrer" aria-label="GitHub repository">
-            <GitHubIcon />
+          <a href={STATIC_ROUTE_PATHS.browse}>
+            Components <span>{VISIBLE_READY_SHADERS.length}</span>
+          </a>
+          <a href="/heroes">Heroes</a>
+          <a href="/footers">Footers</a>
+          <a
+            href="https://github.com/zjy365/vfx-ui"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub <Arrow diagonal />
           </a>
         </nav>
         <div className="home-nav-actions">
-          <button type="button" className="home-search-btn" onClick={onSearch} aria-label="Search components">
+          <button
+            className="home-search-btn"
+            onClick={onSearch}
+            aria-label="Search components"
+          >
             <SearchIcon />
-            <span>Search</span>
-            <kbd>⌘K</kbd>
+            <kbd>⌘ K</kbd>
           </button>
           <ThemeButtons compact mode={theme} onChange={onTheme} />
         </div>
       </header>
 
-      <section className="home-hero" aria-label="vfx-ui hero">
-        <HeroShell
-          key={activeBackground.id}
-          layout="centered"
-          scheme="dark"
-          eyebrow="WebGPU component library"
-          title={"Shaders you can\ndrop into React."}
-          subtitle="Auroras, liquid glass, dot-matrix globes, live GPU charts — shader-native components rendered per-pixel on the GPU. One import, no WebGL boilerplate, MIT."
-          primaryCta={{ label: "Browse components", href: STATIC_ROUTE_PATHS.browse }}
-          secondaryCta={{ label: "npm i @vfx-ui/react", href: STATIC_ROUTE_PATHS.installation }}
-          badges={["WebGPU", "TypeScript", "MIT", "Agentic-first"]}
-          accent="#2dd4bf"
-          background={(
-            <Suspense fallback={null}>
-              {activeBackground.render()}
-            </Suspense>
-          )}
-          style={{ "--hero-min-height": "min(calc(100svh - 65px), 900px)" } as CSSProperties}
-        />
-        <div className="home-hero-switcher" role="group" aria-label="Change hero background">
-          <span className="home-hero-switcher-note">
-            Live WebGPU — rendered by <code>{`<${activeBackground.component} />`}</code>
-          </span>
-          <div className="home-hero-switcher-pills">
-            {HERO_BACKGROUNDS.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={item.id === heroBg}
-                onClick={() => setHeroBg(item.id)}
+      <main>
+        <section
+          ref={heroRef}
+          className="exhibition"
+          aria-label="Interactive visual effects"
+        >
+          <HeroShell
+            layout="left"
+            background={background}
+            style={{ "--hero-min-height": "100%" } as CSSProperties}
+          >
+            <div className="exhibition-copy">
+              <h1>
+                Make the web
+                <br />
+                feel <span>something.</span>
+              </h1>
+              <p>
+                Expressive components for React.
+                <br />A little atmosphere. A lot of possibility.
+              </p>
+              <a className="exhibition-cta" href={STATIC_ROUTE_PATHS.browse}>
+                Explore the collection <Arrow />
+              </a>
+            </div>
+          </HeroShell>
+          <div className="exhibition-topline">
+            <span>Open-source. Open to possibilities.</span>
+            <span className="exhibition-live">
+              <span />
+              {motion ? "LIVE RENDER" : "STILL FRAME"}
+            </span>
+          </div>
+          <div className="exhibition-bottom">
+            <div className="artwork-caption">
+              <span className="artwork-cross" aria-hidden="true">
+                +
+              </span>
+              <div>
+                <strong>{active.name}</strong>
+                <span>{motion ? active.caption : "Motion is paused."}</span>
+              </div>
+            </div>
+            <div
+              className="artwork-selector"
+              role="group"
+              aria-label="Choose an artwork"
+            >
+              {ARTWORKS.map((item, index) => (
+                <button
+                  key={item.id}
+                  aria-label={item.name}
+                  aria-pressed={index === art}
+                  onClick={() => setArt(index)}
+                >
+                  <img src={`/showcase/${item.id}.png`} alt="" />
+                  <span>{item.name}</span>
+                </button>
+              ))}
+            </div>
+            <button
+              className="motion-toggle"
+              aria-pressed={motion}
+              onClick={() => setMotion((value) => !value)}
+              aria-label={
+                motion ? "Pause artwork motion" : "Play artwork motion"
+              }
+            >
+              {motion ? (
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path
+                    d="M7 5v10M13 5v10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 20 20" aria-hidden="true">
+                  <path d="m7 4 9 6-9 6Z" fill="currentColor" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </section>
+
+        <section className="interaction-studio" aria-labelledby="studio-title">
+          <div className="studio-heading">
+            <h2 id="studio-title">
+              Made for
+              <br />
+              interaction.
+            </h2>
+            <div>
+              <p>
+                Good interfaces respond.
+                <br />
+                These ones have a little personality.
+              </p>
+              <a href={componentPath("spectral-card")}>
+                Meet the interactions <Arrow diagonal />
+              </a>
+            </div>
+          </div>
+          <div className="type-specimen">
+            <div className="specimen-caption">
+              <span>Kinetic Text</span>
+              <span className="pointer-instruction">
+                Move across the letters
+              </span>
+            </div>
+            <div className="type-playground">
+              <KineticText text="Hello, human." strength={44} spread={0.2} />
+            </div>
+            <a
+              className="specimen-open"
+              href={componentPath("kinetic-text")}
+              aria-label="Explore Kinetic Text"
+            >
+              <Arrow diagonal />
+            </a>
+          </div>
+          <div className="studio-pair">
+            <div className="material-specimen">
+              <div className="specimen-caption">
+                <span>Spectral Card</span>
+                <span className="pointer-instruction">Catch the light</span>
+              </div>
+              <div className="material-card">
+                <SpectralCard tilt={16} glare={0.5}>
+                  <div className="material-content">
+                    <span>VFX — MATERIAL EXPLORATION</span>
+                    <div className="material-orbit" aria-hidden="true">
+                      <div />
+                      <div />
+                      <div />
+                    </div>
+                    <div className="material-title">
+                      <strong>
+                        Stay
+                        <br />
+                        curious.
+                      </strong>
+                      <span>
+                        Light follows
+                        <br />
+                        your lead.
+                      </span>
+                    </div>
+                  </div>
+                </SpectralCard>
+              </div>
+              <a
+                className="specimen-open"
+                href={componentPath("spectral-card")}
+                aria-label="Explore Spectral Card"
               >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="home-section home-showcase" aria-labelledby="home-showcase-title">
-        <div className="home-section-head">
-          <p className="home-eyebrow">The catalog</p>
-          <h2 id="home-showcase-title">{READY_SHADER_COLLECTION_COUNT} drops, all GPU-rendered</h2>
-          <p className="home-section-lede">
-            Shader backgrounds, glass surfaces, globes, data visuals, and twelve ship-ready hero sections.
-            Every card below is a real render from the deterministic test suite.
-          </p>
-        </div>
-        <div className="home-marquee">
-          <div className="home-marquee-row">
-            {marqueeRow(false)}
-            {marqueeRow(true)}
-          </div>
-        </div>
-        <div className="home-showcase-more">
-          <a className="home-text-link" href={STATIC_ROUTE_PATHS.browse}>
-            Browse the full catalog →
-          </a>
-        </div>
-      </section>
-
-      <section className="home-section" aria-labelledby="home-features-title">
-        <div className="home-section-head">
-          <p className="home-eyebrow">Why vfx-ui</p>
-          <h2 id="home-features-title">A component library the GPU deserves</h2>
-        </div>
-        <div className="home-features">
-          {FEATURES.map((feature) => (
-            <article className="home-feature-card" key={feature.title}>
-              <h3>{feature.title}</h3>
-              <p>{feature.body}</p>
-              <span className="home-feature-meta">{feature.meta}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="home-section" aria-labelledby="home-code-title">
-        <div className="home-section-head">
-          <p className="home-eyebrow">Quick start</p>
-          <h2 id="home-code-title">Three lines to the GPU</h2>
-        </div>
-        <div className="home-code-grid">
-          <div className="home-code-card">
-            <div className="home-code-head">
-              <span>Install</span>
-              <CopyButton text={INSTALL_SNIPPET} label="Copy install command" />
+                <Arrow diagonal />
+              </a>
             </div>
-            <pre><code>{INSTALL_SNIPPET}</code></pre>
-          </div>
-          <div className="home-code-card">
-            <div className="home-code-head">
-              <span>Render</span>
-              <CopyButton text={USAGE_SNIPPET} label="Copy usage example" />
+            <div className="magnet-specimen">
+              <div className="specimen-caption">
+                <span>Magnetic</span>
+                <span className="pointer-instruction">
+                  Move your pointer closer
+                </span>
+              </div>
+              <div className="magnetic-field">
+                <svg viewBox="0 0 400 400" aria-hidden="true">
+                  <circle cx="200" cy="200" r="82" />
+                  <circle cx="200" cy="200" r="128" />
+                  <circle cx="200" cy="200" r="174" />
+                </svg>
+                <Magnetic strength={28}>
+                  <button
+                    className="magnet-action"
+                    onClick={() => setPresses((value) => value + 1)}
+                  >
+                    {presses ? "Once more?" : "Give it a push"}
+                  </button>
+                </Magnetic>
+              </div>
+              <span className="magnet-feedback" role="status">
+                {presses
+                  ? `${presses} ${presses === 1 ? "good feeling" : "good feelings"}. Keep going.`
+                  : "A small pull. A satisfying click."}
+              </span>
+              <a
+                className="specimen-open"
+                href={componentPath("magnetic")}
+                aria-label="Explore Magnetic"
+              >
+                <Arrow diagonal />
+              </a>
             </div>
-            <pre><code>{USAGE_SNIPPET}</code></pre>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="home-section home-cta" aria-labelledby="home-cta-title">
-        <h2 id="home-cta-title">Ship a hero section tonight.</h2>
-        <p className="home-section-lede">
-          Twelve drop-in heroes — including the one at the top of this page. Copy the code, or hand your agent the prompt.
-        </p>
-        <div className="home-cta-actions">
-          <a className="home-btn home-btn--primary" href={STATIC_ROUTE_PATHS.browse}>Browse components</a>
-          <a className="home-btn home-btn--ghost" href="https://github.com/zjy365/vfx-ui" target="_blank" rel="noreferrer">
-            <GitHubIcon /> Star on GitHub
+        <section className="scene-collection" aria-labelledby="scene-title">
+          <div className="scene-heading">
+            <h2 id="scene-title">Set the scene.</h2>
+            <p>
+              Your story deserves a first impression.
+              <br />
+              Keep the atmosphere. Bring your own words.
+            </p>
+          </div>
+          <div className="scene-grid">
+            {["hero-black-hole", "hero-aurora", "hero-fiber"].map((id) => {
+              const shader = VISIBLE_READY_SHADERS.find(
+                (item) => item.id === id,
+              )!;
+              return (
+                <a
+                  className="scene-card"
+                  href={shaderRoutePath(shader)}
+                  key={id}
+                >
+                  <div className="scene-image">
+                    <img
+                      src={`/showcase/${id}.png`}
+                      alt={`${shader.label} composition`}
+                      loading="lazy"
+                    />
+                  </div>
+                  <div>
+                    <strong>{shader.label}</strong>
+                    <span>
+                      {shader.variants?.length} moods <Arrow diagonal />
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+          <a className="collection-link" href={STATIC_ROUTE_PATHS.browse}>
+            <span>Find your signature.</span>
+            <span>
+              Explore all {VISIBLE_READY_SHADERS.length} components <Arrow />
+            </span>
           </a>
-        </div>
-      </section>
+        </section>
 
-      <footer className="home-footer">
-        <div className="home-footer-brand">
-          <BrandMark />
-          <p>
-            This page is built with vfx-ui — the hero above is <code>{`<${activeBackground.component} />`}</code> inside{" "}
-            <code>{"<HeroShell />"}</code>. MIT licensed.
-          </p>
-        </div>
-        <nav className="home-footer-links" aria-label="Footer">
-          <a href={STATIC_ROUTE_PATHS.browse}>Components</a>
-          <a href={STATIC_ROUTE_PATHS.installation}>Installation</a>
-          <a href="/llms.txt" target="_blank" rel="noreferrer">llms.txt</a>
-          <a href="/agents.md" target="_blank" rel="noreferrer">agents.md</a>
-          <a href="https://github.com/zjy365/vfx-ui" target="_blank" rel="noreferrer">GitHub</a>
-        </nav>
-      </footer>
+        <section className="home-install" aria-labelledby="install-title">
+          <div>
+            <h2 id="install-title">
+              From this page
+              <br />
+              to your project.
+            </h2>
+            <p>
+              Real components. Your content.
+              <br />
+              Copy the code, or hand your agent the prompt.
+            </p>
+          </div>
+          <div className="home-install-code">
+            <CopyInstall />
+            <pre>
+              <code>
+                <span>import</span> {"{ HeroAurora }"} <span>from</span>{" "}
+                <em>"@vfx-ui/react"</em>;{"\n\n"}
+                {"<HeroAurora\n  title="}
+                <em>"Your next big idea."</em>
+                {"\n  interactive\n/>"}
+              </code>
+            </pre>
+            <a href={STATIC_ROUTE_PATHS.installation}>
+              Read the installation guide <Arrow />
+            </a>
+          </div>
+        </section>
+      </main>
+      <FooterCollection />
     </div>
   );
 }

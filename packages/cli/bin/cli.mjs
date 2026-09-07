@@ -62,7 +62,7 @@ Usage:
   npx @vfx-ui/cli add <component> [more...] [--overwrite] [--registry <url|dir>]
 
 Components: wave-background, fluid-gradient, aurora, starfield, particle-field,
-glass-card, liquid-glass, shader-text, metallic-text, image-ripple, web-globe, live-chart
+glass-card, liquid-glass, footer-tidal, footer-fold, footer-phosphor
 
 After adding, install the runtime dependency:
   npm install vgpu@0.3.1

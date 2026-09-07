@@ -1,8 +1,8 @@
 # VFX UI
 
-**Shader-native visual effect components for React — and drop-in Hero sections built on them.** Rendered on the GPU via [WebGPU](https://www.w3.org/TR/webgpu/) ([vgpu](https://github.com/vercel-labs/vgpu)). Every effect's core visual is something **DOM/CSS cannot reproduce** — that is the whole charter.
+**Expressive React components: GPU atmospheres, customizable Hero and Footer sections, and tactile content interactions.** Explore the real effects, tune their props, and bring your own words, images, links, and buttons.
 
-> Positioning: paid template sites (Aceternity, magicui pro) ship whole pages; **we ship their first screen** — a copy-paste Hero section whose background only WebGPU can draw.
+GPU effects use [vgpu](https://github.com/vercel-labs/vgpu). The three Footers, Magnetic, SpectralCard, and KineticText use DOM/CSS/Canvas and work without WebGPU. All ship as TypeScript React components and copy-paste registry items.
 
 ```bash
 npm install @vfx-ui/react vgpu
@@ -26,16 +26,17 @@ export function Hero() {
 | Category | Components |
 |---|---|
 | Heroes | HeroFluid · HeroAurora · HeroFiber · HeroGlobe · HeroMesh · HeroIridescent · HeroVortex · HeroRibbon · HeroParticles · HeroStarfield · HeroBlackHole · HeroChroma |
+| Footers | FooterTidal · FooterFold · FooterPhosphor |
 | Backgrounds | WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow · ChromaFlow |
 | Glass | GlassCard · LiquidGlass · GlassLens · LightPrism |
-| Data | LiveChart — real-time GPU line chart (uniform-array pipeline) |
-| Globe | WebGlobe — a WebGPU re-creation of [shuding/cobe](https://github.com/shuding/cobe) (MIT) · EnergyOrb — fresnel plasma orb |
+| Interactions | SpectralCard · Magnetic |
+| Text | KineticText |
 
-Every component ships with ≥3 preset variants, typed props, SSR-safe rendering, `prefers-reduced-motion` handling, and a graceful fallback when WebGPU is unavailable.
+Components ship typed props, SSR-safe rendering and `prefers-reduced-motion` handling. GPU effects include presets and a fallback for unsupported browsers; Footers expose brand, content, navigation and colors.
 
 ## What it is not
 
-By charter: **no DOM animation libraries** (standalone toasts/dropdowns — use [motion](https://motion.dev)), **no heavy 3D scenes** (use threeui/Orillusion), no UI primitives (use [base-ui](https://base-ui.com)), no generic interactive widgets (carousels/counters — reactbits owns that mindshare), no full-page templates — **we only do the hero**. Hero sections may embed the minimal DOM text/CTA/entrance animation they need; the core visual must be a GPU effect.
+The library focuses on visual atmosphere and content interaction, not general UI primitives or full-page templates. Hero sample copy is replaceable: pass `title`/`subtitle`, configure CTA objects with `href` or `onClick`, or supply `children` to replace the content layout.
 
 ## Copy-paste instead of install
 
@@ -54,7 +55,7 @@ Machine-readable docs: [`public/llms.txt`](apps/docs/public/llms.txt), [`public/
 
 ```bash
 pnpm install
-pnpm -r typecheck && pnpm -r test   # 62 deterministic tests incl. Dawn pixel readback
+pnpm -r typecheck && pnpm -r test   # deterministic tests incl. Dawn pixel readback
 pnpm -r build
 pnpm dev:docs                        # catalog at localhost:5173
 node registry/build.mjs              # rebuild copy-paste registry from sources
@@ -65,4 +66,24 @@ Monorepo: `packages/core` (vgpu-backed renderer contract) · `packages/react` (c
 
 ## License & credits
 
-MIT. The docs shell is derived from [MengTo/threeui](https://github.com/MengTo/threeui) (MIT, © 2026 Meng To) — thank you for showing what a component catalog can be. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT). WebGlobe re-creates [shuding/cobe](https://github.com/shuding/cobe) (MIT).
+MIT. The docs shell is derived from [MengTo/threeui](https://github.com/MengTo/threeui) (MIT, © 2026 Meng To) — thank you for showing what a component catalog can be. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT). HeroGlobe uses [shuding/cobe](https://github.com/shuding/cobe) (MIT).
+
+## Footers
+
+`FooterTidal` draws copper tidal lines beneath your wordmark. `FooterFold` prints it across hinged paper panels. `FooterPhosphor` builds it from light cells that scatter around the pointer. All three are complete semantic footers, with real DOM navigation and a static reduced-motion composition.
+
+```tsx
+import { FooterTidal } from "@vfx-ui/react";
+
+<FooterTidal
+  brand="YOUR STUDIO"
+  title="Let’s talk."
+  cta={{ label: "Contact", href: "mailto:hello@example.com" }}
+  groups={[{ label: "Explore", links: [{ label: "Work", href: "/work" }] }]}
+  copyright="© Your studio"
+/>
+```
+
+Use your own destinations and copy. `children` replaces the introduction and navigation while retaining the artwork and legal row. The font inherits your site; `--vfx-footer-display` overrides the wordmark face.
+
+LiveChart, WebGlobe and EnergyOrb have been removed from the current source and install catalog. Their old exports and routes are no longer available. HeroGlobe remains supported.

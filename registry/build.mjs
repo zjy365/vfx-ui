@@ -21,6 +21,16 @@ const outDir = process.argv.includes("--out")
 
 /** Catalog metadata: the single source of truth for the public registry. */
 const CATALOG = [
+  ...[
+    ["footer-tidal", "FooterTidal", "Footer Tidal", "Copper tidal lines beneath your brand, with pointer-driven currents."],
+    ["footer-fold", "FooterFold", "Footer Fold", "A wordmark printed across hinged paper panels that respond to the pointer."],
+    ["footer-phosphor", "FooterPhosphor", "Footer Phosphor", "A luminous cell wordmark that disperses around your pointer and settles home."],
+  ].map(([name, component, title, description]) => ({ name, component, title, description, categories: ["Footers"], tags: ["footer", "pointer", "typography"], sharedFiles: false, motion: component === "FooterFold", deps: component === "FooterFold" ? ["FooterFrame"] : ["FooterFrame", "FooterArtwork"] })),
+  ...[
+    ["spectral-card", "SpectralCard", "Spectral Card", "Holographic light and spatial tilt around your own content.", "Interactions"],
+    ["kinetic-text", "KineticText", "Kinetic Text", "A pointer-driven force field lifts your words into a soft wave.", "Text"],
+    ["magnetic", "Magnetic", "Magnetic", "A gentle magnetic pull for your own buttons, links, and content.", "Interactions"],
+  ].map(([name, component, title, description, category]) => ({ name, component, title, description, categories: [category], tags: ["pointer", "interactive"], sharedFiles: false, motion: true })),
   {
     name: "wave-background",
     component: "WaveBackground",
@@ -129,33 +139,6 @@ const CATALOG = [
     categories: ["Backgrounds"],
     tags: ["background", "galaxy", "spiral"],
     files: ["components/Vortex.tsx"],
-  },
-  {
-    name: "web-globe",
-    component: "WebGlobe",
-    title: "Web Globe",
-    description: "WebGPU re-creation of shuding/cobe (MIT): a tiny dot-matrix globe.",
-    categories: ["Globe"],
-    tags: ["globe", "map", "3d"],
-    files: ["components/WebGlobe.tsx"],
-  },
-  {
-    name: "live-chart",
-    component: "LiveChart",
-    title: "Live Chart",
-    description: "Real-time streaming line chart rendered entirely on the GPU.",
-    categories: ["Data"],
-    tags: ["chart", "streaming", "realtime"],
-    files: ["components/LiveChart.tsx"],
-  },
-  {
-    name: "energy-orb",
-    component: "EnergyOrb",
-    title: "Energy Orb",
-    description: "Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).",
-    categories: ["Globe"],
-    tags: ["globe", "orb", "smoke", "glow"],
-    files: ["components/EnergyOrb.tsx"],
   },
   {
     name: "ribbon-field",
@@ -361,6 +344,7 @@ function rewriteImports(content, depNames, inVfx) {
   let out = content
     .replace(/from "\.\.\/VfxCanvas"/g, `from "${p}VfxCanvas"`)
     .replace(/from "\.\.\/utils\/color"/g, `from "${p}color"`)
+    .replace(/from "\.\.\/usePointerMotion"/g, `from "${p}usePointerMotion"`)
     .replace(/from "\.\.\/usePointerUniforms(\.ts)?"/g, `from "${p}usePointerUniforms"`);
   for (const dep of depNames) {
     out = out.replace(new RegExp(`from "\\./${dep}"`, "g"), `from "${p}${dep}"`);
@@ -408,6 +392,8 @@ function buildItem(entry) {
             content: f.path === "vfx/VfxCanvas.tsx" ? inlinedVfxCanvas() : read(f.from),
             target: `components/${f.path}`,
           }))),
+      ...(entry.motion ? [{ path: "vfx/usePointerMotion.ts", type: "registry:component", content: read(join(reactSrc, "usePointerMotion.ts")), target: "components/vfx/usePointerMotion.ts" }] : []),
+      ...(entry.sharedFiles === false && deps.includes("HeroShell") ? [{ path: "vfx/usePointerUniforms.tsx", type: "registry:component", content: read(join(reactSrc, "usePointerUniforms.ts")), target: "components/vfx/usePointerUniforms.tsx" }] : []),
       ...depFiles,
       {
         path: `components/${entry.component}.tsx`,

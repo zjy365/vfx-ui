@@ -38,6 +38,13 @@ function itemDoc(name) {
   // WGSL export inside the embedded vfx/ dependency file.
   const shaderMatch = source.match(/export const (\w+_SHADER)/)
     ?? item.files.map((f) => f.content.match(/export const (\w+_SHADER)/)).find(Boolean);
+  const inheritedContent = /extends HeroContentProps/.test(source) ? [
+    "title?: ReactNode", "subtitle?: ReactNode", "eyebrow?: string",
+    "primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null",
+    "secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null",
+    "children?: ReactNode (replaces default content)", "interactive?: boolean (default false)",
+    "className?: string", "style?: CSSProperties", "fallback?: ReactNode",
+  ] : [];
   const props = propsMatch
     ? propsMatch[2]
         .split("\n")
@@ -45,6 +52,14 @@ function itemDoc(name) {
         .filter((l) => l && !l.startsWith("/") && !l.startsWith("*"))
         .map((l) => l.replace(/\s*;$/, ""))
     : [];
+  props.push(...inheritedContent);
+  if (/extends FooterContentProps/.test(source)) props.push(
+    "brand?: string (artwork is generated from your text)", "title?: ReactNode", "description?: ReactNode",
+    "cta?: { label: string; href: string } | null", "groups?: readonly { label: string; links: readonly { label: string; href: string }[] }[]",
+    "legal?: readonly { label: string; href: string }[]", "copyright?: ReactNode",
+    "children?: ReactNode (replaces introduction and navigation)", "interactive?: boolean (default true)",
+    "className?: string", "style?: CSSProperties (--vfx-footer-display sets the brand font)",
+  );
   const deps = item.dependencies ?? [];
   const needsVgpu = deps.some((d) => d.startsWith("vgpu"));
   const extraDeps = deps.filter((d) => !d.startsWith("vgpu"));
@@ -63,7 +78,11 @@ function itemDoc(name) {
     `import { ${nameToComponent(name)} } from "@vfx-ui/react";`,
     "",
     `export function Demo() {`,
-    `  return <${nameToComponent(name)} />;`,
+    ...(name.startsWith("hero-") ? [
+      `  return <${nameToComponent(name)} title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;`,
+    ] : name.startsWith("footer-") ? [
+      `  return <${nameToComponent(name)} brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;`,
+    ] : [`  return <${nameToComponent(name)} />;`]),
     `}`,
     "```",
     "",
@@ -89,8 +108,8 @@ function itemDoc(name) {
           "- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.",
         ]
       : [
-          "- Not a WGSL shader component: the visual is provided by a third-party renderer (see Install deps).",
-          "- SSR-safe: the visual mounts client-side only; server output is the inert DOM layer.",
+          needsVgpu || extraDeps.length ? "- Rendered with a third-party runtime (see Install dependencies)." : "- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.",
+          "- SSR-safe: content and navigation render on the server; animation starts after mount.",
           "- `prefers-reduced-motion` skips animation automatically.",
         ]),
     "",
@@ -110,7 +129,7 @@ function main() {
     "# VFX UI",
     "",
     "> Shader-native visual effect components for React, rendered via WebGPU (vgpu).",
-    "> All effects are GPU-only by design: they cannot be reproduced with DOM/CSS.",
+    "> Expressive hero and footer sections, GPU backgrounds, and focused DOM interactions for your own content.",
     "",
     "## Install",
     "",
@@ -128,9 +147,10 @@ function main() {
     "",
     "## Scope guard",
     "",
-    "This library ships GPU-only visuals and drop-in hero sections.",
-    "Do not request standalone DOM animation widgets, carousels/counters, layout components,",
-    "full-page templates, or heavy 3D scenes (meshes/lights/cameras) — out of scope by charter.",
+    "This library focuses on customizable hero and footer sections, supported by GPU visuals and focused interactions.",
+    "Hero sample copy is replaceable. Pass title/subtitle or children and configure CTA href/onClick.",
+    "Footer sample copy is replaceable. Configure brand, title, CTA, groups, legal links and copyright. Supply children for your own introduction/navigation layout.",
+    "DOM interaction components do not require WebGPU. This is not a general-purpose UI kit.",
     "",
   ].join("\n");
   writeFileSync(join(outDir, "llms.txt"), llms);

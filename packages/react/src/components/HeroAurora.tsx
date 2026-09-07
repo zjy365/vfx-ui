@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { Aurora } from "./Aurora";
 
-export interface HeroAuroraProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroAuroraProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: animation speed multiplier. */
   speed?: number;
@@ -35,18 +30,22 @@ export function HeroAurora({
   bands = 4,
   primary = "#2dd4bf",
   secondary = "#818cf8",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroAuroraProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="left"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent={primary}
-      background={<Aurora speed={speed} intensity={intensity} bands={bands} primary={primary} secondary={secondary} />}
+      background={<Aurora interactive={interactive} fallback={fallback} speed={speed} intensity={intensity} bands={bands} primary={primary} secondary={secondary} />}
     />
   );
 }

@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { BlackHole } from "./BlackHole";
 
-export interface HeroBlackHoleProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroBlackHoleProps extends HeroContentProps {
   badges?: readonly string[];
   scheme?: "dark" | "light";
   /** Pipeline: disk evolution speed. */
@@ -55,20 +50,24 @@ export function HeroBlackHole({
   stars = 0.5,
   centerX = 0.45,
   centerY = 0.12,
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroBlackHoleProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="left"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       badges={badges}
       accent="#fbbf24"
       background={
-        <BlackHole
+        <BlackHole interactive={interactive} fallback={fallback}
           speed={speed}
           distance={distance}
           diskRadius={diskRadius}

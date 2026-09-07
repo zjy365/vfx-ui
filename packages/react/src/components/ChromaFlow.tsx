@@ -209,7 +209,7 @@ export function ChromaFlow({
   style,
   fallback,
 }: ChromaFlowProps) {
-  const [wrapRef, pointer, pointerActive, velocity] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer, pointerActive, velocity] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   const vel = interactive ? velocity : POINTER_STILL;
 

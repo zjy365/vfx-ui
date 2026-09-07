@@ -3,7 +3,6 @@ import { init, effect, target, frame } from "vgpu/node";
 import { MESH_GRADIENT_SHADER } from "../src/components/MeshGradient.tsx";
 import { IRIDESCENT_SHADER } from "../src/components/Iridescent.tsx";
 import { VORTEX_SHADER } from "../src/components/Vortex.tsx";
-import { LIVE_CHART_SHADER } from "../src/components/LiveChart.tsx";
 
 const BASE = {
   time: 0, speed: 1, scale: 3.2, softness: 0.09,
@@ -56,32 +55,6 @@ describe("Vortex", () => {
     const center = (8 * 16 + 8) * 4;
     expect(a[center + 3]!).toBeGreaterThan(0);
     expect([...a]).not.toEqual([...b]);
-  }, 60_000);
-});
-
-describe("LiveChart", () => {
-  const pts = Array.from({ length: 64 }, (_, i) => {
-    const v = Math.max(0, Math.min(1, 0.5 + 0.35 * Math.sin(i * 0.4)));
-    return [v, v, 0, 0];
-  });
-  const u = {
-    time: 0, count: 64, lineWidth: 0.01, glow: 0.5, fill: 0.6,
-    cr: 0.22, cg: 0.74, cb: 0.97, er: 0.49, eg: 0.83, eb: 0.99,
-    px: 0.5, pActive: 0,
-    pts,
-  };
-  it("draws the line (some pixels lit) and reacts to data changes", async () => {
-    const a = await render(LIVE_CHART_SHADER, u);
-    const lit = Array.from({ length: 64 }, (_, i) => a[i * 4 + 3]!).filter((v) => v > 0).length;
-    expect(lit).toBeGreaterThan(8);
-    const b = await render(LIVE_CHART_SHADER, { ...u, pts: pts.map(([v]) => [v! > 0.5 ? 0.1 : 0.9, v! > 0.5 ? 0.1 : 0.9, 0, 0]) });
-    expect([...a]).not.toEqual([...b]);
-  }, 60_000);
-
-  it("the hover scrub line lights up only when the pointer is active", async () => {
-    const rest = await render(LIVE_CHART_SHADER, u);
-    const hover = await render(LIVE_CHART_SHADER, { ...u, px: 0.25, pActive: 1 });
-    expect([...rest]).not.toEqual([...hover]);
   }, 60_000);
 });
 

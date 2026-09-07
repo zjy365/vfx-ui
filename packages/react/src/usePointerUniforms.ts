@@ -1,6 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
+
+/** Lets an overlay and its decorative shader share one pointer surface. */
+export const PointerSurfaceContext = createContext<RefObject<HTMLElement> | null>(null);
 
 export interface PointerUniform {
   x: number;
@@ -48,9 +51,12 @@ export const POINTER_STILL: PointerVelocity = { vx: 0, vy: 0 };
 export function usePointerUniforms<T extends HTMLElement>(options?: {
   /** Resting position when the pointer is not over the element. */
   rest?: PointerUniform;
+  enabled?: boolean;
   /** Lerp factor per frame toward the target (0..1). Lower is more smoothing. */
   ease?: number;
 }): [React.RefObject<T>, PointerUniform, boolean, PointerVelocity] {
+  const surface = useContext(PointerSurfaceContext);
+  const enabled = options?.enabled !== false;
   const rest = options?.rest ?? POINTER_REST;
   const ease = options?.ease ?? 0.08;
   const ref = useRef<T>(null);
@@ -63,8 +69,9 @@ export function usePointerUniforms<T extends HTMLElement>(options?: {
   const raf = useRef(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const el = surface?.current ?? ref.current;
+    if (!el || !enabled) return;
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)");
 
     // Position as last committed to React; the per-frame sweep is the delta
     // the next tick adds to it. Kept off-state so tick stays side-effect
@@ -96,6 +103,7 @@ export function usePointerUniforms<T extends HTMLElement>(options?: {
     };
 
     const onMove = (e: PointerEvent) => {
+      if (reduced?.matches || e.pointerType === "touch") return;
       const r = el.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) return;
       target.current = {
@@ -120,7 +128,7 @@ export function usePointerUniforms<T extends HTMLElement>(options?: {
     };
     // rest/ease identity is intentionally stable per call site.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ease]);
+  }, [ease, enabled, surface]);
 
   return [ref, pointer, active, velocity];
 }

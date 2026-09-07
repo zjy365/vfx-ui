@@ -1,7 +1,7 @@
 const DEFAULT_BROWSE_CONTENT = Object.freeze({
   title: "Shader effect components for React",
-  heading: "WebGPU shader effect components for React",
-  description: "Browse copy-ready WebGPU shader components, GPU backgrounds, text effects, glass surfaces, data visuals, and globes for React.",
+  heading: "Find your next signature.",
+  description: "Atmosphere, materials, and motion. Pick a component. Make it yours.",
 });
 
 const CATEGORY_CONTENT = Object.freeze({
@@ -10,30 +10,26 @@ const CATEGORY_CONTENT = Object.freeze({
     heading: "Drop-in WebGPU hero sections",
     description: "Copy-paste hero sections: GPU-rendered backgrounds with real selectable text, CTAs, and production-grade defaults. The first screen of paid templates, as a component.",
   }),
+  Footers: Object.freeze({
+    title: "Interactive Footer Components for React",
+    heading: "The last impression.",
+    description: "Tidal lines, folded lettering, and a wordmark made of light. Three complete footers for your own brand and links.",
+  }),
   Backgrounds: Object.freeze({
     title: "WebGPU Background Components",
     heading: "WebGPU shader backgrounds",
     description: "Browse interactive WebGPU shader backgrounds, gradient fields, and ambient GPU effects for React interfaces.",
   }),
+  Interactions: Object.freeze({ title: "Interactive React Components", heading: "Made to be touched.", description: "Magnetic movement, spatial cards, and tactile details for your own content." }),
   Text: Object.freeze({
     title: "Shader Text Effect Components",
-    heading: "Shader text effects",
-    description: "Browse GPU shader text components for headings, reveals, kinetic typography, and metallic type.",
+    heading: "Words with a little life.",
+    description: "Interactive typography for headings that respond to your audience.",
   }),
   Glass: Object.freeze({
     title: "Glass Effect Components",
     heading: "Glass and refraction effects",
     description: "Browse GPU glass components with refraction, blur, and liquid glass surfaces for React.",
-  }),
-  Data: Object.freeze({
-    title: "Data Visualization Components",
-    heading: "GPU data visuals",
-    description: "Browse shader-driven data components, live charts, and particle fields rendered on the GPU.",
-  }),
-  Globe: Object.freeze({
-    title: "Globe Components",
-    heading: "WebGPU globes",
-    description: "Browse interactive WebGL and WebGPU globe components for React dashboards and hero sections.",
   }),
 });
 

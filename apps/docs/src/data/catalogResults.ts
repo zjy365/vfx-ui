@@ -49,7 +49,9 @@ export function catalogResultMatchesQuery({ shader, variant }: CatalogResult, qu
     ...shader.tags,
   ];
   const variantSearchable = searchableText([variant?.id, variant?.label, variant?.description]);
-  const resultSearchable = searchableText([...sharedFields, variant?.id, variant?.label, variant?.description]);
+  const resultSearchable = searchableText([...sharedFields, variant?.id, variant?.label, variant?.description,
+    ...(!variant ? shader.variants?.flatMap((item) => [item.id, item.label, item.description]) ?? [] : []),
+  ]);
   const siblingVariantSearchables = shader.variants?.map((item) => searchableText([item.id, item.label, item.description])) ?? [];
 
   return terms.every((term) => {

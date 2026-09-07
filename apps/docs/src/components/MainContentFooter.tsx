@@ -19,7 +19,7 @@ const PRODUCT_LINKS = [
 const EXPLORE_LINKS = [
   { href: browseCategoryRoutePath("Backgrounds"), label: "Shader Backgrounds" },
   { href: browseCategoryRoutePath("Glass"), label: "Glass Surfaces" },
-  { href: browseCategoryRoutePath("Data"), label: "Data Visuals" },
+  { href: browseCategoryRoutePath("Footers"), label: "Footers" },
 ] as const;
 
 function FooterLink({ children, href, onNavigate }: FooterLinkProps) {
@@ -47,7 +47,7 @@ export function MainContentFooter({ onNavigate }: MainContentFooterProps) {
               <strong>vfx-ui</strong>
             </span>
           </FooterLink>
-          <p>Shader-native effect components for React, rendered via WebGPU.</p>
+          <p>Expressive heroes, footers, and interactive effects for React.</p>
         </div>
 
         <nav className="main-content-footer__nav" aria-label="Product">

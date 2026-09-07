@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { RibbonField } from "./RibbonField";
 
-export interface HeroRibbonProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroRibbonProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: animation speed. */
   speed?: number;
@@ -32,18 +27,22 @@ export function HeroRibbon({
   intensity = 1,
   drift = 0.2,
   grain = 1,
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroRibbonProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="split"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent="#7dd3fc"
-      background={<RibbonField speed={speed} intensity={intensity} drift={drift} grain={grain} />}
+      background={<RibbonField interactive={interactive} fallback={fallback} speed={speed} intensity={intensity} drift={drift} grain={grain} />}
     />
   );
 }

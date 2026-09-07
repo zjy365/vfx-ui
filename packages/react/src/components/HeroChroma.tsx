@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { ChromaFlow } from "./ChromaFlow";
 
-export interface HeroChromaProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroChromaProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: ambient drift speed. */
   speed?: number;
@@ -33,7 +28,6 @@ export interface HeroChromaProps {
    * toward. False (default) keeps the calm ambient slosh — the convention
    * across all vfx-ui backgrounds and heroes.
    */
-  interactive?: boolean;
 }
 
 /**
@@ -59,20 +53,23 @@ export function HeroChroma({
   leftColor = "#0ea5e9",
   rightColor = "#f59e0b",
   interactive = false,
+  fallback,
+  ...shellProps
 }: HeroChromaProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="left"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent={upColor}
       background={
         <ChromaFlow
-          interactive={interactive}
+          interactive={interactive} fallback={fallback}
           speed={speed}
           radius={radius}
           momentum={momentum}

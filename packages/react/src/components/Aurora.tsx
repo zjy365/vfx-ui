@@ -166,7 +166,7 @@ export function Aurora({
 }: AuroraProps) {
   const a = hexToRgb01(primary);
   const b = hexToRgb01(secondary);
-  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   return (
     <div

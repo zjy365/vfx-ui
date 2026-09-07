@@ -1,3 +1,5 @@
+import { footerUsage } from "../data/registry";
+import { ScaledHeroPreview } from "./ScaledHeroPreview";
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { CSSProperties, SetStateAction } from "react";
 import type { ChoiceControl, RangeControl, ReadyShader, ShaderControl } from "../data/registry";
@@ -12,7 +14,7 @@ import { CheckpointSliderControl } from "./CheckpointSliderControl";
 
 type SourceTab = "usage" | "agent" | "install";
 type VariantEdgeMask = "none" | "left" | "right" | "both";
-type PreviewSettings = Record<string, number | string>;
+type PreviewSettings = Record<string, boolean | number | string>;
 
 const SOURCE_TAB_LABELS: Record<SourceTab, string> = {
   usage: "Usage",
@@ -41,7 +43,7 @@ function defaultSettings(
   return Object.fromEntries(
     controls.map((control) => {
       const preset = variantProps?.[control.key];
-      return [control.key, typeof preset === "number" || typeof preset === "string" ? preset : control.default];
+      return [control.key, typeof preset === "number" || typeof preset === "string" || typeof preset === "boolean" ? preset : control.default];
     }),
   );
 }
@@ -54,7 +56,8 @@ function isRangeControl(control: ShaderControl): control is RangeControl {
   return control.kind === undefined || control.kind === "range";
 }
 
-function formatControlProp(control: ShaderControl, value: number | string) {
+function formatControlProp(control: ShaderControl, value: boolean | number | string) {
+  if (control.kind === "toggle") return `        ${control.key}={${Boolean(value)}}`;
   if (!isRangeControl(control)) {
     return `        ${control.key}=${JSON.stringify(String(value))}`;
   }
@@ -70,7 +73,7 @@ function formatVariantProp(key: string, value: boolean | number | string) {
 function propsContractRows(controls: readonly ShaderControl[]) {
   return controls.map((control) => ({
     name: control.key,
-    type: isRangeControl(control)
+    type: control.kind === "toggle" ? "boolean" : isRangeControl(control)
       ? "number"
       : control.kind === "color"
         ? "string (hex)"
@@ -92,6 +95,7 @@ function controlPropLines(controls: readonly ShaderControl[], settings: PreviewS
 }
 
 function generatedExample(shader: ReadyShader, controls: readonly ShaderControl[], settings: PreviewSettings) {
+  if (shader.category === "Footers") return footerUsage(shader.importName, { ...shader.previewProps, ...settings });
   const controlProps = controlPropLines(controls, settings);
   const props = controlProps.join("\n");
   if (props) {
@@ -101,6 +105,7 @@ function generatedExample(shader: ReadyShader, controls: readonly ShaderControl[
 }
 
 function generatedInstallExample(shader: ReadyShader, controls: readonly ShaderControl[], settings: PreviewSettings) {
+  if (shader.category === "Footers") return `${INSTALL_COMMANDS.npm}\n\n${footerUsage(shader.importName, { ...shader.previewProps, ...settings })}`;
   const controlProps = controlPropLines(controls, settings);
   const props = controlProps.length ? `\n      <${shader.importName}\n${controlProps.join("\n")}\n      />` : `\n      <${shader.importName} />`;
   return `${INSTALL_COMMANDS.npm}\n\nimport { ${shader.importName} } from "@vfx-ui/react";\n\nexport function Scene() {\n  return (\n    <div className="shader-frame">${props}\n      </div>\n  );\n}`;
@@ -197,12 +202,15 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
   const promptFeedbackTimerRef = useRef<number | undefined>(undefined);
   const variantOptionsRef = useRef<HTMLDivElement>(null);
   const Preview = shader.component;
-  const previewProps = { ...activeVariant?.props, ...previewSettings };
+  const previewProps = { ...shader.previewProps, ...activeVariant?.props, ...previewSettings, ...(shader.id === "spectral-card" ? { style: { width: "min(100%,340px)", height: "100%" } } : {}) };
   const index = VISIBLE_READY_SHADERS.findIndex((item) => item.id === shader.id);
   const previous = index > 0 ? VISIBLE_READY_SHADERS[index - 1] : undefined;
   const next = index < VISIBLE_READY_SHADERS.length - 1 ? VISIBLE_READY_SHADERS[index + 1] : undefined;
   const activeTocIndex = Math.max(0, TOC_ITEMS.findIndex((item) => item.id === activeTocSection));
-  const contractRows = useMemo(() => propsContractRows(activeControls), [activeControls]);
+  const contractRows = useMemo(() => {
+    const documented = shader.api ?? [];
+    return [...documented, ...propsContractRows(activeControls).filter((row) => !documented.some((item) => item.name.split(" / ").includes(row.name)))];
+  }, [shader.api, activeControls]);
 
   const setPreviewSettings = (nextSettings: SetStateAction<PreviewSettings>) => {
     setPreviewSettingsByComponent((currentSettingsByComponent) => {
@@ -458,17 +466,17 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
           <section className="demo inset-shadow" id="usage" aria-label="Usage">
             <div className="stage-grid">
               <div
-                className={`preview shader-preview ${shader.id}`}
+                className={`preview shader-preview ${shader.id} ${shader.category === "Heroes" ? "is-hero-preview" : ""} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""}`}
                 data-variant={activeVariant?.id}
               >
               <Suspense fallback={<div className="preview-loading" role="status">Loading renderer…</div>}>
                 {Preview ? (
-                  <Preview key={`${shader.id}-${activeVariant?.id ?? "default"}-${restartKey}`} {...previewProps} />
+                  shader.category === "Heroes" ? <ScaledHeroPreview><Preview key={`${shader.id}-${activeVariant?.id ?? "default"}-${restartKey}`} {...previewProps} /></ScaledHeroPreview> : <Preview key={`${shader.id}-${activeVariant?.id ?? "default"}-${restartKey}`} {...previewProps} />
                 ) : (
                   <div className="preview-loading" role="status">Renderer not available</div>
                 )}
               </Suspense>
-              <PreviewFpsMeter sampleKey={`${shader.id}-${activeVariant?.id ?? "default"}-${restartKey}`} />
+              {shader.runtime !== "dom" && <PreviewFpsMeter sampleKey={`${shader.id}-${activeVariant?.id ?? "default"}-${restartKey}`} />}
               <div className="tools">
                 <button
                   className="icon-btn inset-shadow"
@@ -536,6 +544,10 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
               {activeControls.length ? (
                 <div className="controls shader-controls">
                   {activeControls.map((control) => {
+                    if (control.kind === "toggle") return <label className="control motion-control" key={control.key}>
+                      <span>{control.label}</span>
+                      <input type="checkbox" role="switch" checked={Boolean(previewSettings[control.key] ?? control.default)} onChange={(event) => setPreviewSettings((current) => ({ ...current, [control.key]: event.target.checked }))} />
+                    </label>;
                     if (control.kind === "checkpoint") {
                       const value = String(previewSettings[control.key] ?? control.default);
                       const id = `${shader.id}-${activeVariant?.id ?? "default"}-${control.key}`;
@@ -682,7 +694,7 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
               ) : null}
               <div className="controls renderer-facts" aria-label="Renderer facts">
                 <div className="control inset-shadow">
-                  <span>Runtime</span><strong title={shader.runtime}>{shader.runtime === "webgl" ? "WebGL" : "WebGPU"}</strong>
+                  <span>Runtime</span><strong title={shader.runtime}>{shader.runtime === "dom" ? "DOM + CSS" : shader.runtime === "webgl" ? "WebGL" : "WebGPU"}</strong>
                 </div>
                 <div className="control inset-shadow">
                   <span>Import</span><strong title={shader.importName}>{shader.importName}</strong>

@@ -269,7 +269,7 @@ export function GlassLens({
   style,
   fallback,
 }: GlassLensProps) {
-  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const [res, setRes] = useState<[number, number]>([800, 600]);
   const c = hexToRgb01(tint);
   const ptr = interactive ? pointer : POINTER_REST;

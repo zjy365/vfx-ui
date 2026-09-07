@@ -1,16 +1,16 @@
 import { shaderRoutePath, STATIC_ROUTE_PATHS } from "./routes.js";
 import { browseRouteContent, browseRouteFaqs } from "./browseTaxonomy.js";
 
-export const SITE_TITLE = "Shader effect components for React";
-export const SITE_DESCRIPTION = "Shader-native visual effect components for React, rendered on the GPU via WebGPU. Wave backgrounds, auroras, liquid glass, globes, and live charts. Copy, paste, and ship.";
+export const SITE_TITLE = "Interactive visual components for React";
+export const SITE_DESCRIPTION = "Interactive visual components for React: cinematic WebGPU backgrounds, customizable heroes and footers, kinetic typography, magnetic controls, and spectral cards.";
 
 const CATEGORY_DESCRIPTORS = {
   Heroes: "Hero Section",
+  Footers: "Footer Section",
   Backgrounds: "Shader Background",
   Text: "Text Effect",
+  Interactions: "Interactive Component",
   Glass: "Glass Effect",
-  Data: "Data Visual",
-  Globe: "Globe Component",
 };
 
 function compactText(value, maxLength) {
@@ -32,15 +32,12 @@ function absoluteUrl(origin, path) {
 }
 
 function catalogItems(catalog, origin) {
-  return catalog.flatMap((shader) => {
-    const variants = shader.variants?.length ? shader.variants : [undefined];
-    return variants.map((variant) => ({
-      "@type": "ListItem",
-      position: 0,
-      name: variant ? `${shader.label} — ${variant.label}` : shader.label,
-      url: absoluteUrl(origin, shaderRoutePath(shader, variant?.id)),
-    }));
-  }).map((item, index) => ({ ...item, position: index + 1 }));
+  return catalog.map((shader, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: shader.label,
+    url: absoluteUrl(origin, shaderRoutePath(shader)),
+  }));
 }
 
 function faqPage(faqs, name, url) {
@@ -70,7 +67,7 @@ export function buildRouteSeo(route, origin, catalog = []) {
 
   if (route.page === "home") {
     // Brand leads on the homepage; the catalog pages keep the keyword-led title.
-    title = "VFX UI — Shader-native WebGPU Components for React";
+    title = "VFX UI — Interactive Visual Components for React";
     description = SITE_DESCRIPTION;
     structuredData = {
       "@context": "https://schema.org",
@@ -114,7 +111,7 @@ export function buildRouteSeo(route, origin, catalog = []) {
       description,
       url: absoluteUrl(origin, canonicalPath),
       image,
-      programmingLanguage: ["TypeScript", "WGSL"],
+      programmingLanguage: shader.runtime === "dom" ? ["TypeScript"] : ["TypeScript", "WGSL"],
       runtimePlatform: shader.runtime,
       isPartOf: {
         "@type": "CollectionPage",

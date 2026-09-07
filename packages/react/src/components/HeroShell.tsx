@@ -1,6 +1,7 @@
 "use client";
 
-import { type CSSProperties, type ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode, type MouseEventHandler } from "react";
+import { PointerSurfaceContext } from "../usePointerUniforms";
 
 /**
  * Shared layout shell for every vfx-ui hero component.
@@ -23,6 +24,31 @@ export type HeroLayout = "centered" | "left" | "split" | "stacked";
 export interface HeroCta {
   label: string;
   href?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}
+
+/** Content belongs to the consumer; defaults in named heroes are examples. */
+export interface HeroContentProps {
+  eyebrow?: string;
+  title?: ReactNode;
+  subtitle?: ReactNode;
+  primaryCta?: HeroCta | string | null;
+  secondaryCta?: HeroCta | string | null;
+  children?: ReactNode;
+  interactive?: boolean;
+  className?: string;
+  style?: CSSProperties;
+  fallback?: ReactNode;
+}
+
+export function resolveHeroCta(cta: HeroContentProps["primaryCta"]): HeroCta | undefined {
+  return typeof cta === "string" ? (cta ? { label: cta } : undefined) : cta ?? undefined;
+}
+
+function HeroAction({ action, variant }: { action: HeroCta; variant: string }) {
+  const className = `vfx-hero-cta vfx-hero-cta--${variant}`;
+  return action.href ? <a className={className} href={action.href}>{action.label}</a>
+    : <button type="button" className={className} onClick={action.onClick}>{action.label}</button>;
 }
 
 export interface HeroShellProps {
@@ -30,7 +56,8 @@ export interface HeroShellProps {
   /** Dark is the default aesthetic; light inverts text/scrim for bright pages. */
   scheme?: "dark" | "light";
   eyebrow?: string;
-  title: ReactNode;
+  title?: ReactNode;
+  children?: ReactNode;
   subtitle?: ReactNode;
   primaryCta?: HeroCta;
   secondaryCta?: HeroCta;
@@ -45,7 +72,7 @@ export interface HeroShellProps {
 }
 
 const HERO_CSS = `
-.vfx-hero{position:relative;width:100%;height:100%;min-height:var(--hero-min-height,560px);overflow:hidden;container-type:size;display:flex;align-items:center;--hero-font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--hero-fg:#f6f6f7;--hero-fg-dim:rgba(246,246,247,.74);--hero-bg-solid:#09090b;--hero-scrim-rgb:0 0 0;font-family:var(--hero-font);color:var(--hero-fg)}
+.vfx-hero{position:relative;width:100%;height:100%;min-height:var(--hero-min-height,560px);overflow:hidden;background:var(--hero-bg-solid);container-type:size;display:flex;align-items:center;--hero-font:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--hero-fg:#f6f6f7;--hero-fg-dim:rgba(246,246,247,.74);--hero-bg-solid:#09090b;--hero-scrim-rgb:0 0 0;font-family:var(--hero-font);color:var(--hero-fg)}
 .vfx-hero[data-scheme="light"]{--hero-fg:#0c0c0e;--hero-fg-dim:rgba(12,12,14,.68);--hero-bg-solid:#fafafa;--hero-scrim-rgb:255 255 255}
 .vfx-hero-bg{position:absolute;inset:0;z-index:0}
 .vfx-hero-scrim{position:absolute;inset:0;z-index:1;pointer-events:none}
@@ -54,13 +81,14 @@ const HERO_CSS = `
 .vfx-hero-title{margin:0;font-weight:650;letter-spacing:-.025em;line-height:1.04;font-size:clamp(1.4rem,min(7cqw,17cqh),4.4rem);max-width:18ch;white-space:pre-line}
 .vfx-hero-subtitle{margin:0;font-size:clamp(.85rem,min(2.2cqw,5cqh),1.22rem);line-height:1.6;max-width:52ch;color:var(--hero-fg-dim)}
 .vfx-hero-actions{display:flex;flex-wrap:wrap;gap:clamp(8px,min(1.4cqw,3cqh),14px);align-items:center;margin-top:clamp(4px,1.5cqh,6px)}
-.vfx-hero-cta{display:inline-flex;align-items:center;gap:8px;padding:clamp(7px,2.6cqh,12px) clamp(12px,2.2cqw,22px);border-radius:999px;font-size:clamp(.72rem,min(1.6cqw,2.8cqh),.95rem);font-weight:600;text-decoration:none;transition:transform 160ms cubic-bezier(.16,1,.3,1),opacity 160ms ease}
+.vfx-hero-cta{display:inline-flex;align-items:center;gap:8px;padding:clamp(7px,2.6cqh,12px) clamp(12px,2.2cqw,22px);border-radius:999px;font-size:clamp(.72rem,min(1.6cqw,2.8cqh),.95rem);font-weight:600;font-family:inherit;cursor:pointer;border:0;text-decoration:none;transition:transform 160ms cubic-bezier(.16,1,.3,1),opacity 160ms ease}
 .vfx-hero-cta--primary{background:var(--hero-fg);color:var(--hero-bg-solid)}
 .vfx-hero-cta--primary:hover{transform:translateY(-1px)}
 .vfx-hero-cta--secondary{color:var(--hero-fg);border:1px solid color-mix(in oklab,var(--hero-fg) 24%,transparent)}
 .vfx-hero-cta--secondary:hover{border-color:color-mix(in oklab,var(--hero-fg) 52%,transparent)}
 .vfx-hero-badges{display:flex;flex-wrap:wrap;gap:clamp(6px,1.2cqw,10px);margin-top:clamp(4px,1.5cqh,10px)}
 .vfx-hero-badge{padding:clamp(3px,1.4cqh,6px) clamp(8px,1.6cqw,14px);border-radius:999px;font-size:clamp(.6rem,min(1.5cqw,2.6cqh),.8rem);font-weight:500;color:var(--hero-fg-dim);border:1px solid color-mix(in oklab,var(--hero-fg) 16%,transparent);backdrop-filter:blur(6px)}
+.vfx-hero-cta:focus-visible{outline:2px solid var(--hero-accent,currentColor);outline-offset:5px}
 /* --- layouts --- */
 .vfx-hero[data-layout="centered"] .vfx-hero-inner{align-items:center;text-align:center}
 .vfx-hero[data-layout="centered"] .vfx-hero-title,.vfx-hero[data-layout="centered"] .vfx-hero-subtitle{max-width:22ch;margin-inline:auto}
@@ -110,9 +138,13 @@ export function HeroShell({
   accent,
   className,
   style,
+  children,
 }: HeroShellProps) {
+  const surfaceRef = useRef<HTMLElement>(null);
   return (
+    <PointerSurfaceContext.Provider value={surfaceRef}>
     <section
+      ref={surfaceRef}
       className={`vfx-hero${className ? ` ${className}` : ""}`}
       data-layout={layout}
       data-scheme={scheme}
@@ -124,20 +156,17 @@ export function HeroShell({
       </div>
       <div className="vfx-hero-scrim" aria-hidden="true" />
       <div className="vfx-hero-inner vfx-hero-anim">
+        {children ?? <>
         {eyebrow ? <p className="vfx-hero-eyebrow">{eyebrow}</p> : null}
-        <h1 className="vfx-hero-title">{title}</h1>
+        {title != null && <h1 className="vfx-hero-title">{title}</h1>}
         {subtitle ? <p className="vfx-hero-subtitle">{subtitle}</p> : null}
         {primaryCta || secondaryCta ? (
           <div className="vfx-hero-actions">
             {primaryCta ? (
-              <a className="vfx-hero-cta vfx-hero-cta--primary" href={primaryCta.href ?? "#"}>
-                {primaryCta.label}
-              </a>
+              <HeroAction action={primaryCta} variant="primary" />
             ) : null}
             {secondaryCta ? (
-              <a className="vfx-hero-cta vfx-hero-cta--secondary" href={secondaryCta.href ?? "#"}>
-                {secondaryCta.label}
-              </a>
+              <HeroAction action={secondaryCta} variant="secondary" />
             ) : null}
           </div>
         ) : null}
@@ -148,7 +177,9 @@ export function HeroShell({
             ))}
           </div>
         ) : null}
+        </>}
       </div>
     </section>
+    </PointerSurfaceContext.Provider>
   );
 }

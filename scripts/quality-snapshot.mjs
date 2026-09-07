@@ -37,9 +37,6 @@ const SHADER_IMPORTS = {
   "mesh-gradient": ["MESH_GRADIENT_SHADER", "./MeshGradient.tsx"],
   iridescent: ["IRIDESCENT_SHADER", "./Iridescent.tsx"],
   vortex: ["VORTEX_SHADER", "./Vortex.tsx"],
-  "web-globe": ["WEB_GLOBE_SHADER", "./WebGlobe.tsx"],
-  "live-chart": ["LIVE_CHART_SHADER", "./LiveChart.tsx"],
-  "energy-orb": ["ENERGY_ORB_SHADER", "./EnergyOrb.tsx"],
   "ribbon-field": ["RIBBON_FIELD_SHADER", "./RibbonField.tsx"],
   "fiber-flow": ["FIBER_FLOW_SHADER", "./FiberFlow.tsx"],
   "chroma-flow": ["CHROMA_FLOW_SHADER", "./ChromaFlow.tsx"],
@@ -94,13 +91,10 @@ const UNIFORMS = {
   "mesh-gradient": { time: 0.8, speed: 0.6, scale: 3.2, softness: 0.09, c0r: 0.043, c0g: 0.067, c0b: 0.125, c1r: 0.082, c1g: 0.369, c1b: 0.459, c2r: 0.486, c2g: 0.227, c2b: 0.929, c3r: 0.957, c3g: 0.447, c3b: 0.714, px: 0.5, py: 0.5 },
   iridescent: { time: 1.5, speed: 0.8, scale: 2.4, hueShift: 0, saturation: 1, brightness: 0.9, px: 0.5, py: 0.5 },
   vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996, px: 0.5, py: 0.5 },
-  "energy-orb": { time: 1.4, speed: 1, smokeScale: 1, smokeStrength: 1, smokeSpeed: 1, hue: 0, saturation: 1, glow: 1, px: 0.5, py: 0.5 },
   "ribbon-field": { time: 1.2, speed: 1, intensity: 1, drift: 0, grain: 1, resX: 512, resY: 512 },
   "fiber-flow": { time: 1.3, speed: 1, intensity: 1, scale: 1.6, strands: 22, sharp: 6, px: 0.5, py: 0.5, pActive: 0, resX: 512, resY: 512, c0r: 0.118, c0g: 0.106, c0b: 0.294, c1r: 0.310, c1g: 0.275, c1b: 0.898, c2r: 0.647, c2g: 0.706, c2b: 0.988 },
   "chroma-flow": { time: 1.3, speed: 1, intensity: 1, radius: 0.45, momentum: 16, ambient: 0.55, px: 0.5, py: 0.5, pActive: 0, vx: 0, vy: 0, c0r: 0.027, c0g: 0.063, c0b: 0.129, c1r: 0.114, c1g: 0.306, c1b: 0.847, c2r: 0.796, c2g: 0.835, c2b: 0.882, c3r: 0.055, c3g: 0.647, c3b: 0.914, c4r: 0.961, c4g: 0.620, c4b: 0.043 },
   "light-prism": { time: 1.3, speed: 1, prismSize: 0.3, beamWidth: 0.0045, refraction: 0.16, dispersion: 0.22, shadow: 1, px: 0.5, py: 0.5, pActive: 0, resX: 512, resY: 512, c0r: 0.914, c0g: 0.902, c0b: 0.875, c1r: 0.659, c1g: 0.643, c1b: 0.608, c2r: 1, c2g: 1, c2b: 1 },
-  "web-globe": { time: 0.8, speed: 0.35, phi: 0, theta: 0.35, dots: 520, dotScale: 1.15, diffuse: 1.2, dark: 0.92, atmosphere: 0.8, seaLevel: 0.46, globeScale: 0.98, cr: 0.616, cg: 0.706, cb: 0.839, gr: 0.49, gg: 0.827, gb: 0.988 },
-  "live-chart": null, // data-driven; generated in the entry below
   "hero-fluid": { time: 1.0, speed: 0.5, warp: 2.2, scale: 1.5, c0r: 0.043, c0g: 0.063, c0b: 0.149, c1r: 0.114, c1g: 0.306, c1b: 0.847, c2r: 0.490, c2g: 0.827, c2b: 0.988, px: 0.5, py: 0.5 },
   "hero-aurora": { time: 1.1, speed: 0.7, intensity: 1, bands: 4, c0r: 0.176, c0g: 0.831, c0b: 0.749, c1r: 0.506, c1g: 0.549, c1b: 0.973, px: 0.5, py: 0.5 },
   "hero-fiber": { time: 1.2, speed: 1, intensity: 1, scale: 1.6, strands: 22, sharp: 6, px: 0.5, py: 0.5, pActive: 0, resX: 512, resY: 512, c0r: 0.118, c0g: 0.106, c0b: 0.294, c1r: 0.310, c1g: 0.275, c1b: 0.898, c2r: 0.647, c2g: 0.706, c2b: 0.988 },
@@ -113,13 +107,6 @@ const UNIFORMS = {
   "hero-chroma": { time: 1.2, speed: 1, intensity: 1, radius: 0.45, momentum: 16, ambient: 0.55, px: 0.5, py: 0.5, pActive: 0, vx: 0, vy: 0, c0r: 0.027, c0g: 0.063, c0b: 0.129, c1r: 0.114, c1g: 0.306, c1b: 0.847, c2r: 0.796, c2g: 0.835, c2b: 0.882, c3r: 0.055, c3g: 0.647, c3b: 0.914, c4r: 0.961, c4g: 0.620, c4b: 0.043 },
 };
 
-function liveChartUniforms() {
-  const data = Array.from({ length: 48 }, (_, i) => Math.max(0, Math.min(1, 0.5 + 0.32 * Math.sin(i * 0.35) + 0.1 * Math.sin(i * 0.9))));
-  const pts = data.map((v) => [v, v, 0, 0]);
-  while (pts.length < 64) pts.push([0, 0, 0, 0]);
-  return { time: 0, count: 48, lineWidth: 0.006, glow: 0.4, fill: 0.6, cr: 0.22, cg: 0.74, cb: 0.97, er: 0.49, eg: 0.83, eb: 0.99, px: 0.5, pActive: 0, pts };
-}
-
 function makeEntrySource(requested) {
   const shaderNames = requested.filter((n) => SHADER_IMPORTS[n]);
   const pipelineNames = requested.filter((n) => PIPELINES[n]);
@@ -128,7 +115,7 @@ function makeEntrySource(requested) {
     ...new Set(pipelineNames.map((n) => { const p = PIPELINES[n]; return `import { ${p.fn} } from "${join(root, "packages/react/src/components", p.module.slice(2))}";` })),
   ].join("\n");
   const table = shaderNames
-    .map((n) => `  ${JSON.stringify(n)}: { shader: ${SHADER_IMPORTS[n][0]}, uniforms: ${JSON.stringify(n === "live-chart" ? liveChartUniforms() : UNIFORMS[n])} },`)
+    .map((n) => `  ${JSON.stringify(n)}: { shader: ${SHADER_IMPORTS[n][0]}, uniforms: ${JSON.stringify(UNIFORMS[n])} },`)
     .join("\n");
   const pipelineTable = pipelineNames
     .map((n) => `  ${JSON.stringify(n)}: { render: ${PIPELINES[n].fn}, settings: ${JSON.stringify(PIPELINES[n].settings)} },`)

@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { FluidGradient } from "./FluidGradient";
 
-export interface HeroFluidProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroFluidProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: animation speed multiplier. */
   speed?: number;
@@ -38,18 +33,22 @@ export function HeroFluid({
   from = "#0b1026",
   to = "#1d4ed8",
   accent = "#7dd3fc",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroFluidProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="centered"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent={accent}
-      background={<FluidGradient speed={speed} warp={warp} scale={scale} from={from} to={to} accent={accent} />}
+      background={<FluidGradient interactive={interactive} fallback={fallback} speed={speed} warp={warp} scale={scale} from={from} to={to} accent={accent} />}
     />
   );
 }

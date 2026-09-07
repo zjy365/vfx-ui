@@ -3,7 +3,7 @@
 # VFX UI
 
 > Shader-native visual effect components for React, rendered via WebGPU (vgpu).
-> All effects are GPU-only by design: they cannot be reproduced with DOM/CSS.
+> Expressive hero and footer sections, GPU backgrounds, and focused DOM interactions for your own content.
 
 ## Install
 
@@ -13,6 +13,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Component catalog
 
+- [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath your brand, with pointer-driven currents.
+- [Footer Fold](https://vfx-ui.com/components/footer-fold.md): A wordmark printed across hinged paper panels that respond to the pointer.
+- [Footer Phosphor](https://vfx-ui.com/components/footer-phosphor.md): A luminous cell wordmark that disperses around your pointer and settles home.
+- [Spectral Card](https://vfx-ui.com/components/spectral-card.md): Holographic light and spatial tilt around your own content.
+- [Kinetic Text](https://vfx-ui.com/components/kinetic-text.md): A pointer-driven force field lifts your words into a soft wave.
+- [Magnetic](https://vfx-ui.com/components/magnetic.md): A gentle magnetic pull for your own buttons, links, and content.
 - [Wave Background](https://vfx-ui.com/components/wave-background.md): Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
 - [Fluid Gradient](https://vfx-ui.com/components/fluid-gradient.md): Domain-warped fBm noise flowing through a tri-color palette.
 - [Aurora](https://vfx-ui.com/components/aurora.md): Vertical light curtains driven by fBm perturbation and gaussian bands.
@@ -25,9 +31,6 @@ npm install @vfx-ui/react vgpu@0.3.1
 - [Mesh Gradient](https://vfx-ui.com/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette.
 - [Iridescent](https://vfx-ui.com/components/iridescent.md): Silky thin-film interference colors drifting across the surface.
 - [Vortex](https://vfx-ui.com/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
-- [Web Globe](https://vfx-ui.com/components/web-globe.md): WebGPU re-creation of shuding/cobe (MIT): a tiny dot-matrix globe.
-- [Live Chart](https://vfx-ui.com/components/live-chart.md): Real-time streaming line chart rendered entirely on the GPU.
-- [Energy Orb](https://vfx-ui.com/components/energy-orb.md): Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
 - [Ribbon Field](https://vfx-ui.com/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
 - [Fiber Flow](https://vfx-ui.com/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
 - [Light Prism](https://vfx-ui.com/components/light-prism.md): Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
@@ -50,9 +53,11 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/aurora.md
 - https://vfx-ui.com/components/black-hole.md
 - https://vfx-ui.com/components/chroma-flow.md
-- https://vfx-ui.com/components/energy-orb.md
 - https://vfx-ui.com/components/fiber-flow.md
 - https://vfx-ui.com/components/fluid-gradient.md
+- https://vfx-ui.com/components/footer-fold.md
+- https://vfx-ui.com/components/footer-phosphor.md
+- https://vfx-ui.com/components/footer-tidal.md
 - https://vfx-ui.com/components/glass-card.md
 - https://vfx-ui.com/components/glass-lens.md
 - https://vfx-ui.com/components/hero-aurora.md
@@ -68,22 +73,24 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/hero-starfield.md
 - https://vfx-ui.com/components/hero-vortex.md
 - https://vfx-ui.com/components/iridescent.md
+- https://vfx-ui.com/components/kinetic-text.md
 - https://vfx-ui.com/components/light-prism.md
 - https://vfx-ui.com/components/liquid-glass.md
-- https://vfx-ui.com/components/live-chart.md
+- https://vfx-ui.com/components/magnetic.md
 - https://vfx-ui.com/components/mesh-gradient.md
 - https://vfx-ui.com/components/particle-field.md
 - https://vfx-ui.com/components/ribbon-field.md
+- https://vfx-ui.com/components/spectral-card.md
 - https://vfx-ui.com/components/starfield.md
 - https://vfx-ui.com/components/vortex.md
 - https://vfx-ui.com/components/wave-background.md
-- https://vfx-ui.com/components/web-globe.md
 
 ## Scope guard
 
-This library ships GPU-only visuals and drop-in hero sections.
-Do not request standalone DOM animation widgets, carousels/counters, layout components,
-full-page templates, or heavy 3D scenes (meshes/lights/cameras) — out of scope by charter.
+This library focuses on customizable hero and footer sections, supported by GPU visuals and focused interactions.
+Hero sample copy is replaceable. Pass title/subtitle or children and configure CTA href/onClick.
+Footer sample copy is replaceable. Configure brand, title, CTA, groups, legal links and copyright. Supply children for your own introduction/navigation layout.
+DOM interaction components do not require WebGPU. This is not a general-purpose UI kit.
 
 
 # Aurora
@@ -248,57 +255,6 @@ WGSL source is exported as `CHROMA_FLOW_SHADER` — read it to learn how the eff
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
 
-# Energy Orb
-
-Volumetric smoke sphere with fresnel rim and outer glow — WGSL port of ThreeUI's EnergyOrb (MIT, Copyright 2026 Meng To).
-
-## Install
-
-```bash
-npm install @vfx-ui/react vgpu@0.3.1
-```
-
-```tsx
-import { EnergyOrb } from "@vfx-ui/react";
-
-export function Demo() {
-  return <EnergyOrb />;
-}
-```
-
-## Props
-
-- `speed?: number`
-- `smokeScale?: number`
-- `smokeStrength?: number`
-- `smokeSpeed?: number`
-- `hue?: number`
-- `saturation?: number`
-- `glow?: number`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
-
-## Variants
-
-Import the preset bag and spread it into props:
-
-```tsx
-import { ENERGY_ORB_PRESETS } from "@vfx-ui/react";
-```
-
-## Shader
-
-WGSL source is exported as `ENERGY_ORB_SHADER` — read it to learn how the effect works.
-
-## Notes for agents
-
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
-
 # Fiber Flow
 
 Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
@@ -401,6 +357,128 @@ WGSL source is exported as `FLUID_SHADER` — read it to learn how the effect wo
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
 
+# Footer Fold
+
+A wordmark printed across hinged paper panels that respond to the pointer.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { FooterFold } from "@vfx-ui/react";
+
+export function Demo() {
+  return <FooterFold brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
+}
+```
+
+## Props
+
+- `color?: string`
+- `background?: string`
+- `depth?: number`
+- `brand?: string (artwork is generated from your text)`
+- `title?: ReactNode`
+- `description?: ReactNode`
+- `cta?: { label: string; href: string } | null`
+- `groups?: readonly { label: string; links: readonly { label: string; href: string }[] }[]`
+- `legal?: readonly { label: string; href: string }[]`
+- `copyright?: ReactNode`
+- `children?: ReactNode (replaces introduction and navigation)`
+- `interactive?: boolean (default true)`
+- `className?: string`
+- `style?: CSSProperties (--vfx-footer-display sets the brand font)`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
+
+# Footer Phosphor
+
+A luminous cell wordmark that disperses around your pointer and settles home.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { FooterPhosphor } from "@vfx-ui/react";
+
+export function Demo() {
+  return <FooterPhosphor brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
+}
+```
+
+## Props
+
+- `color?: string`
+- `background?: string`
+- `brand?: string (artwork is generated from your text)`
+- `title?: ReactNode`
+- `description?: ReactNode`
+- `cta?: { label: string; href: string } | null`
+- `groups?: readonly { label: string; links: readonly { label: string; href: string }[] }[]`
+- `legal?: readonly { label: string; href: string }[]`
+- `copyright?: ReactNode`
+- `children?: ReactNode (replaces introduction and navigation)`
+- `interactive?: boolean (default true)`
+- `className?: string`
+- `style?: CSSProperties (--vfx-footer-display sets the brand font)`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
+
+# Footer Tidal
+
+Copper tidal lines beneath your brand, with pointer-driven currents.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { FooterTidal } from "@vfx-ui/react";
+
+export function Demo() {
+  return <FooterTidal brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
+}
+```
+
+## Props
+
+- `color?: string`
+- `background?: string`
+- `animate?: boolean`
+- `brand?: string (artwork is generated from your text)`
+- `title?: ReactNode`
+- `description?: ReactNode`
+- `cta?: { label: string; href: string } | null`
+- `groups?: readonly { label: string; links: readonly { label: string; href: string }[] }[]`
+- `legal?: readonly { label: string; href: string }[]`
+- `copyright?: ReactNode`
+- `children?: ReactNode (replaces introduction and navigation)`
+- `interactive?: boolean (default true)`
+- `className?: string`
+- `style?: CSSProperties (--vfx-footer-display sets the brand font)`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
+
 # Glass Card
 
 Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.
@@ -421,6 +499,7 @@ export function Demo() {
 
 ## Props
 
+- `children?: ReactNode`
 - `radius?: number`
 - `borderGlow?: number`
 - `shine?: number`
@@ -514,23 +593,28 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroAurora } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroAurora />;
+  return <HeroAurora title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `intensity?: number`
 - `bands?: number`
 - `primary?: string`
 - `secondary?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -565,17 +649,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroBlackHole } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroBlackHole />;
+  return <HeroBlackHole title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `badges?: readonly string[]`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
@@ -587,6 +666,16 @@ export function Demo() {
 - `stars?: number`
 - `centerX?: number`
 - `centerY?: number`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -621,17 +710,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroChroma } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroChroma />;
+  return <HeroChroma title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `radius?: number`
@@ -642,7 +726,16 @@ export function Demo() {
 - `downColor?: string`
 - `leftColor?: string`
 - `rightColor?: string`
-- `interactive?: boolean`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -677,17 +770,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroFiber } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroFiber />;
+  return <HeroFiber title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `badges?: readonly string[]`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
@@ -698,6 +786,16 @@ export function Demo() {
 - `from?: string`
 - `to?: string`
 - `accent?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -732,17 +830,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroFluid } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroFluid />;
+  return <HeroFluid title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `warp?: number`
@@ -750,6 +843,16 @@ export function Demo() {
 - `from?: string`
 - `to?: string`
 - `accent?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -784,17 +887,12 @@ npm install @vfx-ui/react cobe@^2.0.1
 import { HeroGlobe } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroGlobe />;
+  return <HeroGlobe title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `spin?: number`
 - `mapSamples?: number`
@@ -803,6 +901,16 @@ export function Demo() {
 - `glowColor?: [number, number, number]`
 - `markers?: CobeMarker[]`
 - `globeProps?: Record<string, unknown>`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -814,8 +922,8 @@ import { HERO_GLOBE_PRESETS } from "@vfx-ui/react";
 
 ## Notes for agents
 
-- Not a WGSL shader component: the visual is provided by a third-party renderer (see Install deps).
-- SSR-safe: the visual mounts client-side only; server output is the inert DOM layer.
+- Rendered with a third-party runtime (see Install dependencies).
+- SSR-safe: content and navigation render on the server; animation starts after mount.
 - `prefers-reduced-motion` skips animation automatically.
 
 # Hero Iridescent
@@ -832,23 +940,28 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroIridescent } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroIridescent />;
+  return <HeroIridescent title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `scale?: number`
 - `hueShift?: number`
 - `saturation?: number`
 - `brightness?: number`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -883,17 +996,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroMesh } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroMesh />;
+  return <HeroMesh title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `scale?: number`
@@ -902,6 +1010,16 @@ export function Demo() {
 - `to?: string`
 - `accent?: string`
 - `deep?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -936,23 +1054,28 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroParticles } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroParticles />;
+  return <HeroParticles title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `badges?: readonly string[]`
 - `scheme?: "dark" | "light"`
 - `density?: number`
 - `speed?: number`
 - `size?: number`
 - `color?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -987,22 +1110,27 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroRibbon } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroRibbon />;
+  return <HeroRibbon title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `intensity?: number`
 - `drift?: number`
 - `grain?: number`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -1037,22 +1165,27 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroStarfield } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroStarfield />;
+  return <HeroStarfield title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `density?: number`
 - `speed?: number`
 - `twinkle?: number`
 - `color?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -1087,17 +1220,12 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { HeroVortex } from "@vfx-ui/react";
 
 export function Demo() {
-  return <HeroVortex />;
+  return <HeroVortex title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
 }
 ```
 
 ## Props
 
-- `eyebrow?: string`
-- `title?: string`
-- `subtitle?: string`
-- `primaryCta?: string`
-- `secondaryCta?: string`
 - `scheme?: "dark" | "light"`
 - `speed?: number`
 - `swirl?: number`
@@ -1105,6 +1233,16 @@ export function Demo() {
 - `coreGlow?: number`
 - `color?: string`
 - `emission?: string`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
 
 ## Variants
 
@@ -1173,6 +1311,39 @@ WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effe
 - SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
+# Kinetic Text
+
+A pointer-driven force field lifts your words into a soft wave.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { KineticText } from "@vfx-ui/react";
+
+export function Demo() {
+  return <KineticText />;
+}
+```
+
+## Props
+
+- `text?: string`
+- `strength?: number`
+- `spread?: number`
+- `disabled?: boolean`
+- `className?: string`
+- `style?: CSSProperties`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
 
 # Light Prism
 
@@ -1275,55 +1446,37 @@ WGSL source is exported as `LIQUID_GLASS_SHADER` — read it to learn how the ef
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
 
-# Live Chart
+# Magnetic
 
-Real-time streaming line chart rendered entirely on the GPU.
+A gentle magnetic pull for your own buttons, links, and content.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npm install @vfx-ui/react
 ```
 
 ```tsx
-import { LiveChart } from "@vfx-ui/react";
+import { Magnetic } from "@vfx-ui/react";
 
 export function Demo() {
-  return <LiveChart />;
+  return <Magnetic />;
 }
 ```
 
 ## Props
 
-- `data?: number[]`
-- `lineWidth?: number`
-- `glow?: number`
-- `fill?: number`
-- `color?: string`
-- `accent?: string`
-- `interactive?: boolean`
+- `children?: ReactNode`
+- `strength?: number`
+- `disabled?: boolean`
 - `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
-
-## Variants
-
-Import the preset bag and spread it into props:
-
-```tsx
-import { LIVE_CHART_PRESETS } from "@vfx-ui/react";
-```
-
-## Shader
-
-WGSL source is exported as `LIVE_CHART_SHADER` — read it to learn how the effect works.
+- `style?: CSSProperties`
 
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
 
 # Mesh Gradient
 
@@ -1472,6 +1625,40 @@ WGSL source is exported as `RIBBON_FIELD_SHADER` — read it to learn how the ef
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
 
+# Spectral Card
+
+Holographic light and spatial tilt around your own content.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { SpectralCard } from "@vfx-ui/react";
+
+export function Demo() {
+  return <SpectralCard />;
+}
+```
+
+## Props
+
+- `children?: ReactNode`
+- `tilt?: number`
+- `glare?: number`
+- `radius?: number`
+- `disabled?: boolean`
+- `className?: string`
+- `style?: CSSProperties`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
+
 # Starfield
 
 Hashed star grid with twinkle and slow parallax drift.
@@ -1604,62 +1791,6 @@ export function Demo() {
 ## Shader
 
 WGSL source is exported as `WAVE_SHADER` — read it to learn how the effect works.
-
-## Notes for agents
-
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
-
-# Web Globe
-
-WebGPU re-creation of shuding/cobe (MIT): a tiny dot-matrix globe.
-
-## Install
-
-```bash
-npm install @vfx-ui/react vgpu@0.3.1
-```
-
-```tsx
-import { WebGlobe } from "@vfx-ui/react";
-
-export function Demo() {
-  return <WebGlobe />;
-}
-```
-
-## Props
-
-- `speed?: number`
-- `phi?: number`
-- `theta?: number`
-- `dots?: number`
-- `dotScale?: number`
-- `diffuse?: number`
-- `dark?: number`
-- `atmosphere?: number`
-- `seaLevel?: number`
-- `globeScale?: number`
-- `color?: string`
-- `emission?: string`
-- `interactive?: boolean`
-- `className?: string`
-- `style?: VfxCanvasProps["style"]`
-- `fallback?: VfxCanvasProps["fallback"]`
-
-## Variants
-
-Import the preset bag and spread it into props:
-
-```tsx
-import { WEB_GLOBE_PRESETS } from "@vfx-ui/react";
-```
-
-## Shader
-
-WGSL source is exported as `WEB_GLOBE_SHADER` — read it to learn how the effect works.
 
 ## Notes for agents
 

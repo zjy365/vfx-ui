@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { Iridescent } from "./Iridescent";
 
-export interface HeroIridescentProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroIridescentProps extends HeroContentProps {
   scheme?: "dark" | "light";
   /** Shader: animation speed. */
   speed?: number;
@@ -35,18 +30,22 @@ export function HeroIridescent({
   hueShift = 0,
   saturation = 1,
   brightness = 0.9,
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroIridescentProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="left"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       accent="#f0abfc"
-      background={<Iridescent speed={speed} scale={scale} hueShift={hueShift} saturation={saturation} brightness={brightness} />}
+      background={<Iridescent interactive={interactive} fallback={fallback} speed={speed} scale={scale} hueShift={hueShift} saturation={saturation} brightness={brightness} />}
     />
   );
 }

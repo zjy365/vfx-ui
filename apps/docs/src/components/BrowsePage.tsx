@@ -1,14 +1,13 @@
 import { Suspense, useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
-  CATALOG_RESULTS,
+  type CatalogResult,
   catalogResultId,
   catalogResultLabel,
   catalogResultMatchesQuery,
-  createCatalogResults,
 } from "../data/catalogResults";
 import type { ReadyShader } from "../data/registry";
-import { READY_SHADERS } from "../data/publicShaders";
-import { sortCatalogResultsByPopularity } from "../catalogPresentation.js";
+import { READY_SHADERS, VISIBLE_READY_SHADERS } from "../data/publicShaders";
+
 import { BROWSE_CATEGORIES, browseRouteContent } from "../browseTaxonomy.js";
 import {
   browseCategoryRoutePath,
@@ -31,29 +30,19 @@ type BrowsePageProps = {
 const MAX_VISIBLE_TAGS = 3;
 
 const BROWSE_SORT_MODES = [
-  { id: "popular", label: "Popular" },
+  { id: "popular", label: "Selected" },
   { id: "recent", label: "Recent" },
 ] as const;
 
 type BrowseSortMode = (typeof BROWSE_SORT_MODES)[number]["id"];
 
-// Ordering seed for the "Popular" sort. Additional ids slot in as components ship.
-const POPULAR_SHADER_IDS = [
-  "wave-background",
-] as const;
-const POPULARITY = Object.fromEntries(POPULAR_SHADER_IDS.map((id, index) => [
-  id,
-  { views: POPULAR_SHADER_IDS.length - index, copies: 0 },
-]));
+const SELECTED_IDS = ["hero-black-hole", "footer-tidal", "footer-fold", "footer-phosphor", "spectral-card", "kinetic-text", "hero-aurora", "chroma-flow", "magnetic", "light-prism", "hero-fiber", "glass-lens"];
 
 export const SITE_TITLE = "Shader effect components for React";
 export const SITE_DESCRIPTION = "Fully customizable. Copyable as prompts.";
 
 const RECENT_SHADER_IDS = new Set<ReadyShader["id"]>(RECENT_SHADERS.map((shader) => shader.id));
-const BROWSE_RESULTS = [
-  ...createCatalogResults(RECENT_SHADERS),
-  ...CATALOG_RESULTS.filter(({ shader }) => !RECENT_SHADER_IDS.has(shader.id)),
-];
+const BROWSE_RESULTS: CatalogResult[] = VISIBLE_READY_SHADERS.map((shader) => ({ shader, variant: undefined }));
 
 const COMING_SOON_SHADERS = READY_SHADERS.filter((shader) => !shader.visible);
 
@@ -89,12 +78,14 @@ type LivePreviewProps = {
 function LivePreview({ shader, props, thumbnail }: LivePreviewProps) {
   const { ref, inView } = useInView<HTMLSpanElement>();
   const Preview = shader.component;
+  const [hovering, setHovering] = useState(false);
+  const canPlay = shader.category !== "Heroes" && shader.runtime !== "dom";
 
   return (
-    <span ref={ref} className="browse-media" aria-hidden="true" style={{ pointerEvents: "none" }}>
-      {inView && Preview ? (
+    <span ref={ref} className={`browse-media${shader.category === "Footers" ? " browse-media-footer" : ""}`} aria-hidden="true" onPointerEnter={() => setHovering(true)} onPointerLeave={() => setHovering(false)}>
+      {inView && hovering && canPlay && Preview ? (
         <Suspense fallback={<img src={thumbnail} alt="" width="640" height="360" decoding="async" />}>
-          <Preview {...props} />
+          <Preview {...props} interactive />
         </Suspense>
       ) : (
         <img src={thumbnail} alt="" width="640" height="360" loading="lazy" decoding="async" />
@@ -108,8 +99,11 @@ export function BrowsePage({ activeCategory, activeTag, onCategorySelect, onSele
   const [sortMode, setSortMode] = useState<BrowseSortMode>("popular");
   const visibleBrowseResults = useMemo(
     () => sortMode === "recent"
-      ? BROWSE_RESULTS
-      : sortCatalogResultsByPopularity(BROWSE_RESULTS, POPULARITY),
+      ? [...BROWSE_RESULTS].sort((a, b) => Number(RECENT_SHADER_IDS.has(b.shader.id)) - Number(RECENT_SHADER_IDS.has(a.shader.id)))
+      : [...BROWSE_RESULTS].sort((a, b) => {
+        const rank = (id: string) => { const i = SELECTED_IDS.indexOf(id); return i < 0 ? SELECTED_IDS.length : i; };
+        return rank(a.shader.id) - rank(b.shader.id);
+      }),
     [sortMode],
   );
   const filteredResults = useMemo(
@@ -135,7 +129,7 @@ export function BrowsePage({ activeCategory, activeTag, onCategorySelect, onSele
   const pageContent = browseRouteContent({ browseCategory: activeCategory, browseTag: activeTag }, routeResultCount);
 
   return (
-    <main className="browse-page" aria-labelledby="browse-title">
+    <main className={`browse-page${activeCategory === "Footers" ? " browse-page-footers" : ""}`} aria-labelledby="browse-title">
       <header className="browse-header">
         <div className="browse-heading-row">
           <div>
@@ -214,11 +208,11 @@ export function BrowsePage({ activeCategory, activeTag, onCategorySelect, onSele
             const thumbnail = variant?.thumbnail ?? shader.thumbnail;
             const variantProps = variant?.props ?? {};
             return (
-              <article className="browse-item" key={resultId} style={{ "--browse-index": index } as CSSProperties}>
+              <article className={`browse-item${index === 0 && !activeCategory && !activeTag && !query ? " browse-item-featured" : ""}`} key={resultId} style={{ "--browse-index": index } as CSSProperties}>
                 <a
                   className="browse-item-link"
                   href={shaderRoutePath(shader, variant?.id)}
-                  aria-label={`${label}. ${shader.tags.slice(0, MAX_VISIBLE_TAGS).join(", ")}. WebGPU component.`}
+                  aria-label={`${label}. ${shader.tags.slice(0, MAX_VISIBLE_TAGS).join(", ")}. React component.`}
                   onClick={(event) => {
                     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
                     event.preventDefault();
@@ -228,7 +222,7 @@ export function BrowsePage({ activeCategory, activeTag, onCategorySelect, onSele
                   <LivePreview shader={shader} props={variantProps} thumbnail={thumbnail} />
                   <span className="browse-details">
                     <span className="browse-title-row">
-                      <strong>{label}</strong>
+                      <strong>{label}</strong><span className="browse-preset-count">{shader.variants?.length ? `${shader.variants.length} presets` : "Interactive"}</span>
                     </span>
                   </span>
                 </a>

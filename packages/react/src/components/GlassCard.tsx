@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
 import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
@@ -131,6 +132,8 @@ fn main(@location(0) uvIn: vec2f) -> @location(0) vec4f {
 `;
 
 export interface GlassCardProps {
+  /** Real content above the decorative glass field. */
+  children?: ReactNode;
   /** Corner radius in normalized units. */
   radius?: number;
   /** Strength of the outer border glow. */
@@ -172,9 +175,10 @@ export function GlassCard({
   className,
   style,
   fallback,
+  children,
 }: GlassCardProps) {
   const c = hexToRgb01(tint);
-  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>();
+  const [wrapRef, pointer, pActive] = usePointerUniforms<HTMLDivElement>({ enabled: interactive });
   const ptr = interactive ? pointer : POINTER_REST;
   return (
     <div
@@ -199,6 +203,7 @@ export function GlassCard({
           pActive: interactive && pActive ? 1 : 0,
         }}
       />
+      {children != null && <div style={{ position: "relative", zIndex: 1, padding: "clamp(24px, 5vw, 56px)" }}>{children}</div>}
     </div>
   );
 }

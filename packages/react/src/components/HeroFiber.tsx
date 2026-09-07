@@ -1,14 +1,9 @@
 "use client";
 
-import { HeroShell } from "./HeroShell";
+import { HeroShell, resolveHeroCta, type HeroContentProps } from "./HeroShell";
 import { FiberFlow } from "./FiberFlow";
 
-export interface HeroFiberProps {
-  eyebrow?: string;
-  title?: string;
-  subtitle?: string;
-  primaryCta?: string;
-  secondaryCta?: string;
+export interface HeroFiberProps extends HeroContentProps {
   badges?: readonly string[];
   scheme?: "dark" | "light";
   /** Shader: animation speed multiplier. */
@@ -46,19 +41,23 @@ export function HeroFiber({
   from = "#1e1b4b",
   to = "#4f46e5",
   accent = "#a5b4fc",
+  interactive = false,
+  fallback,
+  ...shellProps
 }: HeroFiberProps) {
   return (
     <HeroShell
+      {...shellProps}
       layout="stacked"
       scheme={scheme}
       eyebrow={eyebrow}
       title={title}
       subtitle={subtitle}
-      primaryCta={{ label: primaryCta }}
-      secondaryCta={{ label: secondaryCta }}
+      primaryCta={resolveHeroCta(primaryCta)}
+      secondaryCta={resolveHeroCta(secondaryCta)}
       badges={badges}
       accent={accent}
-      background={<FiberFlow speed={speed} intensity={intensity} scale={scale} strands={strands} sharp={sharp} from={from} to={to} accent={accent} />}
+      background={<FiberFlow interactive={interactive} fallback={fallback} speed={speed} intensity={intensity} scale={scale} strands={strands} sharp={sharp} from={from} to={to} accent={accent} />}
     />
   );
 }

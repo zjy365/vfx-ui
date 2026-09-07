@@ -1,6 +1,6 @@
 # @vfx-ui/react
 
-Shader-native visual effect components for React, rendered on the GPU via [WebGPU](https://www.w3.org/TR/webgpu/) ([vgpu](https://github.com/vercel-labs/vgpu)). Every effect's core visual is something DOM/CSS cannot reproduce.
+Expressive React components: GPU atmospheres via [vgpu](https://github.com/vercel-labs/vgpu), customizable Hero and Footer sections, and focused DOM/CSS interactions.
 
 ## Install
 
@@ -8,21 +8,27 @@ Shader-native visual effect components for React, rendered on the GPU via [WebGP
 npm install @vfx-ui/react vgpu@0.3.1
 ```
 
-Requires React >= 18 and a browser with WebGPU.
+Requires React >= 18. GPU effects need WebGPU and accept a `fallback`; the Footers, `Magnetic`, `SpectralCard`, and `KineticText` work without it.
 
 ## Usage
 
 ```tsx
-import { HeroFluid, WaveBackground, FLUID_PRESETS } from "@vfx-ui/react";
+import { HeroFluid } from "@vfx-ui/react";
 
 export function Landing() {
-  return <HeroFluid title="Ship the first screen" preset={FLUID_PRESETS.dusk} />;
+  return (
+    <section style={{ height: 680 }}>
+      <HeroFluid title="Your next big idea." interactive
+        primaryCta={{ label: "Get started", href: "/start" }}
+        secondaryCta={null} />
+    </section>
+  );
 }
 ```
 
 ## Components
 
-Effects: `WaveBackground` · `FluidGradient` · `Aurora` · `Starfield` · `ParticleField` · `GlassCard` · `LiquidGlass` · `GlassLens` · `BlackHole` · `MeshGradient` · `Iridescent` · `Vortex` · `WebGlobe` · `LiveChart` · `EnergyOrb` · `RibbonField` · `FiberFlow` · `LightPrism` · `ChromaFlow`
+Effects: `WaveBackground` · `FluidGradient` · `Aurora` · `Starfield` · `ParticleField` · `GlassCard` · `LiquidGlass` · `GlassLens` · `BlackHole` · `MeshGradient` · `Iridescent` · `Vortex` · `RibbonField` · `FiberFlow` · `LightPrism` · `ChromaFlow`
 
 Drop-in hero sections: `HeroFluid` · `HeroAurora` · `HeroFiber` · `HeroGlobe` · `HeroMesh` · `HeroIridescent` · `HeroVortex` · `HeroRibbon` · `HeroParticles` · `HeroStarfield` · `HeroBlackHole` · `HeroChroma`
 
@@ -33,3 +39,28 @@ Prefer copy-paste over an npm dependency? Use [the registry](https://vfx-ui.com/
 ## License
 
 MIT — © vfx-ui contributors. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT).
+
+## Content and interaction
+
+Hero defaults are examples, not required copy. `title` and `subtitle` accept React nodes. CTA objects accept a real `href` or a button `onClick`; `null` hides an action. `children` replaces the entire default content stack. `className` and `style` apply to the section.
+
+`Magnetic` and `SpectralCard` accept your own `children`; `KineticText` accepts `text`. Pointer motion is smoothed without per-frame React renders, stops at rest, and respects reduced motion and touch. `GlassCard` also accepts DOM content above its decorative shader; it does not refract arbitrary DOM behind it.
+
+```tsx
+import { SpectralCard, Magnetic, KineticText } from "@vfx-ui/react";
+
+export function Feature() {
+  return <SpectralCard>
+    <div style={{ padding: 40 }}>
+      <h2><KineticText text="Stay curious." /></h2>
+      <Magnetic><a href="/explore">Explore</a></Magnetic>
+    </div>
+  </SpectralCard>;
+}
+```
+
+## Footer sections
+
+`FooterTidal`, `FooterFold`, and `FooterPhosphor` accept `brand`, `title`, `description`, `cta: { label, href }`, `groups: [{ label, links: [{ label, href }] }]`, `legal`, and `copyright`. `children` replaces the intro and navigation; the artwork remains. Brand text is generated into the artwork, not baked into an image. `interactive` defaults to true and respects reduced motion and touch. The canvas-based effects sleep offscreen. `FooterTidal` also accepts `animate`; `FooterFold` accepts `depth` (0–55 degrees). All accept `color`, `background`, `className`, and `style`.
+
+The current source removes `LiveChart`, `WebGlobe`, and `EnergyOrb`. Keep an earlier published version if you still rely on those exports; `HeroGlobe` is unaffected.
