@@ -36,7 +36,7 @@ const BROWSE_SORT_MODES = [
 
 type BrowseSortMode = (typeof BROWSE_SORT_MODES)[number]["id"];
 
-const SELECTED_IDS = ["hero-black-hole", "footer-tidal", "footer-fold", "footer-phosphor", "spectral-card", "kinetic-text", "hero-aurora", "chroma-flow", "magnetic", "light-prism", "hero-fiber", "glass-lens"];
+const SELECTED_IDS = ["glass-card", "radiant-dots", "liquid-glass", "hero-black-hole", "footer-tidal", "footer-fold", "footer-phosphor", "spectral-card", "kinetic-text", "hero-aurora", "chroma-flow", "magnetic", "light-prism", "hero-fiber", "glass-lens"];
 
 export const SITE_TITLE = "Shader effect components for React";
 export const SITE_DESCRIPTION = "Fully customizable. Copyable as prompts.";

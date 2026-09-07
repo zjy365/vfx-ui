@@ -9,6 +9,7 @@ import {
 function liquidGlassUniforms(time: number, distortion: number = LIQUID_GLASS_DEFAULTS.distortion): Record<string, number> {
   return {
     time,
+    resX: 16, resY: 16,
     speed: LIQUID_GLASS_DEFAULTS.speed,
     distortion,
     chromatic: LIQUID_GLASS_DEFAULTS.chromatic,

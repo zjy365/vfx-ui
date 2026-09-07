@@ -11,6 +11,7 @@ function glassCardUniforms(time: number, cardScale: number = GLASS_CARD_DEFAULTS
   const c = hexToRgb01(GLASS_CARD_DEFAULTS.tint);
   return {
     time,
+    resX: 16, resY: 16,
     shine: GLASS_CARD_DEFAULTS.shine,
     borderGlow: GLASS_CARD_DEFAULTS.borderGlow,
     cardScale,

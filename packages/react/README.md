@@ -28,7 +28,7 @@ export function Landing() {
 
 ## Components
 
-Effects: `WaveBackground` · `FluidGradient` · `Aurora` · `Starfield` · `ParticleField` · `GlassCard` · `LiquidGlass` · `GlassLens` · `BlackHole` · `MeshGradient` · `Iridescent` · `Vortex` · `RibbonField` · `FiberFlow` · `LightPrism` · `ChromaFlow`
+Effects: `RadiantDots` · `WaveBackground` · `FluidGradient` · `Aurora` · `Starfield` · `ParticleField` · `GlassCard` · `LiquidGlass` · `GlassLens` · `BlackHole` · `MeshGradient` · `Iridescent` · `Vortex` · `RibbonField` · `FiberFlow` · `LightPrism` · `ChromaFlow`
 
 Drop-in hero sections: `HeroFluid` · `HeroAurora` · `HeroFiber` · `HeroGlobe` · `HeroMesh` · `HeroIridescent` · `HeroVortex` · `HeroRibbon` · `HeroParticles` · `HeroStarfield` · `HeroBlackHole` · `HeroChroma`
 
@@ -64,3 +64,6 @@ export function Feature() {
 `FooterTidal`, `FooterFold`, and `FooterPhosphor` accept `brand`, `title`, `description`, `cta: { label, href }`, `groups: [{ label, links: [{ label, href }] }]`, `legal`, and `copyright`. `children` replaces the intro and navigation; the artwork remains. Brand text is generated into the artwork, not baked into an image. `interactive` defaults to true and respects reduced motion and touch. The canvas-based effects sleep offscreen. `FooterTidal` also accepts `animate`; `FooterFold` accepts `depth` (0–55 degrees). All accept `color`, `background`, `className`, and `style`.
 
 The current source removes `LiveChart`, `WebGlobe`, and `EnergyOrb`. Keep an earlier published version if you still rely on those exports; `HeroGlobe` is unaffected.
+
+
+The Glass components render original optical solids over procedural scenes. `RadiantDots` implements a multi-pass light field adapted from the MIT-licensed Vercel VGPU example. It accepts `layout`, `motion`, `color`, `intensity`, `speed`, `animate`, and `interactive`; it does not include status text or imply a real loading state.

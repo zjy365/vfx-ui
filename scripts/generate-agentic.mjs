@@ -60,6 +60,8 @@ function itemDoc(name) {
     "children?: ReactNode (replaces introduction and navigation)", "interactive?: boolean (default true)",
     "className?: string", "style?: CSSProperties (--vfx-footer-display sets the brand font)",
   );
+  const isOptical = ["glass-card", "glass-lens", "liquid-glass", "light-prism"].includes(name);
+  const isRadiance = name === "radiant-dots";
   const deps = item.dependencies ?? [];
   const needsVgpu = deps.some((d) => d.startsWith("vgpu"));
   const extraDeps = deps.filter((d) => !d.startsWith("vgpu"));
@@ -82,7 +84,7 @@ function itemDoc(name) {
       `  return <${nameToComponent(name)} title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;`,
     ] : name.startsWith("footer-") ? [
       `  return <${nameToComponent(name)} brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;`,
-    ] : [`  return <${nameToComponent(name)} />;`]),
+    ] : isOptical || isRadiance || name === "astra-field" ? [`  return <div style={{ height: 520 }}><${nameToComponent(name)} interactive /></div>;`] : [`  return <${nameToComponent(name)} />;`]),
     `}`,
     "```",
     "",
@@ -94,13 +96,33 @@ function itemDoc(name) {
   if (presetsMatch) {
     lines.push("## Variants", "", "Import the preset bag and spread it into props:", "", "```tsx", `import { ${presetsMatch[1]} } from "@vfx-ui/react";`, "```", "");
   }
-  if (shaderMatch) {
+  if (shaderMatch && name !== "light-prism") {
     lines.push("## Shader", "", `WGSL source is exported as \`${shaderMatch[1]}\` — read it to learn how the effect works.`, "");
   }
   lines.push(
     "## Notes for agents",
     "",
-    ...(shaderMatch
+    ...(name === "astra-field" ? [
+      "- Original WebGL spiral star field inspired by OpenAI Astra. No external assets or Three.js dependency.",
+      "- Stars gather from a scattered 3D cloud on mount. intro defaults to true; introDuration defaults to 4.8 seconds, independent of ambient speed. Reduced motion skips assembly.",
+      "- Drag or use arrow keys to orbit; Home resets. Place your own copy in a sibling DOM layer.",
+      "- Offscreen and hidden tabs pause. Reduced motion freezes ambient movement. Provide a sized parent.",
+    ] : name === "light-prism" ? [
+      "- Complete Vercel VGPU MIT light pipeline, including beveled solid geometry, spectral optics, environment and wall baking, and multiple glass passes.",
+      "- Source and license are bundled. No remote assets. Use a sized parent; pointer changes beam incidence and camera orbit.",
+      "- LIGHT_PRISM_SHADER, to and accent are deprecated compatibility exports/props. The live component uses a multi-pass pipeline and optical spectral colors.",
+    ] : isRadiance ? [
+      "- Requires WebGPU. Render a sized parent and provide fallback for unsupported browsers.",
+      "- SSR yields an inert decorative canvas; loading/status text belongs in your own DOM.",
+      "- Real jump flood, distance field and radiance cascades adapted from Vercel's MIT example, with original orbit/grid arrangements.",
+      "- Working field capped at 320px; animation capped at 30fps and suspended offscreen, in hidden tabs and under reduced motion.",
+      "- animate=false or speed=0 freezes time; changes to other props still redraw the paused field.",
+    ] : isOptical ? [
+      "- Original ray-marched glass solids over procedural studio scenes; arbitrary DOM behind the canvas is not refracted.",
+      "- Requires WebGPU. Provide a sized parent. Existing public prop names and preset IDs remain; visual output has changed.",
+      "- Pointer tilts the object. Reduced motion freezes time and disables pointer movement. No demonstration text is baked into the shader.",
+      "- Configure the documented component props. For raw uniforms, use the exported shader with VfxCanvas instead.",
+    ] : shaderMatch
       ? [
           "- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).",
           "- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.",

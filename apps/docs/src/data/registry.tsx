@@ -5,6 +5,7 @@ import {
   STARFIELD_PRESETS,
   PARTICLE_PRESETS,
   GLASS_CARD_PRESETS,
+  RADIANT_DOTS_PRESETS, ASTRA_FIELD_PRESETS,
   LIQUID_GLASS_PRESETS,
   GLASS_LENS_PRESETS,
   BLACK_HOLE_PRESETS,
@@ -174,7 +175,7 @@ function entry(
     previewProps: config.previewProps,
     agentNotes: config.agentNotes.join("\n"),
     controls: [
-      ...(config.runtime === "dom" ? [] : [{ kind: "toggle" as const, key: "interactive", label: "Follow pointer", default: true }]),
+      ...(config.runtime === "dom" ? [] : [{ kind: "toggle" as const, key: "interactive", label: config.id === "astra-field" ? "Drag to rotate" : "Follow pointer", default: true }]),
       ...(config.category === "Heroes" ? [
         { kind: "text" as const, key: "title", label: "Your headline", default: "Make something memorable." },
         { kind: "text" as const, key: "subtitle", label: "Your description", default: "Your story. Your words. A little atmosphere from us." },
@@ -756,126 +757,80 @@ export function AmbientBanner() {
   }),
 
   entry({
-    id: "glass-card",
-    category: "Glass",
-    label: "Glass Card",
-    tags: ["glass", "card", "sdf"],
-    description: "Rounded-rect SDF glass card with a sweeping inner highlight and edge refraction — all in one fullscreen pass.",
-    importName: "GlassCard",
-    thumbnail: "/showcase/glass-card.png",
-    sourceCode: `import { GlassCard, GLASS_CARD_PRESETS } from "@vfx-ui/react";
+    id: "glass-card", category: "Glass", label: "Glass Card", tags: ["glass", "optical", "refraction"],
+    description: "Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer.",
+    importName: "GlassCard", thumbnail: "/showcase/glass-card.png",
+    sourceCode: `import { GlassCard } from "@vfx-ui/react";
 
 export function GlassPanel() {
-  return (
-    <div style={{ position: "relative", height: 480 }}>
-      <GlassCard {...GLASS_CARD_PRESETS.frosted} />
-      <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
-        <h2 style={{ color: "#f8fafc" }}>Glass, not gradients</h2>
-      </div>
-    </div>
-  );
+  return <div style={{ height: 520 }}><GlassCard interactive /></div>;
 }`,
     agentNotes: [
-      "Purpose: decorative glass panel behind centered content; the shader draws card, border glow, and sheen.",
-      "Mount: fills its container; overlay content with an absolutely-positioned sibling.",
-      "Props: tint (glass color), radius (corner roundness), borderGlow, shine (sweep intensity), cardScale (card size relative to container).",
-      "Pointer: a specular glare pool tracks the cursor across the pane and fades on leave; interactive={false} disables it.",
-      "Guardrails: the card is centered by design — do not try to place it manually; WebGPU required with fallback prop.",
+      "Original ray-marched rounded solid with entry/exit refraction, Fresnel reflections and thickness-dependent absorption.",
+      "The printed scene is procedural; this component does not refract arbitrary DOM behind the canvas.",
+      "children accepts real DOM content above the artwork. No demonstration copy is built in.",
+      "Pointer tilts the solid. Set interactive=false for autonomous studio motion. Reduced motion freezes time and disables pointer motion.",
+      "Provide a sized parent. Existing preset IDs and props remain supported; their visual rendering has been replaced.",
     ],
-    controls: [
-      range("radius", "Radius", 0, 0.2, 0.005, 0.05),
-      range("borderGlow", "Border glow", 0, 2, 0.05, 0.7),
-      range("shine", "Shine", 0, 2, 0.05, 0.8),
-      range("cardScale", "Card scale", 0.2, 0.95, 0.01, 0.62),
-      color("tint", "Tint", "#a5c8ff"),
-    ],
-    variants: presetVariants(GLASS_CARD_PRESETS, {
-      frosted: "Cool blue frost, the default look.",
-      champagne: "Warm champagne tint with a strong sheen.",
-      rose: "Soft rose glass with a subtle glow.",
-    }, glassThumb),
+    controls: [range("radius", "Bevel", 0.015, 0.12, 0.005, 0.05), range("borderGlow", "Edge reflection", 0, 2, 0.05, 0.7), range("shine", "Dispersion", 0, 2, 0.05, 0.8), range("cardScale", "Size", 0.2, 0.85, 0.01, 0.62), color("tint", "Glass tint", "#e4edf0")],
+    variants: presetVariants(GLASS_CARD_PRESETS, { frosted: "Clear cool glass with a polished bevel.", champagne: "Warm optical glass with amber absorption.", rose: "Rose-tinted glass with a narrower bevel." }, () => "/showcase/glass-card.png"),
   }),
-
   entry({
-    id: "liquid-glass",
-    category: "Glass",
-    label: "Liquid Glass",
-    tags: ["glass", "refraction", "liquid"],
-    description: "Fullscreen liquid refraction with approximate chromatic dispersion — the page breathes.",
-    importName: "LiquidGlass",
-    thumbnail: "/showcase/liquid-glass.png",
-    sourceCode: `import { LiquidGlass, LIQUID_GLASS_PRESETS } from "@vfx-ui/react";
+    id: "liquid-glass", category: "Glass", label: "Liquid Glass", tags: ["glass", "sculpture", "liquid"],
+    description: "A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it.",
+    importName: "LiquidGlass", thumbnail: "/showcase/liquid-glass.png",
+    sourceCode: `import { LiquidGlass } from "@vfx-ui/react";
 
-export function LiquidHero() {
-  return (
-    <section style={{ position: "relative", minHeight: "100dvh" }}>
-      <LiquidGlass {...LIQUID_GLASS_PRESETS.calm} />
-      <div style={{ position: "relative", zIndex: 1, padding: "8rem 2rem" }}>
-        <h1>Bend the light</h1>
-      </div>
-    </section>
-  );
+export function GlassStudy() {
+  return <div style={{ height: 520 }}><LiquidGlass interactive /></div>;
 }`,
-    agentNotes: [
-      "Purpose: fullscreen animated glass surface for hero sections; strongest effect in the library — use sparingly.",
-      "Mount: full-bleed layer behind content.",
-      "Props: speed, distortion (wave amplitude), chromatic (RGB separation), scale.",
-      "Pointer: the cursor presses a refraction lens into the surface, released on leave; interactive={false} disables it.",
-      "Guardrails: distortion above 1.2 makes overlaid text hard to read; WebGPU required with fallback prop.",
-    ],
-    controls: [
-      range("speed", "Speed", 0, 3, 0.05, 0.6),
-      range("distortion", "Distortion", 0, 2, 0.05, 0.3),
-      range("chromatic", "Chromatic", 0, 2, 0.05, 0.4),
-      range("scale", "Scale", 0.3, 3, 0.05, 1),
-    ],
-    variants: presetVariants(LIQUID_GLASS_PRESETS, {
-      calm: "Gentle refraction, safe under text.",
-      storm: "Aggressive waves with heavy dispersion.",
-      velvet: "Slow, tight ripples in a muted field.",
-    }, liquidThumb),
+    agentNotes: ["Original ray-marched glass annulus with moving geometry, spectral transmission and studio reflections.", "Procedural printed backdrop; arbitrary DOM is not sampled. Mount inside a sized parent.", "Pointer tilts the sculpture. Distortion reshapes the silhouette; chromatic controls spectral separation; scale changes the travelling wave tempo.", "The previous contour-line field has been replaced. Existing prop names and preset IDs remain valid."],
+    controls: [range("speed", "Speed", 0, 2, 0.05, 0.6), range("distortion", "Deformation", 0, 2, 0.05, 0.3), range("chromatic", "Dispersion", 0, 2, 0.05, 0.4), range("scale", "Wave frequency", 0.3, 3, 0.05, 1)],
+    variants: presetVariants(LIQUID_GLASS_PRESETS, { calm: "A slowly breathing glass loop.", storm: "Stronger waves reshape the silhouette.", velvet: "Broad, languid deformations." }, () => "/showcase/liquid-glass.png"),
   }),
-
   entry({
-    id: "glass-lens",
-    category: "Glass",
-    label: "Glass Lens",
-    tags: ["glass", "refraction", "lens", "liquid-glass"],
-    description: "A floating liquid-glass pill over a living color field — cylindrical rim refraction, RGB dispersion, and a rotating specular sweep, all computed as real lens optics.",
-    importName: "GlassLens",
-    thumbnail: "/showcase/glass-lens.png",
-    sourceCode: `import { GlassLens, GLASS_LENS_PRESETS } from "@vfx-ui/react";
+    id: "glass-lens", category: "Glass", label: "Glass Lens", tags: ["glass", "lens", "optical"],
+    description: "A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.",
+    importName: "GlassLens", thumbnail: "/showcase/glass-lens.png",
+    sourceCode: `import { GlassLens } from "@vfx-ui/react";
 
-export function FeatureBand() {
-  return (
-    <section style={{ position: "relative", height: 520 }}>
-      <GlassLens {...GLASS_LENS_PRESETS.aqua} />
-      <div style={{ position: "absolute", inset: 0, display: "grid", placeItems: "center" }}>
-        <h2 style={{ color: "#f8fafc" }}>Look through it</h2>
-      </div>
-    </section>
-  );
+export function LensStudy() {
+  return <div style={{ height: 520 }}><GlassLens interactive /></div>;
 }`,
-    agentNotes: [
-      "Purpose: single floating lens element (the Apple Liquid Glass pill look) over an animated color field — the bending is real cylindrical-lens math, thickest at the rim.",
-      "Mount: fills its container; the pill is centered by design, so overlay copy above or below it, not on top.",
-      "Props: speed, refraction (bending strength), dispersion (RGB split), blur (rim depth-of-field), rim (edge highlight), tint (glass color).",
-      "Pointer: interactive={true} adds a specular glare pool inside the lens that tracks the cursor; off by default.",
-      "Guardrails: refraction above ~1.6 stops reading as glass; WebGPU required with fallback prop.",
-    ],
+    agentNotes: ["Original three-dimensional biconvex lens; the light ray passes through both air/glass interfaces.", "The printed backdrop is procedural, not a DOM backdrop filter. No copy is built in.", "Pointer tilts the lens. Refraction controls refractive index, dispersion splits RGB, blur softens the material response, rim adjusts Fresnel reflection.", "Provide a sized parent. Existing preset IDs remain valid."],
+    controls: [range("speed", "Speed", 0, 2, 0.05, 1), range("refraction", "Refraction", 0, 2, 0.05, 0.85), range("dispersion", "Dispersion", 0, 2, 0.05, 0.7), range("blur", "Softness", 0, 2, 0.05, 0.8), range("rim", "Reflection", 0, 2, 0.05, 0.9), color("tint", "Glass tint", "#e0eef4")],
+    variants: presetVariants(GLASS_LENS_PRESETS, { aqua: "Cool, clear optical glass.", prism: "A higher refractive index and stronger spectral separation.", honey: "Warm transmission with a softer reflection." }, () => "/showcase/glass-lens.png"),
+  }),
+  entry({
+    id: "astra-field", category: "Backgrounds", label: "Astra Field", runtime: "webgl", tags: ["galaxy", "particles", "stars", "hero"],
+    description: "A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field.",
+    importName: "AstraField", thumbnail: "/showcase/astra-field.png",
+    sourceCode: `import { AstraField } from "@vfx-ui/react";
+
+export function Galaxy() {
+  return <div style={{ height: 640 }}><AstraField interactive /></div>;
+}`,
+    agentNotes: ["Original WebGL point-sprite implementation inspired by the OpenAI Astra page; no remote assets or Three.js dependency.", "Stars gather from a scattered 3D cloud into the spiral on mount (4.8 seconds). intro=false skips assembly; introDuration changes its duration independently of ambient speed. Restart animation replays it. Reduced motion shows the finished field immediately.", "shape chooses the six-shaped spiral or a galaxy. Drag and arrow keys rotate; Home resets. All copy belongs in your own DOM.", "Seeded particles, additive stellar glow, DPR capped at 1.5, 45fps. Hidden and offscreen scenes pause; reduced motion freezes ambient movement."],
+    controls: [{ kind: "toggle", key: "intro", label: "Gather stars on entry", default: true }, range("introDuration", "Gather duration", 1, 10, .1, 4.8), { kind: "choice", key: "shape", label: "Shape", default: "six", options: [{value:"six",label:"Six"},{value:"galaxy",label:"Galaxy"}] }, color("color", "Starlight", "#8cbeed"), range("intensity", "Brightness", .2, 2, .05, 1), range("speed", "Speed", 0, 2, .05, .35)],
+    variants: presetVariants(ASTRA_FIELD_PRESETS, {astra:"An extended spiral of ice and gold starlight.",galaxy:"A compact spiral galaxy.",ember:"Warm stellar dust in a dark sky."},()=>"/showcase/astra-field.png"),
+  }),
+  entry({
+    id: "radiant-dots", category: "Backgrounds", label: "Radiant Dots", tags: ["radiance", "dots", "light", "loading"],
+    description: "A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field.",
+    importName: "RadiantDots", thumbnail: "/showcase/radiant-dots.png",
+    sourceCode: `import { RadiantDots } from "@vfx-ui/react";
+
+export function LightField() {
+  return <div style={{ height: 520 }}><RadiantDots interactive /></div>;
+}`,
+    agentNotes: ["Real multi-pass radiance cascades adapted from Vercel's MIT Agent Radiance Cascades example. Original orbit/grid layouts replace the Agent mark.", "Jump flood -> signed distance field -> up to six cascades -> HDR presentation. The working field is capped at 320px; updates are capped at 30fps.", "layout chooses orbit/grid; motion chooses wave/chase/pulse; color sets emitters; intensity sets exposure; speed sets tempo.", "interactive illuminates dots near the pointer. animate=false freezes time. Offscreen, hidden-tab and reduced-motion states suspend continuous rendering.", "Decorative effect only. If used as a loading indicator, provide a separate accessible status in your own DOM."],
     controls: [
-      range("speed", "Speed", 0, 3, 0.05, 1),
-      range("refraction", "Refraction", 0, 2, 0.05, 0.45),
-      range("dispersion", "Dispersion", 0, 2, 0.05, 0.7),
-      range("blur", "Blur", 0, 2, 0.05, 0.8),
-      range("rim", "Rim", 0, 2, 0.05, 0.9),
-      color("tint", "Tint", "#cfe4ff"),
+      { kind: "choice", key: "layout", label: "Arrangement", default: "orbit", options: [{ value: "orbit", label: "Orbit" }, { value: "grid", label: "Grid" }] },
+      { kind: "choice", key: "motion", label: "Light sequence", default: "wave", options: [{ value: "wave", label: "Wave" }, { value: "chase", label: "Chase" }, { value: "pulse", label: "Pulse" }] },
+      color("color", "Light color", "#eff5ff"), range("intensity", "Exposure", 0.2, 2, 0.05, 1), range("speed", "Speed", 0, 2, 0.05, 0.7),
+      { kind: "toggle", key: "animate", label: "Animate", default: true },
     ],
-    variants: presetVariants(GLASS_LENS_PRESETS, {
-      aqua: "Cool blue glass over the default field.",
-      prism: "Strong bending with heavy spectral fringes.",
-      honey: "Warm, slow, and soft-focus.",
-    }, glassThumb),
+    variants: presetVariants(RADIANT_DOTS_PRESETS, { pearl: "Pearl light spreading through an orbital arrangement.", ember: "Warm emitters taking turns across a square field.", ice: "An icy light chasing around the orbit." }, () => "/showcase/radiant-dots.png"),
   }),
 
   entry({
@@ -1179,7 +1134,7 @@ export function ChromaHero() {
     category: "Glass",
     label: "Light Prism",
     tags: ["glass", "prism", "refraction", "hero", "paper"],
-    description: "A frosted glass prism floating on warm paper with a white light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion in one pass.",
+    description: "A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline.",
     importName: "LightPrism",
     thumbnail: "/showcase/light-prism.png",
     sourceCode: `import { LightPrism, LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
@@ -1195,11 +1150,10 @@ export function PrismHero() {
   );
 }`,
     agentNotes: [
-      "Purpose: the minimal 'paper + glass prism + light beam' hero backdrop — bright, editorial, and text-safe by construction (the paper base is light).",
-      "Mount: full-bleed layer behind content; opaque warm-paper base — no background needed behind it.",
-      "Props: prismSize (triangle circumradius), beamWidth, refraction (how far the beam bends crossing the glass), dispersion (spectral fringe strength), shadow (cast-shadow opacity), from/to/accent (paper/glass/beam colors).",
-      "Pointer: interactive is off by default (a calm pointer-free backdrop); set interactive to tilt the beam and drift the light pools toward the cursor.",
-      "Guardrails: pair with dark text (the surface is light); refraction above 0.35 reads as a glitch, not glass; WebGPU required with fallback prop.",
+      "Vercel VGPU MIT light pipeline: actual beveled prism geometry, spectral ray optics, HDR environment, wall bake, back/front glass and caustic passes.",
+      "Adapted from the public Vercel source with its MIT license. All assets are embedded; no external network requests.",
+      "The compatibility LIGHT_PRISM_SHADER export is deprecated; the component renders a complete multi-pass pipeline.",
+      "Mount in a sized parent. Pointer orbits the solid and changes the incident beam. The legacy to/accent props are deprecated; spectral colors come from optical dispersion.",
     ],
     controls: [
       range("speed", "Speed", 0, 3, 0.05, 1),
@@ -1208,9 +1162,7 @@ export function PrismHero() {
       range("refraction", "Refraction", 0, 0.4, 0.01, 0.16),
       range("dispersion", "Dispersion", 0, 3, 0.05, 0.22),
       range("shadow", "Shadow", 0, 1.5, 0.05, 1),
-      color("from", "Paper", "#e9e6df"),
-      color("to", "Glass", "#a8a49b"),
-      color("accent", "Beam", "#ffffff"),
+      color("from", "Paper", "#d2ccc2"),
     ],
     variants: presetVariants(LIGHT_PRISM_PRESETS, {
       paper: "Warm paper, white beam — the default editorial look.",

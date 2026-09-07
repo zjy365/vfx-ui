@@ -97,7 +97,7 @@ function ShaderCapturePage() {
   const shader = route.active;
   const variant = shader?.variants?.find((item) => item.id === route.activeVariantId);
   const captureScheme = captureSchemeFromUrl();
-  const captureProps = { ...shader.previewProps, ...variant?.props, ...capturePropsForShader(shader, captureScheme, variant) };
+  const captureProps = { ...shader.previewProps, ...capturePropsForShader(shader, captureScheme, variant), ...variant?.props };
   const Preview = shader?.component;
 
   useEffect(() => {
@@ -115,7 +115,7 @@ function ShaderCapturePage() {
 
   return (
     <main className="capture-shell" aria-label={`${shader.label} preview capture`}>
-      <div className={`capture-preview preview shader-preview ${shader.id} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""}`} data-variant={variant?.id}>
+      <div className={`capture-preview preview shader-preview ${shader.id} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""} ${shader.category === "Glass" || (shader.id === "radiant-dots" || shader.id === "astra-field") ? "is-optical-preview" : ""}`} data-variant={variant?.id}>
         <Suspense fallback={<div className="preview-loading" role="status">Loading renderer…</div>}>
           {Preview ? <Preview {...captureProps} interactive={false} style={shader.id === "spectral-card" ? { width: 460, height: 560 } : undefined} /> : null}
         </Suspense>

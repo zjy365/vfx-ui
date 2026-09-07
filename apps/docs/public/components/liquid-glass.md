@@ -1,6 +1,6 @@
 # Liquid Glass
 
-Fullscreen liquid refraction with approximate chromatic dispersion.
+A molten glass annulus with a travelling silhouette and spectral transmission.
 
 ## Install
 
@@ -12,7 +12,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { LiquidGlass } from "@vfx-ui/react";
 
 export function Demo() {
-  return <LiquidGlass />;
+  return <div style={{ height: 520 }}><LiquidGlass interactive /></div>;
 }
 ```
 
@@ -41,7 +41,7 @@ WGSL source is exported as `LIQUID_GLASS_SHADER` — read it to learn how the ef
 
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Original ray-marched glass solids over procedural studio scenes; arbitrary DOM behind the canvas is not refracted.
+- Requires WebGPU. Provide a sized parent. Existing public prop names and preset IDs remain; visual output has changed.
+- Pointer tilts the object. Reduced motion freezes time and disables pointer movement. No demonstration text is baked into the shader.
+- Configure the documented component props. For raw uniforms, use the exported shader with VfxCanvas instead.

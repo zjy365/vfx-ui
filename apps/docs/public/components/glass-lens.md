@@ -1,6 +1,6 @@
 # Glass Lens
 
-Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
+A biconvex glass lens that magnifies and inverts a printed studio scene.
 
 ## Install
 
@@ -12,7 +12,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { GlassLens } from "@vfx-ui/react";
 
 export function Demo() {
-  return <GlassLens />;
+  return <div style={{ height: 520 }}><GlassLens interactive /></div>;
 }
 ```
 
@@ -43,7 +43,7 @@ WGSL source is exported as `GLASS_LENS_SHADER` — read it to learn how the effe
 
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Original ray-marched glass solids over procedural studio scenes; arbitrary DOM behind the canvas is not refracted.
+- Requires WebGPU. Provide a sized parent. Existing public prop names and preset IDs remain; visual output has changed.
+- Pointer tilts the object. Reduced motion freezes time and disables pointer movement. No demonstration text is baked into the shader.
+- Configure the documented component props. For raw uniforms, use the exported shader with VfxCanvas instead.

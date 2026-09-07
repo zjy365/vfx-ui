@@ -466,7 +466,7 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
           <section className="demo inset-shadow" id="usage" aria-label="Usage">
             <div className="stage-grid">
               <div
-                className={`preview shader-preview ${shader.id} ${shader.category === "Heroes" ? "is-hero-preview" : ""} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""}`}
+                className={`preview shader-preview ${shader.id} ${shader.category === "Heroes" ? "is-hero-preview" : ""} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""} ${shader.category === "Glass" || (shader.id === "radiant-dots" || shader.id === "astra-field") ? "is-optical-preview" : ""}`}
                 data-variant={activeVariant?.id}
               >
               <Suspense fallback={<div className="preview-loading" role="status">Loading renderer…</div>}>

@@ -139,3 +139,7 @@ export { FooterTidal, type FooterTidalProps } from "./components/FooterTidal.tsx
 export { FooterFold, type FooterFoldProps } from "./components/FooterFold.tsx";
 export { FooterPhosphor, type FooterPhosphorProps } from "./components/FooterPhosphor.tsx";
 export type { FooterContentProps, FooterLink, FooterLinkGroup } from "./components/FooterFrame.tsx";
+
+export { RadiantDots, RADIANT_DOTS_PRESETS, type RadiantDotsProps } from "./components/RadiantDots.tsx";
+
+export { AstraField, ASTRA_FIELD_PRESETS, type AstraFieldProps } from "./components/AstraField.tsx";

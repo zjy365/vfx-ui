@@ -27,7 +27,7 @@ export function Hero() {
 |---|---|
 | Heroes | HeroFluid · HeroAurora · HeroFiber · HeroGlobe · HeroMesh · HeroIridescent · HeroVortex · HeroRibbon · HeroParticles · HeroStarfield · HeroBlackHole · HeroChroma |
 | Footers | FooterTidal · FooterFold · FooterPhosphor |
-| Backgrounds | WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow · ChromaFlow |
+| Backgrounds | RadiantDots · WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow · ChromaFlow |
 | Glass | GlassCard · LiquidGlass · GlassLens · LightPrism |
 | Interactions | SpectralCard · Magnetic |
 | Text | KineticText |
@@ -87,3 +87,9 @@ import { FooterTidal } from "@vfx-ui/react";
 Use your own destinations and copy. `children` replaces the introduction and navigation while retaining the artwork and legal row. The font inherits your site; `--vfx-footer-display` overrides the wordmark face.
 
 LiveChart, WebGlobe and EnergyOrb have been removed from the current source and install catalog. Their old exports and routes are no longer available. HeroGlobe remains supported.
+
+### Optical glass and radiance
+
+The Glass collection now uses original ray-marched solids: a beveled card, a biconvex lens, a molten loop, and a triangular glass frame. Rays cross entry and exit interfaces, with spectral transmission and studio reflections. These are procedural scenes, not filters that refract arbitrary DOM. Existing exports and preset URLs remain available; their appearance has changed.
+
+`RadiantDots` adds an orbital or square light field with real jump-flooded distance fields and radiance cascades. The pipeline is adapted from [Vercel's MIT example](https://vgpu.labs.vercel.dev/examples/agent-radiance-cascades); the arrangement and choreography are VFX UI's. It suspends continuous rendering offscreen, in hidden tabs, and under reduced motion. See [the design and implementation record](docs/design/glass.md).

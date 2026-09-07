@@ -13,6 +13,8 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Component catalog
 
+- [Astra Field](https://vfx-ui.com/components/astra-field.md): A rotatable spiral galaxy of glowing stars.
+- [Radiant Dots](https://vfx-ui.com/components/radiant-dots.md): Orbital emitters with jump-flooded distance fields and radiance cascades.
 - [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath your brand, with pointer-driven currents.
 - [Footer Fold](https://vfx-ui.com/components/footer-fold.md): A wordmark printed across hinged paper panels that respond to the pointer.
 - [Footer Phosphor](https://vfx-ui.com/components/footer-phosphor.md): A luminous cell wordmark that disperses around your pointer and settles home.
@@ -24,16 +26,16 @@ npm install @vfx-ui/react vgpu@0.3.1
 - [Aurora](https://vfx-ui.com/components/aurora.md): Vertical light curtains driven by fBm perturbation and gaussian bands.
 - [Starfield](https://vfx-ui.com/components/starfield.md): Hashed star grid with twinkle and slow parallax drift.
 - [Particle Field](https://vfx-ui.com/components/particle-field.md): Procedural cell-hashed particles with drift and size breathing.
-- [Glass Card](https://vfx-ui.com/components/glass-card.md): Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.
-- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): Fullscreen liquid refraction with approximate chromatic dispersion.
-- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
+- [Glass Card](https://vfx-ui.com/components/glass-card.md): Thick-cut optical glass with two-interface refraction and studio reflections.
+- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): A molten glass annulus with a travelling silhouette and spectral transmission.
+- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): A biconvex glass lens that magnifies and inverts a printed studio scene.
 - [Black Hole](https://vfx-ui.com/components/black-hole.md): The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
 - [Mesh Gradient](https://vfx-ui.com/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette.
 - [Iridescent](https://vfx-ui.com/components/iridescent.md): Silky thin-film interference colors drifting across the surface.
 - [Vortex](https://vfx-ui.com/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
 - [Ribbon Field](https://vfx-ui.com/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
 - [Fiber Flow](https://vfx-ui.com/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
-- [Light Prism](https://vfx-ui.com/components/light-prism.md): Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
+- [Light Prism](https://vfx-ui.com/components/light-prism.md): A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
 - [Hero Fluid](https://vfx-ui.com/components/hero-fluid.md): Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
 - [Hero Aurora](https://vfx-ui.com/components/hero-aurora.md): Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
 - [Hero Fiber](https://vfx-ui.com/components/hero-fiber.md): Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
@@ -50,6 +52,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Per-component docs (machine-readable)
 
+- https://vfx-ui.com/components/astra-field.md
 - https://vfx-ui.com/components/aurora.md
 - https://vfx-ui.com/components/black-hole.md
 - https://vfx-ui.com/components/chroma-flow.md
@@ -79,6 +82,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/magnetic.md
 - https://vfx-ui.com/components/mesh-gradient.md
 - https://vfx-ui.com/components/particle-field.md
+- https://vfx-ui.com/components/radiant-dots.md
 - https://vfx-ui.com/components/ribbon-field.md
 - https://vfx-ui.com/components/spectral-card.md
 - https://vfx-ui.com/components/starfield.md
@@ -92,6 +96,53 @@ Hero sample copy is replaceable. Pass title/subtitle or children and configure C
 Footer sample copy is replaceable. Configure brand, title, CTA, groups, legal links and copyright. Supply children for your own introduction/navigation layout.
 DOM interaction components do not require WebGPU. This is not a general-purpose UI kit.
 
+
+# Astra Field
+
+A rotatable spiral galaxy of glowing stars.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { AstraField } from "@vfx-ui/react";
+
+export function Demo() {
+  return <div style={{ height: 520 }}><AstraField interactive /></div>;
+}
+```
+
+## Props
+
+- `shape?: "six" | "galaxy"`
+- `color?: string`
+- `intensity?: number`
+- `speed?: number`
+- `seed?: number`
+- `intro?: boolean`
+- `introDuration?: number`
+- `interactive?: boolean`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { ASTRA_FIELD_PRESETS } from "@vfx-ui/react";
+```
+
+## Notes for agents
+
+- Original WebGL spiral star field inspired by OpenAI Astra. No external assets or Three.js dependency.
+- Stars gather from a scattered 3D cloud on mount. intro defaults to true; introDuration defaults to 4.8 seconds, independent of ambient speed. Reduced motion skips assembly.
+- Drag or use arrow keys to orbit; Home resets. Place your own copy in a sibling DOM layer.
+- Offscreen and hidden tabs pause. Reduced motion freezes ambient movement. Provide a sized parent.
 
 # Aurora
 
@@ -481,7 +532,7 @@ export function Demo() {
 
 # Glass Card
 
-Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.
+Thick-cut optical glass with two-interface refraction and studio reflections.
 
 ## Install
 
@@ -493,7 +544,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { GlassCard } from "@vfx-ui/react";
 
 export function Demo() {
-  return <GlassCard />;
+  return <div style={{ height: 520 }}><GlassCard interactive /></div>;
 }
 ```
 
@@ -524,14 +575,14 @@ WGSL source is exported as `GLASS_CARD_SHADER` — read it to learn how the effe
 
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Original ray-marched glass solids over procedural studio scenes; arbitrary DOM behind the canvas is not refracted.
+- Requires WebGPU. Provide a sized parent. Existing public prop names and preset IDs remain; visual output has changed.
+- Pointer tilts the object. Reduced motion freezes time and disables pointer movement. No demonstration text is baked into the shader.
+- Configure the documented component props. For raw uniforms, use the exported shader with VfxCanvas instead.
 
 # Glass Lens
 
-Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
+A biconvex glass lens that magnifies and inverts a printed studio scene.
 
 ## Install
 
@@ -543,7 +594,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { GlassLens } from "@vfx-ui/react";
 
 export function Demo() {
-  return <GlassLens />;
+  return <div style={{ height: 520 }}><GlassLens interactive /></div>;
 }
 ```
 
@@ -574,10 +625,10 @@ WGSL source is exported as `GLASS_LENS_SHADER` — read it to learn how the effe
 
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Original ray-marched glass solids over procedural studio scenes; arbitrary DOM behind the canvas is not refracted.
+- Requires WebGPU. Provide a sized parent. Existing public prop names and preset IDs remain; visual output has changed.
+- Pointer tilts the object. Reduced motion freezes time and disables pointer movement. No demonstration text is baked into the shader.
+- Configure the documented component props. For raw uniforms, use the exported shader with VfxCanvas instead.
 
 # Hero Aurora
 
@@ -1347,7 +1398,7 @@ export function Demo() {
 
 # Light Prism
 
-Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
+A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
 
 ## Install
 
@@ -1359,7 +1410,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { LightPrism } from "@vfx-ui/react";
 
 export function Demo() {
-  return <LightPrism />;
+  return <div style={{ height: 520 }}><LightPrism interactive /></div>;
 }
 ```
 
@@ -1387,20 +1438,15 @@ Import the preset bag and spread it into props:
 import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
 ```
 
-## Shader
-
-WGSL source is exported as `LIGHT_PRISM_SHADER` — read it to learn how the effect works.
-
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Complete Vercel VGPU MIT light pipeline, including beveled solid geometry, spectral optics, environment and wall baking, and multiple glass passes.
+- Source and license are bundled. No remote assets. Use a sized parent; pointer changes beam incidence and camera orbit.
+- LIGHT_PRISM_SHADER, to and accent are deprecated compatibility exports/props. The live component uses a multi-pass pipeline and optical spectral colors.
 
 # Liquid Glass
 
-Fullscreen liquid refraction with approximate chromatic dispersion.
+A molten glass annulus with a travelling silhouette and spectral transmission.
 
 ## Install
 
@@ -1412,7 +1458,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { LiquidGlass } from "@vfx-ui/react";
 
 export function Demo() {
-  return <LiquidGlass />;
+  return <div style={{ height: 520 }}><LiquidGlass interactive /></div>;
 }
 ```
 
@@ -1441,10 +1487,10 @@ WGSL source is exported as `LIQUID_GLASS_SHADER` — read it to learn how the ef
 
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Original ray-marched glass solids over procedural studio scenes; arbitrary DOM behind the canvas is not refracted.
+- Requires WebGPU. Provide a sized parent. Existing public prop names and preset IDs remain; visual output has changed.
+- Pointer tilts the object. Reduced motion freezes time and disables pointer movement. No demonstration text is baked into the shader.
+- Configure the documented component props. For raw uniforms, use the exported shader with VfxCanvas instead.
 
 # Magnetic
 
@@ -1576,6 +1622,53 @@ WGSL source is exported as `PARTICLE_SHADER` — read it to learn how the effect
 - SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
+# Radiant Dots
+
+Orbital emitters with jump-flooded distance fields and radiance cascades.
+
+## Install
+
+```bash
+npm install @vfx-ui/react vgpu@0.3.1
+```
+
+```tsx
+import { RadiantDots } from "@vfx-ui/react";
+
+export function Demo() {
+  return <div style={{ height: 520 }}><RadiantDots interactive /></div>;
+}
+```
+
+## Props
+
+- `layout?: "orbit" | "grid"`
+- `motion?: "wave" | "chase" | "pulse"`
+- `color?: string`
+- `intensity?: number`
+- `speed?: number`
+- `interactive?: boolean`
+- `animate?: boolean`
+- `className?: string`
+- `style?: CSSProperties`
+- `fallback?: ReactNode`
+
+## Variants
+
+Import the preset bag and spread it into props:
+
+```tsx
+import { RADIANT_DOTS_PRESETS } from "@vfx-ui/react";
+```
+
+## Notes for agents
+
+- Requires WebGPU. Render a sized parent and provide fallback for unsupported browsers.
+- SSR yields an inert decorative canvas; loading/status text belongs in your own DOM.
+- Real jump flood, distance field and radiance cascades adapted from Vercel's MIT example, with original orbit/grid arrangements.
+- Working field capped at 320px; animation capped at 30fps and suspended offscreen, in hidden tabs and under reduced motion.
+- animate=false or speed=0 freezes time; changes to other props still redraw the paused field.
 
 # Ribbon Field
 

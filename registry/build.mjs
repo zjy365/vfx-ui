@@ -21,6 +21,8 @@ const outDir = process.argv.includes("--out")
 
 /** Catalog metadata: the single source of truth for the public registry. */
 const CATALOG = [
+  { name: "astra-field", component: "AstraField", title: "Astra Field", description: "A rotatable spiral galaxy of glowing stars.", categories: ["Backgrounds"], tags: ["galaxy", "stars"], sharedFiles: false },
+  { name: "radiant-dots", component: "RadiantDots", title: "Radiant Dots", description: "Orbital emitters with jump-flooded distance fields and radiance cascades.", categories: ["Backgrounds"], tags: ["radiance", "light", "dots"], deps: ["RadianceEngine"] },
   ...[
     ["footer-tidal", "FooterTidal", "Footer Tidal", "Copper tidal lines beneath your brand, with pointer-driven currents."],
     ["footer-fold", "FooterFold", "Footer Fold", "A wordmark printed across hinged paper panels that respond to the pointer."],
@@ -80,8 +82,9 @@ const CATALOG = [
   {
     name: "glass-card",
     component: "GlassCard",
+    deps: ["OpticalGlass"],
     title: "Glass Card",
-    description: "Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.",
+    description: "Thick-cut optical glass with two-interface refraction and studio reflections.",
     categories: ["Glass"],
     tags: ["glass", "card", "sdf"],
     files: ["components/GlassCard.tsx"],
@@ -89,8 +92,9 @@ const CATALOG = [
   {
     name: "liquid-glass",
     component: "LiquidGlass",
+    deps: ["OpticalGlass"],
     title: "Liquid Glass",
-    description: "Fullscreen liquid refraction with approximate chromatic dispersion.",
+    description: "A molten glass annulus with a travelling silhouette and spectral transmission.",
     categories: ["Glass"],
     tags: ["glass", "refraction", "liquid"],
     files: ["components/LiquidGlass.tsx"],
@@ -98,8 +102,9 @@ const CATALOG = [
   {
     name: "glass-lens",
     component: "GlassLens",
+    deps: ["OpticalGlass"],
     title: "Glass Lens",
-    description: "Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.",
+    description: "A biconvex glass lens that magnifies and inverts a printed studio scene.",
     categories: ["Glass"],
     tags: ["glass", "refraction", "lens", "liquid-glass"],
     files: ["components/GlassLens.tsx"],
@@ -161,8 +166,9 @@ const CATALOG = [
   {
     name: "light-prism",
     component: "LightPrism",
+    deps: ["OpticalGlass", "PrismScene", "PrismEngine"],
     title: "Light Prism",
-    description: "Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).",
+    description: "A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.",
     categories: ["Glass"],
     tags: ["glass", "prism", "refraction", "hero", "paper"],
     files: ["components/LightPrism.tsx"],

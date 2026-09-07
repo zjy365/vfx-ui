@@ -1,6 +1,6 @@
 # Light Prism
 
-Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
+A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
 
 ## Install
 
@@ -12,7 +12,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 import { LightPrism } from "@vfx-ui/react";
 
 export function Demo() {
-  return <LightPrism />;
+  return <div style={{ height: 520 }}><LightPrism interactive /></div>;
 }
 ```
 
@@ -40,13 +40,8 @@ Import the preset bag and spread it into props:
 import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
 ```
 
-## Shader
-
-WGSL source is exported as `LIGHT_PRISM_SHADER` — read it to learn how the effect works.
-
 ## Notes for agents
 
-- Requires a WebGPU-capable browser; the component degrades gracefully otherwise (use the `fallback` prop).
-- SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
-- `prefers-reduced-motion` freezes animation automatically.
-- Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+- Complete Vercel VGPU MIT light pipeline, including beveled solid geometry, spectral optics, environment and wall baking, and multiple glass passes.
+- Source and license are bundled. No remote assets. Use a sized parent; pointer changes beam incidence and camera orbit.
+- LIGHT_PRISM_SHADER, to and accent are deprecated compatibility exports/props. The live component uses a multi-pass pipeline and optical spectral colors.

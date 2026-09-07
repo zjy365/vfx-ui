@@ -40,7 +40,7 @@ const SHADER_IMPORTS = {
   "ribbon-field": ["RIBBON_FIELD_SHADER", "./RibbonField.tsx"],
   "fiber-flow": ["FIBER_FLOW_SHADER", "./FiberFlow.tsx"],
   "chroma-flow": ["CHROMA_FLOW_SHADER", "./ChromaFlow.tsx"],
-  "light-prism": ["LIGHT_PRISM_SHADER", "./LightPrism.tsx"],
+
   // Heroes reuse their base shader; the entries below pin the hero's default
   // palette so the pixel gate covers what the hero actually renders.
   "hero-fluid": ["FLUID_SHADER", "./FluidGradient.tsx"],
@@ -60,6 +60,7 @@ const SHADER_IMPORTS = {
 /** Multi-pass pipelines: rendered via their own thumbnail export, not the
  *  single-effect loop. Maps component name -> { module, fn, settings }. */
 const PIPELINES = {
+  "light-prism": { module: "./PrismThumbnail.tsx", fn: "renderPrismThumbnail", settings: {} },
   "black-hole": {
     module: "./BlackHole.tsx",
     fn: "renderBlackHoleThumbnail",
@@ -85,9 +86,9 @@ const UNIFORMS = {
   aurora: { time: 1.2, speed: 0.7, intensity: 1, bands: 4, c0r: 0.176, c0g: 0.831, c0b: 0.749, c1r: 0.506, c1g: 0.549, c1b: 0.973, px: 0.5, py: 0.5 },
   starfield: { time: 1.3, density: 0.35, twinkle: 0.8, speed: 1, c0r: 0.812, c0g: 0.894, c0b: 1, px: 0.5, py: 0.5 },
   "particle-field": { time: 1.4, density: 0.45, size: 0.16, speed: 0.8, c0r: 0.62, c0g: 0.796, c0b: 1, px: 0.5, py: 0.5 },
-  "glass-card": { time: 1.5, radius: 0.05, borderGlow: 0.7, shine: 0.8, cardScale: 0.62, c0r: 0.647, c0g: 0.784, c0b: 1, px: 0.5, py: 0.5, pActive: 0 },
-  "liquid-glass": { time: 1.6, speed: 0.8, distortion: 0.45, chromatic: 0.6, scale: 1.2, px: 0.5, py: 0.5, pActive: 0 },
-  "glass-lens": { time: 1.7, speed: 1.0, refraction: 0.85, dispersion: 0.7, blur: 0.8, rim: 0.9, tintR: 0.812, tintG: 0.894, tintB: 1, px: 0.5, py: 0.5, pActive: 0, resX: 512, resY: 512 },
+  "glass-card": { resX: 512, resY: 512, time: 1.5, radius: 0.05, borderGlow: 0.7, shine: 0.8, cardScale: 0.62, c0r: 0.894, c0g: 0.929, c0b: 0.941, px: 0.5, py: 0.5, pActive: 0 },
+  "liquid-glass": { resX: 512, resY: 512, time: 1.6, speed: 0.8, distortion: 0.45, chromatic: 0.6, scale: 1.2, px: 0.5, py: 0.5, pActive: 0 },
+  "glass-lens": { time: 1.7, speed: 1.0, refraction: 0.85, dispersion: 0.7, blur: 0.8, rim: 0.9, tintR: 0.878, tintG: 0.933, tintB: 0.957, px: 0.5, py: 0.5, pActive: 0, resX: 512, resY: 512 },
   "mesh-gradient": { time: 0.8, speed: 0.6, scale: 3.2, softness: 0.09, c0r: 0.043, c0g: 0.067, c0b: 0.125, c1r: 0.082, c1g: 0.369, c1b: 0.459, c2r: 0.486, c2g: 0.227, c2b: 0.929, c3r: 0.957, c3g: 0.447, c3b: 0.714, px: 0.5, py: 0.5 },
   iridescent: { time: 1.5, speed: 0.8, scale: 2.4, hueShift: 0, saturation: 1, brightness: 0.9, px: 0.5, py: 0.5 },
   vortex: { time: 0.6, speed: 0.5, swirl: 2.4, arms: 2, coreGlow: 1.2, cr: 0.506, cg: 0.549, cb: 0.973, er: 0.878, eg: 0.949, eb: 0.996, px: 0.5, py: 0.5 },

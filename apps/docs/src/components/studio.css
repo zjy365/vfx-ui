@@ -243,3 +243,26 @@
 .browse-page-footers{max-width:1150px}
 .browse-page-footers .browse-grid{grid-template-columns:1fr;gap:42px}
 .browse-page-footers .browse-title-row strong{font-size:18px}
+
+/* Optical studies use the actual viewport, including portrait capture. */
+.capture-preview.is-optical-preview {
+  width: 100vw;
+  height: 100svh;
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+@media (max-width: 600px) {
+  .shader-preview.is-optical-preview:not(.capture-preview) {
+    aspect-ratio: 1;
+    height: auto;
+  }
+}
+@media (max-width: 600px) {
+  .stage-grid:has(> .is-optical-preview) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .shader-preview.is-optical-preview:not(.capture-preview) {
+    min-width: 0;
+    width: 100%;
+  }
+}

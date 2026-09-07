@@ -11,6 +11,8 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Component catalog
 
+- [Astra Field](https://vfx-ui.com/components/astra-field.md): A rotatable spiral galaxy of glowing stars.
+- [Radiant Dots](https://vfx-ui.com/components/radiant-dots.md): Orbital emitters with jump-flooded distance fields and radiance cascades.
 - [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath your brand, with pointer-driven currents.
 - [Footer Fold](https://vfx-ui.com/components/footer-fold.md): A wordmark printed across hinged paper panels that respond to the pointer.
 - [Footer Phosphor](https://vfx-ui.com/components/footer-phosphor.md): A luminous cell wordmark that disperses around your pointer and settles home.
@@ -22,16 +24,16 @@ npm install @vfx-ui/react vgpu@0.3.1
 - [Aurora](https://vfx-ui.com/components/aurora.md): Vertical light curtains driven by fBm perturbation and gaussian bands.
 - [Starfield](https://vfx-ui.com/components/starfield.md): Hashed star grid with twinkle and slow parallax drift.
 - [Particle Field](https://vfx-ui.com/components/particle-field.md): Procedural cell-hashed particles with drift and size breathing.
-- [Glass Card](https://vfx-ui.com/components/glass-card.md): Rounded-rect SDF glass card with sweeping inner highlight and edge refraction.
-- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): Fullscreen liquid refraction with approximate chromatic dispersion.
-- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): Floating liquid-glass pill lens over a living color field: cylindrical rim refraction, RGB dispersion, rotating specular sweep.
+- [Glass Card](https://vfx-ui.com/components/glass-card.md): Thick-cut optical glass with two-interface refraction and studio reflections.
+- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): A molten glass annulus with a travelling silhouette and spectral transmission.
+- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): A biconvex glass lens that magnifies and inverts a printed studio scene.
 - [Black Hole](https://vfx-ui.com/components/black-hole.md): The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
 - [Mesh Gradient](https://vfx-ui.com/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette.
 - [Iridescent](https://vfx-ui.com/components/iridescent.md): Silky thin-film interference colors drifting across the surface.
 - [Vortex](https://vfx-ui.com/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
 - [Ribbon Field](https://vfx-ui.com/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
 - [Fiber Flow](https://vfx-ui.com/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
-- [Light Prism](https://vfx-ui.com/components/light-prism.md): Frosted glass prism on warm paper with a light beam bending through it — SDF triangle glass, cast shadow, and RGB dispersion (pointer tilt opt-in).
+- [Light Prism](https://vfx-ui.com/components/light-prism.md): A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
 - [Hero Fluid](https://vfx-ui.com/components/hero-fluid.md): Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
 - [Hero Aurora](https://vfx-ui.com/components/hero-aurora.md): Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
 - [Hero Fiber](https://vfx-ui.com/components/hero-fiber.md): Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
@@ -48,6 +50,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Per-component docs (machine-readable)
 
+- https://vfx-ui.com/components/astra-field.md
 - https://vfx-ui.com/components/aurora.md
 - https://vfx-ui.com/components/black-hole.md
 - https://vfx-ui.com/components/chroma-flow.md
@@ -77,6 +80,7 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/magnetic.md
 - https://vfx-ui.com/components/mesh-gradient.md
 - https://vfx-ui.com/components/particle-field.md
+- https://vfx-ui.com/components/radiant-dots.md
 - https://vfx-ui.com/components/ribbon-field.md
 - https://vfx-ui.com/components/spectral-card.md
 - https://vfx-ui.com/components/starfield.md

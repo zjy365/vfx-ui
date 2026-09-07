@@ -39,3 +39,7 @@ Avoid expanding this direction into indiscriminate cursor effects, decorative da
 Hero and Footer are the two primary collection categories. FooterTidal introduces copper engraved currents and opaque monumental type; FooterFold uses a connected lavender paper screen with violet ink; FooterPhosphor uses a full-width cell wordmark with navigation beneath. The homepage’s actual footer switches among these exported components. Footer gallery images preserve the entire composition and mobile previews retain their intrinsic height.
 
 The external random seed, alternatives, material decisions and independent screenshot review are recorded in [the Footer design record](docs/design/footers.md). LiveChart, WebGlobe and EnergyOrb were removed at the user’s request; HeroGlobe remains.
+
+## Optical Glass replacement
+
+Glass now consists of four original optical studies: warm printed card, dark biconvex lens, cobalt molten loop, and a triangular glass frame. Each study uses a distinct scene to make its transmission legible. Preserve public names and preset routes while replacing the former blurred fields. RadiantDots extends the background collection with real multi-pass light transport and original dot arrangements. Material limits, reference attribution, compatibility and review evidence are recorded in [the Glass design record](docs/design/glass.md).
