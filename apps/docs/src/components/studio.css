@@ -195,18 +195,22 @@
 
 .shader-controls .text-control {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  height: auto;
   gap: 9px;
   padding: 12px;
 }
 .shader-controls .text-control input {
   width: 100%;
+  height: auto;
   padding: 9px 10px;
   border: 1px solid var(--ring);
   border-radius: 5px;
   background: var(--page);
   color: var(--foreground);
   font-size: 12px;
+  line-height: 20px;
+  text-align: left;
 }
 .shader-controls .text-control label {
   font-size: 11px;
