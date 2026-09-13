@@ -67,7 +67,7 @@ Monorepo: `packages/core` (vgpu-backed renderer contract) · `packages/react` (c
 ## Website deployment
 
 [vfx-ui.com](https://vfx-ui.com) is hosted by the Cloudflare Pages project
-`vfx-ui-site`, connected directly to this GitHub repository. Every push to `main`
+`vfx-ui`, connected directly to this GitHub repository. Every push to `main`
 automatically rebuilds and publishes the landing page, component catalog,
 copy-paste registry, and agent documentation. Local edits must be committed and
 pushed to trigger an update. Preview branch deployments are disabled.
