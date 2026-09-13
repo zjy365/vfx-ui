@@ -82,7 +82,7 @@ node registry/build.mjs && node scripts/generate-agentic.mjs && mkdir -p apps/do
 The `Check docs build` GitHub workflow validates builds; Cloudflare handles
 publishing through its GitHub integration without a GitHub Actions API token.
 Custom domains are configured in Pages and use proxied CNAME records pointing
-to `vfx-ui-site.pages.dev`. The former `vfx-ui` project is a legacy manual upload.
+to `vfx-ui-site.pages.dev`. This is the sole Pages project for this website.
 
 ## License & credits
 
