@@ -23,8 +23,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
@@ -67,25 +65,12 @@ jobs:
       - name: Build docs site
         run: pnpm --filter @vfx-ui/docs build
 
-      # pushState SPA routing: unknown paths must fall back to the app shell.
-      - name: Add SPA 404 fallback
-        run: |
-          cp apps/docs/dist/index.html apps/docs/dist/404.html
-          touch apps/docs/dist/.nojekyll
-
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/upload-pages-artifact@v3
+      # Cloudflare Pages auto-falls-back to index.html for unknown paths
+      # (SPA mode), so no 404.html copy is needed.
+      - name: Deploy to Cloudflare Pages
+        if: github.event_name != 'pull_request'
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: apps/docs/dist
-
-  deploy:
-    if: github.event_name != 'pull_request'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy apps/docs/dist --project-name=vfx-ui --branch=main
