@@ -64,6 +64,26 @@ node scripts/generate-agentic.mjs    # rebuild llms.txt / agents.md
 
 Monorepo: `packages/core` (vgpu-backed renderer contract) · `packages/react` (components) · `packages/cli` · `apps/docs` (catalog site) · `registry` · `scripts`.
 
+## Website deployment
+
+[vfx-ui.com](https://vfx-ui.com) is hosted by the Cloudflare Pages project
+`vfx-ui-site`, connected directly to this GitHub repository. Every push to `main`
+automatically rebuilds and publishes the landing page, component catalog,
+copy-paste registry, and agent documentation. Local edits must be committed and
+pushed to trigger an update. Preview branch deployments are disabled.
+
+Pages build settings: repository root, Node.js `22`, pnpm `8.15.9`, output
+`apps/docs/dist`, and this build command:
+
+```sh
+node registry/build.mjs && node scripts/generate-agentic.mjs && mkdir -p apps/docs/public/r && cp registry/dist/r/*.json apps/docs/public/r/ && cp registry/dist/index.json apps/docs/public/r/index.json && pnpm --filter @vfx-ui/docs build
+```
+
+The `Check docs build` GitHub workflow validates builds; Cloudflare handles
+publishing through its GitHub integration without a GitHub Actions API token.
+Custom domains are configured in Pages and use proxied CNAME records pointing
+to `vfx-ui-site.pages.dev`. The former `vfx-ui` project is a legacy manual upload.
+
 ## License & credits
 
 MIT. The docs shell is derived from [MengTo/threeui](https://github.com/MengTo/threeui) (MIT, © 2026 Meng To) — thank you for showing what a component catalog can be. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT). HeroGlobe uses [shuding/cobe](https://github.com/shuding/cobe) (MIT).

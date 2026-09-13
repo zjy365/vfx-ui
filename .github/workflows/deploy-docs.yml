@@ -1,4 +1,4 @@
-name: Deploy docs
+name: Check docs build
 
 on:
   push:
@@ -9,6 +9,9 @@ on:
       - "packages/core/**"
       - "registry/**"
       - "scripts/generate-agentic.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
       - ".github/workflows/deploy-docs.yml"
   pull_request:
     branches: [main]
@@ -18,6 +21,9 @@ on:
       - "packages/core/**"
       - "registry/**"
       - "scripts/generate-agentic.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
       - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
 
@@ -25,7 +31,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages
+  group: docs-build-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -65,12 +71,5 @@ jobs:
       - name: Build docs site
         run: pnpm --filter @vfx-ui/docs build
 
-      # Cloudflare Pages auto-falls-back to index.html for unknown paths
-      # (SPA mode), so no 404.html copy is needed.
-      - name: Deploy to Cloudflare Pages
-        if: github.event_name != 'pull_request'
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy apps/docs/dist --project-name=vfx-ui --branch=main
+      # Cloudflare Pages builds and deploys main through its GitHub integration.
+      # This workflow checks the same build without requiring deployment secrets.
