@@ -11,6 +11,9 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Component catalog
 
+- [Hero Eclipse](https://vfx-ui.com/components/hero-eclipse.md): An engraved astronomical dial with a pointer-controlled eclipse.
+- [Hero Contour](https://vfx-ui.com/components/hero-contour.md): A seeded topographic paper landscape that lifts around the pointer.
+- [Footer Vinyl](https://vfx-ui.com/components/footer-vinyl.md): A record-sleeve footer with a pointer-rotated vinyl and your own label.
 - [Astra Field](https://vfx-ui.com/components/astra-field.md): A rotatable spiral galaxy of glowing stars.
 - [Radiant Dots](https://vfx-ui.com/components/radiant-dots.md): Orbital emitters with jump-flooded distance fields and radiance cascades.
 - [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath your brand, with pointer-driven currents.
@@ -59,11 +62,14 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/footer-fold.md
 - https://vfx-ui.com/components/footer-phosphor.md
 - https://vfx-ui.com/components/footer-tidal.md
+- https://vfx-ui.com/components/footer-vinyl.md
 - https://vfx-ui.com/components/glass-card.md
 - https://vfx-ui.com/components/glass-lens.md
 - https://vfx-ui.com/components/hero-aurora.md
 - https://vfx-ui.com/components/hero-black-hole.md
 - https://vfx-ui.com/components/hero-chroma.md
+- https://vfx-ui.com/components/hero-contour.md
+- https://vfx-ui.com/components/hero-eclipse.md
 - https://vfx-ui.com/components/hero-fiber.md
 - https://vfx-ui.com/components/hero-fluid.md
 - https://vfx-ui.com/components/hero-globe.md

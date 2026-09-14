@@ -296,6 +296,7 @@ export function footerUsage(name: string, settings: Readonly<Record<string, unkn
   return `import { ${name} } from "@vfx-ui/react";\n\nexport function PageFooter() {\n  return (\n    <${name}\n${lines}\n    />\n  );\n}`;
 }
 const FOOTER_ENTRIES = [
+  { id: "footer-vinyl", name: "FooterVinyl", label: "Footer Vinyl", brand: "SIDE B", title: "Good things stay on repeat.", color: "#252a20", background: "#e8a0ae", description: "A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve.", extra: [color("labelColor", "Record label", "#ef623b")] },
   { id: "footer-tidal", name: "FooterTidal", label: "Footer Tidal", brand: "AFTER", title: "Every ending. A new beginning.", color: "#e8b58b", background: "#151b20", description: "Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.", extra: [{ kind: "toggle" as const, key: "animate", label: "Flowing tide", default: true }] },
   { id: "footer-fold", name: "FooterFold", label: "Footer Fold", brand: "FORM", title: "Leave it wide open.", color: "#292454", background: "#e5e0f0", description: "Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.", extra: [range("depth", "Fold depth", 0, 55, 1, 32)] },
   { id: "footer-phosphor", name: "FooterPhosphor", label: "Footer Phosphor", brand: "STILL", title: "Keep in touch.", color: "#d2f8a2", background: "#17201b", description: "A wordmark made of light. Its cells scatter around your pointer and settle back into place.", extra: [] },
@@ -314,7 +315,26 @@ const FOOTER_ENTRIES = [
   agentNotes: ["A semantic footer with customizable brand, title, description, CTA, navigation groups, copyright and legal links. Example links belong to the demo; replace them with your own routes. children replaces the intro and navigation. No WebGPU or animation library required. Touch and reduced-motion preserve a composed static design. Canvas work sleeps offscreen. Set --vfx-footer-display through style to use your brand font."],
 }));
 
+const STUDIO_HERO_ENTRIES = [
+  { id: "hero-eclipse", name: "HeroEclipse", label: "Hero Eclipse", title: "A rare\nalignment.", subtitle: "For ideas that only come around once. Make this moment yours.", color: "#e9ad73", background: "#171916", description: "An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial.", tags: ["eclipse", "astronomy", "editorial"], extra: [range("parallax", "Orbit travel", 0, 1, .05, .7)] },
+  { id: "hero-contour", name: "HeroContour", label: "Hero Contour", title: "Find your\nown way.", subtitle: "A different perspective changes everything. Step off the familiar path.", color: "#ed5b31", background: "#eeeade", description: "A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer.", tags: ["terrain", "topography", "generative"], extra: [range("seed", "Landscape seed", 0, 100, 1, 17), range("relief", "Elevation", .3, 1.6, .05, 1)] },
+].map((hero) => {
+  const shader = entry({
+    id: hero.id, importName: hero.name, category: "Heroes", label: hero.label, runtime: "dom",
+    description: hero.description, tags: ["hero", "pointer", ...hero.tags], thumbnail: `/showcase/${hero.id}.png`,
+    previewProps: { primaryCta: { label: "Explore the collection", href: "/heroes" } },
+    sourceCode: `import { ${hero.name} } from "@vfx-ui/react";\n\nexport function Hero() {\n  return <${hero.name} title={${JSON.stringify(hero.title)}} interactive primaryCta={{ label: "Explore", href: "/work" }} />;\n}`,
+    controls: [
+      { kind: "toggle", key: "interactive", label: "Follow pointer", default: true },
+      color("color", "Accent", hero.color as `#${string}`), color("background", "Paper", hero.background as `#${string}`), ...hero.extra,
+    ], variants: [],
+    agentNotes: ["Original SVG/CSS artwork. No WebGPU, canvas, external images or animation library. Pointer motion settles and sleeps; reduced-motion and touch retain static artwork. Example copy is replaceable; CTA links and buttons remain native. Set interactive to enable motion. Mobile reflows the illustration below the text."],
+  });
+  return { ...shader, controls: shader.controls?.map((control) => control.kind === "text" && control.key === "title" ? { ...control, default: hero.title } : control.kind === "text" && control.key === "subtitle" ? { ...control, default: hero.subtitle } : control), api: shader.api?.filter((row) => row.name !== "scheme" && row.name !== "fallback") };
+});
+
 export const READY_SHADERS: readonly ReadyShader[] = [
+  ...STUDIO_HERO_ENTRIES,
   ...FOOTER_ENTRIES,
   entry({
     id: "spectral-card", category: "Interactions", label: "Spectral Card", runtime: "dom",

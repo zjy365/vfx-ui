@@ -143,3 +143,7 @@ export type { FooterContentProps, FooterLink, FooterLinkGroup } from "./componen
 export { RadiantDots, RADIANT_DOTS_PRESETS, type RadiantDotsProps } from "./components/RadiantDots.tsx";
 
 export { AstraField, ASTRA_FIELD_PRESETS, type AstraFieldProps } from "./components/AstraField.tsx";
+
+export { HeroEclipse, type HeroEclipseProps } from "./components/HeroEclipse.tsx";
+export { HeroContour, type HeroContourProps } from "./components/HeroContour.tsx";
+export { FooterVinyl, type FooterVinylProps } from "./components/FooterVinyl.tsx";

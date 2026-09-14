@@ -43,7 +43,7 @@ function itemDoc(name) {
     "primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null",
     "secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null",
     "children?: ReactNode (replaces default content)", "interactive?: boolean (default false)",
-    "className?: string", "style?: CSSProperties", "fallback?: ReactNode",
+    "className?: string", "style?: CSSProperties", ...(/StudioHeroFrame/.test(source) ? [] : ["fallback?: ReactNode"]),
   ] : [];
   const props = propsMatch
     ? propsMatch[2]

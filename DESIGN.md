@@ -43,3 +43,9 @@ The external random seed, alternatives, material decisions and independent scree
 ## Optical Glass replacement
 
 Glass now consists of four original optical studies: warm printed card, dark biconvex lens, cobalt molten loop, and a triangular glass frame. Each study uses a distinct scene to make its transmission legible. Preserve public names and preset routes while replacing the former blurred fields. RadiantDots extends the background collection with real multi-pass light transport and original dot arrangements. Material limits, reference attribution, compatibility and review evidence are recorded in [the Glass design record](docs/design/glass.md).
+
+## September editorial collection
+
+Three original DOM studies extend the material range: HeroEclipse pairs an engraved copper astronomical dial with an occulting disc; HeroContour renders a deterministic seeded landscape as layered contour paths; FooterVinyl turns the closing navigation into a pink record sleeve with a rotating grooved disc. Pointer movement changes each material in its own way and settles without a continuous animation loop. All three work without WebGPU or remote artwork.
+
+Homepage collection links, newest ordering, the live footer selector, React exports, copy-paste registry, generated agent documentation, and actual rendered thumbnails include these additions. Content and actions are consumer-owned. At 390px the hero artwork flows below its copy and footer links remain native. Reduced motion and disabled interaction preserve a static composition.

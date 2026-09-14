@@ -4,6 +4,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { FooterTidal } from "../src/components/FooterTidal";
+import { FooterVinyl } from "../src/components/FooterVinyl";
 import { FooterFold } from "../src/components/FooterFold";
 import { FooterPhosphor } from "../src/components/FooterPhosphor";
 
@@ -106,7 +107,7 @@ afterEach(() => {
 });
 
 describe("complete footer contracts", () => {
-  it.each([FooterTidal, FooterFold, FooterPhosphor])(
+  it.each([FooterTidal, FooterFold, FooterPhosphor, FooterVinyl])(
     "renders real consumer content and destinations on the server",
     (Component) => {
       const html = renderToString(

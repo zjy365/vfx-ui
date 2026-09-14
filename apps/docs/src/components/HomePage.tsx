@@ -409,15 +409,15 @@ export function HomePage({
 
         <section className="scene-collection" aria-labelledby="scene-title">
           <div className="scene-heading">
-            <h2 id="scene-title">Set the scene.</h2>
+            <h2 id="scene-title">Fresh off the press.</h2>
             <p>
-              Your story deserves a first impression.
+              Two new beginnings. One unforgettable ending.
               <br />
-              Keep the atmosphere. Bring your own words.
+              Meet Eclipse, Contour, and Vinyl.
             </p>
           </div>
           <div className="scene-grid">
-            {["hero-black-hole", "hero-aurora", "hero-fiber"].map((id) => {
+            {["hero-eclipse", "hero-contour", "footer-vinyl"].map((id) => {
               const shader = VISIBLE_READY_SHADERS.find(
                 (item) => item.id === id,
               )!;
@@ -437,7 +437,7 @@ export function HomePage({
                   <div>
                     <strong>{shader.label}</strong>
                     <span>
-                      {shader.variants?.length} moods <Arrow diagonal />
+                      New · {shader.category === "Footers" ? "Footer" : "Hero"} <Arrow diagonal />
                     </span>
                   </div>
                 </a>

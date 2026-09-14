@@ -13,6 +13,9 @@ npm install @vfx-ui/react vgpu@0.3.1
 
 ## Component catalog
 
+- [Hero Eclipse](https://vfx-ui.com/components/hero-eclipse.md): An engraved astronomical dial with a pointer-controlled eclipse.
+- [Hero Contour](https://vfx-ui.com/components/hero-contour.md): A seeded topographic paper landscape that lifts around the pointer.
+- [Footer Vinyl](https://vfx-ui.com/components/footer-vinyl.md): A record-sleeve footer with a pointer-rotated vinyl and your own label.
 - [Astra Field](https://vfx-ui.com/components/astra-field.md): A rotatable spiral galaxy of glowing stars.
 - [Radiant Dots](https://vfx-ui.com/components/radiant-dots.md): Orbital emitters with jump-flooded distance fields and radiance cascades.
 - [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath your brand, with pointer-driven currents.
@@ -61,11 +64,14 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/footer-fold.md
 - https://vfx-ui.com/components/footer-phosphor.md
 - https://vfx-ui.com/components/footer-tidal.md
+- https://vfx-ui.com/components/footer-vinyl.md
 - https://vfx-ui.com/components/glass-card.md
 - https://vfx-ui.com/components/glass-lens.md
 - https://vfx-ui.com/components/hero-aurora.md
 - https://vfx-ui.com/components/hero-black-hole.md
 - https://vfx-ui.com/components/hero-chroma.md
+- https://vfx-ui.com/components/hero-contour.md
+- https://vfx-ui.com/components/hero-eclipse.md
 - https://vfx-ui.com/components/hero-fiber.md
 - https://vfx-ui.com/components/hero-fluid.md
 - https://vfx-ui.com/components/hero-globe.md
@@ -530,6 +536,47 @@ export function Demo() {
 - SSR-safe: content and navigation render on the server; animation starts after mount.
 - `prefers-reduced-motion` skips animation automatically.
 
+# Footer Vinyl
+
+A record-sleeve footer with a pointer-rotated vinyl and your own label.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { FooterVinyl } from "@vfx-ui/react";
+
+export function Demo() {
+  return <FooterVinyl brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
+}
+```
+
+## Props
+
+- `color?: string`
+- `background?: string`
+- `labelColor?: string`
+- `brand?: string (artwork is generated from your text)`
+- `title?: ReactNode`
+- `description?: ReactNode`
+- `cta?: { label: string; href: string } | null`
+- `groups?: readonly { label: string; links: readonly { label: string; href: string }[] }[]`
+- `legal?: readonly { label: string; href: string }[]`
+- `copyright?: ReactNode`
+- `children?: ReactNode (replaces introduction and navigation)`
+- `interactive?: boolean (default true)`
+- `className?: string`
+- `style?: CSSProperties (--vfx-footer-display sets the brand font)`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
+
 # Glass Card
 
 Thick-cut optical glass with two-interface refraction and studio reflections.
@@ -806,6 +853,85 @@ WGSL source is exported as `CHROMA_FLOW_SHADER` — read it to learn how the eff
 - SSR-safe: rendering on the server produces an inert canvas; init happens on mount.
 - `prefers-reduced-motion` freezes animation automatically.
 - Uniforms are plain f32 fields; pass them via `uniforms` — no shader edits needed.
+
+# Hero Contour
+
+A seeded topographic paper landscape that lifts around the pointer.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { HeroContour } from "@vfx-ui/react";
+
+export function Demo() {
+  return <HeroContour title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
+}
+```
+
+## Props
+
+- `color?: string`
+- `background?: string`
+- `seed?: number`
+- `relief?: number`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
+
+# Hero Eclipse
+
+An engraved astronomical dial with a pointer-controlled eclipse.
+
+## Install
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+import { HeroEclipse } from "@vfx-ui/react";
+
+export function Demo() {
+  return <HeroEclipse title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
+}
+```
+
+## Props
+
+- `color?: string`
+- `background?: string`
+- `parallax?: number`
+- `title?: ReactNode`
+- `subtitle?: ReactNode`
+- `eyebrow?: string`
+- `primaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `secondaryCta?: string | { label: string; href?: string; onClick?: MouseEventHandler<HTMLButtonElement> } | null`
+- `children?: ReactNode (replaces default content)`
+- `interactive?: boolean (default false)`
+- `className?: string`
+- `style?: CSSProperties`
+
+## Notes for agents
+
+- DOM/CSS/Canvas interaction; works without WebGPU. Supply your own content through the documented props.
+- SSR-safe: content and navigation render on the server; animation starts after mount.
+- `prefers-reduced-motion` skips animation automatically.
 
 # Hero Fiber
 

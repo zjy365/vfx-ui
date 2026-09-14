@@ -21,6 +21,11 @@ const outDir = process.argv.includes("--out")
 
 /** Catalog metadata: the single source of truth for the public registry. */
 const CATALOG = [
+  ...[
+    ["hero-eclipse", "HeroEclipse", "Hero Eclipse", "An engraved astronomical dial with a pointer-controlled eclipse."],
+    ["hero-contour", "HeroContour", "Hero Contour", "A seeded topographic paper landscape that lifts around the pointer."],
+  ].map(([name, component, title, description]) => ({ name, component, title, description, categories: ["Heroes"], tags: ["hero", "pointer", "editorial"], sharedFiles: false, motion: true, deps: ["StudioHeroFrame", "HeroShell"] })),
+  { name: "footer-vinyl", component: "FooterVinyl", title: "Footer Vinyl", description: "A record-sleeve footer with a pointer-rotated vinyl and your own label.", categories: ["Footers"], tags: ["footer", "vinyl", "pointer"], sharedFiles: false, motion: true, deps: ["FooterFrame"] },
   { name: "astra-field", component: "AstraField", title: "Astra Field", description: "A rotatable spiral galaxy of glowing stars.", categories: ["Backgrounds"], tags: ["galaxy", "stars"], sharedFiles: false },
   { name: "radiant-dots", component: "RadiantDots", title: "Radiant Dots", description: "Orbital emitters with jump-flooded distance fields and radiance cascades.", categories: ["Backgrounds"], tags: ["radiance", "light", "dots"], deps: ["RadianceEngine"] },
   ...[

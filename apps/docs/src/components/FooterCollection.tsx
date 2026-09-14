@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { FooterFold, FooterPhosphor, FooterTidal } from "@vfx-ui/react";
+import { FooterFold, FooterPhosphor, FooterTidal, FooterVinyl } from "@vfx-ui/react";
 
 const ENDINGS = [
+  { id: "footer-vinyl", label: "Vinyl", Component: FooterVinyl },
   { id: "footer-tidal", label: "Tidal", Component: FooterTidal },
   { id: "footer-fold", label: "Fold", Component: FooterFold },
   { id: "footer-phosphor", label: "Phosphor", Component: FooterPhosphor },
@@ -25,7 +26,7 @@ const GROUPS = [
   },
 ];
 
-/** The site's own footer is a working specimen of all three exported footers. */
+/** The site's own footer is a working specimen of the exported footers. */
 export function FooterCollection() {
   const [selected, setSelected] = useState(0);
   const { id, Component } = ENDINGS[selected]!;
@@ -53,11 +54,11 @@ export function FooterCollection() {
         key={id}
         brand="VFX UI"
         title={
-          selected === 1
+          id === "footer-fold"
             ? "Make room for\nsomething different."
-            : selected === 2
+            : id === "footer-phosphor"
               ? "See you around."
-              : "A little atmosphere.\nAll yours."
+              : id === "footer-vinyl" ? "Good things\nstay on repeat." : "A little atmosphere.\nAll yours."
         }
         cta={{ label: "Use this footer", href: `/footers/${id}` }}
         groups={GROUPS}

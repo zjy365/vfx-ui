@@ -3,6 +3,9 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { HeroEclipse } from "../src/components/HeroEclipse";
+import { HeroContour } from "../src/components/HeroContour";
+import { FooterVinyl } from "../src/components/FooterVinyl";
 import { HeroAurora } from "../src/components/HeroAurora";
 import { Magnetic } from "../src/components/Magnetic";
 import { SpectralCard } from "../src/components/SpectralCard";
@@ -182,5 +185,57 @@ describe("consumer interaction contracts", () => {
     expect(html).toContain('aria-label="Hello world"');
     expect(html).toContain("Your content");
     expect(html).not.toContain("<canvas");
+  });
+});
+
+
+describe("new editorial component contracts", () => {
+  it.each([
+    [HeroEclipse, "section", "--eclipse-x"],
+    [HeroContour, "section", "--contour-x"],
+    [FooterVinyl, "footer", "--vinyl-turn"],
+  ] as const)("settles pointer motion, resets, and cleans up frames", (Component, tag, property) => {
+    act(() => root.render(<Component interactive />));
+    const element = container.querySelector(tag)!;
+    bounds(element);
+    const rest = element.style.getPropertyValue(property);
+    move(element);
+    settle();
+    expect(element.style.getPropertyValue(property)).not.toBe(rest);
+    act(() => element.dispatchEvent(new Event("pointerleave")));
+    settle();
+    expect(element.style.getPropertyValue(property)).toBe(rest);
+    move(element);
+    act(() => root.render(null));
+    expect(frames.size).toBe(0);
+  });
+  it.each([HeroEclipse, HeroContour, FooterVinyl])("honors reduced motion and disabled interaction", (Component) => {
+    reduced = true;
+    act(() => root.render(<Component interactive />));
+    const element = container.querySelector("section,footer")!;
+    bounds(element);
+    move(element);
+    expect(frames.size).toBe(0);
+    reduced = false;
+    act(() => root.render(<Component interactive={false} />));
+    move(element);
+    expect(frames.size).toBe(0);
+  });
+  it.each([HeroEclipse, HeroContour])("keeps user actions and custom content functional", (Component) => {
+    const onClick = vi.fn();
+    act(() => root.render(<Component title="Our own headline" primaryCta={{label:"Explore",href:"/work"}} secondaryCta={{label:"Open",onClick}} />));
+    expect(container.querySelector("h1")?.textContent).toBe("Our own headline");
+    expect(container.querySelector("a")?.getAttribute("href")).toBe("/work");
+    act(() => container.querySelector("button")!.click());
+    expect(onClick).toHaveBeenCalledOnce();
+    act(() => root.render(<Component><h2>Custom content</h2></Component>));
+    expect(container.querySelector("h1")).toBeNull();
+    expect(container.querySelector("h2")?.textContent).toBe("Custom content");
+  });
+  it("produces stable seeded terrain for SSR and changes the landscape with the seed", () => {
+    const first = renderToString(<HeroContour seed={17} />);
+    expect(first).toBe(renderToString(<HeroContour seed={17} />));
+    expect(first).not.toBe(renderToString(<HeroContour seed={29} />));
+    expect(renderToString(<HeroContour seed={NaN} relief={Infinity} />)).not.toMatch(/NaN|Infinity/);
   });
 });
