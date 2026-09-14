@@ -1,0 +1,42 @@
+{
+  "account_id": "600e083227ad43c1609473964293f6ac",
+  "ruleset_id": "15b7ce5be13640aab1c9eda8060e1a8b",
+  "list_id": "3b0d882edf7f4e04bb6a6c5335340183",
+  "list_name": "vfx_ui_domain_redirects",
+  "items": [
+    {
+      "redirect": {
+        "source_url": "vfx-ui-site.pages.dev/",
+        "target_url": "https://vfx-ui.com/",
+        "status_code": 301,
+        "include_subdomains": false,
+        "subpath_matching": true,
+        "preserve_path_suffix": true,
+        "preserve_query_string": true
+      }
+    },
+    {
+      "redirect": {
+        "source_url": "www.vfx-ui.com/",
+        "target_url": "https://vfx-ui.com/",
+        "status_code": 301,
+        "include_subdomains": false,
+        "subpath_matching": true,
+        "preserve_path_suffix": true,
+        "preserve_query_string": true
+      }
+    }
+  ],
+  "rule": {
+    "action": "redirect",
+    "action_parameters": {
+      "from_list": {
+        "key": "http.request.full_uri",
+        "name": "vfx_ui_domain_redirects"
+      }
+    },
+    "expression": "http.request.full_uri in $vfx_ui_domain_redirects",
+    "description": "vfx_ui_domain_redirects",
+    "enabled": true
+  }
+}
