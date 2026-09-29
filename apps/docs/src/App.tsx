@@ -3,6 +3,8 @@ import { BrandMark } from "./components/BrandMark";
 import { BrowsePage } from "./components/BrowsePage";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { HomePage } from "./components/HomePage";
+import { ProPage } from "./components/ProPage";
+import { ExampleDocumentation, type ExampleSlug } from "./components/ExampleDocumentation";
 import { InstallationDocumentation } from "./components/InstallationDocumentation";
 import { MainContentFooter } from "./components/MainContentFooter";
 import { SearchDialog } from "./components/SearchDialog";
@@ -20,6 +22,7 @@ import {
   shaderRoutePath,
   STATIC_ROUTE_PATHS,
 } from "./routes.js";
+import { EXAMPLE_PAGES } from "./routes.js";
 import { applyRouteSeo } from "./seo.js";
 import {
   THEME_STORAGE_KEY,
@@ -28,7 +31,7 @@ import {
   type ThemeMode,
 } from "./theme";
 
-type AppPage = "home" | "shader" | "browse" | "installation" | "not-found";
+type AppPage = "home" | "shader" | "browse" | "installation" | "example" | "pro" | "not-found";
 
 type RouteState = {
   active: ReadyShader;
@@ -36,6 +39,7 @@ type RouteState = {
   browseCategory?: ReadyShader["category"];
   browseTag?: string;
   routedVariantId?: string;
+  exampleSlug?: ExampleSlug;
   page: AppPage;
   canonicalPath: string;
   legacy?: boolean;
@@ -48,6 +52,7 @@ type ResolvedRoute = {
   canonicalPath: string;
   shader?: ReadyShader;
   variantId?: string;
+  example?: { slug: ExampleSlug };
   legacy?: boolean;
 };
 
@@ -66,6 +71,7 @@ function routeStateFromUrl(): RouteState {
     browseCategory: route.browseCategory,
     browseTag: route.browseTag,
     routedVariantId,
+    exampleSlug: route.page === "example" ? route.example?.slug : undefined,
     page: route.page === "not-found" ? "not-found" : route.page,
     canonicalPath: route.canonicalPath,
     legacy: route.legacy,
@@ -89,6 +95,7 @@ function capturePropsForShader(shader: ReadyShader, scheme: "light" | "dark", va
     return [control.key, control.default];
   }));
 
+  if (shader.category === "Blocks") props.scheme = scheme;
   return props;
 }
 
@@ -115,7 +122,7 @@ function ShaderCapturePage() {
 
   return (
     <main className="capture-shell" aria-label={`${shader.label} preview capture`}>
-      <div className={`capture-preview preview shader-preview ${shader.id} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""} ${shader.category === "Glass" || (shader.id === "radiant-dots" || shader.id === "astra-field") ? "is-optical-preview" : ""}`} data-variant={variant?.id}>
+      <div className={`capture-preview preview shader-preview ${shader.id} ${shader.runtime === "dom" ? "is-dom-preview" : ""} ${shader.category === "Blocks" ? "is-block-preview" : ""} ${shader.category === "Footers" ? "is-footer-preview" : ""} ${shader.category === "Glass" || (shader.id === "radiant-dots" || shader.id === "astra-field") ? "is-optical-preview" : ""}`} data-variant={variant?.id}>
         <Suspense fallback={<div className="preview-loading" role="status">Loading renderer…</div>}>
           {Preview ? <Preview {...captureProps} interactive={false} style={shader.id === "spectral-card" ? { width: 460, height: 560 } : undefined} /> : null}
         </Suspense>
@@ -127,7 +134,7 @@ function ShaderCapturePage() {
 
 function VfxUiApp() {
   const [routeState, setRouteState] = useState<RouteState>(() => routeStateFromUrl());
-  const { active, activeVariantId, browseCategory, browseTag, routedVariantId, page, canonicalPath } = routeState;
+  const { active, activeVariantId, browseCategory, browseTag, routedVariantId, exampleSlug, page, canonicalPath } = routeState;
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -234,6 +241,19 @@ function VfxUiApp() {
     }
   };
 
+  const selectExample = (slug: ExampleSlug) => {
+    const example = EXAMPLE_PAGES[slug];
+    setRouteState((current) => ({
+      ...current,
+      exampleSlug: slug,
+      page: "example",
+      canonicalPath: example.path,
+    }));
+    setSidebarOpen(false);
+    setSearchOpen(false);
+    window.history.pushState({}, "", navigationUrl(example.path));
+  };
+
   const selectHome = () => {
     setRouteState((current) => ({
       ...current,
@@ -253,9 +273,10 @@ function VfxUiApp() {
       browseTag: page === "browse" ? browseTag : undefined,
       shader: page === "shader" ? active : undefined,
       variant: page === "shader" ? seoVariant : undefined,
+      example: page === "example" && exampleSlug ? EXAMPLE_PAGES[exampleSlug] : undefined,
       canonicalPath,
-    }, VISIBLE_READY_SHADERS);
-  }, [active, browseCategory, browseTag, canonicalPath, page, seoVariant]);
+    } as Parameters<typeof applyRouteSeo>[0], VISIBLE_READY_SHADERS);
+  }, [active, browseCategory, browseTag, canonicalPath, exampleSlug, page, seoVariant]);
 
   useEffect(() => {
     if (!routeState.legacy && window.location.pathname === canonicalPath) return;
@@ -320,6 +341,18 @@ function VfxUiApp() {
     );
   }
 
+  if (page === "pro") {
+    return (
+      <ErrorBoundary>
+        <ProPage
+          theme={theme}
+          onNavigate={selectFooterRoute}
+          onTheme={selectTheme}
+        />
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <>
       <header className="topbar">
@@ -344,6 +377,7 @@ function VfxUiApp() {
           onHome={selectHome}
           onBrowse={selectBrowse}
           onInstallation={selectInstallation}
+          onExample={selectExample}
           onSearch={() => openSearch()}
           onTheme={selectTheme}
         />
@@ -362,6 +396,10 @@ function VfxUiApp() {
               </ErrorBoundary>
             ) : page === "installation" ? (
               <InstallationDocumentation onSelect={selectShader} />
+            ) : page === "example" && exampleSlug ? (
+              <ErrorBoundary key={exampleSlug}>
+                <ExampleDocumentation slug={exampleSlug} />
+              </ErrorBoundary>
             ) : page === "not-found" ? (
               <main className="browse-page" aria-labelledby="not-found-title">
                 <header className="browse-header">
@@ -384,7 +422,7 @@ function VfxUiApp() {
                 />
               </ErrorBoundary>
             ) : null}
-            <MainContentFooter onNavigate={selectFooterRoute} />
+            {page === "example" ? null : <MainContentFooter onNavigate={selectFooterRoute} />}
           </div>
         </div>
       </div>

@@ -4,7 +4,15 @@ export const STATIC_ROUTE_PATHS = {
   home: "/",
   browse: "/components",
   installation: "/installation",
+  pro: "/pro",
 };
+
+/* Full-page block compositions. These render complete example pages, not the
+   standard component-detail layout. */
+export const EXAMPLE_PAGES = Object.freeze({
+  launch: { slug: "launch", path: "/examples/launch", registryName: "example-launch", title: "Product launch page" },
+  studio: { slug: "studio", path: "/examples/studio", registryName: "example-studio", title: "Design studio page" },
+});
 
 export const TAG_ROUTE_PREFIX = "/components/tag";
 
@@ -155,8 +163,14 @@ export function resolveAppRoute(locationLike, catalog) {
   if (pathname === STATIC_ROUTE_PATHS.home) return staticRoute("home");
   if (pathname === STATIC_ROUTE_PATHS.browse) return staticRoute("browse");
   if (pathname === STATIC_ROUTE_PATHS.installation) return staticRoute("installation");
+  if (pathname === STATIC_ROUTE_PATHS.pro) return staticRoute("pro");
 
   const segments = pathname.slice(1).split("/").map(decodePathSegment);
+  if (segments.length === 2 && segments[0] === "examples") {
+    const example = Object.values(EXAMPLE_PAGES).find((page) => page.slug === segments[1]);
+    if (example) return { page: "example", example, canonicalPath: example.path };
+    return { page: "not-found", canonicalPath: pathname };
+  }
   if (segments.length === 1) {
     const browseCategory = catalog.find((shader) => categoryRouteSegment(shader.category) === segments[0])?.category;
     if (browseCategory) {

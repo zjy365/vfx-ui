@@ -1,0 +1,501 @@
+/* Pro page — follows the docs-site conventions: Figtree Display for headlines,
+   theme tokens from styles.css, hairline borders, small quiet labels.
+   Pro accent (iris violet) is specified in DESIGN.md "Pro tier". */
+
+@font-face {
+  font-family: Figtree Display;
+  src: url("/fonts/figtree-black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.pro-page {
+  --pro-display: "Figtree Display", sans-serif;
+  --pro: #6d5ae0;
+  --pro-strong: #4c3fc0;
+  --pro-tint: rgba(109, 90, 224, 0.08);
+  --pro-ring: rgba(109, 90, 224, 0.4);
+  width: 100%;
+  min-height: 100%;
+  background: var(--page);
+  color: var(--foreground);
+  overflow-x: clip;
+}
+
+html[data-theme="dark"] .pro-page,
+html[data-scheme="dark"] .pro-page {
+  --pro: #9d8cff;
+  --pro-strong: #b3a5ff;
+  --pro-tint: rgba(157, 140, 255, 0.1);
+  --pro-ring: rgba(157, 140, 255, 0.42);
+}
+
+.pro-page a {
+  color: inherit;
+  text-decoration: none;
+}
+.pro-page button {
+  font: inherit;
+  cursor: pointer;
+}
+.pro-page :is(a, button):focus-visible {
+  outline: 2px solid #4e80ee;
+  outline-offset: 4px;
+}
+
+/* ---- header ---- */
+
+.pro-nav {
+  height: 64px;
+  padding: 0 3.6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1px solid var(--ring);
+  background: var(--page);
+}
+.pro-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pro-nav-brand .brand-wordmark {
+  font-size: 22px;
+}
+.pro-nav-tier {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 3px 7px 2px;
+  border-radius: 4px;
+  background: var(--pro);
+  color: #fff;
+}
+html[data-theme="dark"] .pro-nav-tier {
+  color: #17142b;
+}
+.pro-nav-links {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+  font-size: 13px;
+  color: var(--foreground-muted);
+}
+.pro-nav-links a:hover {
+  color: var(--foreground);
+}
+.pro-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ---- hero ---- */
+
+.pro-hero {
+  padding: 96px 3.6% 84px;
+  background: var(--fill);
+  color: var(--onfill);
+}
+.pro-hero-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.pro-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--foreground-muted);
+  margin-bottom: 22px;
+}
+.pro-eyebrow > strong {
+  font-size: 9px;
+  letter-spacing: 0.13em;
+  padding: 3px 7px 2px;
+  border-radius: 4px;
+  background: var(--pro);
+  color: #fff;
+}
+html[data-theme="dark"] .pro-eyebrow > strong {
+  color: #17142b;
+}
+.pro-hero h1 {
+  font-family: var(--pro-display);
+  font-weight: 900;
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin: 0 0 26px;
+  max-width: 15ch;
+  text-wrap: balance;
+}
+.pro-hero h1 > span {
+  color: var(--pro-strong);
+}
+html[data-theme="dark"] .pro-hero h1 > span {
+  color: var(--pro);
+}
+.pro-hero p {
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 52ch;
+  margin: 0 0 30px;
+  color: var(--foreground-muted);
+}
+.pro-hero-note {
+  font-size: 12px;
+  color: var(--foreground-muted);
+}
+.pro-hero-note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- sections ---- */
+
+.pro-section {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 76px 3.6% 8px;
+}
+.pro-section-heading {
+  font-family: var(--pro-display);
+  font-weight: 900;
+  font-size: clamp(34px, 4vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 10px;
+}
+.pro-section-lede {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--foreground-muted);
+  margin: 0 0 40px;
+  max-width: 60ch;
+}
+
+/* ---- pricing cards ---- */
+
+.pro-tiers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.pro-tier {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--content-bg);
+  padding: 34px 32px 30px;
+}
+.pro-tier-featured {
+  border-color: var(--pro-ring);
+  box-shadow: 0 0 0 1px var(--pro-ring), 0 24px 48px -32px var(--pro-ring);
+  background:
+    linear-gradient(var(--content-bg), var(--content-bg)) padding-box,
+    linear-gradient(140deg, var(--pro-tint), transparent 42%) border-box;
+}
+.pro-tier-badge {
+  position: absolute;
+  top: -11px;
+  left: 26px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  padding: 4px 9px 3px;
+  border-radius: 999px;
+  background: var(--pro);
+  color: #fff;
+}
+html[data-theme="dark"] .pro-tier-badge {
+  color: #17142b;
+}
+.pro-tier h3 {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--foreground-muted);
+  margin: 0 0 18px;
+}
+.pro-tier-price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.pro-tier-price strong {
+  font-family: var(--pro-display);
+  font-weight: 900;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.pro-tier-price span {
+  font-size: 12px;
+  color: var(--foreground-muted);
+}
+.pro-tier-for {
+  font-size: 13px;
+  color: var(--foreground-muted);
+  margin: 0 0 24px;
+}
+.pro-tier ul {
+  list-style: none;
+  margin: 0 0 30px;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.pro-tier li {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+}
+.pro-tier li svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--pro);
+}
+.pro-tier-cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: var(--r-md);
+  background: var(--fill);
+  color: var(--onfill);
+  font-size: 13px;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+.pro-tier-cta:hover {
+  transform: translateY(-1px);
+}
+.pro-tier-cta svg {
+  width: 15px;
+  height: 15px;
+}
+.pro-tiers-note {
+  margin: 22px 0 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--foreground-muted);
+  text-align: center;
+}
+.pro-tiers-note a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- comparison table ---- */
+
+.pro-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  background: var(--content-bg);
+  overflow-x: auto;
+}
+.pro-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  min-width: 640px;
+}
+.pro-table th,
+.pro-table td {
+  text-align: left;
+  padding: 15px 22px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.pro-table tr:last-child th,
+.pro-table tr:last-child td {
+  border-bottom: none;
+}
+.pro-table thead th {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--foreground-muted);
+  background: var(--surface);
+}
+.pro-table thead th:first-child {
+  border-top-left-radius: var(--r-xl);
+}
+.pro-table thead th:last-child {
+  border-top-right-radius: var(--r-xl);
+}
+.pro-table thead th .pro-col-pro {
+  color: var(--pro);
+}
+.pro-table tbody th {
+  font-weight: 500;
+  color: var(--foreground);
+  width: 44%;
+}
+.pro-table td {
+  color: var(--foreground-muted);
+  width: 28%;
+}
+.pro-table td svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+.pro-table td .pro-yes {
+  color: var(--pro);
+}
+.pro-table tbody tr:hover th,
+.pro-table tbody tr:hover td {
+  background: var(--tint);
+}
+
+/* ---- FAQ ---- */
+
+.pro-faq {
+  border-top: 1px solid var(--border);
+}
+.pro-faq details {
+  border-bottom: 1px solid var(--border);
+}
+.pro-faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.pro-faq summary::-webkit-details-marker {
+  display: none;
+}
+.pro-faq summary::after {
+  content: "+";
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--foreground-muted);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.pro-faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+.pro-faq details p {
+  margin: 0 0 22px;
+  padding: 0 4px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--foreground-muted);
+  max-width: 72ch;
+}
+.pro-faq a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---- final CTA ---- */
+
+.pro-final {
+  margin: 76px auto 0;
+  padding: 64px 3.6%;
+}
+.pro-final-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  border: 1px solid var(--pro-ring);
+  border-radius: var(--r-xl);
+  background: linear-gradient(150deg, var(--pro-tint), transparent 55%), var(--content-bg);
+  padding: 58px 48px;
+  text-align: center;
+}
+.pro-final-inner h2 {
+  font-family: var(--pro-display);
+  font-weight: 900;
+  font-size: clamp(34px, 4.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 14px;
+}
+.pro-final-inner p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--foreground-muted);
+  margin: 0 0 32px;
+}
+.pro-final-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.pro-final-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 600;
+}
+.pro-final-actions a svg {
+  width: 15px;
+  height: 15px;
+}
+.pro-final-buy {
+  background: var(--fill);
+  color: var(--onfill);
+}
+.pro-final-ghost {
+  border: 1px solid var(--line-3);
+}
+.pro-final-ghost:hover {
+  border-color: var(--foreground-muted);
+}
+.pro-final-fineprint {
+  margin-top: 22px;
+  font-size: 12px;
+  color: var(--foreground-muted);
+}
+
+.pro-page .pro-footer-pad {
+  height: 64px;
+}
+
+/* ---- responsive ---- */
+
+@media (max-width: 900px) {
+  .pro-nav-links {
+    display: none;
+  }
+  .pro-tiers {
+    grid-template-columns: 1fr;
+  }
+  .pro-hero {
+    padding: 72px 6% 60px;
+  }
+  .pro-section {
+    padding: 60px 6% 8px;
+  }
+  .pro-final-inner {
+    padding: 44px 24px;
+  }
+}

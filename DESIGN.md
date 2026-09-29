@@ -49,3 +49,15 @@ Glass now consists of four original optical studies: warm printed card, dark bic
 Three original DOM studies extend the material range: HeroEclipse pairs an engraved copper astronomical dial with an occulting disc; HeroContour renders a deterministic seeded landscape as layered contour paths; FooterVinyl turns the closing navigation into a pink record sleeve with a rotating grooved disc. Pointer movement changes each material in its own way and settles without a continuous animation loop. All three work without WebGPU or remote artwork.
 
 Homepage collection links, newest ordering, the live footer selector, React exports, copy-paste registry, generated agent documentation, and actual rendered thumbnails include these additions. Content and actions are consumer-owned. At 390px the hero artwork flows below its copy and footer links remain native. Reduced motion and disabled interaction preserve a static composition.
+
+## Pro tier
+
+The Pro surface (`/pro`, `apps/docs/src/components/ProPage.tsx`) extends the established language — Figtree Display 900 headlines with −0.04em tracking, hairline borders, quiet 11–13px labels — with one new reserved accent:
+
+- **Pro badge color: iris violet** — `#6D5AE0` on light, `#9D8CFF` on dark (`--pro`, with `--pro-strong`, `--pro-tint` at ~8–10%, `--pro-ring` at ~40%). It is used only for: the `PRO` tier badge, the featured pricing card border/tint, check marks and the "Pro" column in the comparison table, and the final CTA band wash. It never replaces the teal brand color or cobalt studio accent; violet appearing elsewhere on the site is a spec violation.
+- **Hero band** inverts with the theme (`--fill` / `--onfill`) like the homepage exhibition, with the word "open source" in the headline set in the Pro violet.
+- **Pricing cards**: two equal-width cards, radius `--r-xl`, `--content-bg` ground. The Solo card is featured: 1px violet ring, a soft `--pro-tint` gradient corner wash, and a floating pill badge ("Most popular"). Prices are set in Figtree Display 900 at 56px with "one-time" as a small muted suffix — never a crossed-out anchor price or countdown timer; the honest-tone rule from the homepage applies.
+- **CTAs** reuse the filled-button treatment (`--fill` on `--onfill`), never violet fills; violet stays an accent, not a button color.
+- **Comparison table**: uppercase 11px column headers, `--surface` header row, check marks in violet, dashes muted, full-row hover via `--tint`.
+- **FAQ** uses native `details`/`summary` with a rotating `+` marker; no JS state.
+- Pro-badged catalog entries (later batches) reuse the same violet pill badge over thumbnails at 9px uppercase, so "Pro" reads as one system from catalog to checkout.

@@ -1,6 +1,6 @@
 # VFX UI
 
-**Expressive React components: GPU atmospheres, customizable Hero and Footer sections, and tactile content interactions.** Explore the real effects, tune their props, and bring your own words, images, links, and buttons.
+**Expressive React components: GPU atmospheres, customizable Hero and Footer sections, tactile content interactions, and complete installable page Blocks for marketing sites.** Explore the real effects, tune their props, and bring your own words, images, links, and buttons.
 
 GPU effects use [vgpu](https://github.com/vercel-labs/vgpu). The three Footers, Magnetic, SpectralCard, and KineticText use DOM/CSS/Canvas and work without WebGPU. All ship as TypeScript React components and copy-paste registry items.
 
@@ -25,18 +25,20 @@ export function Hero() {
 
 | Category | Components |
 |---|---|
-| Heroes | HeroFluid · HeroAurora · HeroFiber · HeroGlobe · HeroMesh · HeroIridescent · HeroVortex · HeroRibbon · HeroParticles · HeroStarfield · HeroBlackHole · HeroChroma |
-| Footers | FooterTidal · FooterFold · FooterPhosphor |
+| Blocks | BlockNav · BlockShowcase · BlockFeatureGrid · BlockFeatureTabs · BlockScrollStory · BlockProcessSteps · BlockIntegrations · BlockComparison · BlockTestimonials · BlockPricing · BlockFaq · BlockCta |
+| Example pages | ExampleLaunch · ExampleStudio |
+| Heroes | HeroFluid · HeroAurora · HeroFiber · HeroGlobe · HeroMesh · HeroIridescent · HeroVortex · HeroRibbon · HeroParticles · HeroStarfield · HeroBlackHole · HeroChroma · HeroEclipse · HeroContour |
+| Footers | FooterTidal · FooterFold · FooterPhosphor · FooterVinyl |
 | Backgrounds | RadiantDots · WaveBackground · FluidGradient · Aurora · Starfield · ParticleField · MeshGradient · Iridescent · Vortex · RibbonField · FiberFlow · ChromaFlow |
 | Glass | GlassCard · LiquidGlass · GlassLens · LightPrism |
 | Interactions | SpectralCard · Magnetic |
 | Text | KineticText |
 
-Components ship typed props, SSR-safe rendering and `prefers-reduced-motion` handling. GPU effects include presets and a fallback for unsupported browsers; Footers expose brand, content, navigation and colors.
+Components ship typed props, SSR-safe rendering and `prefers-reduced-motion` handling. GPU effects include presets and a fallback for unsupported browsers; Footers expose brand, content, navigation and colors. Blocks are pure DOM/CSS sections — navigation, showcase, features, pricing, FAQ, CTA and more — whose copy, links, items and colors all arrive through props, and they compose into the two installable example pages.
 
 ## What it is not
 
-The library focuses on visual atmosphere and content interaction, not general UI primitives or full-page templates. Hero sample copy is replaceable: pass `title`/`subtitle`, configure CTA objects with `href` or `onClick`, or supply `children` to replace the content layout.
+The library focuses on visual atmosphere, content interaction, and marketing-site page sections — not general UI primitives (forms, tables, modals). Hero sample copy is replaceable: pass `title`/`subtitle`, configure CTA objects with `href` or `onClick`, or supply `children` to replace the content layout. Blocks and example pages ship fictional demo content that is visibly marked; replace it with your own before going live.
 
 ## Copy-paste instead of install
 
@@ -46,6 +48,15 @@ npm install vgpu
 ```
 
 Self-contained sources land in `components/` — you own the code. Registry follows the [shadcn registry format](https://ui.shadcn.com/docs/registry); index at [`registry/dist/index.json`](registry/dist/index.json).
+
+## Pro
+
+The free library stays MIT — forever. **VFX UI Pro** is a separate, additive paid tier for the layer that takes real GPU engineering: advanced WebGPU/shader scenes and complete production page templates, delivered through the same copy-paste registry (source-available under a commercial license).
+
+- **Solo $149** — one developer, unlimited projects, one-time purchase.
+- **Team $299** — up to 5 developers in one organization.
+
+Pricing page: [`/pro`](https://vfx-ui.com/pro) · what is included, license, and delivery design: [`pro/README.md`](pro/README.md). Nothing in the MIT tier ever moves behind the paywall.
 
 ## For AI agents
 
