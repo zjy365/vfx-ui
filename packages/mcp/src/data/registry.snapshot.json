@@ -1,0 +1,3039 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "vfx-ui",
+  "homepage": "https://vfx-ui.com",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-eclipse",
+      "title": "Hero Eclipse",
+      "type": "registry:component",
+      "description": "An engraved astronomical dial with a pointer-controlled eclipse.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "pointer",
+        "editorial"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/StudioHeroFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroEclipse.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-contour",
+      "title": "Hero Contour",
+      "type": "registry:component",
+      "description": "A seeded topographic paper landscape that lifts around the pointer.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "pointer",
+        "editorial"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/StudioHeroFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroContour.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "footer-vinyl",
+      "title": "Footer Vinyl",
+      "type": "registry:component",
+      "description": "A record-sleeve footer with a pointer-rotated vinyl and your own label.",
+      "categories": [
+        "Footers"
+      ],
+      "tags": [
+        "footer",
+        "vinyl",
+        "pointer"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FooterFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/FooterVinyl.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "astra-field",
+      "title": "Astra Field",
+      "type": "registry:component",
+      "description": "A rotatable spiral galaxy of glowing stars.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "galaxy",
+        "stars"
+      ],
+      "files": [
+        {
+          "path": "components/AstraField.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "radiant-dots",
+      "title": "Radiant Dots",
+      "type": "registry:component",
+      "description": "Orbital emitters with jump-flooded distance fields and radiance cascades.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "radiance",
+        "light",
+        "dots"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/RadianceEngine.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/RadiantDots.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "footer-tidal",
+      "title": "Footer Tidal",
+      "type": "registry:component",
+      "description": "Copper tidal lines beneath your brand, with pointer-driven currents.",
+      "categories": [
+        "Footers"
+      ],
+      "tags": [
+        "footer",
+        "pointer",
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/FooterFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FooterArtwork.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/FooterTidal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "footer-fold",
+      "title": "Footer Fold",
+      "type": "registry:component",
+      "description": "A wordmark printed across hinged paper panels that respond to the pointer.",
+      "categories": [
+        "Footers"
+      ],
+      "tags": [
+        "footer",
+        "pointer",
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FooterFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/FooterFold.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "footer-phosphor",
+      "title": "Footer Phosphor",
+      "type": "registry:component",
+      "description": "A luminous cell wordmark that disperses around your pointer and settles home.",
+      "categories": [
+        "Footers"
+      ],
+      "tags": [
+        "footer",
+        "pointer",
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/FooterFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FooterArtwork.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/FooterPhosphor.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spectral-card",
+      "title": "Spectral Card",
+      "type": "registry:component",
+      "description": "Holographic light and spatial tilt around your own content.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/SpectralCard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "kinetic-text",
+      "title": "Kinetic Text",
+      "type": "registry:component",
+      "description": "A pointer-driven force field lifts your words into a soft wave.",
+      "categories": [
+        "Text"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/KineticText.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "magnetic",
+      "title": "Magnetic",
+      "type": "registry:component",
+      "description": "A gentle magnetic pull for your own buttons, links, and content.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/Magnetic.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "wave-background",
+      "title": "Wave Background",
+      "type": "registry:component",
+      "description": "Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "gradient",
+        "wave",
+        "hero"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/WaveBackground.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "fluid-gradient",
+      "title": "Fluid Gradient",
+      "type": "registry:component",
+      "description": "Domain-warped fBm noise flowing through a tri-color palette.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "fluid",
+        "noise"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/FluidGradient.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "aurora",
+      "title": "Aurora",
+      "type": "registry:component",
+      "description": "Vertical light curtains driven by fBm perturbation and gaussian bands.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "aurora",
+        "night"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/Aurora.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "starfield",
+      "title": "Starfield",
+      "type": "registry:component",
+      "description": "Hashed star grid with twinkle and slow parallax drift.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "stars",
+        "space"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/Starfield.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "particle-field",
+      "title": "Particle Field",
+      "type": "registry:component",
+      "description": "Procedural cell-hashed particles with drift and size breathing.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "particles"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ParticleField.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "glass-card",
+      "title": "Glass Card",
+      "type": "registry:component",
+      "description": "Thick-cut optical glass with two-interface refraction and studio reflections.",
+      "categories": [
+        "Glass"
+      ],
+      "tags": [
+        "glass",
+        "card",
+        "sdf"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/OpticalGlass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/GlassCard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "liquid-glass",
+      "title": "Liquid Glass",
+      "type": "registry:component",
+      "description": "A molten glass annulus with a travelling silhouette and spectral transmission.",
+      "categories": [
+        "Glass"
+      ],
+      "tags": [
+        "glass",
+        "refraction",
+        "liquid"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/OpticalGlass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/LiquidGlass.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "glass-lens",
+      "title": "Glass Lens",
+      "type": "registry:component",
+      "description": "A biconvex glass lens that magnifies and inverts a printed studio scene.",
+      "categories": [
+        "Glass"
+      ],
+      "tags": [
+        "glass",
+        "refraction",
+        "lens",
+        "liquid-glass"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/OpticalGlass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/GlassLens.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "black-hole",
+      "title": "Black Hole",
+      "type": "registry:component",
+      "description": "The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "space",
+        "black-hole",
+        "ray-tracing"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlackHole.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "mesh-gradient",
+      "title": "Mesh Gradient",
+      "type": "registry:component",
+      "description": "Voronoi-cell color fields flowing through a curated palette.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "gradient",
+        "voronoi"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/MeshGradient.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "iridescent",
+      "title": "Iridescent",
+      "type": "registry:component",
+      "description": "Silky thin-film interference colors drifting across the surface.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "holographic",
+        "silk"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/Iridescent.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "vortex",
+      "title": "Vortex",
+      "type": "registry:component",
+      "description": "Spiral galaxy swirl with star speckles and trailing arms.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "galaxy",
+        "spiral"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/Vortex.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ribbon-field",
+      "title": "Ribbon Field",
+      "type": "registry:component",
+      "description": "Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "ribbon",
+        "dots",
+        "glow"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/RibbonField.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "fiber-flow",
+      "title": "Fiber Flow",
+      "type": "registry:component",
+      "description": "Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "fibers",
+        "silk",
+        "flow",
+        "waves"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/FiberFlow.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "light-prism",
+      "title": "Light Prism",
+      "type": "registry:component",
+      "description": "A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.",
+      "categories": [
+        "Glass"
+      ],
+      "tags": [
+        "glass",
+        "prism",
+        "refraction",
+        "hero",
+        "paper"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/OpticalGlass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/PrismScene.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/PrismEngine.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/LightPrism.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-fluid",
+      "title": "Hero Fluid",
+      "type": "registry:component",
+      "description": "Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "gradient",
+        "fluid"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FluidGradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroFluid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-aurora",
+      "title": "Hero Aurora",
+      "type": "registry:component",
+      "description": "Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "aurora",
+        "night"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Aurora.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroAurora.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-fiber",
+      "title": "Hero Fiber",
+      "type": "registry:component",
+      "description": "Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "fibers",
+        "silk"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FiberFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroFiber.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-globe",
+      "title": "Hero Globe",
+      "type": "registry:component",
+      "description": "Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "globe",
+        "split"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroGlobe.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-mesh",
+      "title": "Hero Mesh",
+      "type": "registry:component",
+      "description": "Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "gradient",
+        "mesh"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/MeshGradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroMesh.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-iridescent",
+      "title": "Hero Iridescent",
+      "type": "registry:component",
+      "description": "Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "holographic",
+        "silk"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Iridescent.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroIridescent.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-vortex",
+      "title": "Hero Vortex",
+      "type": "registry:component",
+      "description": "Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "galaxy",
+        "spiral"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Vortex.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroVortex.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-ribbon",
+      "title": "Hero Ribbon",
+      "type": "registry:component",
+      "description": "Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "ribbon",
+        "split"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/RibbonField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroRibbon.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-particles",
+      "title": "Hero Particles",
+      "type": "registry:component",
+      "description": "Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "particles"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/ParticleField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroParticles.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-starfield",
+      "title": "Hero Starfield",
+      "type": "registry:component",
+      "description": "Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "stars",
+        "space"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Starfield.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroStarfield.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-black-hole",
+      "title": "Hero Black Hole",
+      "type": "registry:component",
+      "description": "Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "space",
+        "black-hole"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/BlackHole.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroBlackHole.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chroma-flow",
+      "title": "Chroma Flow",
+      "type": "registry:component",
+      "description": "Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "gradient",
+        "chromatic",
+        "pointer"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ChromaFlow.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-chroma",
+      "title": "Hero Chroma",
+      "type": "registry:component",
+      "description": "Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "chromatic",
+        "gradient"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/ChromaFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroChroma.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-nav",
+      "title": "Block Nav",
+      "type": "registry:component",
+      "description": "Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "navigation",
+        "menu",
+        "mobile"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockNav.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-showcase",
+      "title": "Block Showcase",
+      "type": "registry:component",
+      "description": "Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "showcase",
+        "product",
+        "media"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockShowcase.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-feature-grid",
+      "title": "Block Feature Grid",
+      "type": "registry:component",
+      "description": "Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "features",
+        "bento",
+        "grid"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockFeatureGrid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-feature-tabs",
+      "title": "Block Feature Tabs",
+      "type": "registry:component",
+      "description": "Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "tabs",
+        "features",
+        "keyboard"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockFeatureTabs.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-scroll-story",
+      "title": "Block Scroll Story",
+      "type": "registry:component",
+      "description": "Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "scroll",
+        "story",
+        "sticky"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockScrollStory.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-process-steps",
+      "title": "Block Process Steps",
+      "type": "registry:component",
+      "description": "Three-to-four step process with a self-drawing connector line and replaceable media per step.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "steps",
+        "process",
+        "timeline"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockProcessSteps.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-integrations",
+      "title": "Block Integrations",
+      "type": "registry:component",
+      "description": "Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "integrations",
+        "logos",
+        "orbit"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockIntegrations.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-comparison",
+      "title": "Block Comparison",
+      "type": "registry:component",
+      "description": "Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "comparison",
+        "before-after",
+        "slider"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockComparison.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-testimonials",
+      "title": "Block Testimonials",
+      "type": "registry:component",
+      "description": "Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "testimonials",
+        "quotes",
+        "social-proof"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockTestimonials.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-pricing",
+      "title": "Block Pricing",
+      "type": "registry:component",
+      "description": "Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "pricing",
+        "plans",
+        "billing"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockPricing.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-faq",
+      "title": "Block FAQ",
+      "type": "registry:component",
+      "description": "FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "faq",
+        "accordion",
+        "keyboard"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockFaq.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-cta",
+      "title": "Block CTA",
+      "type": "registry:component",
+      "description": "Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "cta",
+        "closing",
+        "conversion"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockCta.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "example-launch",
+      "title": "Example — Product Launch",
+      "type": "registry:component",
+      "description": "Complete fictional software launch page (\"Orbit\" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "example",
+        "landing",
+        "launch",
+        "product"
+      ],
+      "files": [
+        {
+          "path": "components/ExampleLaunch.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "example-studio",
+      "title": "Example — Design Studio",
+      "type": "registry:component",
+      "description": "Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "example",
+        "portfolio",
+        "studio",
+        "services"
+      ],
+      "files": [
+        {
+          "path": "components/ExampleStudio.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ember-drift",
+      "title": "Ember Drift",
+      "type": "registry:component",
+      "description": "Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "particles",
+        "fire",
+        "heat"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/EmberDrift.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "caustics-field",
+      "title": "Caustics Field",
+      "type": "registry:component",
+      "description": "Sunlit pool-floor caustics: a crawling net of focused light over deep water.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "water",
+        "voronoi",
+        "caustics"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/CausticsField.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "halo-rings",
+      "title": "Halo Rings",
+      "type": "registry:component",
+      "description": "Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "rings",
+        "dispersion",
+        "glow"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HaloRings.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "terrain-ridge",
+      "title": "Terrain Ridge",
+      "type": "registry:component",
+      "description": "Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "terrain",
+        "mountains",
+        "parallax"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/TerrainRidge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "silk-veil",
+      "title": "Silk Veil",
+      "type": "registry:component",
+      "description": "A draped silk curtain of warped folds with a luster band sweeping the weave.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "silk",
+        "fabric",
+        "sheen"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/SilkVeil.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "plasma-sheet",
+      "title": "Plasma Sheet",
+      "type": "registry:component",
+      "description": "Molten color currents folding through each other in a double domain-warped field.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "plasma",
+        "domain-warp",
+        "flow"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/PlasmaSheet.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "star-tide",
+      "title": "Star Tide",
+      "type": "registry:component",
+      "description": "Stars carried on slow luminous waves, flaring as the tide crests.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "stars",
+        "waves",
+        "space"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/StarTide.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ink-bloom",
+      "title": "Ink Bloom",
+      "type": "registry:component",
+      "description": "Ink drops blooming and feathering into warm paper on staggered cycles.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "ink",
+        "paper",
+        "diffusion"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/InkBloom.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "solar-corona",
+      "title": "Solar Corona",
+      "type": "registry:component",
+      "description": "A boiling sun disk crowned with streaming corona light and polar plumes.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "sun",
+        "corona",
+        "space"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/SolarCorona.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dust-motes",
+      "title": "Dust Motes",
+      "type": "registry:component",
+      "description": "Dust motes drifting through slanted Tyndall beams in a dark room.",
+      "categories": [
+        "Backgrounds"
+      ],
+      "tags": [
+        "background",
+        "particles",
+        "light-beams",
+        "dust"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/DustMotes.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-aurora-editorial",
+      "title": "Hero Aurora Editorial",
+      "type": "registry:component",
+      "description": "Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "aurora",
+        "editorial",
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Aurora.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroAuroraEditorial.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-starfield-split",
+      "title": "Hero Starfield Split",
+      "type": "registry:component",
+      "description": "Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "stars",
+        "space",
+        "split",
+        "badges"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Starfield.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroStarfieldSplit.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-vortex-centered",
+      "title": "Hero Vortex Centered",
+      "type": "registry:component",
+      "description": "Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "galaxy",
+        "spiral",
+        "centered"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/Vortex.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroVortexCentered.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-mesh-bold",
+      "title": "Hero Mesh Bold",
+      "type": "registry:component",
+      "description": "Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "gradient",
+        "mesh",
+        "bold"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/MeshGradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroMeshBold.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-fiber-top",
+      "title": "Hero Fiber Top",
+      "type": "registry:component",
+      "description": "Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "fibers",
+        "silk",
+        "top-aligned"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FiberFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroFiberTop.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-chroma-full",
+      "title": "Hero Chroma Full",
+      "type": "registry:component",
+      "description": "Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "chromatic",
+        "gradient",
+        "full-bleed"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/ChromaFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroChromaFull.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-black-hole-cinema",
+      "title": "Hero Black Hole Cinema",
+      "type": "registry:component",
+      "description": "Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "space",
+        "black-hole",
+        "cinematic"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/BlackHole.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroBlackHoleCinema.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-particles-badge",
+      "title": "Hero Particles Badge",
+      "type": "registry:component",
+      "description": "Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "particles",
+        "badges"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/ParticleField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroParticlesBadge.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-ribbon-left",
+      "title": "Hero Ribbon Left",
+      "type": "registry:component",
+      "description": "Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "ribbon",
+        "split",
+        "typography"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/RibbonField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroRibbonLeft.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "hero-fluid-minimal",
+      "title": "Hero Fluid Minimal",
+      "type": "registry:component",
+      "description": "Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.",
+      "categories": [
+        "Heroes"
+      ],
+      "tags": [
+        "hero",
+        "landing",
+        "gradient",
+        "fluid",
+        "minimal"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/HeroShell.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/FluidGradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/HeroFluidMinimal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "glass-panel",
+      "title": "Glass Panel",
+      "type": "registry:component",
+      "description": "A broad ray-marched optical slab that carries your own content across a full panel.",
+      "categories": [
+        "Glass"
+      ],
+      "tags": [
+        "glass",
+        "panel",
+        "refraction",
+        "sdf"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/OpticalGlass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/GlassPanel.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "glass-tile",
+      "title": "Glass Tile",
+      "type": "registry:component",
+      "description": "A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.",
+      "categories": [
+        "Glass"
+      ],
+      "tags": [
+        "glass",
+        "grid",
+        "lens",
+        "hover"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/VfxCanvas.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/color.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/usePointerUniforms.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/vfx/OpticalGlass.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/GlassTile.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "chromatic-text",
+      "title": "Chromatic Text",
+      "type": "registry:component",
+      "description": "The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.",
+      "categories": [
+        "Text"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ChromaticText.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "ripple-text",
+      "title": "Ripple Text",
+      "type": "registry:component",
+      "description": "Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.",
+      "categories": [
+        "Text"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/RippleText.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spectrum-text",
+      "title": "Spectrum Text",
+      "type": "registry:component",
+      "description": "A spectral light band flows continuously through your words and leans toward the pointer.",
+      "categories": [
+        "Text"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/SpectrumText.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tilt-card",
+      "title": "Tilt Card",
+      "type": "registry:component",
+      "description": "A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/TiltCard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "pointer-glow",
+      "title": "Pointer Glow",
+      "type": "registry:component",
+      "description": "A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/PointerGlow.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "spotlight-card",
+      "title": "Spotlight Card",
+      "type": "registry:component",
+      "description": "A card under a torch: the beam follows the pointer to uncover your content from the dark.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/SpotlightCard.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "elastic-hover",
+      "title": "Elastic Hover",
+      "type": "registry:component",
+      "description": "Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/ElasticHover.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "magnetic-grid",
+      "title": "Magnetic Grid",
+      "type": "registry:component",
+      "description": "A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.",
+      "categories": [
+        "Interactions"
+      ],
+      "tags": [
+        "pointer",
+        "interactive"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/usePointerMotion.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/MagneticGrid.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-logos",
+      "title": "Block Logos",
+      "type": "registry:component",
+      "description": "Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "logos",
+        "customers",
+        "social-proof"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockLogos.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-stats",
+      "title": "Block Stats",
+      "type": "registry:component",
+      "description": "Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "stats",
+        "numbers",
+        "count-up"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockStats.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-team",
+      "title": "Block Team",
+      "type": "registry:component",
+      "description": "Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "team",
+        "people",
+        "cards"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockTeam.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-gallery",
+      "title": "Block Gallery",
+      "type": "registry:component",
+      "description": "Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "gallery",
+        "portfolio",
+        "lightbox"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockGallery.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-timeline",
+      "title": "Block Timeline",
+      "type": "registry:component",
+      "description": "Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "timeline",
+        "history",
+        "scroll"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockTimeline.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-newsletter",
+      "title": "Block Newsletter",
+      "type": "registry:component",
+      "description": "Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "newsletter",
+        "subscribe",
+        "form"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockNewsletter.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-contact",
+      "title": "Block Contact",
+      "type": "registry:component",
+      "description": "Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "contact",
+        "form",
+        "channels"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockContact.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-banner",
+      "title": "Block Banner",
+      "type": "registry:component",
+      "description": "Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "banner",
+        "announcement",
+        "sticky"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockBanner.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-milestones",
+      "title": "Block Milestones",
+      "type": "registry:component",
+      "description": "Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "milestones",
+        "progress",
+        "roadmap"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockMilestones.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "block-quote-wall",
+      "title": "Block Quote Wall",
+      "type": "registry:component",
+      "description": "Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.",
+      "categories": [
+        "Blocks"
+      ],
+      "tags": [
+        "block",
+        "section",
+        "landing",
+        "quotes",
+        "carousel",
+        "masonry"
+      ],
+      "files": [
+        {
+          "path": "components/vfx/blockShared.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "components/BlockQuoteWall.tsx",
+          "type": "registry:component"
+        }
+      ]
+    }
+  ]
+}

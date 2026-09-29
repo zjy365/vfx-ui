@@ -1,0 +1,51 @@
+{
+  "name": "@vfx-ui/mcp",
+  "version": "0.1.0",
+  "description": "MCP server for discovering and installing VFX UI shader-native React components (search the registry, read props/docs, get shadcn install commands).",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "vfx-ui-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node test/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "^5.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zjy365/vfx-ui.git",
+    "directory": "packages/mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/zjy365/vfx-ui/issues"
+  },
+  "homepage": "https://vfx-ui.com",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "react",
+    "webgpu",
+    "shader",
+    "shadcn",
+    "registry",
+    "vfx-ui"
+  ]
+}
