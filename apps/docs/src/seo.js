@@ -11,6 +11,7 @@ const CATEGORY_DESCRIPTORS = {
   Text: "Text Effect",
   Interactions: "Interactive Component",
   Glass: "Glass Effect",
+  Blocks: "Page Block",
 };
 
 function compactText(value, maxLength) {
@@ -119,6 +120,22 @@ export function buildRouteSeo(route, origin, catalog = []) {
         url: absoluteUrl(origin, STATIC_ROUTE_PATHS.browse),
       },
       ...(variant ? { isBasedOn: absoluteUrl(origin, shaderRoutePath(shader)) } : {}),
+    };
+  } else if (route.page === "example" && route.example) {
+    const { example } = route;
+    title = brandedTitle(`${example.title} — complete example`);
+    description = "A complete, installable page composed from vfx-ui blocks: every section is separately installable and every string is replaceable demo content.";
+    structuredData = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: example.title,
+      description,
+      url: absoluteUrl(origin, canonicalPath),
+      isPartOf: {
+        "@type": "CollectionPage",
+        name: "VFX UI blocks",
+        url: absoluteUrl(origin, "/blocks"),
+      },
     };
   } else if (route.page === "not-found") {
     title = brandedTitle("Page Not Found");

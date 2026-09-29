@@ -19,6 +19,7 @@ type SidebarProps = {
   onHome: () => void;
   onBrowse: () => void;
   onInstallation: () => void;
+  onExample: (slug: "launch" | "studio") => void;
   onSearch: () => void;
   onTheme: (mode: ThemeMode) => void;
 };
@@ -149,7 +150,7 @@ function SidebarCatalogSection({ label, shaders, active, installationActive, onS
   );
 }
 
-export function Sidebar({ active, browseActive, installationActive, open, theme, onSelect, onHome, onBrowse, onInstallation, onSearch, onTheme }: SidebarProps) {
+export function Sidebar({ active, browseActive, installationActive, open, theme, onSelect, onHome, onBrowse, onInstallation, onExample, onSearch, onTheme }: SidebarProps) {
   const [preview, setPreview] = useState<SidebarPreview | null>(null);
   const Preview = preview?.shader.component;
 
@@ -198,6 +199,17 @@ export function Sidebar({ active, browseActive, installationActive, open, theme,
                 onClick={onInstallation}
               >
                 <span>Installation</span>
+              </button>
+            </div>
+          </div>
+          <div className="nav-section">
+            <h2 className="nav-label">Examples</h2>
+            <div className="nav-list nav-list-root">
+              <button className="nav-link" onClick={() => onExample("launch")}>
+                <span>Product launch page</span>
+              </button>
+              <button className="nav-link" onClick={() => onExample("studio")}>
+                <span>Design studio page</span>
               </button>
             </div>
           </div>

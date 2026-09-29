@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState, type RefObject } from "react";
+import { useEffect, useState } from "react";
+import type { SurfaceRef } from "../usePointerUniforms";
 
 /** Geometry uses the short canvas edge, so resizing never stretches the glass. */
-export function useOpticalSize(ref: RefObject<HTMLElement>) {
+export function useOpticalSize(ref: SurfaceRef) {
   const [size, setSize] = useState({ resX: 800, resY: 600 });
   useEffect(() => {
     const element = ref.current;

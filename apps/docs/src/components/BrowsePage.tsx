@@ -79,10 +79,10 @@ function LivePreview({ shader, props, thumbnail }: LivePreviewProps) {
   const { ref, inView } = useInView<HTMLSpanElement>();
   const Preview = shader.component;
   const [hovering, setHovering] = useState(false);
-  const canPlay = shader.category !== "Heroes" && shader.runtime !== "dom";
+  const canPlay = shader.category !== "Heroes" && shader.category !== "Blocks" && shader.runtime !== "dom";
 
   return (
-    <span ref={ref} className={`browse-media${shader.category === "Footers" ? " browse-media-footer" : ""}`} aria-hidden="true" onPointerEnter={() => setHovering(true)} onPointerLeave={() => setHovering(false)}>
+    <span ref={ref} className={`browse-media${shader.category === "Footers" ? " browse-media-footer" : ""}${shader.category === "Blocks" ? " browse-media-block" : ""}`} aria-hidden="true" onPointerEnter={() => setHovering(true)} onPointerLeave={() => setHovering(false)}>
       {inView && hovering && canPlay && Preview ? (
         <Suspense fallback={<img src={thumbnail} alt="" width="640" height="360" decoding="async" />}>
           <Preview {...props} interactive />

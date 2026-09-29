@@ -1,6 +1,7 @@
 "use client";
 
-import type { CSSProperties, ReactNode, RefObject } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import type { SurfaceRef } from "../usePointerUniforms";
 
 export type FooterLink = { label: string; href: string };
 export type FooterLinkGroup = { label: string; links: readonly FooterLink[] };
@@ -70,7 +71,7 @@ export function FooterFrame({
   kind,
   before = false,
 }: FooterContentProps & {
-  surfaceRef?: RefObject<HTMLElement>;
+  surfaceRef?: SurfaceRef;
   artwork: ReactNode;
   kind: string;
   before?: boolean;

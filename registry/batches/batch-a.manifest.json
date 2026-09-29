@@ -1,0 +1,92 @@
+[
+  {
+    "name": "ember-drift",
+    "component": "EmberDrift",
+    "title": "Ember Drift",
+    "description": "Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "particles", "fire", "heat"],
+    "files": ["components/EmberDrift.tsx"]
+  },
+  {
+    "name": "caustics-field",
+    "component": "CausticsField",
+    "title": "Caustics Field",
+    "description": "Sunlit pool-floor caustics: a crawling net of focused light over deep water.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "water", "voronoi", "caustics"],
+    "files": ["components/CausticsField.tsx"]
+  },
+  {
+    "name": "halo-rings",
+    "component": "HaloRings",
+    "title": "Halo Rings",
+    "description": "Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "rings", "dispersion", "glow"],
+    "files": ["components/HaloRings.tsx"]
+  },
+  {
+    "name": "terrain-ridge",
+    "component": "TerrainRidge",
+    "title": "Terrain Ridge",
+    "description": "Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "terrain", "mountains", "parallax"],
+    "files": ["components/TerrainRidge.tsx"]
+  },
+  {
+    "name": "silk-veil",
+    "component": "SilkVeil",
+    "title": "Silk Veil",
+    "description": "A draped silk curtain of warped folds with a luster band sweeping the weave.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "silk", "fabric", "sheen"],
+    "files": ["components/SilkVeil.tsx"]
+  },
+  {
+    "name": "plasma-sheet",
+    "component": "PlasmaSheet",
+    "title": "Plasma Sheet",
+    "description": "Molten color currents folding through each other in a double domain-warped field.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "plasma", "domain-warp", "flow"],
+    "files": ["components/PlasmaSheet.tsx"]
+  },
+  {
+    "name": "star-tide",
+    "component": "StarTide",
+    "title": "Star Tide",
+    "description": "Stars carried on slow luminous waves, flaring as the tide crests.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "stars", "waves", "space"],
+    "files": ["components/StarTide.tsx"]
+  },
+  {
+    "name": "ink-bloom",
+    "component": "InkBloom",
+    "title": "Ink Bloom",
+    "description": "Ink drops blooming and feathering into warm paper on staggered cycles.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "ink", "paper", "diffusion"],
+    "files": ["components/InkBloom.tsx"]
+  },
+  {
+    "name": "solar-corona",
+    "component": "SolarCorona",
+    "title": "Solar Corona",
+    "description": "A boiling sun disk crowned with streaming corona light and polar plumes.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "sun", "corona", "space"],
+    "files": ["components/SolarCorona.tsx"]
+  },
+  {
+    "name": "dust-motes",
+    "component": "DustMotes",
+    "title": "Dust Motes",
+    "description": "Dust motes drifting through slanted Tyndall beams in a dark room.",
+    "categories": ["Backgrounds"],
+    "tags": ["background", "particles", "light-beams", "dust"],
+    "files": ["components/DustMotes.tsx"]
+  }
+]

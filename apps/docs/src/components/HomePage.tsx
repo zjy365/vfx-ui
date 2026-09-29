@@ -187,6 +187,7 @@ export function HomePage({
           <a href={STATIC_ROUTE_PATHS.browse}>
             Components <span>{VISIBLE_READY_SHADERS.length}</span>
           </a>
+          <a href="/blocks">Blocks</a>
           <a href="/heroes">Heroes</a>
           <a href="/footers">Footers</a>
           <a
@@ -411,13 +412,20 @@ export function HomePage({
           <div className="scene-heading">
             <h2 id="scene-title">Fresh off the press.</h2>
             <p>
-              Two new beginnings. One unforgettable ending.
+              A storm you can stand in, a fire you can bank,
               <br />
-              Meet Eclipse, Contour, and Vinyl.
+              and a wall of glass. Plus Eclipse, Contour, and Vinyl.
             </p>
           </div>
           <div className="scene-grid">
-            {["hero-eclipse", "hero-contour", "footer-vinyl"].map((id) => {
+            {[
+              "hero-vortex-centered",
+              "ember-drift",
+              "glass-tile",
+              "hero-eclipse",
+              "hero-contour",
+              "footer-vinyl",
+            ].map((id) => {
               const shader = VISIBLE_READY_SHADERS.find(
                 (item) => item.id === id,
               )!;
@@ -429,7 +437,7 @@ export function HomePage({
                 >
                   <div className="scene-image">
                     <img
-                      src={`/showcase/${id}.png`}
+                      src={shader.thumbnail}
                       alt={`${shader.label} composition`}
                       loading="lazy"
                     />
@@ -437,7 +445,15 @@ export function HomePage({
                   <div>
                     <strong>{shader.label}</strong>
                     <span>
-                      New · {shader.category === "Footers" ? "Footer" : "Hero"} <Arrow diagonal />
+                      New ·{" "}
+                      {shader.category === "Footers"
+                        ? "Footer"
+                        : shader.category === "Heroes"
+                          ? "Hero"
+                          : shader.category === "Glass"
+                            ? "Glass"
+                            : "Background"}{" "}
+                      <Arrow diagonal />
                     </span>
                   </div>
                 </a>

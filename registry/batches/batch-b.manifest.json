@@ -1,0 +1,112 @@
+[
+  {
+    "name": "hero-aurora-editorial",
+    "component": "HeroAuroraEditorial",
+    "title": "Hero Aurora Editorial",
+    "description": "Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "aurora", "editorial", "typography"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "Aurora"]
+  },
+  {
+    "name": "hero-starfield-split",
+    "component": "HeroStarfieldSplit",
+    "title": "Hero Starfield Split",
+    "description": "Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "stars", "space", "split", "badges"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "Starfield"]
+  },
+  {
+    "name": "hero-vortex-centered",
+    "component": "HeroVortexCentered",
+    "title": "Hero Vortex Centered",
+    "description": "Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "galaxy", "spiral", "centered"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "Vortex"]
+  },
+  {
+    "name": "hero-mesh-bold",
+    "component": "HeroMeshBold",
+    "title": "Hero Mesh Bold",
+    "description": "Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "gradient", "mesh", "bold"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "MeshGradient"]
+  },
+  {
+    "name": "hero-fiber-top",
+    "component": "HeroFiberTop",
+    "title": "Hero Fiber Top",
+    "description": "Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "fibers", "silk", "top-aligned"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "FiberFlow"]
+  },
+  {
+    "name": "hero-chroma-full",
+    "component": "HeroChromaFull",
+    "title": "Hero Chroma Full",
+    "description": "Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "chromatic", "gradient", "full-bleed"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "ChromaFlow"]
+  },
+  {
+    "name": "hero-black-hole-cinema",
+    "component": "HeroBlackHoleCinema",
+    "title": "Hero Black Hole Cinema",
+    "description": "Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "space", "black-hole", "cinematic"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "BlackHole"]
+  },
+  {
+    "name": "hero-particles-badge",
+    "component": "HeroParticlesBadge",
+    "title": "Hero Particles Badge",
+    "description": "Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "particles", "badges"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "ParticleField"]
+  },
+  {
+    "name": "hero-ribbon-left",
+    "component": "HeroRibbonLeft",
+    "title": "Hero Ribbon Left",
+    "description": "Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "ribbon", "split", "typography"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "RibbonField"]
+  },
+  {
+    "name": "hero-fluid-minimal",
+    "component": "HeroFluidMinimal",
+    "title": "Hero Fluid Minimal",
+    "description": "Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.",
+    "categories": ["Heroes"],
+    "tags": ["hero", "landing", "gradient", "fluid", "minimal"],
+    "sharedFiles": false,
+    "motion": true,
+    "deps": ["HeroShell", "FluidGradient"]
+  }
+]

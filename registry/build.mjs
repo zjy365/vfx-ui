@@ -18,6 +18,14 @@ const reactSrc = join(root, "packages/react/src");
 const outDir = process.argv.includes("--out")
   ? resolve(process.argv[process.argv.indexOf("--out") + 1])
   : join(root, "registry", "dist");
+/**
+ * Base URL registryDependencies resolve against. shadcn CLI treats bare names
+ * as shadcn.com items, so cross-item references must be absolute URLs. Pass
+ * --base http://127.0.0.1:4199/r/ when validating against a local server.
+ */
+const REGISTRY_BASE = process.argv.includes("--base")
+  ? process.argv[process.argv.indexOf("--base") + 1]
+  : "https://vfx-ui.com/r/";
 
 /** Catalog metadata: the single source of truth for the public registry. */
 const CATALOG = [
@@ -309,6 +317,55 @@ const CATALOG = [
     files: ["components/HeroChroma.tsx"],
     deps: ["HeroShell", "ChromaFlow"],
   },
+  ...[
+    ["block-nav", "BlockNav", "Block Nav", "Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.", ["navigation", "menu", "mobile"]],
+    ["block-showcase", "BlockShowcase", "Block Showcase", "Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.", ["showcase", "product", "media"]],
+    ["block-feature-grid", "BlockFeatureGrid", "Block Feature Grid", "Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.", ["features", "bento", "grid"]],
+    ["block-feature-tabs", "BlockFeatureTabs", "Block Feature Tabs", "Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.", ["tabs", "features", "keyboard"]],
+    ["block-scroll-story", "BlockScrollStory", "Block Scroll Story", "Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.", ["scroll", "story", "sticky"]],
+    ["block-process-steps", "BlockProcessSteps", "Block Process Steps", "Three-to-four step process with a self-drawing connector line and replaceable media per step.", ["steps", "process", "timeline"]],
+    ["block-integrations", "BlockIntegrations", "Block Integrations", "Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.", ["integrations", "logos", "orbit"]],
+    ["block-comparison", "BlockComparison", "Block Comparison", "Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).", ["comparison", "before-after", "slider"]],
+    ["block-testimonials", "BlockTestimonials", "Block Testimonials", "Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.", ["testimonials", "quotes", "social-proof"]],
+    ["block-pricing", "BlockPricing", "Block Pricing", "Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.", ["pricing", "plans", "billing"]],
+    ["block-faq", "BlockFaq", "Block FAQ", "FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.", ["faq", "accordion", "keyboard"]],
+    ["block-cta", "BlockCta", "Block CTA", "Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).", ["cta", "closing", "conversion"]],
+  ].map(([name, component, title, description, extraTags]) => ({
+    name, component, title, description,
+    categories: ["Blocks"],
+    tags: ["block", "section", "landing", ...extraTags],
+    sharedFiles: false,
+    motion: component === "BlockShowcase",
+    blockShared: true,
+  })),
+  {
+    name: "example-launch",
+    component: "ExampleLaunch",
+    title: "Example — Product Launch",
+    description: "Complete fictional software launch page (\"Orbit\" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.",
+    categories: ["Blocks"],
+    tags: ["example", "landing", "launch", "product"],
+    sharedFiles: false,
+    registryDeps: ["block-nav", "block-showcase", "block-feature-grid", "block-feature-tabs", "block-scroll-story", "block-integrations", "block-pricing", "block-testimonials", "block-faq", "block-cta"],
+  },
+  {
+    name: "example-studio",
+    component: "ExampleStudio",
+    title: "Example — Design Studio",
+    description: "Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.",
+    categories: ["Blocks"],
+    tags: ["example", "portfolio", "studio", "services"],
+    sharedFiles: false,
+    registryDeps: ["block-nav", "block-process-steps", "block-showcase", "block-comparison", "block-feature-grid", "block-pricing", "block-testimonials", "block-faq", "block-cta"],
+  },
+
+  /* ── 2026-09-28 agent batches: the manifests are the single source of truth. ──
+     registry/batches/<batch>.manifest.json entries are loaded here; edit the
+     manifests, not a copy of them. */
+  ...readdirSync(join(root, "registry", "batches"))
+    .filter((f) => f.endsWith(".manifest.json"))
+    .sort()
+    .flatMap((f) => JSON.parse(readFileSync(join(root, "registry", "batches", f), "utf8"))),
 ];
 
 /** Shared runtime files every registry item needs (copy-paste is self-contained). */
@@ -317,6 +374,9 @@ const SHARED_FILES = [
   { path: "vfx/color.ts", from: join(reactSrc, "utils/color.ts") },
   { path: "vfx/usePointerUniforms.tsx", from: join(reactSrc, "usePointerUniforms.ts") },
 ];
+
+/** Design-token module shared by all blocks (emitted next to the vfx deps). */
+const BLOCK_SHARED = { path: "vfx/blockShared.tsx", from: join(reactSrc, "components/blockShared.tsx") };
 
 function read(p) {
   return readFileSync(p, "utf8");
@@ -348,9 +408,11 @@ function inlinedVfxCanvas() {
  * Rewrite workspace-relative imports to the bundled layout:
  * item file lands at components/<Name>.tsx, every dependency at
  * components/vfx/<Name>.tsx. Files emitted inside vfx/ resolve siblings
- * with "./"; the item file reaches into "./vfx/".
+ * with "./"; the item file reaches into "./vfx/". Names listed in
+ * keepImports stay unrewritten — those resolve as siblings because the
+ * consumer installs them via registryDependencies.
  */
-function rewriteImports(content, depNames, inVfx) {
+function rewriteImports(content, depNames, inVfx, keepImports = []) {
   const p = inVfx ? "./" : "./vfx/";
   let out = content
     .replace(/from "\.\.\/VfxCanvas"/g, `from "${p}VfxCanvas"`)
@@ -358,6 +420,8 @@ function rewriteImports(content, depNames, inVfx) {
     .replace(/from "\.\.\/usePointerMotion"/g, `from "${p}usePointerMotion"`)
     .replace(/from "\.\.\/usePointerUniforms(\.ts)?"/g, `from "${p}usePointerUniforms"`);
   for (const dep of depNames) {
+    if (keepImports.includes(dep)) continue;
+    out = out.replace(new RegExp(`from "\\.\\./${dep}"`, "g"), `from "${p}${dep}"`);
     out = out.replace(new RegExp(`from "\\./${dep}"`, "g"), `from "${p}${dep}"`);
   }
   return out;
@@ -368,9 +432,13 @@ function componentCode(component) {
   return existsSync(p) ? read(p) : null;
 }
 
-function buildItem(entry) {
+function buildItem(entry, catalog) {
   const source = componentCode(entry.component);
   if (source == null) return null;
+  const registryDeps = entry.registryDeps ?? [];
+  const registryDepComponents = registryDeps
+    .map((id) => catalog.find((candidate) => candidate.name === id)?.component)
+    .filter((name) => typeof name === "string");
   const deps = entry.deps ?? [];
   const depFiles = deps.map((dep) => {
     const depSource = componentCode(dep);
@@ -378,17 +446,20 @@ function buildItem(entry) {
     return {
       path: `vfx/${dep}.tsx`,
       type: "registry:component",
-      content: rewriteImports(depSource, deps, true),
+      content: rewriteImports(depSource, [...deps, ...(entry.blockShared ? ["blockShared"] : [])], true, registryDepComponents),
       target: `components/vfx/${dep}.tsx`,
     };
   });
+  const blockSharedFiles = entry.blockShared
+    ? [{ path: BLOCK_SHARED.path, type: "registry:component", content: read(BLOCK_SHARED.from), target: `components/${BLOCK_SHARED.path}` }]
+    : [];
   const item = {
     $schema: "https://ui.shadcn.com/schema/registry-item.json",
     name: entry.name,
     title: entry.title,
     description: entry.description,
     type: "registry:component",
-    registryDependencies: [],
+    registryDependencies: registryDeps.map((id) => `${REGISTRY_BASE}${id}.json`),
     dependencies: entry.sharedFiles === false
       ? [...(entry.npmDependencies ?? [])]
       : ["vgpu@0.3.1", ...(entry.npmDependencies ?? [])],
@@ -405,11 +476,12 @@ function buildItem(entry) {
           }))),
       ...(entry.motion ? [{ path: "vfx/usePointerMotion.ts", type: "registry:component", content: read(join(reactSrc, "usePointerMotion.ts")), target: "components/vfx/usePointerMotion.ts" }] : []),
       ...(entry.sharedFiles === false && deps.includes("HeroShell") ? [{ path: "vfx/usePointerUniforms.tsx", type: "registry:component", content: read(join(reactSrc, "usePointerUniforms.ts")), target: "components/vfx/usePointerUniforms.tsx" }] : []),
+      ...blockSharedFiles,
       ...depFiles,
       {
         path: `components/${entry.component}.tsx`,
         type: "registry:component",
-        content: rewriteImports(source, deps, false),
+        content: rewriteImports(source, [...deps, ...(entry.blockShared ? ["blockShared"] : [])], false, registryDepComponents),
         target: `components/${entry.component}.tsx`,
       },
     ],
@@ -421,7 +493,7 @@ function main() {
   const items = [];
   const missing = [];
   for (const entry of CATALOG) {
-    const item = buildItem(entry);
+    const item = buildItem(entry, CATALOG);
     if (!item) {
       missing.push(entry.component);
       continue;
@@ -455,6 +527,26 @@ function main() {
     })),
   };
   writeFileSync(join(outDir, "index.json"), JSON.stringify(index, null, 2) + "\n");
+  // shadcn CLI convention: the registry index is served at <base>/registry.json.
+  // Emit it alongside index.json so `npx shadcn add https://vfx-ui.com/r/<item>.json`
+  // and any tool listing the registry both resolve.
+  writeFileSync(join(outDir, "registry.json"), JSON.stringify(index, null, 2) + "\n");
+
+  /* Mirror the site-facing copies (apps/docs/public/r is served at
+     https://vfx-ui.com/r/) so the website's install endpoints can never drift
+     from the npm package. Skipped when --out points somewhere custom. */
+  if (outDir === join(root, "registry", "dist")) {
+    const siteDir = join(root, "apps", "docs", "public", "r");
+    mkdirSync(siteDir, { recursive: true });
+    for (const f of readdirSync(siteDir)) {
+      if (f.endsWith(".json")) rmSync(join(siteDir, f));
+    }
+    writeFileSync(join(siteDir, "index.json"), readFileSync(join(outDir, "index.json")));
+    writeFileSync(join(siteDir, "registry.json"), readFileSync(join(outDir, "registry.json")));
+    for (const { item } of items) {
+      writeFileSync(join(siteDir, `${item.name}.json`), JSON.stringify(item, null, 2) + "\n");
+    }
+  }
 
   const total = items.length;
   console.log(`registry: wrote ${total}/${CATALOG.length} items to ${outDir}`);

@@ -5,6 +5,11 @@ const DEFAULT_BROWSE_CONTENT = Object.freeze({
 });
 
 const CATEGORY_CONTENT = Object.freeze({
+  Blocks: Object.freeze({
+    title: "Page Blocks for React — Complete Marketing Sections",
+    heading: "Complete page sections, ready to compose.",
+    description: "Navigation, product showcase, pricing, FAQ, CTA and more — full sections with real interactions and replaceable content. Install one by one, or start from a complete example page.",
+  }),
   Heroes: Object.freeze({
     title: "Hero Section Components for React",
     heading: "Drop-in WebGPU hero sections",

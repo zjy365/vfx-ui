@@ -1,0 +1,102 @@
+[
+  {
+    "name": "glass-panel",
+    "component": "GlassPanel",
+    "deps": ["OpticalGlass"],
+    "title": "Glass Panel",
+    "description": "A broad ray-marched optical slab that carries your own content across a full panel.",
+    "categories": ["Glass"],
+    "tags": ["glass", "panel", "refraction", "sdf"],
+    "files": ["components/GlassPanel.tsx"]
+  },
+  {
+    "name": "glass-tile",
+    "component": "GlassTile",
+    "deps": ["OpticalGlass"],
+    "title": "Glass Tile",
+    "description": "A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.",
+    "categories": ["Glass"],
+    "tags": ["glass", "grid", "lens", "hover"],
+    "files": ["components/GlassTile.tsx"]
+  },
+  {
+    "name": "chromatic-text",
+    "component": "ChromaticText",
+    "title": "Chromatic Text",
+    "description": "The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.",
+    "categories": ["Text"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "ripple-text",
+    "component": "RippleText",
+    "title": "Ripple Text",
+    "description": "Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.",
+    "categories": ["Text"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "spectrum-text",
+    "component": "SpectrumText",
+    "title": "Spectrum Text",
+    "description": "A spectral light band flows continuously through your words and leans toward the pointer.",
+    "categories": ["Text"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "tilt-card",
+    "component": "TiltCard",
+    "title": "Tilt Card",
+    "description": "A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.",
+    "categories": ["Interactions"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "pointer-glow",
+    "component": "PointerGlow",
+    "title": "Pointer Glow",
+    "description": "A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.",
+    "categories": ["Interactions"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "spotlight-card",
+    "component": "SpotlightCard",
+    "title": "Spotlight Card",
+    "description": "A card under a torch: the beam follows the pointer to uncover your content from the dark.",
+    "categories": ["Interactions"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "elastic-hover",
+    "component": "ElasticHover",
+    "title": "Elastic Hover",
+    "description": "Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.",
+    "categories": ["Interactions"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  },
+  {
+    "name": "magnetic-grid",
+    "component": "MagneticGrid",
+    "title": "Magnetic Grid",
+    "description": "A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.",
+    "categories": ["Interactions"],
+    "tags": ["pointer", "interactive"],
+    "sharedFiles": false,
+    "motion": true
+  }
+]

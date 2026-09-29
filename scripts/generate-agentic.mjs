@@ -76,17 +76,23 @@ function itemDoc(name) {
     `npm install @vfx-ui/react${needsVgpu ? " vgpu@0.3.1" : ""}${extraDeps.length ? ` ${extraDeps.join(" ")}` : ""}`,
     "```",
     "",
-    "```tsx",
-    `import { ${nameToComponent(name)} } from "@vfx-ui/react";`,
-    "",
-    `export function Demo() {`,
-    ...(name.startsWith("hero-") ? [
-      `  return <${nameToComponent(name)} title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;`,
-    ] : name.startsWith("footer-") ? [
-      `  return <${nameToComponent(name)} brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;`,
-    ] : isOptical || isRadiance || name === "astra-field" ? [`  return <div style={{ height: 520 }}><${nameToComponent(name)} interactive /></div>;`] : [`  return <${nameToComponent(name)} />;`]),
-    `}`,
-    "```",
+    ...(BLOCK_USAGE[name] ? [
+      "```tsx",
+      blockUsage(name),
+      "```",
+    ] : [
+      "```tsx",
+      `import { ${nameToComponent(name)} } from "@vfx-ui/react";`,
+      "",
+      `export function Demo() {`,
+      ...(name.startsWith("hero-") ? [
+        `  return <${nameToComponent(name)} title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;`,
+      ] : name.startsWith("footer-") ? [
+        `  return <${nameToComponent(name)} brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;`,
+      ] : isOptical || isRadiance || name === "astra-field" ? [`  return <div style={{ height: 520 }}><${nameToComponent(name)} interactive /></div>;`] : [`  return <${nameToComponent(name)} />;`]),
+      `}`,
+      "```",
+    ]),
     "",
     "## Props",
     "",
@@ -139,6 +145,167 @@ function itemDoc(name) {
   return lines.join("\n");
 }
 
+const BLOCK_USAGE = {
+  "block-nav": `import { BlockNav } from "@vfx-ui/react";
+
+export function SiteHeader() {
+  return (
+    <BlockNav
+      brand="Northwind"
+      links={[{ label: "Product", href: "#product" }, { label: "Pricing", href: "#pricing" }]}
+      action={{ label: "Get started", href: "/start" }}
+      sticky
+    />
+  );
+}`,
+  "block-showcase": `import { BlockShowcase } from "@vfx-ui/react";
+
+export function Tour() {
+  return (
+    <BlockShowcase
+      eyebrow="Product tour"
+      title="Every launch, in one orbit."
+      primaryCta={{ label: "Start free", href: "/start" }}
+      media={<img src="/app-screenshot.png" alt="Orbit release dashboard" />}
+    />
+  );
+}`,
+  "block-feature-grid": `import { BlockFeatureGrid } from "@vfx-ui/react";
+
+export function Features() {
+  return (
+    <BlockFeatureGrid
+      title="Built for the way teams ship."
+      items={[
+        { title: "A release graph", description: "Deploys, flags and rollbacks on one canvas.", featured: true },
+        { title: "Explained flags", description: "Owner, rollout and expiry on every flag." },
+      ]}
+    />
+  );
+}`,
+  "block-feature-tabs": `import { BlockFeatureTabs } from "@vfx-ui/react";
+
+export function Surfaces() {
+  return (
+    <BlockFeatureTabs
+      title="One graph. Three ways to look at it."
+      tabs={[
+        { label: "Plan", description: "Sketch the release as a graph." },
+        { label: "Ship", description: "Flags with staged rollouts." },
+      ]}
+    />
+  );
+}`,
+  "block-scroll-story": `import { BlockScrollStory } from "@vfx-ui/react";
+
+export function Story() {
+  return (
+    <BlockScrollStory
+      title="A release week, told in three scenes."
+      steps={[
+        { eyebrow: "Monday", title: "Sketch the week.", text: "Drop deploys onto one canvas." },
+        { eyebrow: "Wednesday", title: "Ship behind a canary.", text: "Orbit pauses drift for you." },
+      ]}
+    />
+  );
+}`,
+  "block-process-steps": `import { BlockProcessSteps } from "@vfx-ui/react";
+
+export function HowItWorks() {
+  return (
+    <BlockProcessSteps
+      title="From install to insight in an afternoon."
+      steps={[
+        { title: "Connect your repos", text: "One OAuth flow, automatic indexing." },
+        { title: "Describe a release", text: "The graph assembles itself." },
+        { title: "Ship and watch", text: "Staged rollouts with auto-pause." },
+      ]}
+    />
+  );
+}`,
+  "block-integrations": `import { BlockIntegrations } from "@vfx-ui/react";
+
+export function Stack() {
+  return (
+    <BlockIntegrations
+      brand="Orbit"
+      title="Plugs into the tools you already trust."
+      integrations={[{ name: "GitHub", href: "/integrations/github" }, { name: "Linear", href: "/integrations/linear" }]}
+    />
+  );
+}`,
+  "block-comparison": `import { BlockComparison } from "@vfx-ui/react";
+
+export function BeforeAfter() {
+  return (
+    <BlockComparison
+      title="Drag to see the redesign."
+      before={<img src="/before.png" alt="Before" />}
+      after={<img src="/after.png" alt="After" />}
+    />
+  );
+}`,
+  "block-testimonials": `import { BlockTestimonials } from "@vfx-ui/react";
+
+export function Voices() {
+  return (
+    <BlockTestimonials
+      title="The teams who ship weekly, talk like this."
+      testimonials={[{ quote: "The replay is the status update.", name: "Mara Ellison", role: "Head of Platform, Fieldnote", href: "/customers/fieldnote" }]}
+    />
+  );
+}`,
+  "block-pricing": `import { BlockPricing } from "@vfx-ui/react";
+
+export function Plans() {
+  return (
+    <BlockPricing
+      title="Start free. Scale when the graph does."
+      plans={[
+        { name: "Solo", priceMonthly: 0, basis: "month", features: ["1 release graph"], cta: { label: "Start free", href: "/start" } },
+        { name: "Team", priceMonthly: 24, priceAnnual: 20, featured: true, cta: { label: "Start trial", href: "/trial" } },
+      ]}
+    />
+  );
+}`,
+  "block-faq": `import { BlockFaq } from "@vfx-ui/react";
+
+export function Answers() {
+  return (
+    <BlockFaq
+      title="Questions engineers actually ask."
+      items={[{ question: "How long does setup take?", answer: "Most teams see their first graph within ten minutes." }]}
+    />
+  );
+}`,
+  "block-cta": `import { BlockCta, WaveBackground } from "@vfx-ui/react";
+
+export function Closing() {
+  return (
+    <BlockCta
+      title="Your next release could feel like this."
+      primaryCta={{ label: "Get started free", href: "/start" }}
+      secondaryCta={{ label: "See the docs", href: "/docs" }}
+      media={<WaveBackground speed={0.55} interactive={false} />}
+    />
+  );
+}`,
+  "example-launch": `import { ExampleLaunch } from "@vfx-ui/react";
+
+export default function LaunchPage() {
+  return <ExampleLaunch />;
+}`,
+  "example-studio": `import { ExampleStudio } from "@vfx-ui/react";
+
+export default function StudioPage() {
+  return <ExampleStudio />;
+}`,
+};
+
+function blockUsage(name) {
+  return BLOCK_USAGE[name] ?? `import { ${nameToComponent(name)} } from "@vfx-ui/react";`;
+}
+
 function nameToComponent(name) {
   return name.split("-").map((s) => s[0].toUpperCase() + s.slice(1)).join("");
 }
@@ -169,10 +336,12 @@ function main() {
     "",
     "## Scope guard",
     "",
-    "This library focuses on customizable hero and footer sections, supported by GPU visuals and focused interactions.",
+    "This library provides customizable hero and footer sections, GPU visuals, focused interactions, and complete page Blocks for marketing sites.",
     "Hero sample copy is replaceable. Pass title/subtitle or children and configure CTA href/onClick.",
     "Footer sample copy is replaceable. Configure brand, title, CTA, groups, legal links and copyright. Supply children for your own introduction/navigation layout.",
-    "DOM interaction components do not require WebGPU. This is not a general-purpose UI kit.",
+    "Blocks (block-*) are full page sections: all copy, links, colors and items arrive through props. They are pure DOM/CSS — no WebGPU required — and compose into complete pages; see example-launch and example-studio.",
+    "Example pages ship fictional demo content (marked on screen): replace it before going live.",
+    "DOM interaction components and blocks do not require WebGPU. This is not a general-purpose UI kit.",
     "",
   ].join("\n");
   writeFileSync(join(outDir, "llms.txt"), llms);
@@ -181,7 +350,6 @@ function main() {
     "# VFX UI — agent guide",
     "",
     llms,
-    "",
     ...names.map((n) => itemDoc(n)),
   ].join("\n");
   writeFileSync(join(outDir, "agents.md"), agents);

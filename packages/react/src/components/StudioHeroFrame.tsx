@@ -1,6 +1,7 @@
 "use client";
 
-import type { CSSProperties, ReactNode, RefObject } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import type { SurfaceRef } from "../usePointerUniforms";
 import { resolveHeroCta, type HeroContentProps } from "./HeroShell";
 
 const CSS = `
@@ -16,7 +17,7 @@ const CSS = `
 /** DOM-only editorial shell: content remains native text, links and buttons. */
 export function StudioHeroFrame({ eyebrow, title, subtitle, primaryCta, secondaryCta, children, className = "", style, artwork, surfaceRef, kind }: HeroContentProps & {
   artwork: ReactNode;
-  surfaceRef: RefObject<HTMLElement>;
+  surfaceRef: SurfaceRef;
   kind: string;
   style?: CSSProperties;
 }) {

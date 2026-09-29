@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, type RefObject } from "react";
+import { useEffect, useRef } from "react";
+import type { SurfaceRef } from "../usePointerUniforms";
 
 /** One bounded canvas, asleep offscreen and under reduced motion. */
 export function FooterArtwork({
@@ -12,7 +13,7 @@ export function FooterArtwork({
   animate = false,
 }: {
   kind: "tidal" | "phosphor";
-  surface: RefObject<HTMLElement>;
+  surface: SurfaceRef;
   brand?: string;
   color: string;
   interactive: boolean;

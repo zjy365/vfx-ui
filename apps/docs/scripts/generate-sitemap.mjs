@@ -25,11 +25,14 @@ try {
 
   const { SITEMAP_SHADERS } = await import(pathToFileURL(bundlePath).href);
   const routes = await import(pathToFileURL(path.join(docsDir, "src", "routes.js")).href);
-  const { STATIC_ROUTE_PATHS, TAG_ROUTE_PREFIX, categoryRouteSegment, tagRouteSegment, shaderRoutePath } = routes;
+  const { STATIC_ROUTE_PATHS, TAG_ROUTE_PREFIX, EXAMPLE_PAGES, categoryRouteSegment, tagRouteSegment, shaderRoutePath } = routes;
 
   const locations = new Set(
     Object.values(STATIC_ROUTE_PATHS).map((routePath) => `${siteOrigin}${routePath}`),
   );
+  for (const example of Object.values(EXAMPLE_PAGES)) {
+    locations.add(`${siteOrigin}${example.path}`);
+  }
   for (const shader of SITEMAP_SHADERS) {
     locations.add(`${siteOrigin}${shaderRoutePath(shader)}`);
     for (const variantId of shader.variantIds) {

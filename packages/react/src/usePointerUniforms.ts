@@ -1,9 +1,18 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState, type RefObject } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+
+/**
+ * Minimal structural shape of a ref to a surface element. Written as a plain
+ * object type (not React's RefObject) so both the React 18 typings
+ * (RefObject<T> = { readonly current: T | null }) and the React 19 typings
+ * (RefObject<T> = { current: T }, with useRef returning RefObject<T | null>)
+ * satisfy it — the library ships as source and compiles under either.
+ */
+export type SurfaceRef<T extends HTMLElement = HTMLElement> = { readonly current: T | null };
 
 /** Lets an overlay and its decorative shader share one pointer surface. */
-export const PointerSurfaceContext = createContext<RefObject<HTMLElement> | null>(null);
+export const PointerSurfaceContext = createContext<SurfaceRef | null>(null);
 
 export interface PointerUniform {
   x: number;
@@ -54,7 +63,7 @@ export function usePointerUniforms<T extends HTMLElement>(options?: {
   enabled?: boolean;
   /** Lerp factor per frame toward the target (0..1). Lower is more smoothing. */
   ease?: number;
-}): [React.RefObject<T>, PointerUniform, boolean, PointerVelocity] {
+}): [SurfaceRef<T>, PointerUniform, boolean, PointerVelocity] {
   const surface = useContext(PointerSurfaceContext);
   const enabled = options?.enabled !== false;
   const rest = options?.rest ?? POINTER_REST;

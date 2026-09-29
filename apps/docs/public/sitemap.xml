@@ -16,10 +16,22 @@
   <url><loc>https://vfx-ui.com/backgrounds/black-hole/gargantua</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/black-hole/interstellar</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/black-hole/topDown</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/caustics-field</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/caustics-field/lagoon</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/caustics-field/nightPool</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/caustics-field/reef</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/chroma-flow</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/chroma-flow/classic</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/chroma-flow/dusk</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/chroma-flow/tide</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/dust-motes</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/dust-motes/attic</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/dust-motes/cathedral</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/dust-motes/workshop</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ember-drift</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ember-drift/blueFlame</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ember-drift/campfire</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ember-drift/furnace</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/fiber-flow</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/fiber-flow/classic</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/fiber-flow/ember</loc></url>
@@ -28,6 +40,14 @@
   <url><loc>https://vfx-ui.com/backgrounds/fluid-gradient/ember</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/fluid-gradient/ocean</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/fluid-gradient/sunset</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/halo-rings</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/halo-rings/dawn</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/halo-rings/ember</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/halo-rings/prism</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ink-bloom</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ink-bloom/cinnabar</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ink-bloom/indigo</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/ink-bloom/sumi</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/iridescent</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/iridescent/deepSea</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/iridescent/oil</loc></url>
@@ -40,6 +60,10 @@
   <url><loc>https://vfx-ui.com/backgrounds/particle-field/blossom</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/particle-field/ember</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/particle-field/frost</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/plasma-sheet</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/plasma-sheet/anodized</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/plasma-sheet/magma</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/plasma-sheet/nebula</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/radiant-dots</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/radiant-dots/ember</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/radiant-dots/ice</loc></url>
@@ -48,10 +72,26 @@
   <url><loc>https://vfx-ui.com/backgrounds/ribbon-field/calm</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/ribbon-field/classic</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/ribbon-field/vivid</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/silk-veil</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/silk-veil/champagne</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/silk-veil/midnight</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/silk-veil/rosewood</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/solar-corona</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/solar-corona/gold</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/solar-corona/sapphire</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/solar-corona/whiteDwarf</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/star-tide</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/star-tide/bioluminescent</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/star-tide/midnight</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/star-tide/nebulaTide</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/starfield</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/starfield/golden</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/starfield/midnight</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/starfield/nebula</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/terrain-ridge</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/terrain-ridge/alpine</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/terrain-ridge/dawn</loc></url>
+  <url><loc>https://vfx-ui.com/backgrounds/terrain-ridge/dusk</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/vortex</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/vortex/ember</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/vortex/galaxy</loc></url>
@@ -60,60 +100,205 @@
   <url><loc>https://vfx-ui.com/backgrounds/wave-background/classic</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/wave-background/storm</loc></url>
   <url><loc>https://vfx-ui.com/backgrounds/wave-background/subtle</loc></url>
+  <url><loc>https://vfx-ui.com/blocks</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-banner</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-comparison</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-contact</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-cta</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-faq</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-feature-grid</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-feature-tabs</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-gallery</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-integrations</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-logos</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-milestones</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-nav</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-newsletter</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-pricing</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-process-steps</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-quote-wall</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-scroll-story</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-showcase</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-stats</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-team</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-testimonials</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/block-timeline</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/example-launch</loc></url>
+  <url><loc>https://vfx-ui.com/blocks/example-studio</loc></url>
   <url><loc>https://vfx-ui.com/components</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/about</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/accordion</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/announcement</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/astronomy</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/attic</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/aurora</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/background</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/badges</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/banner</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/beams</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/before-after</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/bento</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/billing</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/black-hole</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/block</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/button</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/card</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/caustics</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/centered</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/channels</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/chromatic</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/cinema</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/closing</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/community</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/company</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/comparison</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/compatibility</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/contact</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/conversion</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/corona</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/count-up</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/cta</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/customers</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/dismissible</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/dispersion</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/dots</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/dust</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/eclipse</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/editorial</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/email</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/embers</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/example</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/fabric</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/faq</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/features</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/fibers</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/fire</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/flow</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/fluid</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/footer</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/form</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/full-bleed</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/galaxy</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/gallery</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/generative</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/glare</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/glass</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/globe</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/glow</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/gradient</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/grid</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/header</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/hero</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/history</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/holographic</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/hover</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/how-it-works</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/ink</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/integrations</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/interactive</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/keyboard</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/landing</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/landscape</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/launch</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/layout</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/lens</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/light</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/lightbox</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/liquid</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/loading</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/logos</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/magnetic</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/masonry</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/media</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/menu</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/mesh</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/metrics</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/milestones</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/minimal</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/mobile</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/mountains</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/narrative</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/navigation</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/newsletter</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/night</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/noise</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/numbers</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/optical</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/orbit</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/panel</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/paper</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/particles</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/people</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/physics</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/plans</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/plasma</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/pointer</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/pool</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/portfolio</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/poster</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/pricing</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/prism</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/process</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/product</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/progress</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/questions</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/quotes</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/radiance</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/ray-tracing</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/refraction</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/reveal</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/ribbon</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/rings</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/ripple</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/roadmap</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/rotator</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/screenshot</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/scroll</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/sculpture</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/serif</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/services</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/sheen</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/showcase</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/signup</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/silk</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/slider</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/social-proof</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/space</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/sparks</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/spectrum</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/spiral</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/split</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/spotlight</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/spring</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/squash</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/stars</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/stats</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/steps</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/sticky</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/story</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/studio</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/sumi-e</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/sun</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/tabs</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/team</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/telemetry</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/terrain</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/testimonials</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/text</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/tile</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/tilt</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/timeline</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/topbar</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/topography</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/trust</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/typography</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/voronoi</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/wall</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/water</loc></url>
   <url><loc>https://vfx-ui.com/components/tag/waves</loc></url>
+  <url><loc>https://vfx-ui.com/components/tag/work</loc></url>
+  <url><loc>https://vfx-ui.com/examples/launch</loc></url>
+  <url><loc>https://vfx-ui.com/examples/studio</loc></url>
   <url><loc>https://vfx-ui.com/footers</loc></url>
   <url><loc>https://vfx-ui.com/footers/footer-fold</loc></url>
   <url><loc>https://vfx-ui.com/footers/footer-phosphor</loc></url>
@@ -128,6 +313,14 @@
   <url><loc>https://vfx-ui.com/glass/glass-lens/aqua</loc></url>
   <url><loc>https://vfx-ui.com/glass/glass-lens/honey</loc></url>
   <url><loc>https://vfx-ui.com/glass/glass-lens/prism</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-panel</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-panel/clear</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-panel/cobalt</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-panel/smoke</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-tile</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-tile/mosaic</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-tile/wall</loc></url>
+  <url><loc>https://vfx-ui.com/glass/glass-tile/wide</loc></url>
   <url><loc>https://vfx-ui.com/glass/light-prism</loc></url>
   <url><loc>https://vfx-ui.com/glass/light-prism/amber</loc></url>
   <url><loc>https://vfx-ui.com/glass/light-prism/moonstone</loc></url>
@@ -138,24 +331,44 @@
   <url><loc>https://vfx-ui.com/glass/liquid-glass/velvet</loc></url>
   <url><loc>https://vfx-ui.com/heroes</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-aurora</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-aurora-editorial</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-aurora-editorial/dawn</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-aurora-editorial/midnight</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-aurora-editorial/press</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-aurora/ember</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-aurora/glacier</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-aurora/violet</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-black-hole</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-black-hole-cinema</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-black-hole-cinema/feature</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-black-hole-cinema/noir</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-black-hole-cinema/wide</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-black-hole/ember</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-black-hole/gargantua</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-black-hole/interstellar</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-chroma</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-chroma-full</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-chroma-full/classic</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-chroma-full/dusk</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-chroma-full/tide</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-chroma/classic</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-chroma/dusk</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-chroma/tide</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-contour</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-eclipse</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fiber</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fiber-top</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fiber-top/classic</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fiber-top/ember</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fiber-top/ocean</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fiber/gold</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fiber/indigo</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fiber/rose</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fluid</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fluid-minimal</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fluid-minimal/ember</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fluid-minimal/mist</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-fluid-minimal/moss</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fluid/magma</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fluid/midnight</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-fluid/moss</loc></url>
@@ -168,29 +381,57 @@
   <url><loc>https://vfx-ui.com/heroes/hero-iridescent/oil</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-iridescent/pearl</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-mesh</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-mesh-bold</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-mesh-bold/citrus</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-mesh-bold/poster</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-mesh-bold/ultraviolet</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-mesh/arctic</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-mesh/citrus</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-mesh/orchid</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-particles</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-particles-badge</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-particles-badge/azure</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-particles-badge/dune</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-particles-badge/mint</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-particles/azure</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-particles/dune</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-particles/mint</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-ribbon</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-ribbon-left</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-ribbon-left/quiet</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-ribbon-left/signal</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-ribbon-left/surge</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-ribbon/quiet</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-ribbon/signal</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-ribbon/surge</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-starfield</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-starfield-split</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-starfield-split/golden</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-starfield-split/nebula</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-starfield-split/ops</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-starfield/classic</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-starfield/deep</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-starfield/warm</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-vortex</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-vortex-centered</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-vortex-centered/eye</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-vortex-centered/pinwheel</loc></url>
+  <url><loc>https://vfx-ui.com/heroes/hero-vortex-centered/storm</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-vortex/indigo</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-vortex/nebula</loc></url>
   <url><loc>https://vfx-ui.com/heroes/hero-vortex/sol</loc></url>
   <url><loc>https://vfx-ui.com/installation</loc></url>
   <url><loc>https://vfx-ui.com/interactions</loc></url>
+  <url><loc>https://vfx-ui.com/interactions/elastic-hover</loc></url>
   <url><loc>https://vfx-ui.com/interactions/magnetic</loc></url>
+  <url><loc>https://vfx-ui.com/interactions/magnetic-grid</loc></url>
+  <url><loc>https://vfx-ui.com/interactions/pointer-glow</loc></url>
   <url><loc>https://vfx-ui.com/interactions/spectral-card</loc></url>
+  <url><loc>https://vfx-ui.com/interactions/spotlight-card</loc></url>
+  <url><loc>https://vfx-ui.com/interactions/tilt-card</loc></url>
   <url><loc>https://vfx-ui.com/text</loc></url>
+  <url><loc>https://vfx-ui.com/text/chromatic-text</loc></url>
   <url><loc>https://vfx-ui.com/text/kinetic-text</loc></url>
+  <url><loc>https://vfx-ui.com/text/ripple-text</loc></url>
+  <url><loc>https://vfx-ui.com/text/spectrum-text</loc></url>
 </urlset>

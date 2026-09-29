@@ -1,0 +1,112 @@
+[
+  {
+    "name": "block-logos",
+    "component": "BlockLogos",
+    "title": "Block Logos",
+    "description": "Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "logos", "customers", "social-proof"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-stats",
+    "component": "BlockStats",
+    "title": "Block Stats",
+    "description": "Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "stats", "numbers", "count-up"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-team",
+    "component": "BlockTeam",
+    "title": "Block Team",
+    "description": "Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "team", "people", "cards"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-gallery",
+    "component": "BlockGallery",
+    "title": "Block Gallery",
+    "description": "Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "gallery", "portfolio", "lightbox"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-timeline",
+    "component": "BlockTimeline",
+    "title": "Block Timeline",
+    "description": "Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "timeline", "history", "scroll"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-newsletter",
+    "component": "BlockNewsletter",
+    "title": "Block Newsletter",
+    "description": "Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "newsletter", "subscribe", "form"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-contact",
+    "component": "BlockContact",
+    "title": "Block Contact",
+    "description": "Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "contact", "form", "channels"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-banner",
+    "component": "BlockBanner",
+    "title": "Block Banner",
+    "description": "Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "banner", "announcement", "sticky"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-milestones",
+    "component": "BlockMilestones",
+    "title": "Block Milestones",
+    "description": "Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "milestones", "progress", "roadmap"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  },
+  {
+    "name": "block-quote-wall",
+    "component": "BlockQuoteWall",
+    "title": "Block Quote Wall",
+    "description": "Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.",
+    "categories": ["Blocks"],
+    "tags": ["block", "section", "landing", "quotes", "carousel", "masonry"],
+    "sharedFiles": false,
+    "motion": false,
+    "blockShared": true
+  }
+]

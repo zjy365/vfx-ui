@@ -50,13 +50,96 @@ npm install @vfx-ui/react vgpu@0.3.1
 - [Hero Black Hole](https://vfx-ui.com/components/hero-black-hole.md): Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
 - [Chroma Flow](https://vfx-ui.com/components/chroma-flow.md): Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
 - [Hero Chroma](https://vfx-ui.com/components/hero-chroma.md): Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.
+- [Block Nav](https://vfx-ui.com/components/block-nav.md): Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.
+- [Block Showcase](https://vfx-ui.com/components/block-showcase.md): Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.
+- [Block Feature Grid](https://vfx-ui.com/components/block-feature-grid.md): Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.
+- [Block Feature Tabs](https://vfx-ui.com/components/block-feature-tabs.md): Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.
+- [Block Scroll Story](https://vfx-ui.com/components/block-scroll-story.md): Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.
+- [Block Process Steps](https://vfx-ui.com/components/block-process-steps.md): Three-to-four step process with a self-drawing connector line and replaceable media per step.
+- [Block Integrations](https://vfx-ui.com/components/block-integrations.md): Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.
+- [Block Comparison](https://vfx-ui.com/components/block-comparison.md): Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).
+- [Block Testimonials](https://vfx-ui.com/components/block-testimonials.md): Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.
+- [Block Pricing](https://vfx-ui.com/components/block-pricing.md): Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.
+- [Block FAQ](https://vfx-ui.com/components/block-faq.md): FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.
+- [Block CTA](https://vfx-ui.com/components/block-cta.md): Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).
+- [Example — Product Launch](https://vfx-ui.com/components/example-launch.md): Complete fictional software launch page ("Orbit" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.
+- [Example — Design Studio](https://vfx-ui.com/components/example-studio.md): Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
+- [Ember Drift](https://vfx-ui.com/components/ember-drift.md): Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.
+- [Caustics Field](https://vfx-ui.com/components/caustics-field.md): Sunlit pool-floor caustics: a crawling net of focused light over deep water.
+- [Halo Rings](https://vfx-ui.com/components/halo-rings.md): Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.
+- [Terrain Ridge](https://vfx-ui.com/components/terrain-ridge.md): Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.
+- [Silk Veil](https://vfx-ui.com/components/silk-veil.md): A draped silk curtain of warped folds with a luster band sweeping the weave.
+- [Plasma Sheet](https://vfx-ui.com/components/plasma-sheet.md): Molten color currents folding through each other in a double domain-warped field.
+- [Star Tide](https://vfx-ui.com/components/star-tide.md): Stars carried on slow luminous waves, flaring as the tide crests.
+- [Ink Bloom](https://vfx-ui.com/components/ink-bloom.md): Ink drops blooming and feathering into warm paper on staggered cycles.
+- [Solar Corona](https://vfx-ui.com/components/solar-corona.md): A boiling sun disk crowned with streaming corona light and polar plumes.
+- [Dust Motes](https://vfx-ui.com/components/dust-motes.md): Dust motes drifting through slanted Tyndall beams in a dark room.
+- [Hero Aurora Editorial](https://vfx-ui.com/components/hero-aurora-editorial.md): Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.
+- [Hero Starfield Split](https://vfx-ui.com/components/hero-starfield-split.md): Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.
+- [Hero Vortex Centered](https://vfx-ui.com/components/hero-vortex-centered.md): Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.
+- [Hero Mesh Bold](https://vfx-ui.com/components/hero-mesh-bold.md): Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.
+- [Hero Fiber Top](https://vfx-ui.com/components/hero-fiber-top.md): Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.
+- [Hero Chroma Full](https://vfx-ui.com/components/hero-chroma-full.md): Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.
+- [Hero Black Hole Cinema](https://vfx-ui.com/components/hero-black-hole-cinema.md): Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.
+- [Hero Particles Badge](https://vfx-ui.com/components/hero-particles-badge.md): Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.
+- [Hero Ribbon Left](https://vfx-ui.com/components/hero-ribbon-left.md): Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.
+- [Hero Fluid Minimal](https://vfx-ui.com/components/hero-fluid-minimal.md): Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.
+- [Glass Panel](https://vfx-ui.com/components/glass-panel.md): A broad ray-marched optical slab that carries your own content across a full panel.
+- [Glass Tile](https://vfx-ui.com/components/glass-tile.md): A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.
+- [Chromatic Text](https://vfx-ui.com/components/chromatic-text.md): The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.
+- [Ripple Text](https://vfx-ui.com/components/ripple-text.md): Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.
+- [Spectrum Text](https://vfx-ui.com/components/spectrum-text.md): A spectral light band flows continuously through your words and leans toward the pointer.
+- [Tilt Card](https://vfx-ui.com/components/tilt-card.md): A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.
+- [Pointer Glow](https://vfx-ui.com/components/pointer-glow.md): A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.
+- [Spotlight Card](https://vfx-ui.com/components/spotlight-card.md): A card under a torch: the beam follows the pointer to uncover your content from the dark.
+- [Elastic Hover](https://vfx-ui.com/components/elastic-hover.md): Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.
+- [Magnetic Grid](https://vfx-ui.com/components/magnetic-grid.md): A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.
+- [Block Logos](https://vfx-ui.com/components/block-logos.md): Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.
+- [Block Stats](https://vfx-ui.com/components/block-stats.md): Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.
+- [Block Team](https://vfx-ui.com/components/block-team.md): Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.
+- [Block Gallery](https://vfx-ui.com/components/block-gallery.md): Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.
+- [Block Timeline](https://vfx-ui.com/components/block-timeline.md): Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.
+- [Block Newsletter](https://vfx-ui.com/components/block-newsletter.md): Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.
+- [Block Contact](https://vfx-ui.com/components/block-contact.md): Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.
+- [Block Banner](https://vfx-ui.com/components/block-banner.md): Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.
+- [Block Milestones](https://vfx-ui.com/components/block-milestones.md): Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.
+- [Block Quote Wall](https://vfx-ui.com/components/block-quote-wall.md): Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.
 
 ## Per-component docs (machine-readable)
 
 - https://vfx-ui.com/components/astra-field.md
 - https://vfx-ui.com/components/aurora.md
 - https://vfx-ui.com/components/black-hole.md
+- https://vfx-ui.com/components/block-banner.md
+- https://vfx-ui.com/components/block-comparison.md
+- https://vfx-ui.com/components/block-contact.md
+- https://vfx-ui.com/components/block-cta.md
+- https://vfx-ui.com/components/block-faq.md
+- https://vfx-ui.com/components/block-feature-grid.md
+- https://vfx-ui.com/components/block-feature-tabs.md
+- https://vfx-ui.com/components/block-gallery.md
+- https://vfx-ui.com/components/block-integrations.md
+- https://vfx-ui.com/components/block-logos.md
+- https://vfx-ui.com/components/block-milestones.md
+- https://vfx-ui.com/components/block-nav.md
+- https://vfx-ui.com/components/block-newsletter.md
+- https://vfx-ui.com/components/block-pricing.md
+- https://vfx-ui.com/components/block-process-steps.md
+- https://vfx-ui.com/components/block-quote-wall.md
+- https://vfx-ui.com/components/block-scroll-story.md
+- https://vfx-ui.com/components/block-showcase.md
+- https://vfx-ui.com/components/block-stats.md
+- https://vfx-ui.com/components/block-team.md
+- https://vfx-ui.com/components/block-testimonials.md
+- https://vfx-ui.com/components/block-timeline.md
+- https://vfx-ui.com/components/caustics-field.md
 - https://vfx-ui.com/components/chroma-flow.md
+- https://vfx-ui.com/components/chromatic-text.md
+- https://vfx-ui.com/components/dust-motes.md
+- https://vfx-ui.com/components/elastic-hover.md
+- https://vfx-ui.com/components/ember-drift.md
+- https://vfx-ui.com/components/example-launch.md
+- https://vfx-ui.com/components/example-studio.md
 - https://vfx-ui.com/components/fiber-flow.md
 - https://vfx-ui.com/components/fluid-gradient.md
 - https://vfx-ui.com/components/footer-fold.md
@@ -65,37 +148,64 @@ npm install @vfx-ui/react vgpu@0.3.1
 - https://vfx-ui.com/components/footer-vinyl.md
 - https://vfx-ui.com/components/glass-card.md
 - https://vfx-ui.com/components/glass-lens.md
+- https://vfx-ui.com/components/glass-panel.md
+- https://vfx-ui.com/components/glass-tile.md
+- https://vfx-ui.com/components/halo-rings.md
+- https://vfx-ui.com/components/hero-aurora-editorial.md
 - https://vfx-ui.com/components/hero-aurora.md
+- https://vfx-ui.com/components/hero-black-hole-cinema.md
 - https://vfx-ui.com/components/hero-black-hole.md
+- https://vfx-ui.com/components/hero-chroma-full.md
 - https://vfx-ui.com/components/hero-chroma.md
 - https://vfx-ui.com/components/hero-contour.md
 - https://vfx-ui.com/components/hero-eclipse.md
+- https://vfx-ui.com/components/hero-fiber-top.md
 - https://vfx-ui.com/components/hero-fiber.md
+- https://vfx-ui.com/components/hero-fluid-minimal.md
 - https://vfx-ui.com/components/hero-fluid.md
 - https://vfx-ui.com/components/hero-globe.md
 - https://vfx-ui.com/components/hero-iridescent.md
+- https://vfx-ui.com/components/hero-mesh-bold.md
 - https://vfx-ui.com/components/hero-mesh.md
+- https://vfx-ui.com/components/hero-particles-badge.md
 - https://vfx-ui.com/components/hero-particles.md
+- https://vfx-ui.com/components/hero-ribbon-left.md
 - https://vfx-ui.com/components/hero-ribbon.md
+- https://vfx-ui.com/components/hero-starfield-split.md
 - https://vfx-ui.com/components/hero-starfield.md
+- https://vfx-ui.com/components/hero-vortex-centered.md
 - https://vfx-ui.com/components/hero-vortex.md
+- https://vfx-ui.com/components/ink-bloom.md
 - https://vfx-ui.com/components/iridescent.md
 - https://vfx-ui.com/components/kinetic-text.md
 - https://vfx-ui.com/components/light-prism.md
 - https://vfx-ui.com/components/liquid-glass.md
+- https://vfx-ui.com/components/magnetic-grid.md
 - https://vfx-ui.com/components/magnetic.md
 - https://vfx-ui.com/components/mesh-gradient.md
 - https://vfx-ui.com/components/particle-field.md
+- https://vfx-ui.com/components/plasma-sheet.md
+- https://vfx-ui.com/components/pointer-glow.md
 - https://vfx-ui.com/components/radiant-dots.md
 - https://vfx-ui.com/components/ribbon-field.md
+- https://vfx-ui.com/components/ripple-text.md
+- https://vfx-ui.com/components/silk-veil.md
+- https://vfx-ui.com/components/solar-corona.md
 - https://vfx-ui.com/components/spectral-card.md
+- https://vfx-ui.com/components/spectrum-text.md
+- https://vfx-ui.com/components/spotlight-card.md
+- https://vfx-ui.com/components/star-tide.md
 - https://vfx-ui.com/components/starfield.md
+- https://vfx-ui.com/components/terrain-ridge.md
+- https://vfx-ui.com/components/tilt-card.md
 - https://vfx-ui.com/components/vortex.md
 - https://vfx-ui.com/components/wave-background.md
 
 ## Scope guard
 
-This library focuses on customizable hero and footer sections, supported by GPU visuals and focused interactions.
+This library provides customizable hero and footer sections, GPU visuals, focused interactions, and complete page Blocks for marketing sites.
 Hero sample copy is replaceable. Pass title/subtitle or children and configure CTA href/onClick.
 Footer sample copy is replaceable. Configure brand, title, CTA, groups, legal links and copyright. Supply children for your own introduction/navigation layout.
-DOM interaction components do not require WebGPU. This is not a general-purpose UI kit.
+Blocks (block-*) are full page sections: all copy, links, colors and items arrive through props. They are pure DOM/CSS — no WebGPU required — and compose into complete pages; see example-launch and example-studio.
+Example pages ship fictional demo content (marked on screen): replace it before going live.
+DOM interaction components and blocks do not require WebGPU. This is not a general-purpose UI kit.
