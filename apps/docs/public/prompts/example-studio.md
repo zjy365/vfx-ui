@@ -2,7 +2,7 @@
 component: example-studio
 title: "Example — Design Studio"
 category: Blocks
-tags: [example, portfolio, studio, services]
+tags: [block, example, portfolio, studio, services]
 install: npx shadcn@latest add https://vfx-ui.com/r/example-studio.json
 registry: https://vfx-ui.com/r/example-studio.json
 docs: https://vfx-ui.com/components/example-studio.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Example — Design Studio
 
-> Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
+> Complete fictional design-studio page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Example — Design Studio” component to this project and use
 
 ## Context
 
-Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Complete fictional design-studio page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

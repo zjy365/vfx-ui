@@ -1,6 +1,6 @@
 # Liquid Glass
 
-A molten glass annulus with a travelling silhouette and spectral transmission.
+A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it.
 
 ## Install
 

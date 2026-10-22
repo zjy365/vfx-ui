@@ -1,6 +1,6 @@
 # Glass Card
 
-Thick-cut optical glass with two-interface refraction and studio reflections.
+Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer.
 
 ## Install
 

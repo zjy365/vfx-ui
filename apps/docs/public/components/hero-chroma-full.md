@@ -1,11 +1,11 @@
 # Hero Chroma Full
 
-Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.
+Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

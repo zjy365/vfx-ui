@@ -1,11 +1,11 @@
 # Hero Starfield Split
 
-Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.
+Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

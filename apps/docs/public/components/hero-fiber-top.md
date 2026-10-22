@@ -1,11 +1,11 @@
 # Hero Fiber Top
 
-Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.
+Drop-in hero: a left-set masthead pressed against the top edge while the silk-fiber field streams beneath it — fibers carry the lower two-thirds, the scrim carries the type.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

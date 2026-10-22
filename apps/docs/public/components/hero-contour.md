@@ -1,6 +1,6 @@
 # Hero Contour
 
-A seeded topographic paper landscape that lifts around the pointer.
+A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer.
 
 ## Install
 

@@ -1,11 +1,11 @@
 # Hero Ribbon Left
 
-Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.
+Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

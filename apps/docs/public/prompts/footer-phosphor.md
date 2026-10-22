@@ -2,7 +2,7 @@
 component: footer-phosphor
 title: "Footer Phosphor"
 category: Footers
-tags: [footer, pointer, typography]
+tags: [footer, typography, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/footer-phosphor.json
 registry: https://vfx-ui.com/r/footer-phosphor.json
 docs: https://vfx-ui.com/components/footer-phosphor.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Footer Phosphor
 
-> A luminous cell wordmark that disperses around your pointer and settles home.
+> A wordmark made of light. Its cells scatter around your pointer and settle back into place.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Footer Phosphor” component to this project and use it as the
 
 ## Context
 
-A luminous cell wordmark that disperses around your pointer and settles home — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A wordmark made of light. Its cells scatter around your pointer and settle back into place — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

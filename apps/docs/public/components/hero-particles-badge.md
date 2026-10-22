@@ -1,11 +1,11 @@
 # Hero Particles Badge
 
-Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.
+Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

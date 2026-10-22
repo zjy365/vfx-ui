@@ -1,6 +1,6 @@
 # Hero Aurora
 
-Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
+Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
 
 ## Install
 

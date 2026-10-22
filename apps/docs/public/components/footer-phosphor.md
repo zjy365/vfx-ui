@@ -1,6 +1,6 @@
 # Footer Phosphor
 
-A luminous cell wordmark that disperses around your pointer and settles home.
+A wordmark made of light. Its cells scatter around your pointer and settle back into place.
 
 ## Install
 

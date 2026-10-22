@@ -1,6 +1,6 @@
 # Iridescent
 
-Silky thin-film interference colors drifting across the surface.
+Thin-film interference colors drifting as silk — cosine-palette holography in a single pass.
 
 ## Install
 

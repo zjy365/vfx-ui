@@ -1,6 +1,6 @@
 # Footer Fold
 
-A wordmark printed across hinged paper panels that respond to the pointer.
+Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.
 
 ## Install
 

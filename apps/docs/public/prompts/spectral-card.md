@@ -2,7 +2,7 @@
 component: spectral-card
 title: "Spectral Card"
 category: Interactions
-tags: [pointer, interactive]
+tags: [card, holographic, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/spectral-card.json
 registry: https://vfx-ui.com/r/spectral-card.json
 docs: https://vfx-ui.com/components/spectral-card.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Spectral Card
 
-> Holographic light and spatial tilt around your own content.
+> A touch of iridescence. Real content, spatial tilt, and light that follows you.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Spectral Card” component to this project and use it as an in
 
 ## Context
 
-Holographic light and spatial tilt around your own content — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A touch of iridescence. Real content, spatial tilt, and light that follows you — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,6 +1,6 @@
 # Fluid Gradient
 
-Domain-warped fBm noise flowing through a tri-color palette.
+Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video.
 
 ## Install
 

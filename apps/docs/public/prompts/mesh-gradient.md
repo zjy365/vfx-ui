@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Mesh Gradient
 
-> Voronoi-cell color fields flowing through a curated palette.
+> Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Mesh Gradient” component to this project and use it as an an
 
 ## Context
 
-Voronoi-cell color fields flowing through a curated palette — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -2,7 +2,7 @@
 component: terrain-ridge
 title: "Terrain Ridge"
 category: Backgrounds
-tags: [background, terrain, mountains, parallax]
+tags: [background, mountains, terrain, landscape]
 install: npx shadcn@latest add https://vfx-ui.com/r/terrain-ridge.json
 registry: https://vfx-ui.com/r/terrain-ridge.json
 docs: https://vfx-ui.com/components/terrain-ridge.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Terrain Ridge
 
-> Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.
+> Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede into haze, each scrolling at its own speed, under a low sun that rims the nearest crest.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Terrain Ridge” component to this project and use it as an an
 
 ## Context
 
-Layered ridged-noise mountain silhouettes rolling in parallax under a low sun — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede into haze, each scrolling at its own speed, under a low sun that rims the nearest crest — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

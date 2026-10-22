@@ -1,6 +1,6 @@
 # Glass Panel
 
-A broad ray-marched optical slab that carries your own content across a full panel.
+An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it.
 
 ## Install
 

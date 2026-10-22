@@ -1,6 +1,6 @@
 # Ripple Text
 
-Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.
+Type you can touch: a click (or tap) drops a ripple that travels outward through the letters, and a resting pointer leaves a soft dimple.
 
 ## Install
 

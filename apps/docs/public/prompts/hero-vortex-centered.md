@@ -6,12 +6,12 @@ tags: [hero, landing, galaxy, spiral, centered]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-vortex-centered.json
 registry: https://vfx-ui.com/r/hero-vortex-centered.json
 docs: https://vfx-ui.com/components/hero-vortex-centered.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Vortex Centered
 
-> Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.
+> Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Vortex Centered” component to this project and use it a
 
 ## Context
 
-Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-vortex-centered.md
 
 ````

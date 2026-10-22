@@ -1,6 +1,6 @@
 # Ember Drift
 
-Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.
+Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp.
 
 ## Install
 

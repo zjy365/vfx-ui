@@ -1,6 +1,6 @@
 # Footer Vinyl
 
-A record-sleeve footer with a pointer-rotated vinyl and your own label.
+A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve.
 
 ## Install
 

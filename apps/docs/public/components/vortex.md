@@ -1,6 +1,6 @@
 # Vortex
 
-Spiral galaxy swirl with star speckles and trailing arms.
+Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.
 
 ## Install
 

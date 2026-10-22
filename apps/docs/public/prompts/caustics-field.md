@@ -2,7 +2,7 @@
 component: caustics-field
 title: "Caustics Field"
 category: Backgrounds
-tags: [background, water, voronoi, caustics]
+tags: [background, water, caustics, pool]
 install: npx shadcn@latest add https://vfx-ui.com/r/caustics-field.json
 registry: https://vfx-ui.com/r/caustics-field.json
 docs: https://vfx-ui.com/components/caustics-field.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Caustics Field
 
-> Sunlit pool-floor caustics: a crawling net of focused light over deep water.
+> Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi net of focused light in three stacked octaves, with drifting silt motes.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Caustics Field” component to this project and use it as an a
 
 ## Context
 
-Sunlit pool-floor caustics: a crawling net of focused light over deep water — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi net of focused light in three stacked octaves, with drifting silt motes — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -2,7 +2,7 @@
 component: block-newsletter
 title: "Block Newsletter"
 category: Blocks
-tags: [block, section, landing, newsletter, subscribe, form]
+tags: [block, newsletter, signup, form, email]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-newsletter.json
 registry: https://vfx-ui.com/r/block-newsletter.json
 docs: https://vfx-ui.com/components/block-newsletter.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Newsletter
 
-> Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.
+> Newsletter signup that is a working form, not a mockup: client-side validation with inline announced errors, and a confirmation panel on success. Wire onSubscribe; without it, demo mode says so on screen.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Newsletter” component to this project and use it as a 
 
 ## Context
 
-Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Newsletter signup that is a working form, not a mockup: client-side validation with inline announced errors, and a confirmation panel on success. Wire onSubscribe; without it, demo mode says so on screen — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

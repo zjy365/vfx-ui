@@ -1,0 +1,42 @@
+---
+title: Installation
+description: Install editable source through the registry or use the React package.
+---
+
+## Copy source with the registry
+
+Initialize shadcn in your React project, then add a component by its registry URL:
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
+```
+
+Review the CLI changes before committing. Component source and required shared files are copied into your configured components directory. Import the installed files using your project alias, for example:
+
+```tsx
+import { HeroContour } from "@/components/HeroContour";
+```
+
+The free registry does not require an account or API key.
+
+## Use the package
+
+```bash
+npm install @vfx-ui/react
+```
+
+```tsx
+"use client";
+import { HeroContour } from "@vfx-ui/react/dom";
+
+export default function Page() {
+  return <HeroContour title="Find your own way." interactive />;
+}
+```
+
+React 18 and React 19 are verified. The `/dom` entry keeps GPU modules out of the import graph; GPU components are available from the main entry or component subpaths. In Next.js, place interactive components behind a client boundary. Keep server data fetching outside that boundary.
+
+## Layout and performance
+
+Give backgrounds and shader canvases an explicit size. Test a static fallback, touch interaction and reduced motion. Prefer one main visual effect per section; stacking many active shaders can exceed the device's frame budget.

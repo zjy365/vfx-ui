@@ -1,11 +1,11 @@
 # Hero Fluid Minimal
 
-Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.
+Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient. The entire hero for products that can be named in a breath.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

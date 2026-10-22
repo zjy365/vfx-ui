@@ -2,7 +2,7 @@
 component: footer-tidal
 title: "Footer Tidal"
 category: Footers
-tags: [footer, pointer, typography]
+tags: [footer, typography, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/footer-tidal.json
 registry: https://vfx-ui.com/r/footer-tidal.json
 docs: https://vfx-ui.com/components/footer-tidal.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Footer Tidal
 
-> Copper tidal lines beneath your brand, with pointer-driven currents.
+> Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Footer Tidal” component to this project and use it as the si
 
 ## Context
 
-Copper tidal lines beneath your brand, with pointer-driven currents — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

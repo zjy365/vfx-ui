@@ -2,7 +2,7 @@
 component: block-stats
 title: "Block Stats"
 category: Blocks
-tags: [block, section, landing, stats, numbers, count-up]
+tags: [block, stats, numbers, metrics, count-up]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-stats.json
 registry: https://vfx-ui.com/r/block-stats.json
 docs: https://vfx-ui.com/components/block-stats.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Stats
 
-> Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.
+> Stats band where every number counts up from zero on scroll-in, with a settled, screen-reader-friendly final value always present. Prefixes, suffixes and formatting are props.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Stats” component to this project and use it as a compl
 
 ## Context
 
-Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Stats band where every number counts up from zero on scroll-in, with a settled, screen-reader-friendly final value always present. Prefixes, suffixes and formatting are props — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,6 +1,6 @@
 # Hero Fiber
 
-Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
+Drop-in hero: top-weighted headline over luminous silk fibers streaming through the dark.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Solar Corona
 
-A boiling sun disk crowned with streaming corona light and polar plumes.
+A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field.
 
 ## Install
 

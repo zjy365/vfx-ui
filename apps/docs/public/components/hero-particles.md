@@ -1,6 +1,6 @@
 # Hero Particles
 
-Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
+Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.
 
 ## Install
 

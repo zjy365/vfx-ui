@@ -1,0 +1,406 @@
+/* Motion is feedback: pointer presses, card discovery and preview state changes. */
+:root {
+  --ease-settle: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-press: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* The homepage artwork is a light material study in either site theme. */
+.optical-stage {
+  color: #17191c;
+}
+.stage-label {
+  color: #555b64;
+}
+.magnetic-card {
+  color: #17191c;
+}
+.magnetic-dot {
+  background: #17191c;
+  color: #fff;
+}
+.stage-swatches i {
+  background: #17191c;
+}
+.stage-swatches i:nth-child(3) {
+  background: #dde0e4;
+}
+::selection {
+  color: #17191c;
+}
+.skip-link {
+  color: var(--on-ink);
+}
+
+/* Retain stable hit areas; hover transforms belong on their visual children. */
+.button,
+.gallery-play {
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 150ms var(--ease-press);
+}
+.button:hover {
+  background: var(--ink);
+  transform: none;
+}
+.button.button-outline:hover {
+  background: transparent;
+}
+.button.yellow:hover {
+  background: var(--accent);
+}
+.gallery-play:hover {
+  background: #fff;
+  transform: none;
+}
+.featured-card:hover img,
+.gallery-item:hover .gallery-art > a img,
+.component-card:hover img {
+  transform: none;
+}
+.featured-image img,
+.gallery-art img,
+.component-thumbnail img,
+.template-cover > img,
+.mini-cover img {
+  transition: transform 240ms var(--ease-settle);
+}
+.theme-toggle,
+.copy-button,
+.gallery-stop,
+.reset-controls,
+.variant-list button {
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 150ms var(--ease-press);
+}
+.theme-toggle {
+  width: 44px;
+  height: 44px;
+}
+.copy-button,
+.gallery-play,
+.gallery-stop,
+.reset-controls,
+.variant-list button,
+.gallery-categories button,
+.product-tabs button,
+.preview-options button {
+  min-height: 44px;
+}
+.gallery-stop {
+  width: 44px;
+  height: 44px;
+}
+.product-tabs button {
+  transition: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: color-mix(in srgb, var(--ink) 84%, var(--canvas));
+  }
+  .button.button-outline:hover {
+    background: var(--surface);
+    border-color: var(--muted);
+  }
+  .button.yellow:hover,
+  .gallery-play:hover {
+    background: #f5d547;
+  }
+  .theme-toggle:hover,
+  .copy-button:hover,
+  .reset-controls:hover,
+  .variant-list button:hover {
+    background: var(--surface);
+    border-color: var(--muted);
+  }
+  .gallery-stop:hover {
+    background: #f5d547;
+    border-color: #17191c;
+  }
+  .featured-card:hover img,
+  .gallery-item:hover .gallery-art > a img,
+  .component-card:hover img,
+  .template-card > a:hover .template-cover > img,
+  .mini-template:hover .mini-cover img {
+    transform: scale(1.018);
+  }
+  .desktop-nav a:hover,
+  .header-actions > a:not(.button):hover,
+  .footer-links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+}
+
+.button:active:not(:focus-visible),
+.gallery-play:active:not(:focus-visible),
+.gallery-stop:active:not(:focus-visible),
+.theme-toggle:active:not(:focus-visible),
+.copy-button:active:not(:focus-visible),
+.reset-controls:active:not(:focus-visible),
+.variant-list button:active:not(:focus-visible) {
+  transform: scale(0.98);
+}
+:is(a, button, summary):focus-visible {
+  transition: none;
+}
+
+/* Newly visible content fades as a group; headings and gallery results stay immediate. */
+@keyframes vfx-surface-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes vfx-preview-enter {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.customize-surface,
+.usage-surface,
+.mobile-menu[open] nav {
+  animation: vfx-surface-enter 180ms var(--ease-settle);
+}
+.live-preview iframe,
+.gallery-art iframe,
+.template-browser iframe {
+  animation: vfx-preview-enter 200ms ease;
+}
+.component-reference summary::after {
+  content: "+";
+  font: 20px/20px var(--font-mono);
+}
+.component-reference details[open] > summary::after {
+  content: "−";
+}
+.component-reference summary > span:last-child {
+  display: none;
+}
+.component-reference details[open] > div {
+  animation: vfx-preview-enter 160ms ease;
+}
+
+/* Utility pages follow the same Paper editorial scale and readable measure. */
+.prose-page {
+  max-width: 1000px;
+}
+.prose-page h1 {
+  font-size: 72px;
+  line-height: 76px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+}
+.prose-page h2 {
+  line-height: 34px;
+  margin-top: 44px;
+}
+.prose-page p {
+  max-width: 76ch;
+  line-height: 28px;
+}
+.prose-page .eyebrow {
+  line-height: 16px;
+  font-size: 12px;
+  color: var(--ink);
+}
+.prose-page h1 + p {
+  font-size: 17px;
+  line-height: 29px;
+}
+.empty-state:has(h1) {
+  min-height: 640px;
+  padding: 80px 24px;
+  gap: 24px;
+  justify-content: center;
+}
+.empty-state h1 {
+  max-width: 640px;
+  font-size: 72px;
+  line-height: 76px;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
+}
+.empty-state:has(h1) > p:not(.eyebrow) {
+  max-width: 440px;
+}
+.empty-state:has(h1) > .button {
+  background: var(--accent);
+  color: #17191c;
+}
+
+@media (max-width: 767px) {
+  .gallery-art > a img {
+    object-fit: contain;
+  }
+  .mobile-theme .theme-toggle {
+    width: 44px;
+    height: 44px;
+  }
+  .mobile-menu nav {
+    gap: 8px;
+    padding-block: 12px;
+  }
+  .mobile-menu nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .gallery-toolbar {
+    min-width: 0;
+  }
+  .gallery-categories {
+    width: calc(100% + 48px);
+    min-width: 0;
+    max-width: calc(100% + 48px);
+  }
+  .gallery-categories button {
+    flex-shrink: 0;
+  }
+  .gallery-caption > span {
+    font-size: 10px;
+  }
+  .gallery .result-count {
+    font-size: 10px;
+  }
+  .product-preview-tools .preview-options {
+    flex-wrap: wrap;
+    column-gap: 20px;
+    row-gap: 0;
+  }
+  .product-tabs button {
+    font-size: 12px;
+  }
+  .component-product-heading > .button {
+    min-height: 44px;
+  }
+  .prose-page h1 {
+    font-size: 52px;
+    line-height: 56px;
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+  }
+  .prose-page h2 {
+    font-size: 24px;
+    line-height: 31px;
+    margin-top: 36px;
+  }
+  .prose-page p,
+  .prose-page h1 + p {
+    font-size: 15px;
+    line-height: 26px;
+  }
+  .prose-page .eyebrow {
+    font-size: 10px;
+    line-height: 16px;
+  }
+  .empty-state:has(h1) {
+    min-height: 580px;
+    padding-block: 64px;
+  }
+  .empty-state h1 {
+    max-width: 340px;
+    font-size: 48px;
+    line-height: 52px;
+  }
+  .empty-state:has(h1) > p:not(.eyebrow) {
+    font-size: 15px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .optical-poster,
+  .magnetic-dot {
+    transform: none !important;
+    transition: none;
+  }
+  .featured-image img,
+  .gallery-art img,
+  .component-thumbnail img,
+  .template-cover > img,
+  .mini-cover img {
+    transform: none !important;
+    transition: none;
+  }
+  .button,
+  .gallery-play,
+  .gallery-stop,
+  .theme-toggle,
+  .copy-button,
+  .reset-controls,
+  .variant-list button {
+    transform: none !important;
+    transition:
+      background-color 120ms ease,
+      border-color 120ms ease;
+  }
+  .customize-surface,
+  .usage-surface,
+  .mobile-menu[open] nav {
+    animation: vfx-preview-enter 120ms ease;
+  }
+  .live-preview iframe,
+  .gallery-art iframe,
+  .template-browser iframe,
+  .component-reference details[open] > div {
+    animation-duration: 120ms;
+  }
+}
+
+/* Fixed preview ratios must not impose an intrinsic minimum on narrow grid tracks. */
+.mini-art.mini-cover {
+  min-height: 0;
+  width: 100%;
+}
+@media (min-width: 768px) and (max-width: 1100px) {
+  .template-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .template-strip .card-caption {
+    font-size: 13px;
+  }
+}
+
+/* Keyboard selection follows focus immediately, including the revealed content. */
+main:has(.product-tabs button:focus-visible) .customize-surface,
+main:has(.product-tabs button:focus-visible) .usage-surface,
+.mobile-menu:has(summary:focus-visible) nav,
+.component-reference details:has(summary:focus-visible) > div {
+  animation: none;
+}
+.customize-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.usage-surface .variant-list {
+  margin-block: 20px;
+}
+.usage-surface .variant-list button[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--on-ink);
+  border-color: var(--ink);
+}
+@media (max-width: 767px) {
+  .customize-heading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+  .customize-actions {
+    margin-left: auto;
+  }
+}

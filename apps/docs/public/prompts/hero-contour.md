@@ -2,7 +2,7 @@
 component: hero-contour
 title: "Hero Contour"
 category: Heroes
-tags: [hero, pointer, editorial]
+tags: [hero, pointer, terrain, topography, generative]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 registry: https://vfx-ui.com/r/hero-contour.json
 docs: https://vfx-ui.com/components/hero-contour.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Hero Contour
 
-> A seeded topographic paper landscape that lifts around the pointer.
+> A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Contour” component to this project and use it as the he
 
 ## Context
 
-A seeded topographic paper landscape that lifts around the pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

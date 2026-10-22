@@ -2,7 +2,7 @@
 component: block-nav
 title: "Block Nav"
 category: Blocks
-tags: [block, section, landing, navigation, menu, mobile]
+tags: [block, navigation, header, menu, mobile]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-nav.json
 registry: https://vfx-ui.com/r/block-nav.json
 docs: https://vfx-ui.com/components/block-nav.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Nav
 
-> Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.
+> Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet. Sticky variant gains a scrim once the page scrolls.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Nav” component to this project and use it as a complet
 
 ## Context
 
-Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet. Sticky variant gains a scrim once the page scrolls — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

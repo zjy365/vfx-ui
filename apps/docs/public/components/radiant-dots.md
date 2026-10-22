@@ -1,6 +1,6 @@
 # Radiant Dots
 
-Orbital emitters with jump-flooded distance fields and radiance cascades.
+A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field.
 
 ## Install
 

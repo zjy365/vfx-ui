@@ -1,6 +1,6 @@
 # Terrain Ridge
 
-Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.
+Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede into haze, each scrolling at its own speed, under a low sun that rims the nearest crest.
 
 ## Install
 

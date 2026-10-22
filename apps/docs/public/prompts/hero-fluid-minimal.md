@@ -2,16 +2,16 @@
 component: hero-fluid-minimal
 title: "Hero Fluid Minimal"
 category: Heroes
-tags: [hero, landing, gradient, fluid, minimal]
+tags: [hero, landing, fluid, minimal, gradient]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-fluid-minimal.json
 registry: https://vfx-ui.com/r/hero-fluid-minimal.json
 docs: https://vfx-ui.com/components/hero-fluid-minimal.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Fluid Minimal
 
-> Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.
+> Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient. The entire hero for products that can be named in a breath.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Fluid Minimal” component to this project and use it as 
 
 ## Context
 
-Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient. The entire hero for products that can be named in a breath — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-fluid-minimal.md
 
 ````

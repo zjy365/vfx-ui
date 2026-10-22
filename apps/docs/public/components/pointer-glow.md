@@ -1,6 +1,6 @@
 # Pointer Glow
 
-A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.
+A handheld light for layouts: the region dims slightly and a warm source follows the pointer, brightening whatever it rests on.
 
 ## Install
 

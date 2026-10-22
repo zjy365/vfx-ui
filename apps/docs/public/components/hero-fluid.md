@@ -1,6 +1,6 @@
 # Hero Fluid
 
-Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
+Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.
 
 ## Install
 

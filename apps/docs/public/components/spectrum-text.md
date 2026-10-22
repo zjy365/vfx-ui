@@ -1,6 +1,6 @@
 # Spectrum Text
 
-A spectral light band flows continuously through your words and leans toward the pointer.
+A ribbon of daylight sliding through the words: one spectral gradient flows continuously across the type and leans toward the pointer.
 
 ## Install
 

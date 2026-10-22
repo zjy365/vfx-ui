@@ -1,6 +1,6 @@
 # Light Prism
 
-A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
+A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline.
 
 ## Install
 

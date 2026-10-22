@@ -2,7 +2,7 @@
 component: ember-drift
 title: "Ember Drift"
 category: Backgrounds
-tags: [background, particles, fire, heat]
+tags: [background, embers, fire, sparks]
 install: npx shadcn@latest add https://vfx-ui.com/r/ember-drift.json
 registry: https://vfx-ui.com/r/ember-drift.json
 docs: https://vfx-ui.com/components/ember-drift.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Ember Drift
 
-> Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.
+> Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Ember Drift” component to this project and use it as an anim
 
 ## Context
 
-Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,6 +1,6 @@
 # Hero Black Hole
 
-Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
+Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
 
 ## Install
 

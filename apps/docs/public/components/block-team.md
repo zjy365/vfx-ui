@@ -1,6 +1,6 @@
 # Block Team
 
-Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.
+Team grid: cards with an avatar (your image node or an auto-generated initials badge), name, role and profile links. Names can link out.
 
 ## Install
 

@@ -2,7 +2,7 @@
 component: liquid-glass
 title: "Liquid Glass"
 category: Glass
-tags: [glass, refraction, liquid]
+tags: [glass, sculpture, liquid]
 install: npx shadcn@latest add https://vfx-ui.com/r/liquid-glass.json
 registry: https://vfx-ui.com/r/liquid-glass.json
 docs: https://vfx-ui.com/components/liquid-glass.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Liquid Glass
 
-> A molten glass annulus with a travelling silhouette and spectral transmission.
+> A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Liquid Glass” component to this project and use it as a glas
 
 ## Context
 
-A molten glass annulus with a travelling silhouette and spectral transmission — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

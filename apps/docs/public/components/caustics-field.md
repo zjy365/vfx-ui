@@ -1,6 +1,6 @@
 # Caustics Field
 
-Sunlit pool-floor caustics: a crawling net of focused light over deep water.
+Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi net of focused light in three stacked octaves, with drifting silt motes.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Hero Starfield
 
-Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.
+Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax drift.
 
 ## Install
 

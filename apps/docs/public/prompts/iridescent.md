@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Iridescent
 
-> Silky thin-film interference colors drifting across the surface.
+> Thin-film interference colors drifting as silk — cosine-palette holography in a single pass.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Iridescent” component to this project and use it as an anima
 
 ## Context
 
-Silky thin-film interference colors drifting across the surface — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Thin-film interference colors drifting as silk — cosine-palette holography in a single pass — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

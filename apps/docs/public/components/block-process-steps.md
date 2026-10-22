@@ -1,6 +1,6 @@
 # Block Process Steps
 
-Three-to-four step process with a self-drawing connector line and replaceable media per step.
+Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Glass Lens
 
-A biconvex glass lens that magnifies and inverts a printed studio scene.
+A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.
 
 ## Install
 

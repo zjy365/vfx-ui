@@ -2,7 +2,7 @@
 component: block-logos
 title: "Block Logos"
 category: Blocks
-tags: [block, section, landing, logos, customers, social-proof]
+tags: [block, logos, social-proof, trust, customers]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-logos.json
 registry: https://vfx-ui.com/r/block-logos.json
 docs: https://vfx-ui.com/components/block-logos.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Logos
 
-> Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.
+> Customer logo wall: a hairline grid of brand tiles that sit desaturated until hover. Real marks via logo (img or inline svg) or styled wordmarks — no assets required.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Logos” component to this project and use it as a compl
 
 ## Context
 
-Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Customer logo wall: a hairline grid of brand tiles that sit desaturated until hover. Real marks via logo (img or inline svg) or styled wordmarks — no assets required — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

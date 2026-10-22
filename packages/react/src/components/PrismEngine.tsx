@@ -289,7 +289,15 @@ var init_types = __esm({
 
 // references/vgpu/apps/docs/app/[lang]/(home)/components/prism-background/camera.ts
 import { perspectiveCamera } from "vgpu/scene";
-function cameraView(aspect, orbitX = 0, orbitY = 0, distance = CAMERA_DISTANCE, fov = CAMERA_FOV_DEGREES) {
+interface PrismCameraView {
+  camera: ReturnType<typeof perspectiveCamera>;
+  viewProjection: Float32Array;
+  position: number[];
+  forward: number[];
+  right: number[];
+  up: number[];
+}
+function cameraView(aspect, orbitX = 0, orbitY = 0, distance = CAMERA_DISTANCE, fov = CAMERA_FOV_DEGREES): PrismCameraView {
   const limit = CAMERA_ORBIT_DEGREES;
   const yaw = radians2(CAMERA_YAW_DEGREES + clamp(orbitX, -1, 1) * limit);
   const pitch = radians2(CAMERA_PITCH_DEGREES - clamp(orbitY, -1, 1) * limit);

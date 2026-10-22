@@ -2,7 +2,7 @@
 component: block-gallery
 title: "Block Gallery"
 category: Blocks
-tags: [block, section, landing, gallery, portfolio, lightbox]
+tags: [block, gallery, portfolio, lightbox, work]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-gallery.json
 registry: https://vfx-ui.com/r/block-gallery.json
 docs: https://vfx-ui.com/components/block-gallery.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Gallery
 
-> Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.
+> Work gallery: a responsive grid of tiles that lift on hover, with an optional lightbox — a real dialog (focus moves in, Escape closes, arrows navigate, Tab stays trapped, focus returns).
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Gallery” component to this project and use it as a com
 
 ## Context
 
-Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Work gallery: a responsive grid of tiles that lift on hover, with an optional lightbox — a real dialog (focus moves in, Escape closes, arrows navigate, Tab stays trapped, focus returns) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

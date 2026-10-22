@@ -1,6 +1,6 @@
 # Hero Mesh
 
-Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
+Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
 
 ## Install
 

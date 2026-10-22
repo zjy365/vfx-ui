@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Light Prism
 
-> A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
+> A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Light Prism” component to this project and use it as a glass
 
 ## Context
 
-A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

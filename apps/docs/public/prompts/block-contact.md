@@ -2,7 +2,7 @@
 component: block-contact
 title: "Block Contact"
 category: Blocks
-tags: [block, section, landing, contact, form, channels]
+tags: [block, contact, form, channels, email]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-contact.json
 registry: https://vfx-ui.com/r/block-contact.json
 docs: https://vfx-ui.com/components/block-contact.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Contact
 
-> Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.
+> Contact section: a direct-channels list (email, phone, office — real links) beside a configurable form skeleton with labels wired to inputs and native validation intact.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Contact” component to this project and use it as a com
 
 ## Context
 
-Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Contact section: a direct-channels list (email, phone, office — real links) beside a configurable form skeleton with labels wired to inputs and native validation intact — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

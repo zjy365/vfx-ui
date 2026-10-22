@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Solar Corona
 
-> A boiling sun disk crowned with streaming corona light and polar plumes.
+> A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Solar Corona” component to this project and use it as an ani
 
 ## Context
 
-A boiling sun disk crowned with streaming corona light and polar plumes — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

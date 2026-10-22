@@ -1,6 +1,6 @@
 # Fiber Flow
 
-Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.
 
 ## Install
 

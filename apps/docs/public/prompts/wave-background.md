@@ -2,7 +2,7 @@
 component: wave-background
 title: "Wave Background"
 category: Backgrounds
-tags: [background, gradient, wave, hero]
+tags: [background, gradient, waves, hero]
 install: npx shadcn@latest add https://vfx-ui.com/r/wave-background.json
 registry: https://vfx-ui.com/r/wave-background.json
 docs: https://vfx-ui.com/components/wave-background.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Wave Background
 
-> Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
+> Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Wave Background” component to this project and use it as an 
 
 ## Context
 
-Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

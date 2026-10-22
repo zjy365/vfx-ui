@@ -1,6 +1,6 @@
 # Dust Motes
 
-Dust motes drifting through slanted Tyndall beams in a dark room.
+Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room.
 
 ## Install
 

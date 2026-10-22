@@ -1,6 +1,6 @@
 # Hero Iridescent
 
-Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
+Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Kinetic Text
 
-A pointer-driven force field lifts your words into a soft wave.
+Letters lift into a soft wave as your cursor passes through.
 
 ## Install
 

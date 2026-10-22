@@ -1,6 +1,6 @@
 # Magnetic
 
-A gentle magnetic pull for your own buttons, links, and content.
+Give a button, link, or any small piece of content a gentle pull.
 
 ## Install
 

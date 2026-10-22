@@ -1,6 +1,6 @@
 # Tilt Card
 
-A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.
+A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it.
 
 ## Install
 

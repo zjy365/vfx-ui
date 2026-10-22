@@ -1,75 +1,39 @@
-name: Check docs build
-
+name: Check public product build
 on:
   push:
     branches: [main]
-    paths:
-      - "apps/docs/**"
-      - "packages/react/**"
-      - "packages/core/**"
-      - "registry/**"
-      - "scripts/generate-agentic.mjs"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - ".github/workflows/deploy-docs.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "apps/docs/**"
-      - "packages/react/**"
-      - "packages/core/**"
-      - "registry/**"
-      - "scripts/generate-agentic.mjs"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: docs-build-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v4
         with:
           version: 8.15.9
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
-
-      # Rebuild the copy-paste registry from live component sources so the
-      # served catalog can never drift from the published package.
-      - name: Build registry
-        run: node registry/build.mjs
-
-      # llms.txt, agents.md, and one .md per component — consumed by coding agents.
-      - name: Generate agentic docs
-        run: node scripts/generate-agentic.mjs
-
-      # Serve the shadcn-format registry at vfx-ui.com/r/<name>.json, which is
-      # the DEFAULT_REGISTRY the CLI fetches from (packages/cli/bin/cli.mjs).
-      - name: Stage registry into docs site
-        run: |
-          mkdir -p apps/docs/public/r
-          cp registry/dist/r/*.json apps/docs/public/r/
-          cp registry/dist/index.json apps/docs/public/r/index.json
-
-      - name: Build docs site
-        run: pnpm --filter @vfx-ui/docs build
-
-      # Cloudflare Pages builds and deploys main through its GitHub integration.
-      # This workflow checks the same build without requiring deployment secrets.
+      - name: Build packages and static product site
+        run: pnpm build
+      - name: Typecheck all packages and applications
+        run: pnpm typecheck
+      - name: Verify catalog, free registry and MCP boundary
+        run: pnpm catalog:check
+      - name: Verify packaged React 18 and React 19 consumers
+        run: pnpm test:consumer
+      - name: Verify isolated registry consumers
+        run: node scripts/check-registry-consumers.mjs
+      - name: MCP smoke tests
+        run: pnpm --filter @vfx-ui/mcp test
+      # Cloudflare Pages publishes main through its existing Git integration.
+      # Build output remains apps/docs/dist; this workflow does not deploy.

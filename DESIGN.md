@@ -1,5 +1,17 @@
 # VFX UI design direction
 
+## Current product site
+
+The current Paper source is [VFX UI Product and Pro Templates](https://app.paper.design/file/01M5HVXDTEQ1MSSB7PR9NTDP6H). It contains desktop/mobile homepage and component gallery designs, a full-width component playground, Pro collection and purchases, plus original template directions on the second page.
+
+The website is a component product, with direct interactive previews and prominent source access. It has no persistent documentation sidebar in the gallery or component playground. Code, installation and API content are progressively disclosed. Fumadocs is restricted to the technical documentation routes.
+
+Use Manrope for product typography and DM Mono for compact metadata. The light canvas is white, ink #17191C, muted #555B64, surface #F1F2F4, line #DDE0E4, accent #F5D547. Desktop page padding is 64px, mobile 24px. Main display is 80/84px with -0.055em tracking; the gallery uses 72/76px, and component titles 44/50px. Mobile display is 48–52px. CSS tokens support light/dark without imposing website variables on consumer components.
+
+The homepage optical study, yellow magnetic control, large hero/footer previews and separate Pro collection establish the brand. The actual components supply the visual variety. Preview runtimes are isolated and loaded on request in the gallery; a detail page runs one component at a time. GPU loops pause when hidden, offscreen or reduced motion is requested.
+
+The records below describe prior library artwork. They remain relevant to component compatibility and attribution, and do not override the current product-site design.
+
 ## Intent
 
 An interactive material exhibition for developers. Visitors should experience an effect, understand what responds to them, and reach working source with minimal friction. Preserve the existing cinematic Hero effects while broadening the library with a few expressive DOM components.

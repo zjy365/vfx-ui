@@ -2,16 +2,16 @@
 component: hero-starfield-split
 title: "Hero Starfield Split"
 category: Heroes
-tags: [hero, landing, stars, space, split, badges]
+tags: [hero, landing, stars, split, badges]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-starfield-split.json
 registry: https://vfx-ui.com/r/hero-starfield-split.json
 docs: https://vfx-ui.com/components/hero-starfield-split.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Starfield Split
 
-> Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.
+> Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Starfield Split” component to this project and use it a
 
 ## Context
 
-Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-starfield-split.md
 
 ````

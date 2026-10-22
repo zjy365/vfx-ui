@@ -2,7 +2,7 @@
 component: astra-field
 title: "Astra Field"
 category: Backgrounds
-tags: [galaxy, stars]
+tags: [galaxy, particles, stars, hero]
 install: npx shadcn@latest add https://vfx-ui.com/r/astra-field.json
 registry: https://vfx-ui.com/r/astra-field.json
 docs: https://vfx-ui.com/components/astra-field.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Astra Field
 
-> A rotatable spiral galaxy of glowing stars.
+> A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Astra Field” component to this project and use it as an anim
 
 ## Context
 
-A rotatable spiral galaxy of glowing stars — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

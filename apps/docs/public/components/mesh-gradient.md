@@ -1,6 +1,6 @@
 # Mesh Gradient
 
-Voronoi-cell color fields flowing through a curated palette.
+Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.
 
 ## Install
 

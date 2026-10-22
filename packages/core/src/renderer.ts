@@ -1,5 +1,5 @@
-import { effect, frameLoop, init, surface } from "vgpu";
-import type { Gpu } from "vgpu";
+import { effect, frame, frameLoop, init, surface } from "vgpu";
+import type { Gpu, Frame } from "vgpu";
 import { TIME_UNIFORM, type VfxRenderer, type VfxRendererFactory, type VfxRendererOptions } from "./types.ts";
 
 export interface CreateVfxRendererOptions extends VfxRendererOptions {
@@ -69,35 +69,63 @@ async function attachRenderer(
   let animate = options.animate !== false;
   let elapsed = 0;
   let last = performance.now();
-
-  const loop = frameLoop(
-    gpu,
-    (frame) => {
+  let disposed = false;
+  let refreshPending = false;
+  let loop: ReturnType<typeof frameLoop> | undefined;
+  const draw = (current: Frame) => {
+    current.pass({ target: surf }, (pass) => pass.draw(fx));
+  };
+  // Surface auto-sizing runs when a frame opens. Observing the element wakes a
+  // paused renderer without a permanent rAF or a reentrant surface.onResize frame.
+  const refresh = () => {
+    if (disposed || animate || refreshPending) return;
+    refreshPending = true;
+    queueMicrotask(() => {
+      refreshPending = false;
+      if (!disposed && !animate) frame(gpu, draw);
+    });
+  };
+  const start = () => {
+    if (disposed || loop) return;
+    last = performance.now();
+    loop = frameLoop(gpu, (current) => {
       const now = performance.now();
       const dt = Math.min((now - last) / 1000, 0.1);
       last = now;
-      if (animate) {
-        elapsed += dt;
-        fx.set({ [TIME_UNIFORM]: elapsed });
-      }
-      frame.pass({ target: surf }, (p) => {
-        p.draw(fx);
-      });
-    },
-    options.fps != null ? { fps: options.fps } : undefined,
-  );
+      elapsed += dt;
+      fx.set({ [TIME_UNIFORM]: elapsed });
+      draw(current);
+    }, options.fps != null ? { fps: options.fps } : undefined);
+  };
+  const observer = typeof ResizeObserver === "function" ? new ResizeObserver(refresh) : undefined;
+  observer?.observe(canvas);
+  if (typeof window !== "undefined") window.addEventListener("resize", refresh);
+  if (animate) start();
+  else refresh();
 
   return {
     label,
     setUniforms(values) {
+      if (disposed) return;
       fx.set(values);
+      refresh();
     },
     setAnimate(next) {
-      if (next && !animate) last = performance.now();
+      if (disposed || next === animate) return;
       animate = next;
+      if (next) start();
+      else {
+        loop?.stop();
+        loop = undefined;
+        refresh();
+      }
     },
     dispose() {
-      loop.stop();
+      if (disposed) return;
+      disposed = true;
+      loop?.stop();
+      observer?.disconnect();
+      if (typeof window !== "undefined") window.removeEventListener("resize", refresh);
       surf.dispose();
     },
   };

@@ -2,7 +2,7 @@
 component: block-milestones
 title: "Block Milestones"
 category: Blocks
-tags: [block, section, landing, milestones, progress, roadmap]
+tags: [block, roadmap, progress, milestones, steps]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-milestones.json
 registry: https://vfx-ui.com/r/block-milestones.json
 docs: https://vfx-ui.com/components/block-milestones.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Milestones
 
-> Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.
+> Milestone progress: a roadmap strip whose completed steps light up in sequence on scroll-in, the current step breathes, and upcoming steps stay dimmed. Which steps are done is pure data.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Milestones” component to this project and use it as a 
 
 ## Context
 
-Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Milestone progress: a roadmap strip whose completed steps light up in sequence on scroll-in, the current step breathes, and upcoming steps stay dimmed. Which steps are done is pure data — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,6 +1,6 @@
 # Astra Field
 
-A rotatable spiral galaxy of glowing stars.
+A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field.
 
 ## Install
 

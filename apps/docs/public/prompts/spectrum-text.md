@@ -2,7 +2,7 @@
 component: spectrum-text
 title: "Spectrum Text"
 category: Text
-tags: [pointer, interactive]
+tags: [text, gradient, spectrum, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/spectrum-text.json
 registry: https://vfx-ui.com/r/spectrum-text.json
 docs: https://vfx-ui.com/components/spectrum-text.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Spectrum Text
 
-> A spectral light band flows continuously through your words and leans toward the pointer.
+> A ribbon of daylight sliding through the words: one spectral gradient flows continuously across the type and leans toward the pointer.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Spectrum Text” component to this project and use it to anima
 
 ## Context
 
-A spectral light band flows continuously through your words and leans toward the pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A ribbon of daylight sliding through the words: one spectral gradient flows continuously across the type and leans toward the pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

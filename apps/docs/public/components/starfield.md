@@ -1,6 +1,6 @@
 # Starfield
 
-Hashed star grid with twinkle and slow parallax drift.
+Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.
 
 ## Install
 

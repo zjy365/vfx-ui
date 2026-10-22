@@ -1,0 +1,20 @@
+---
+title: Motion & accessibility
+description: Keep the content useful with reduced motion, touch, keyboard and unavailable GPU support.
+---
+
+## Start with content
+
+Effects should support your message. Keep headings, links and calls to action in semantic HTML. A visual effect must not be the only way to understand an action or state.
+
+## Reduced motion
+
+Respect `prefers-reduced-motion: reduce`. Components may keep static artwork while removing pointer movement and continuous animation. Test individual component behavior before shipping your page.
+
+## Touch and keyboard
+
+Pointer effects are optional enhancements. Provide native links and buttons, visible focus styles, readable contrast and useful touch targets. Do not make hover the only way to reach content.
+
+## GPU fallback
+
+Test the target browsers and devices. A browser without WebGPU should still display your content and a static visual fallback. Avoid placing essential text inside a GPU canvas.

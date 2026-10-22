@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Silk Veil
 
-> A draped silk curtain of warped folds with a luster band sweeping the weave.
+> A draped silk curtain with a sheen band sweeping across it — domain-warped folds shaded anisotropically like cloth-of-gold, with fine weave grain.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Silk Veil” component to this project and use it as an animat
 
 ## Context
 
-A draped silk curtain of warped folds with a luster band sweeping the weave — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A draped silk curtain with a sheen band sweeping across it — domain-warped folds shaded anisotropically like cloth-of-gold, with fine weave grain — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

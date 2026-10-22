@@ -1,0 +1,31 @@
+1:"$Sreact.fragment"
+2:"/templates/previews/startup/_next/static/chunks/0asynrbih_rig.js"
+3:I[80952,["$2"],"Navigation"]
+4:I[68685,["$2"],"default"]
+5:I[88410,["$2"],"default"]
+6:"/templates/previews/startup/_next/static/chunks/0rl2c8eu4k3oz.js"
+7:I[38264,["$2","$6"],""]
+e:I[57632,["$2","$6"],"ContactForm"]
+f:I[13018,["$2"],"OutletBoundary"]
+10:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[13018,["$2"],"$13"]
+15:"MetadataBoundary"
+16:I[13018,["$2"],"$15"]
+17:I[86664,["$2"],"IconMark"]
+:HL["/templates/previews/startup/_next/static/chunks/2um9bu8x3u6nw.css","style"]
+9:X
+c:X
+c:C
+d:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[[["$","header",null,{"className":"page-intro","children":[["$","$L7",null,{"className":"back-link","href":"/","children":"← Back to home"}],["$","p",null,{"className":"eyebrow","children":"Join the early conversation"}],["$","h1",null,{"children":"A small beginning."}],["$","p",null,{"className":"intro-copy","children":"Share what you are working on and what a calmer tool might help you do. This form prepares an email; it does not create an account or subscribe you automatically."}]]}],["$","section",null,{"className":"section form-section","children":[["$","div",null,{"children":[["$","h2",null,{"children":"Start a conversation."}],["$","p",null,{"children":"Tell us where you are and what comes next. We will use the email you send to continue the conversation."}]]}],["$","$Le",null,{}]]}],null,null,null],[["$","script","script-0",{"src":"/templates/previews/startup/_next/static/chunks/0rl2c8eu4k3oz.js","async":true}]],["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]]}],"p":"$@12","v":null,"s":"$9"}}]]
+a:[["children",{"s":{"n":"slug","t":"oc","k":"early-access","s":[]},"h":65632,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}],"p":"$@b","v":"$c","s":"$9"},"c":"$Qd"}]]
+0:{"t":{"t":{"s":"","h":131152,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/templates/previews/startup/_next/static/chunks/2um9bu8x3u6nw.css","precedence":"next"}],["$","script","script-0",{"src":"/templates/previews/startup/_next/static/chunks/0asynrbih_rig.js","async":true}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"startup","children":[["$","a",null,{"className":"skip","href":"#main-content","children":"Skip to content"}],["$","$L3",null,{}],["$","main",null,{"id":"main-content","children":["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}],"notFound":[["$","section",null,{"className":"page-intro","children":[["$","p",null,{"className":"eyebrow","children":"404 / A small detour"}],["$","h1",null,{"children":"Not quite here."}],["$","p",null,{"children":"This page does not exist. There is a good place to begin again."}],["$","$L7",null,{"className":"button","href":"/","children":"Return to home ↗"}]]}],[]]}]}],["$","footer",null,{"className":"site-footer","children":[["$","div",null,{"className":"footer-invitation","children":[["$","p",null,{"className":"eyebrow","children":"Your next chapter"}],["$","h2",null,{"children":"Make space\nfor a different day."}],["$","$L7",null,{"className":"text-link","href":"/early-access","children":["Join the early list"," ↗"]}]]}],["$","div",null,{"className":"footer-bottom","children":[["$","$L7",null,{"className":"wordmark","href":"/","children":"fieldwork."}],["$","div",null,{"children":[["$","$L7",null,{"href":"/privacy","children":"Privacy"}],["$","$L7",null,{"href":"/terms","children":"Terms"}],["$","a",null,{"href":"mailto:hello@your-domain.example","children":"Email"}]]}],["$","small",null,{"children":["© ","2026"," ","Fieldwork"," · Concept website"]}]]}]]}]]}]}]]}],"p":"$@8","v":null,"s":"$9"},"c":"$Qa"},"h":{"r":["$","$1","h",{"children":[null,["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$10",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"A small beginning. | Fieldwork"}],["$","meta","1",{"name":"description","content":"Share what you are working on and what a calmer tool might help you do. This form prepares an email; it does not create an account or subscribe you automatically."}],["$","meta","2",{"name":"robots","content":"noindex, follow"}],["$","link","3",{"rel":"canonical","href":"https://your-domain.example/early-access/"}],["$","meta","4",{"property":"og:title","content":"A small beginning."}],["$","meta","5",{"property":"og:description","content":"Share what you are working on and what a calmer tool might help you do. This form prepares an email; it does not create an account or subscribe you automatically."}],["$","meta","6",{"property":"og:url","content":"https://your-domain.example/early-access/"}],["$","meta","7",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","8",{"name":"twitter:title","content":"Fieldwork"}],["$","meta","9",{"name":"twitter:description","content":"A calm home for the plans you care about. Keep the meaningful work in sight, and let the rest settle."}],["$","link","10",{"rel":"icon","href":"/templates/previews/startup/icon.svg?icon.0rusd0jvsl-gb.svg","sizes":"any","type":"image/svg+xml"}],["$","$L17","11",{}]]}]}],null]}],null]}],"p":"$@18","v":null,"s":"$9"}},"a":"$@19","u":"$@1a","b":"yS2axStt9gnnE22i0TbuO"}
+11:null
+9:300
+1a:true
+9:C
+19:0
+b:"$undefined"
+8:"$undefined"
+18:"$undefined"
+12:"$undefined"

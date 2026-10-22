@@ -1,6 +1,6 @@
 # Block CTA
 
-Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).
+Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one.
 
 ## Install
 

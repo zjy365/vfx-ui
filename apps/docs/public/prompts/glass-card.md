@@ -2,7 +2,7 @@
 component: glass-card
 title: "Glass Card"
 category: Glass
-tags: [glass, card, sdf]
+tags: [glass, optical, refraction]
 install: npx shadcn@latest add https://vfx-ui.com/r/glass-card.json
 registry: https://vfx-ui.com/r/glass-card.json
 docs: https://vfx-ui.com/components/glass-card.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Glass Card
 
-> Thick-cut optical glass with two-interface refraction and studio reflections.
+> Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Glass Card” component to this project and use it as a glass 
 
 ## Context
 
-Thick-cut optical glass with two-interface refraction and studio reflections — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

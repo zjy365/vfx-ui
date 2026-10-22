@@ -2,7 +2,7 @@
 component: block-comparison
 title: "Block Comparison"
 category: Blocks
-tags: [block, section, landing, comparison, before-after, slider]
+tags: [block, comparison, before-after, slider]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-comparison.json
 registry: https://vfx-ui.com/r/block-comparison.json
 docs: https://vfx-ui.com/components/block-comparison.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Comparison
 
-> Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).
+> Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Comparison” component to this project and use it as a 
 
 ## Context
 
-Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

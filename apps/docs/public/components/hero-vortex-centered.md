@@ -1,11 +1,11 @@
 # Hero Vortex Centered
 
-Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.
+Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npm install @vfx-ui/react vgpu@0.3.1
 ```
 
 ```tsx

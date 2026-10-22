@@ -1,6 +1,6 @@
 # Hero Eclipse
 
-An engraved astronomical dial with a pointer-controlled eclipse.
+An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial.
 
 ## Install
 

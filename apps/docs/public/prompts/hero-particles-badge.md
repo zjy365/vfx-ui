@@ -2,16 +2,16 @@
 component: hero-particles-badge
 title: "Hero Particles Badge"
 category: Heroes
-tags: [hero, landing, particles, badges]
+tags: [hero, landing, particles, badges, community]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-particles-badge.json
 registry: https://vfx-ui.com/r/hero-particles-badge.json
 docs: https://vfx-ui.com/components/hero-particles-badge.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Particles Badge
 
-> Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.
+> Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Particles Badge” component to this project and use it a
 
 ## Context
 
-Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-particles-badge.md
 
 ````

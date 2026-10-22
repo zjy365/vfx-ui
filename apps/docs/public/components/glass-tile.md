@@ -1,6 +1,6 @@
 # Glass Tile
 
-A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.
+A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks.
 
 ## Install
 

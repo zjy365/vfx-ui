@@ -2,7 +2,7 @@
 component: footer-fold
 title: "Footer Fold"
 category: Footers
-tags: [footer, pointer, typography]
+tags: [footer, typography, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/footer-fold.json
 registry: https://vfx-ui.com/r/footer-fold.json
 docs: https://vfx-ui.com/components/footer-fold.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Footer Fold
 
-> A wordmark printed across hinged paper panels that respond to the pointer.
+> Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Footer Fold” component to this project and use it as the sit
 
 ## Context
 
-A wordmark printed across hinged paper panels that respond to the pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

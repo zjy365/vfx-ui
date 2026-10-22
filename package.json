@@ -2,7 +2,7 @@
   "name": "vfx-ui",
   "private": true,
   "version": "0.1.0",
-  "description": "Shader-native visual effect components for React, rendered via WebGPU (vgpu).",
+  "description": "Expressive React components, shaders, headers, heroes and footers. Free open source library and complete Pro templates.",
   "license": "MIT",
   "packageManager": "pnpm@8.15.9",
   "engines": {
@@ -13,7 +13,10 @@
     "typecheck": "pnpm -r typecheck",
     "test": "pnpm -r test",
     "dev:docs": "pnpm --filter @vfx-ui/docs dev",
-    "dev:playground": "pnpm --filter @vfx-ui/playground dev"
+    "dev:playground": "pnpm --filter @vfx-ui/playground dev",
+    "catalog:check": "node scripts/check-catalog.mjs",
+    "test:consumer": "node scripts/check-package-consumers.mjs",
+    "dev:legacy": "pnpm --filter @vfx-ui/legacy-docs dev"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",

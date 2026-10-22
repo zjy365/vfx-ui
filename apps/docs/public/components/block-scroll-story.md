@@ -1,6 +1,6 @@
 # Block Scroll Story
 
-Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.
+Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end.
 
 ## Install
 

@@ -1,13 +1,13 @@
 {
-  "name": "@vfx-ui/docs",
+  "name": "@vfx-ui/legacy-docs",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.json --noEmit && node scripts/generate-sitemap.mjs && vite build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:legacy": "tsc -p tsconfig.json --noEmit && node scripts/generate-sitemap.mjs && vite build"
   },
   "dependencies": {
     "@vfx-ui/react": "workspace:*",

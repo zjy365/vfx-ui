@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Mesh
 
-> Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
+> Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Mesh” component to this project and use it as the hero 
 
 ## Context
 
-Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

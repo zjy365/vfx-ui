@@ -2,7 +2,7 @@
 component: radiant-dots
 title: "Radiant Dots"
 category: Backgrounds
-tags: [radiance, light, dots]
+tags: [radiance, dots, light, loading]
 install: npx shadcn@latest add https://vfx-ui.com/r/radiant-dots.json
 registry: https://vfx-ui.com/r/radiant-dots.json
 docs: https://vfx-ui.com/components/radiant-dots.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Radiant Dots
 
-> Orbital emitters with jump-flooded distance fields and radiance cascades.
+> A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Radiant Dots” component to this project and use it as an ani
 
 ## Context
 
-Orbital emitters with jump-flooded distance fields and radiance cascades — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

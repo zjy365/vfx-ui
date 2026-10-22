@@ -5,18 +5,25 @@ description: >-
   better, asks for visual effects, animations, or "VFX", wants to make a site
   feel premium or cinematic, or explicitly asks to install or customize a VFX UI
   component (vfx-ui.com). Covers selecting the right hero/background/block/
-  interaction by mood, installing via shadcn registry or MCP, and wiring the
-  user's own copy through props. Not for general UI kits, dashboards, or
-  non-React projects.
+  interaction by mood, installing free React components via shadcn registry or
+  MCP, and wiring the user's own copy through props. Covers VFX UI's shaders,
+  headers, heroes, footers, page blocks and interactions.
 ---
 
 # VFX Designer — put VFX UI effects on the user's page
 
-VFX UI (https://vfx-ui.com) is a shader-native React component library (93 registry
-items) rendered via WebGPU (vgpu) plus pure-DOM interactions and full marketing-page
-blocks. Your job: pick the right component for the user's intent, install it the
+VFX UI (https://vfx-ui.com) is an expressive React component library (93 free MIT
+registry items): shaders, headers, heroes, footers, interactions and marketing-page
+blocks. Components use DOM/CSS, WebGPU (vgpu), or WebGL as indicated in the catalog.
+Your job: pick the right component for the user's intent, install it the
 shortest way, and replace demo copy with the user's content — without ever editing
 the installed library source.
+
+This is the free component installation skill. Pro Collection 01 sells five complete
+landing-page projects under a separate source license; its source is delivered from
+the purchaser's account, not the public registry. Existing free examples remain MIT.
+For a Pro request, use the purchaser's supplied project and its README. Content
+creation skills are a separate product and are not included by this skill.
 
 Full catalog: [references/catalog.md](references/catalog.md) — all 93 items with
 one-liners, WebGPU requirements, and install links.
@@ -106,10 +113,10 @@ registry manifest — and create every listed file at its path with its content.
 
 ## Step 4 — Usage rules (non-negotiable)
 
-1. **Never edit installed source.** Files under `components/` (including
-   `components/vfx/`) are generated library code. Configure EVERYTHING through
-   props in your own page files. If something seems impossible via props, check
-   the preset bag (`<NAME>_PRESETS` exports) before considering alternatives.
+1. **Configure through props first.** Use the typed API and preset bag
+   (`<NAME>_PRESETS`) in the consumer page. Registry files are consumer-owned MIT
+   source: customize the installed copy when the public API cannot express a real
+   requirement, preserving attribution. Keep package-managed node_modules intact.
 2. **WebGPU components degrade gracefully** — pass the `fallback` prop (a
    ReactNode) for browsers without WebGPU, and give the component a sized parent.
    Pure-DOM components (Blocks, Footers, Interactions, Text, hero-eclipse,

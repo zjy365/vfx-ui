@@ -2,7 +2,7 @@
 component: kinetic-text
 title: "Kinetic Text"
 category: Text
-tags: [pointer, interactive]
+tags: [text, pointer, typography]
 install: npx shadcn@latest add https://vfx-ui.com/r/kinetic-text.json
 registry: https://vfx-ui.com/r/kinetic-text.json
 docs: https://vfx-ui.com/components/kinetic-text.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Kinetic Text
 
-> A pointer-driven force field lifts your words into a soft wave.
+> Letters lift into a soft wave as your cursor passes through.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Kinetic Text” component to this project and use it to animat
 
 ## Context
 
-A pointer-driven force field lifts your words into a soft wave — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Letters lift into a soft wave as your cursor passes through — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

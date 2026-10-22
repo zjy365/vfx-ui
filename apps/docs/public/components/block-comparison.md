@@ -1,6 +1,6 @@
 # Block Comparison
 
-Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).
+Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input.
 
 ## Install
 

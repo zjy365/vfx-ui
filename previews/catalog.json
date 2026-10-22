@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    "agency",
+    "marketing",
+    "playful",
+    "saas",
+    "startup"
+  ]
+}

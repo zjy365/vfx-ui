@@ -1,6 +1,6 @@
 # Particle Field
 
-Procedural cell-hashed particles with drift and size breathing.
+Procedural cell-hashed particles with drift and size breathing — a living texture, no sprite sheet.
 
 ## Install
 

@@ -1,6 +1,6 @@
 # Spotlight Card
 
-A card under a torch: the beam follows the pointer to uncover your content from the dark.
+A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there.
 
 ## Install
 

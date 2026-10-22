@@ -2,7 +2,7 @@
 component: chromatic-text
 title: "Chromatic Text"
 category: Text
-tags: [pointer, interactive]
+tags: [text, pointer, chromatic, prism]
 install: npx shadcn@latest add https://vfx-ui.com/r/chromatic-text.json
 registry: https://vfx-ui.com/r/chromatic-text.json
 docs: https://vfx-ui.com/components/chromatic-text.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Chromatic Text
 
-> The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.
+> The pointer is the prism: letters near the cursor split into red and blue fringes while the rainbow underneath slides with it.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Chromatic Text” component to this project and use it to anim
 
 ## Context
 
-The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+The pointer is the prism: letters near the cursor split into red and blue fringes while the rainbow underneath slides with it — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

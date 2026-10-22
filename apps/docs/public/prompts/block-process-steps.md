@@ -2,7 +2,7 @@
 component: block-process-steps
 title: "Block Process Steps"
 category: Blocks
-tags: [block, section, landing, steps, process, timeline]
+tags: [block, steps, process, timeline, how-it-works]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-process-steps.json
 registry: https://vfx-ui.com/r/block-process-steps.json
 docs: https://vfx-ui.com/components/block-process-steps.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Process Steps
 
-> Three-to-four step process with a self-drawing connector line and replaceable media per step.
+> Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Process Steps” component to this project and use it as
 
 ## Context
 
-Three-to-four step process with a self-drawing connector line and replaceable media per step — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

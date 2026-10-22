@@ -2,7 +2,7 @@
 component: black-hole
 title: "Black Hole"
 category: Backgrounds
-tags: [background, space, black-hole, ray-tracing]
+tags: [background, space, black-hole, ray-tracing, physics]
 install: npx shadcn@latest add https://vfx-ui.com/r/black-hole.json
 registry: https://vfx-ui.com/r/black-hole.json
 docs: https://vfx-ui.com/components/black-hole.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Black Hole
 
-> The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
+> The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Black Hole” component to this project and use it as an anima
 
 ## Context
 
-The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

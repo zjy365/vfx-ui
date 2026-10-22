@@ -1,6 +1,6 @@
 # Block Testimonials
 
-Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.
+Testimonials with a featured quote plus a field-note grid. The built-in quotes are fictional and visibly marked — swap in real customers via props and clear the marker.
 
 ## Install
 

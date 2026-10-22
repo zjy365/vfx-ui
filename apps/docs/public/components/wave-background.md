@@ -1,6 +1,6 @@
 # Wave Background
 
-Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
+Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU.
 
 ## Install
 

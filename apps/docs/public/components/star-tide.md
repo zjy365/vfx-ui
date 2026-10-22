@@ -1,6 +1,6 @@
 # Star Tide
 
-Stars carried on slow luminous waves, flaring as the tide crests.
+A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide.
 
 ## Install
 

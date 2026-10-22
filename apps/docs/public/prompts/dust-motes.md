@@ -2,7 +2,7 @@
 component: dust-motes
 title: "Dust Motes"
 category: Backgrounds
-tags: [background, particles, light-beams, dust]
+tags: [background, dust, beams, attic]
 install: npx shadcn@latest add https://vfx-ui.com/r/dust-motes.json
 registry: https://vfx-ui.com/r/dust-motes.json
 docs: https://vfx-ui.com/components/dust-motes.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Dust Motes
 
-> Dust motes drifting through slanted Tyndall beams in a dark room.
+> Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Dust Motes” component to this project and use it as an anima
 
 ## Context
 
-Dust motes drifting through slanted Tyndall beams in a dark room — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

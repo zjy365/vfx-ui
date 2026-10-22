@@ -2,7 +2,7 @@
 component: block-banner
 title: "Block Banner"
 category: Blocks
-tags: [block, section, landing, banner, announcement, sticky]
+tags: [block, banner, announcement, topbar, dismissible]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-banner.json
 registry: https://vfx-ui.com/r/block-banner.json
 docs: https://vfx-ui.com/components/block-banner.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Banner
 
-> Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.
+> Announcement banner: a slim accent-tinted strip for one important message with an optional action. Dismissible for real — labeled button, Escape works, onDismiss persists the choice.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Banner” component to this project and use it as a comp
 
 ## Context
 
-Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Announcement banner: a slim accent-tinted strip for one important message with an optional action. Dismissible for real — labeled button, Escape works, onDismiss persists the choice — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

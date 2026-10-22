@@ -2,7 +2,7 @@
 component: block-pricing
 title: "Block Pricing"
 category: Blocks
-tags: [block, section, landing, pricing, plans, billing]
+tags: [block, pricing, plans, billing]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-pricing.json
 registry: https://vfx-ui.com/r/block-pricing.json
 docs: https://vfx-ui.com/components/block-pricing.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Pricing
 
-> Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.
+> Pricing plans with a working monthly/annual switch: amounts, billing basis and the savings pill all render from data, so the toggle can never lie. No payment backend.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Pricing” component to this project and use it as a com
 
 ## Context
 
-Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Pricing plans with a working monthly/annual switch: amounts, billing basis and the savings pill all render from data, so the toggle can never lie. No payment backend — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,6 +1,6 @@
 # Silk Veil
 
-A draped silk curtain of warped folds with a luster band sweeping the weave.
+A draped silk curtain with a sheen band sweeping across it — domain-warped folds shaded anisotropically like cloth-of-gold, with fine weave grain.
 
 ## Install
 

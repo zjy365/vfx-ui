@@ -1,6 +1,6 @@
 # Block Feature Grid
 
-Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.
+Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable.
 
 ## Install
 

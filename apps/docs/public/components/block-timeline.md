@@ -1,6 +1,6 @@
 # Block Timeline
 
-Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.
+Company or product timeline: a vertical rail that draws itself in on scroll, alternating left/right on wide screens and collapsing to one rail on small ones.
 
 ## Install
 

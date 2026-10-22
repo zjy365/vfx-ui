@@ -1,6 +1,6 @@
 # Spectral Card
 
-Holographic light and spatial tilt around your own content.
+A touch of iridescence. Real content, spatial tilt, and light that follows you.
 
 ## Install
 

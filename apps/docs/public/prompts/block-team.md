@@ -2,7 +2,7 @@
 component: block-team
 title: "Block Team"
 category: Blocks
-tags: [block, section, landing, team, people, cards]
+tags: [block, team, people, about, grid]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-team.json
 registry: https://vfx-ui.com/r/block-team.json
 docs: https://vfx-ui.com/components/block-team.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Team
 
-> Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.
+> Team grid: cards with an avatar (your image node or an auto-generated initials badge), name, role and profile links. Names can link out.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Team” component to this project and use it as a comple
 
 ## Context
 
-Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Team grid: cards with an avatar (your image node or an auto-generated initials badge), name, role and profile links. Names can link out — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

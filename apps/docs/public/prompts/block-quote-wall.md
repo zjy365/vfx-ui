@@ -2,7 +2,7 @@
 component: block-quote-wall
 title: "Block Quote Wall"
 category: Blocks
-tags: [block, section, landing, quotes, carousel, masonry]
+tags: [block, quotes, testimonials, masonry, rotator]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-quote-wall.json
 registry: https://vfx-ui.com/r/block-quote-wall.json
 docs: https://vfx-ui.com/components/block-quote-wall.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Quote Wall
 
-> Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.
+> Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friendly rotator (real prev/next controls, focus and hover pause, reduced motion disables auto-advance).
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Quote Wall” component to this project and use it as a 
 
 ## Context
 
-Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friendly rotator (real prev/next controls, focus and hover pause, reduced motion disables auto-advance) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

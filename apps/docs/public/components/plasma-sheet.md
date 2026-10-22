@@ -1,6 +1,6 @@
 # Plasma Sheet
 
-Molten color currents folding through each other in a double domain-warped field.
+Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges.
 
 ## Install
 

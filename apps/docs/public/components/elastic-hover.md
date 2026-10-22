@@ -1,6 +1,6 @@
 # Elastic Hover
 
-Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.
+Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, and an under-damped spring snaps it back with a wobble.
 
 ## Install
 

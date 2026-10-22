@@ -1,6 +1,6 @@
 # Aurora
 
-Vertical light curtains driven by fBm perturbation and gaussian bands.
+Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky.
 
 ## Install
 

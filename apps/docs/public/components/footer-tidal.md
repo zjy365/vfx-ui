@@ -1,6 +1,6 @@
 # Footer Tidal
 
-Copper tidal lines beneath your brand, with pointer-driven currents.
+Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.
 
 ## Install
 

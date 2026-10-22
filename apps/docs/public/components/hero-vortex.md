@@ -1,6 +1,6 @@
 # Hero Vortex
 
-Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
+Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
 
 ## Install
 

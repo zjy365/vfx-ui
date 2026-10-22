@@ -1,6 +1,6 @@
 # Halo Rings
 
-Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.
+Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism.
 
 ## Install
 

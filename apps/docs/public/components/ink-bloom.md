@@ -1,6 +1,6 @@
 # Ink Bloom
 
-Ink drops blooming and feathering into warm paper on staggered cycles.
+Ink drops blooming and feathering across wet paper — each front is an fbm-perturbed radius, denser at the core and ring-deposited at the edge, paling as it ages. Light paper base.
 
 ## Install
 
