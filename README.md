@@ -63,7 +63,7 @@ Collection 01 includes **Agency, Marketing, Playful, SaaS and Startup**. The ini
 
 ## For AI agents
 
-Machine-readable docs: [`public/llms.txt`](apps/docs/public/llms.txt), [`public/agents.md`](apps/docs/public/agents.md), and one markdown doc per component (props, variants, guardrails). Deterministic GPU testing is built in — `vgpu/mock` + Dawn readback pixel tests run in CI without a GPU.
+Machine-readable docs: [`public/llms.txt`](apps/docs/public/llms.txt), [`public/agents.md`](apps/docs/public/agents.md), and one markdown doc per component (props, variants, guardrails). Tests include `vgpu/mock`, renderer lifecycle checks and deterministic Dawn pixel readback.
 
 ## Development
 
@@ -95,18 +95,18 @@ Pages build settings: repository root, Node.js `22`, pnpm `8.15.9`, output
 node registry/build.mjs && node scripts/generate-agentic.mjs && mkdir -p apps/docs/public/r && cp registry/dist/r/*.json apps/docs/public/r/ && cp registry/dist/index.json apps/docs/public/r/index.json && pnpm --filter @vfx-ui/docs build
 ```
 
-The `Check docs build` GitHub workflow validates builds; Cloudflare handles
+The `Check public product build` GitHub workflow validates builds; Cloudflare handles
 publishing through its GitHub integration without a GitHub Actions API token.
 Custom domains are configured in Pages and use proxied CNAME records pointing
 to `vfx-ui-site.pages.dev`. This is the sole Pages project for this website.
 
 ## License & credits
 
-MIT. The docs shell is derived from [MengTo/threeui](https://github.com/MengTo/threeui) (MIT, © 2026 Meng To) — thank you for showing what a component catalog can be. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT). HeroGlobe uses [shuding/cobe](https://github.com/shuding/cobe) (MIT).
+The free library is MIT. Legacy catalog code retained in `apps/docs` was derived from [MengTo/threeui](https://github.com/MengTo/threeui) (MIT, © 2026 Meng To). The new product site follows our Paper designs; Fumadocs is used for technical documentation. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT). HeroGlobe uses [shuding/cobe](https://github.com/shuding/cobe) (MIT).
 
 ## Footers
 
-`FooterTidal` draws copper tidal lines beneath your wordmark. `FooterFold` prints it across hinged paper panels. `FooterPhosphor` builds it from light cells that scatter around the pointer. All three are complete semantic footers, with real DOM navigation and a static reduced-motion composition.
+`FooterTidal` draws copper tidal lines beneath your wordmark. `FooterFold` prints it across hinged paper panels. `FooterPhosphor` builds it from light cells that scatter around the pointer. `FooterVinyl` turns the closing navigation into a pink record sleeve. All four are complete semantic footers, with real DOM navigation and a static reduced-motion composition.
 
 ```tsx
 import { FooterTidal } from "@vfx-ui/react";
