@@ -33,7 +33,7 @@ jobs:
         run: pnpm test:consumer
       - name: Verify isolated registry consumers
         run: node scripts/check-registry-consumers.mjs
-      - name: MCP smoke tests
-        run: pnpm --filter @vfx-ui/mcp test
+      - name: Unit, regression and MCP smoke tests
+        run: pnpm test
       # Cloudflare Pages publishes main through its existing Git integration.
       # Build output remains apps/docs/dist; this workflow does not deploy.

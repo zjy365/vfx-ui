@@ -3,7 +3,6 @@ import { BrandMark } from "./components/BrandMark";
 import { BrowsePage } from "./components/BrowsePage";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { HomePage } from "./components/HomePage";
-import { ProPage } from "./components/ProPage";
 import { ExampleDocumentation, type ExampleSlug } from "./components/ExampleDocumentation";
 import { InstallationDocumentation } from "./components/InstallationDocumentation";
 import { MainContentFooter } from "./components/MainContentFooter";
@@ -31,7 +30,7 @@ import {
   type ThemeMode,
 } from "./theme";
 
-type AppPage = "home" | "shader" | "browse" | "installation" | "example" | "pro" | "not-found";
+type AppPage = "home" | "shader" | "browse" | "installation" | "example" | "not-found";
 
 type RouteState = {
   active: ReadyShader;
@@ -338,18 +337,6 @@ function VfxUiApp() {
           onSelect={selectShader}
         />
       </>
-    );
-  }
-
-  if (page === "pro") {
-    return (
-      <ErrorBoundary>
-        <ProPage
-          theme={theme}
-          onNavigate={selectFooterRoute}
-          onTheme={selectTheme}
-        />
-      </ErrorBoundary>
     );
   }
 

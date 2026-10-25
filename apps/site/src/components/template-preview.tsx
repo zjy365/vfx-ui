@@ -1,55 +1,67 @@
-"use client";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { type Template } from "@/lib/catalog";
+import { templateCover, templateSummary } from "./pro-storefront";
+import styles from "./pro-storefront.module.css";
 
-import { useState } from "react";
-
-export function TemplatePreview({
-  title,
-  preview,
-  thumbnail,
-}: {
-  title: string;
-  preview: string;
-  thumbnail: string;
-}) {
-  const [playing, setPlaying] = useState(false);
-  const [mobile, setMobile] = useState(false);
+export function TemplatePreview({ template }: { template: Template }) {
   return (
-    <div className="template-live-preview">
-      <div className="template-preview-toolbar">
-        <span className="eyebrow">COMPLETE WEBSITE PREVIEW</span>
-        <div className="preview-options">
-          <button
-            aria-pressed={mobile}
-            onClick={() => setMobile((value) => !value)}
-          >
-            {mobile ? "Fit width" : "Mobile"}
-          </button>
-          <a href={preview} target="_blank" rel="noreferrer">
-            Open website ↗
-          </a>
-        </div>
-      </div>
-      <div className={"template-browser " + (mobile ? "mobile" : "")}>
-        {playing ? (
-          <iframe
-            src={preview}
-            title={title + " complete website preview"}
-            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+    <figure className={styles.preview}>
+      <img
+        src={templateCover(template)}
+        alt={`${template.brand} homepage design`}
+        width={1440}
+        height={1000}
+        fetchPriority="high"
+        className={styles.previewImage}
+      />
+      <figcaption>
+        Homepage preview · Application demo in preparation
+      </figcaption>
+    </figure>
+  );
+}
+
+export function TemplateCard({
+  template,
+  priority = false,
+}: {
+  template: Template;
+  priority?: boolean;
+}) {
+  return (
+    <article className={styles.card}>
+      <Link
+        href={`/templates/${template.id}/`}
+        className={styles.cardLink}
+        aria-label={`Explore ${template.brand}, ${template.title} template`}
+      >
+        <div className={styles.cardImageFrame}>
+          <img
+            src={templateCover(template)}
+            alt={`${template.brand} homepage`}
+            width={1440}
+            height={1000}
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : undefined}
+            className={styles.cardImage}
           />
-        ) : (
-          <>
-            <img
-              src={thumbnail}
-              alt={title + " website preview"}
-              width="1440"
-              height="1000"
-            />
-            <button className="gallery-play" onClick={() => setPlaying(true)}>
-              Try the website ↗
-            </button>
-          </>
-        )}
-      </div>
-    </div>
+          <span className={styles.cardAction}>
+            View template <ArrowRight size={16} aria-hidden="true" />
+          </span>
+        </div>
+        <div className={styles.cardCaption}>
+          <div className={styles.cardName}>
+            <h3>{template.brand}</h3>
+            <span>{template.title}</span>
+          </div>
+          <span className={styles.cardPrice}>
+            Included
+            <ArrowRight size={17} aria-hidden="true" />
+          </span>
+        </div>
+        <p className={styles.cardDescription}>{templateSummary(template)}</p>
+      </Link>
+    </article>
   );
 }

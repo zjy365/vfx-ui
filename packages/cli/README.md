@@ -12,13 +12,21 @@ npx @vfx-ui/cli add hero-fluid --registry https://vfx-ui.com/r
 
 The default registry is `https://vfx-ui.com/r`; pass `--registry <url|dir>` to point elsewhere (e.g. a locally built `registry/dist/r`).
 
-After adding, install the runtime dependency:
+Components are installed into `components/`, with shared helpers in
+`components/vfx/`. Registry dependencies are installed recursively from the
+selected registry, including when it is a local mirror. The CLI uses this fixed
+layout; use shadcn if you need `components.json` alias mapping.
+
+Install the npm dependencies printed by the command. For GPU components:
 
 ```bash
 npm install vgpu@0.3.1
 ```
 
-Then import from `components/vfx/*`. See the [component gallery](https://vfx-ui.com/components) for the full catalog.
+Then import your component from `components/WaveBackground` (using your project's
+relative path or alias). Existing files are preserved unless `--overwrite` is
+passed. Invalid paths, symlink destinations, and missing dependencies fail with
+a nonzero exit code before files are written. See the [component gallery](https://vfx-ui.com/components) for the full catalog.
 
 ## License
 

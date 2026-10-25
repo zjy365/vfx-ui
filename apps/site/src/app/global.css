@@ -133,17 +133,6 @@ button {
 .skip-link:focus {
   transform: none;
 }
-.site-header {
-  height: 96px;
-  padding-inline: var(--page-gutter);
-  max-width: 1440px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  border-bottom: 1px solid var(--line);
-}
 .wordmark {
   font-size: 25px;
   font-weight: 800;
@@ -154,26 +143,6 @@ button {
   color: var(--accent);
   font-size: 28px;
   margin-right: 6px;
-}
-.desktop-nav,
-.header-actions {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-  font-size: 14px;
-}
-.desktop-nav small {
-  font: 10px var(--font-mono);
-  margin-left: 4px;
-}
-.header-actions {
-  gap: 24px;
-}
-.header-actions .button {
-  padding: 12px 18px;
-}
-.mobile-menu {
-  display: none;
 }
 .home-hero {
   display: grid;
@@ -557,11 +526,6 @@ button {
   display: flex;
   gap: 24px;
 }
-@media (min-width: 1441px) {
-  .site-header {
-    max-width: 1440px;
-  }
-}
 @media (max-width: 1100px) {
   :root {
     --page-gutter: 32px;
@@ -574,9 +538,6 @@ button {
   }
   .hero-copy .eyebrow {
     font-size: 10px;
-  }
-  .header-actions > a:first-child {
-    display: none;
   }
   .section-heading h2,
   .home-pro h2 {
@@ -603,36 +564,6 @@ button {
 @media (max-width: 767px) {
   :root {
     --page-gutter: 24px;
-  }
-  .site-header {
-    height: 76px;
-  }
-  .desktop-nav,
-  .header-actions {
-    display: none;
-  }
-  .mobile-menu {
-    display: block;
-    font-size: 14px;
-  }
-  .mobile-menu summary {
-    list-style: none;
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-  }
-  .mobile-menu nav {
-    position: absolute;
-    z-index: 20;
-    top: 76px;
-    left: 0;
-    right: 0;
-    background: white;
-    border-bottom: 1px solid var(--line);
-    padding: 20px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
   }
   .home-hero {
     grid-template-columns: 1fr;
@@ -2265,9 +2196,6 @@ td code {
   font-size: 20px;
   line-height: 1;
 }
-.mobile-theme {
-  display: none;
-}
 .button {
   color: var(--on-ink);
 }
@@ -2317,9 +2245,6 @@ td code {
 .usage-surface .install-command {
   background: var(--canvas);
 }
-.mobile-menu nav {
-  background: var(--canvas);
-}
 .wordmark {
   color: var(--ink);
 }
@@ -2334,9 +2259,6 @@ html.dark {
   --line: #343a43;
   --on-ink: #17191c;
   color-scheme: dark;
-}
-html.dark .site-header {
-  border-color: var(--line);
 }
 html.dark .home-pro {
   border-block: 1px solid var(--line);
@@ -2369,17 +2291,10 @@ html.dark .preview-back {
   color: var(--ink);
 }
 @media (max-width: 767px) {
-  .mobile-theme {
-    display: block;
-    margin-left: auto;
-  }
   .theme-toggle {
     width: 34px;
     height: 34px;
     font-size: 18px;
-  }
-  .site-header {
-    gap: 18px;
   }
 }
 .gallery-categories button[aria-pressed="true"],

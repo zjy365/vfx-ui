@@ -10,6 +10,15 @@ private/
 .playwright-cli/
 output/
 
+# Local configuration may contain credentials; keep distributable examples.
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Internal review snapshots are not public project documentation.
+.impeccable/critique/
+
 # quality-snapshot build artifacts
 packages/core/.cache/
 packages/react/.cache/
@@ -18,3 +27,6 @@ apps/docs/public/r/
 apps/site/public/
 apps/site/.source/
 apps/site/out/
+
+# Paid source stays local and is excluded from this repository.
+/pro/

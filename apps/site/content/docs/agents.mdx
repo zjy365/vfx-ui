@@ -1,23 +1,32 @@
 ---
-title: AI coding workflows
-description: Give your coding agent specific components, installation commands and constraints.
+title: Use with AI agents
+description: Give your coding agent a component URL, an installation method and clear constraints.
 ---
 
-Each component page includes a runnable usage example, an API reference and implementation notes. Share the component URL with your agent, and ask it to preserve semantic content, responsive behavior and reduced motion.
+Open a component in the [library](/components/) and share its URL with your coding agent. The detail page contains the usage example, props and implementation notes it needs.
+
+## A prompt you can adapt
+
+Include the component you want, where it belongs and what should stay consistent with your project:
 
 ```text
-Use VFX UI Hero Contour in my React landing page.
-Install: npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
-Keep my existing brand tokens. Replace the example copy.
-Test a 390px viewport, keyboard navigation and reduced motion.
+Add VFX UI Hero Contour to my React landing page.
+Component: https://vfx-ui.com/heroes/hero-contour/
+Install editable source:
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
+
+Keep my existing brand colors and typography.
+Replace the example text and links with my content.
+Preserve keyboard access and reduced-motion behavior.
+Check desktop and a 390px viewport.
 ```
+
+If you prefer the package, tell the agent to install `@vfx-ui/react` and use the import from the component page instead. See [installation & usage](/docs/installation/) for the difference.
 
 ## Machine-readable references
 
-- [Library overview](/llms.txt)
-- [Agent guidance](/agents.md)
-- [Public registry](/r/index.json)
+- [Library overview](/llms.txt): an entry point for agents exploring the library.
+- [Agent guidance](/agents.md): installation and implementation guidance.
+- [Public registry](/r/index.json): the list of installable free components.
 
-Free components can be installed by agents without authentication. Pro downloads require a purchase and an authenticated account; private source is never included in the public registry.
-
-The documentation is free. Separately sold content-creation skills are outside the current Pro template collection.
+Free components can be installed without authentication. Pro template source is private and is not included in the public registry. When Pro sales open, downloads will require a purchase and an authenticated account.

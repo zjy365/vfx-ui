@@ -89,13 +89,57 @@ function App() {
     params.get("scheme") === "light" ? "light" : "dark",
   );
   const mounted = useRef(false);
+  const measuredHeight = useRef(0);
+  const stage = useRef<HTMLElement>(null);
+  const [previewReady, setPreviewReady] = useState(false);
   const ready = useCallback(() => {
     mounted.current = true;
+    setPreviewReady(true);
     parent.postMessage(
       { type: "vfx:preview-ready", id: item?.id },
       location.origin,
     );
   }, []);
+  useEffect(() => {
+    if (
+      !previewReady ||
+      params.get("resize") !== "content" ||
+      !["Heroes", "Footers"].includes(item?.category || "")
+    )
+      return;
+    // Observe the real component, never main/body: their 100vh minimum follows
+    // the iframe and could feed its newly assigned height back to the parent.
+    const component = stage.current?.firstElementChild;
+    if (!(component instanceof HTMLElement)) return;
+    let lastHeight = 0;
+    let frame = 0;
+    const measure = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const height = Math.ceil(component.getBoundingClientRect().height);
+        if (
+          !Number.isFinite(height) ||
+          height < 100 ||
+          height > 3000 ||
+          Math.abs(height - lastHeight) <= 2
+        )
+          return;
+        lastHeight = height;
+        measuredHeight.current = height;
+        parent.postMessage(
+          { type: "vfx:preview-size", id: item?.id, height },
+          location.origin,
+        );
+      });
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(component);
+    measure();
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [previewReady]);
   useEffect(() => {
     const listener = (event: MessageEvent) => {
       if (
@@ -105,19 +149,32 @@ function App() {
         event.data.type !== "vfx:preview"
       )
         return;
-      if (event.data.scheme === "light" || event.data.scheme === "dark")
-        setScheme(event.data.scheme);
+      const componentScheme = event.data.props?.scheme;
+      const nextScheme = componentScheme === "light" || componentScheme === "dark"
+        ? componentScheme : event.data.scheme;
+      if (nextScheme === "light" || nextScheme === "dark")
+        setScheme(nextScheme);
       if (
         event.data.props &&
         typeof event.data.props === "object" &&
         !Array.isArray(event.data.props)
       )
-        setProps((previous) => ({ ...previous, ...event.data.props }));
+        // Each message is a complete override snapshot, not an incremental patch.
+        setProps({ ...content(item?.previewProps ?? {}), interactive: true, ...content(event.data.props) });
       // A static iframe can finish before the parent hydrates. Reply to its
       // state handshake so a missed initial ready message cannot leave a mask.
       if (mounted.current)
         parent.postMessage(
           { type: "vfx:preview-ready", id: item?.id },
+          location.origin,
+        );
+      if (mounted.current && measuredHeight.current)
+        parent.postMessage(
+          {
+            type: "vfx:preview-size",
+            id: item?.id,
+            height: measuredHeight.current,
+          },
           location.origin,
         );
     };
@@ -131,9 +188,11 @@ function App() {
       </div>
     );
   const full = ["Heroes", "Footers", "Blocks"].includes(item.category);
+  const exhibit = params.get("presentation") === "exhibit";
   return (
     <main
-      className={`preview-root ${full ? "preview-full" : "preview-contained"}`}
+      ref={stage}
+      className={`preview-root ${full ? "preview-full" : "preview-contained"} ${exhibit ? "preview-exhibit" : ""}`}
       data-scheme={scheme}
     >
       <PreviewError>

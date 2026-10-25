@@ -65,4 +65,10 @@ export function templateById(id: string) {
   return templates.find((item) => item.id === id);
 }
 export const siteUrl = "https://vfx-ui.com";
-export const accountUrl = process.env.NEXT_PUBLIC_ACCOUNT_URL || "";
+export const accountUrl = (
+  process.env.NEXT_PUBLIC_ACCOUNT_URL ||
+  (process.env.NODE_ENV === "development" ? "http://localhost:3200" : "")
+).replace(
+  /\/+$/,
+  "",
+);

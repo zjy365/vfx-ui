@@ -50,7 +50,7 @@ const result = await esbuild.build({
 });
 await fs.writeFile(
   root + "/packages/react/src/components/PrismEngine.tsx",
-  "// @ts-nocheck\n/* Vercel VGPU prism light pipeline.\n" +
+  "// @ts-nocheck\n/*! @license Vercel VGPU prism light pipeline.\n" +
     (await fs.readFile(root + "/references/vgpu/LICENSE", "utf8")) +
     "\n*/\n" +
     result.outputFiles[0].text.replace(

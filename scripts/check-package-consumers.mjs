@@ -31,6 +31,12 @@ for (const item of catalog.components.filter(item => item.runtime === 'dom')) as
 const graph = await build({ entryPoints: [resolve(root, 'packages/react/dist/dom.js')], bundle: true, write: false, metafile: true, format: 'esm', platform: 'browser', external: ['react', 'react/jsx-runtime', 'react-dom'] });
 assert.deepEqual(Object.keys(graph.metafile.inputs).filter(path => /node_modules.*vgpu|core\/dist|VfxCanvas/.test(path)), [], 'DOM entry imports the GPU runtime');
 
+for (const [component, owner] of [['RibbonField', 'Meng To'], ['BlackHole', 'Vercel, Inc.'], ['PrismEngine', 'Vercel, Inc.'], ['RadianceEngine', 'Vercel, Inc.']]) {
+  const distributed = await readFile(resolve(root, 'packages/react/dist/components', component + '.js'), 'utf8');
+  assert.ok(distributed.includes(owner) && distributed.includes('Permission is hereby granted') && distributed.includes('THE SOFTWARE IS PROVIDED "AS IS"'), `${component}: built JavaScript lost its upstream MIT notice`);
+}
+console.log('Built JavaScript preserves complete upstream MIT notices without relying on source maps.');
+
 for (const version of ['18.3.1', '19.3.1']) {
   const next = version.startsWith('19');
   const directory = resolve(work, next ? 'next-react19' : 'vite-react18');

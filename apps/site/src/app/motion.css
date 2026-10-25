@@ -127,8 +127,6 @@
   .mini-template:hover .mini-cover img {
     transform: scale(1.018);
   }
-  .desktop-nav a:hover,
-  .header-actions > a:not(.button):hover,
   .footer-links a:hover {
     text-decoration: underline;
     text-underline-offset: 5px;
@@ -168,8 +166,7 @@
   }
 }
 .customize-surface,
-.usage-surface,
-.mobile-menu[open] nav {
+.usage-surface {
   animation: vfx-surface-enter 180ms var(--ease-settle);
 }
 .live-preview iframe,
@@ -243,19 +240,6 @@
 @media (max-width: 767px) {
   .gallery-art > a img {
     object-fit: contain;
-  }
-  .mobile-theme .theme-toggle {
-    width: 44px;
-    height: 44px;
-  }
-  .mobile-menu nav {
-    gap: 8px;
-    padding-block: 12px;
-  }
-  .mobile-menu nav a {
-    display: flex;
-    align-items: center;
-    min-height: 44px;
   }
   .gallery-toolbar {
     min-width: 0;
@@ -349,8 +333,7 @@
       border-color 120ms ease;
   }
   .customize-surface,
-  .usage-surface,
-  .mobile-menu[open] nav {
+  .usage-surface {
     animation: vfx-preview-enter 120ms ease;
   }
   .live-preview iframe,
@@ -378,7 +361,6 @@
 /* Keyboard selection follows focus immediately, including the revealed content. */
 main:has(.product-tabs button:focus-visible) .customize-surface,
 main:has(.product-tabs button:focus-visible) .usage-surface,
-.mobile-menu:has(summary:focus-visible) nav,
 .component-reference details:has(summary:focus-visible) > div {
   animation: none;
 }

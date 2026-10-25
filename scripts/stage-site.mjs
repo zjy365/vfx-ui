@@ -49,18 +49,9 @@ await cp(
   resolve(publicDir, "r/registry.json"),
 );
 await cp(
-  resolve(root, "previews/templates"),
-  resolve(publicDir, "templates/previews"),
-  { recursive: true },
-);
-await cp(
   resolve(root, "previews/thumbnails"),
   resolve(publicDir, "templates/thumbnails"),
   { recursive: true },
-);
-await cp(
-  resolve(root, "previews/LICENSE.txt"),
-  resolve(publicDir, "templates/previews/LICENSE.txt"),
 );
 execFileSync("pnpm", ["--filter", "@vfx-ui/preview", "build"], {
   cwd: root,

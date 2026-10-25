@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { useId, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { BLOCK_BASE_CSS, blockAccentStyle } from "./blockShared";
 
 export interface BlockNewsletterProps {
@@ -89,18 +89,32 @@ export function BlockNewsletter({
   const [error, setError] = useState(false);
   const [done, setDone] = useState(false);
   const [submitted, setSubmitted] = useState("");
+  const [pending, setPending] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const submitting = useRef(false);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submitting.current) return;
     const value = email.trim();
     if (!EMAIL_PATTERN.test(value)) {
       setError(true);
       return;
     }
     setError(false);
-    setSubmitted(value);
-    setDone(true);
-    onSubscribe?.(value);
+    setFailed(false);
+    submitting.current = true;
+    setPending(true);
+    try {
+      await onSubscribe?.(value);
+      setSubmitted(value);
+      setDone(true);
+    } catch {
+      setFailed(true);
+    } finally {
+      submitting.current = false;
+      setPending(false);
+    }
   };
 
   const errorId = `${instanceId}-error`;
@@ -131,14 +145,14 @@ export function BlockNewsletter({
                   {successTitle}
                 </h3>
                 <p>
-                  Confirmation sent to <span className="vfx-newsletter-done-email">{submitted}</span>. {successNote}
+                  Subscribed as <span className="vfx-newsletter-done-email">{submitted}</span>. {successNote}
                 </p>
                 <button type="button" className="vfx-newsletter-reset" onClick={() => { setDone(false); setEmail(""); }}>
                   {resetLabel}
                 </button>
               </div>
             ) : (
-              <form className="vfx-newsletter-form" onSubmit={onSubmit} noValidate>
+              <form className="vfx-newsletter-form" onSubmit={onSubmit} noValidate aria-busy={pending}>
                 <label className="vfx-block-subtle" htmlFor={`${instanceId}-email`} style={{ display: "flex" }}>
                   {emailLabel}
                 </label>
@@ -153,17 +167,19 @@ export function BlockNewsletter({
                     placeholder={placeholder}
                     value={email}
                     required
+                    disabled={pending}
                     aria-invalid={error}
-                    aria-describedby={error ? errorId : undefined}
+                    aria-describedby={error || failed ? errorId : undefined}
                     onChange={(event) => {
                       setEmail(event.target.value);
                       if (error) setError(false);
+                      if (failed) setFailed(false);
                     }}
                   />
-                  <button type="submit" className="vfx-block-btn vfx-block-btn--primary">{submitLabel}</button>
+                  <button type="submit" className="vfx-block-btn vfx-block-btn--primary" disabled={pending}>{pending ? "Subscribing…" : submitLabel}</button>
                 </div>
                 <p className="vfx-newsletter-error" id={errorId} role="alert">
-                  {error ? invalidEmailMessage : ""}
+                  {error ? invalidEmailMessage : failed ? "We couldn’t subscribe you. Please try again." : ""}
                 </p>
               </form>
             )}

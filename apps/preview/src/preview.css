@@ -9,3 +9,5 @@ body { font-family: system-ui, sans-serif; }
 .preview-state h1 { font-size: 22px; }
 .preview-state button { justify-self: center; padding: 12px 18px; cursor: pointer; }
 @media (max-width: 600px) { .preview-contained { padding: 16px; } }
+.preview-root.preview-exhibit { padding: 0; height: 100vh; overflow: hidden; }
+.preview-exhibit > :first-child { width: 100%; height: 100vh; min-height: 0; }

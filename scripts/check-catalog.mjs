@@ -75,19 +75,23 @@ for (const item of data.components) {
   }
   assert(!item.sourcePath.startsWith("pro/"));
 }
-assert.equal(TEMPLATES.length, 5);
-assert.equal(PRODUCT.templateIds.length, 5);
+assert.equal(TEMPLATES.length, 6);
+assert.equal(PRODUCT.templateIds.length, TEMPLATES.length);
+assert.deepEqual(TEMPLATES.map((item) => item.id), PRODUCT.templateIds);
+assert.equal(new Set(PRODUCT.templateIds).size, PRODUCT.templateIds.length);
 for (const item of TEMPLATES) {
   assert.equal(item.tier, "pro");
-  assert.equal(item.productId, PRODUCT.id);
+  assert.equal(item.productId, `vfx-pro-template-${item.id}`);
+  assert.equal(item.collectionId, PRODUCT.id);
+  assert.equal(item.price, PRODUCT.templatePrice);
+  assert.equal(item.updates, "lifetime");
   assert.equal(item.kind, "template");
   assert(!("sourceCode" in item));
   assert(!("objectKey" in item));
   assert(!("downloadUrl" in item));
-  assert.equal(item.preview, `/templates/previews/${item.id}/`);
+  assert.equal(item.preview, null, "Unreleased applications must not link to obsolete static previews.");
   assert.equal(item.thumbnail, `/templates/thumbnails/${item.id}.png`);
-  await access(resolve(root, "previews/templates", item.id, "index.html"));
-  await access(resolve(root, "previews/thumbnails", item.id + ".png"));
+  await access(resolve(root, "previews/thumbnails", item.thumbnail.split("/").at(-1)));
 }
 async function checkPreviewBoundary(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
@@ -121,5 +125,5 @@ assert.deepEqual(
   "MCP snapshot differs from the free catalog.",
 );
 console.log(
-  "Catalog parity passed: 93 free components, routes, registry, MCP snapshot and 5 public Pro summaries.",
+  `Catalog parity passed: 93 free components, routes, registry, MCP snapshot and ${TEMPLATES.length} public Pro summaries.`,
 );

@@ -1,150 +1,145 @@
 import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { Shell } from "@/components/shell";
-import { OpticalStage } from "@/components/optical-stage";
+import { LiveExhibit } from "@/components/live-exhibit";
 import { CopyButton } from "@/components/copy-button";
-import { components, templates } from "@/lib/catalog";
+import { components } from "@/lib/catalog";
+
 export default function Home() {
-  const hero = components.find((x) => x.id === "hero-contour")!;
-  const footer = components.find((x) => x.id === "footer-vinyl")!;
+  const pick = (id: string) => components.find((item) => item.id === id)!;
   const command =
-    "npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json";
+    "npx shadcn@latest add https://vfx-ui.com/r/fluid-gradient.json";
   return (
     <Shell>
-      <main id="main">
-        <section className="home-hero page-width">
-          <div className="hero-copy">
-            <p className="eyebrow status-dot">
-              OPEN SOURCE COMPONENTS. COMPLETE PRO TEMPLATES.
-            </p>
-            <h1>
-              Interfaces,
+      <main id="main" className="exhibit-home">
+        <section
+          className="exhibit-introduction exhibit-width"
+          aria-labelledby="home-title"
+        >
+          <h1 id="home-title">
+            React components.
+            <br />
+            Unexpected character.
+          </h1>
+          <div>
+            <p>
+              Shaders that move. Heroes that draw you in. Footers worth
+              scrolling for.
               <br />
-              with a point
-              <br />
-              of view.
-            </h1>
-            <p className="hero-description">
-              Shaders, expressive page sections, and the details that make a
-              website feel like yours.
+              Free, open source, and yours to shape.
             </p>
-            <div className="action-row">
-              <Link className="button" href="/components/">
-                Explore free components ↗
-              </Link>
-              <Link className="text-link" href="/templates/">
-                See Pro templates
-              </Link>
-            </div>
-          </div>
-          <OpticalStage />
-        </section>
-        <section className="home-free page-width">
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">01 / THE FREE LIBRARY</p>
-              <h2>
-                A little more character.
-                <br />A lot less starting over.
-              </h2>
-            </div>
-            <Link className="text-link" href="/components/">
-              Browse {components.filter((x) => x.visible).length} components ↗
+            <Link className="exhibit-link" href="/components/">
+              Explore the library <ArrowRight size={16} />
             </Link>
           </div>
-          <div className="featured-pair">
-            {[hero, footer].map((item, i) => (
-              <Link className="featured-card" key={item.id} href={item.path}>
-                <div className={"featured-image " + (i ? "contain" : "")}>
+        </section>
+        <section
+          className="exhibit-wall exhibit-width"
+          aria-label="Explore live components"
+        >
+          <LiveExhibit />
+          <div className="exhibit-sections">
+            {[pick("hero-contour"), pick("footer-vinyl")].map((item) => (
+              <Link
+                key={item.id}
+                href={item.path + "/"}
+                className={"exhibit-section exhibit-" + item.id}
+              >
+                <div className="exhibit-section-image">
                   <img
                     src={item.thumbnail}
-                    alt={item.title + " preview"}
-                    width={i ? 512 : 776}
-                    height="300"
-                    loading="lazy"
+                    alt={item.title + " component preview"}
+                    width={1120}
+                    height={item.id === "footer-vinyl" ? 733 : 640}
+                    fetchPriority="high"
                   />
                 </div>
-                <div className="card-caption">
+                <div className="exhibit-caption">
                   <span>{item.title}</span>
-                  <span>{item.category} · Free ↗</span>
+                  <span>
+                    {item.category === "Footers" ? "Footer" : "Hero"}
+                    <ArrowRight size={14} />
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
         </section>
-        <section className="home-pro">
-          <div className="page-width">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">02 / THE PRO COLLECTION</p>
-                <h2>
-                  Five complete starting points.
-                  <br />
-                  Make one your own.
-                </h2>
-              </div>
-              <div className="pro-intro">
-                <p>
-                  Full landing page projects built with VFX UI. Distinct
-                  directions, responsive pages, and source you can make your
-                  own.
-                </p>
-                <Link className="button yellow" href="/templates/">
-                  Explore Pro templates ↗
-                </Link>
-              </div>
-            </div>
-            <div className="template-strip">
-              {templates.map((item) => (
-                <Link
-                  key={item.id}
-                  href={"/templates/" + item.id + "/"}
-                  className={"mini-template theme-" + item.id}
-                >
-                  <div className="mini-art mini-cover">
-                    <img
-                      src={item.thumbnail}
-                      alt={item.brand + " website preview"}
-                      width="1440"
-                      height="1000"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="card-caption">
-                    <span>{item.title}</span>
-                    <small>PRO ↗</small>
-                  </div>
-                </Link>
-              ))}
-            </div>
+        <section
+          className="exhibit-selection exhibit-width"
+          aria-labelledby="selection-title"
+        >
+          <div className="exhibit-section-heading">
+            <h2 id="selection-title">Small details. Big difference.</h2>
+            <Link className="exhibit-link" href="/components/">
+              Browse all {components.filter((item) => item.visible).length}{" "}
+              components <ArrowRight size={16} />
+            </Link>
+          </div>
+          <div className="exhibit-picks">
+            {[
+              pick("hero-eclipse"),
+              pick("spectral-card"),
+              pick("iridescent"),
+            ].map((item) => (
+              <Link
+                key={item.id}
+                href={item.path + "/"}
+                className="exhibit-pick"
+                data-category={item.category}
+              >
+                <div className="exhibit-pick-image">
+                  <img
+                    src={item.thumbnail}
+                    alt={item.title + " component preview"}
+                    width={800}
+                    height={450}
+                    loading="lazy"
+                  />
+                </div>
+                <div className="exhibit-caption">
+                  <span>{item.title}</span>
+                  <span>
+                    {item.category === "Backgrounds"
+                      ? "Shader"
+                      : item.category === "Heroes"
+                        ? "Hero"
+                        : "Interaction"}
+                    <ExternalLink size={13} />
+                  </span>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
-        <section className="agent-section page-width">
+        <section
+          className="exhibit-source exhibit-width"
+          aria-labelledby="source-title"
+        >
           <div>
-            <p className="eyebrow">YOUR WORKFLOW, INCLUDED</p>
-            <h2>
-              Human taste.
-              <br />
-              Agent-ready delivery.
-            </h2>
+            <h2 id="source-title">Your code. Your canvas.</h2>
             <p>
-              Preview it. Install the source. Keep building with your favorite
-              AI coding tool.
+              Pick a component, change the feel, and take the source. Use the
+              registry, npm, or hand it to your AI agent.
             </p>
+            <Link className="exhibit-link" href="/docs/installation/">
+              Read the installation guide <ArrowRight size={16} />
+            </Link>
           </div>
-          <div className="install-terminal">
+          <div className="exhibit-terminal">
             <div>
-              <span className="eyebrow">INSTALL A COMPONENT</span>
+              <span>Install editable source</span>
               <CopyButton value={command} />
             </div>
             <pre>
               <code>
                 npx shadcn@latest add
                 <br />
-                https://vfx-ui.com/r/hero-contour.json
+                https://vfx-ui.com/r/fluid-gradient.json
               </code>
             </pre>
             <p>
-              React + TypeScript <span>Your source</span> MIT licensed
+              React + TypeScript <span>Open source</span> MIT
             </p>
           </div>
         </section>

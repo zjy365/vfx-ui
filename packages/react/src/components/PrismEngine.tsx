@@ -1,5 +1,5 @@
 // @ts-nocheck
-/* Vercel VGPU prism light pipeline.
+/*! @license Vercel VGPU prism light pipeline.
 MIT License
 
 Copyright (c) 2025 Vercel, Inc.

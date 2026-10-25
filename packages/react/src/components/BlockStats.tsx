@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type ReactNode } from "react";
 import { BLOCK_BASE_CSS, blockAccentStyle, useInViewOnce } from "./blockShared";
 
 export type StatItem = {
@@ -92,11 +92,9 @@ export function BlockStats({
   const { ref, revealed } = useInViewOnce<HTMLElement>();
   // Starts settled (SSR and no-JS see final figures); the count-up re-arms it.
   const [progress, setProgress] = useState(1);
-  const ranOnce = useRef(false);
 
   useEffect(() => {
-    if (!revealed || ranOnce.current) return;
-    ranOnce.current = true;
+    if (!revealed) return;
     const reduced =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;

@@ -70,15 +70,24 @@ importers:
       '@webgpu/types':
         specifier: ^0.1.69
         version: 0.1.72
+      jsdom:
+        specifier: ^30.0.1
+        version: 30.0.1
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
       vite:
         specifier: ^6.0.7
         version: 6.4.3
+      vitest:
+        specifier: ^2.1.9
+        version: 2.1.9(jsdom@30.0.1)
 
   apps/site:
     dependencies:
+      '@fontsource-variable/bricolage-grotesque':
+        specifier: 5.2.8
+        version: 5.2.8
       '@fontsource-variable/manrope':
         specifier: 5.3.0
         version: 5.3.0
@@ -122,12 +131,18 @@ importers:
       '@types/react-dom':
         specifier: ^19.0.0
         version: 19.3.0(@types/react@19.3.0)
+      jsdom:
+        specifier: ^30.0.1
+        version: 30.0.1
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
       typescript:
         specifier: ^5.7.3
         version: 5.9.3
+      vitest:
+        specifier: ^2.1.9
+        version: 2.1.9(@types/node@22.20.1)(jsdom@30.0.1)
 
   packages/cli: {}
 
@@ -148,7 +163,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^2.1.8
-        version: 2.1.9(@types/node@22.20.1)
+        version: 2.1.9(@types/node@22.20.1)(jsdom@30.0.1)
 
   packages/mcp:
     dependencies:
@@ -1184,6 +1199,10 @@ packages:
 
   /@floating-ui/utils@0.2.12:
     resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
+    dev: false
+
+  /@fontsource-variable/bricolage-grotesque@5.2.8:
+    resolution: {integrity: sha512-sfPWF+R0z2EV7xFrrtcQC/cDcTLPM0ifBnR9EEUDFrB2bUQiGdcikgxONOf8rdRaOpk7BKduNI1/OoxdJzGZFA==}
     dev: false
 
   /@fontsource-variable/manrope@5.3.0:
@@ -6226,7 +6245,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@2.1.9(@types/node@22.20.1):
+  /vitest@2.1.9(@types/node@22.20.1)(jsdom@30.0.1):
     resolution: {integrity: sha512-MSmPM9REYqDGBI8439mA4mWhV5sKmDlBKWIYbA3lRb2PTHACE0mgKwA8yQ2xq9vxDTuk4iPrECBAEW2aoFXY0Q==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -6262,6 +6281,7 @@ packages:
       chai: 5.3.3
       debug: 4.4.3
       expect-type: 1.4.0
+      jsdom: 30.0.1
       magic-string: 0.30.21
       pathe: 1.1.2
       std-env: 3.10.0

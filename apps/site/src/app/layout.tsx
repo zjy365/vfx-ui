@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/theme-provider";
 import "@fontsource-variable/manrope";
 import "@fontsource/dm-mono/400.css";
+import "@fontsource-variable/bricolage-grotesque";
 import "./global.css";
 import "./motion.css";
+import "./exhibit.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://vfx-ui.com"),
   title: {
-    default: "VFX UI — Interfaces, with a point of view.",
+    default: "VFX UI — React components. Unexpected character.",
     template: "%s · VFX UI",
   },
   description:

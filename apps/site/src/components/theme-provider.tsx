@@ -1,6 +1,7 @@
 "use client";
 import { ThemeProvider as Provider, useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   return (
     <Provider
@@ -25,7 +26,11 @@ export function ThemeToggle() {
       aria-label={dark ? "Use light theme" : "Use dark theme"}
       onClick={() => setTheme(dark ? "light" : "dark")}
     >
-      {dark ? "☀" : "◐"}
+      {dark ? (
+        <Sun size={17} aria-hidden="true" />
+      ) : (
+        <Moon size={17} aria-hidden="true" />
+      )}
     </button>
   );
 }

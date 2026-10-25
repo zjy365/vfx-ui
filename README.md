@@ -1,6 +1,6 @@
 # VFX UI
 
-Product direction, commercialization, and architecture plans are maintained in [ChatGPT Space](https://chatgpt.com/space/page_eb551dc1dca08191b927101f9e091432).
+Product conventions and design guidance are documented in [PRODUCT.md](PRODUCT.md) and [DESIGN.md](DESIGN.md).
 
 **Expressive React components: GPU atmospheres, customizable Hero and Footer sections, tactile content interactions, and complete installable page Blocks for marketing sites.** Explore the real effects, tune their props, and bring your own words, images, links, and buttons.
 
@@ -57,7 +57,7 @@ Self-contained sources land in `components/` — you own the code. Registry foll
 
 Free components remain open source under MIT. Pro sells complete landing page projects in a separate private repository.
 
-Collection 01 includes **Agency, Marketing, Playful, SaaS and Startup**. The initial offer is **$59 once** for one user, unlimited personal and client end products, and 12 months of updates to this fixed collection. Delivered versions remain usable afterward. New collections and content-creation skills are separate.
+The current offer is **Pro Lifetime: $199 USD once** for all six current and future Pro templates: Agency, Marketing, User Research, AI Workspace, Hosting and Signal. It licenses one user for unlimited personal and client end products, with lifetime use and updates. Individual templates are not currently offered for new purchases; existing license scopes remain valid. Separately sold content-creation skills and hosted services are excluded.
 
 [Explore Pro templates](https://vfx-ui.com/templates/). Public previews require no login; complete project downloads require a purchase. Availability is shown on the product page. Checkout remains disabled until the release and payment services are ready.
 
@@ -97,12 +97,19 @@ node registry/build.mjs && node scripts/generate-agentic.mjs && mkdir -p apps/do
 
 The `Check public product build` GitHub workflow validates builds; Cloudflare handles
 publishing through its GitHub integration without a GitHub Actions API token.
+Set `NEXT_PUBLIC_ACCOUNT_URL` to the deployed `vfx-ui-pro` account service URL
+before building the public site. It enables Sign in, purchase options and source
+downloads links. Local development defaults to `http://localhost:3200`; production
+has no localhost fallback. OAuth, payment and delivery configuration stays in the
+private account service, which decides whether checkout can actually open.
 Custom domains are configured in Pages and use proxied CNAME records pointing
 to `vfx-ui-site.pages.dev`. This is the sole Pages project for this website.
 
 ## License & credits
 
 The free library is MIT. Legacy catalog code retained in `apps/docs` was derived from [MengTo/threeui](https://github.com/MengTo/threeui) (MIT, © 2026 Meng To). The new product site follows our Paper designs; Fumadocs is used for technical documentation. Renderer core: [vercel-labs/vgpu](https://github.com/vercel-labs/vgpu) (MIT). HeroGlobe uses [shuding/cobe](https://github.com/shuding/cobe) (MIT).
+
+Adapted component sources and generated distributions retain their upstream copyright and MIT notices; preserve those notices when redistributing them.
 
 ## Footers
 
@@ -130,4 +137,4 @@ The Glass collection now uses original ray-marched solids: a beveled card, a bic
 
 `RadiantDots` adds an orbital or square light field with real jump-flooded distance fields and radiance cascades. The pipeline is adapted from [Vercel's MIT example](https://vgpu.labs.vercel.dev/examples/agent-radiance-cascades); the arrangement and choreography are VFX UI's. It suspends continuous rendering offscreen, in hidden tabs, and under reduced motion. See [the design and implementation record](docs/design/glass.md).
 
-Compiled Pro demonstrations in `previews/` have a separate preview license. The MIT license continues to cover the free component library; paid editable template source remains in the private repository.
+Pro thumbnails in `previews/` have a separate preview license. The MIT license continues to cover the free component library. Paid template source and the purchase service live in the separate local `vfx-ui-pro` directory and are excluded from Git tracking. Obsolete templates, pricing pages and static concept previews have been removed from this repository.

@@ -46,6 +46,9 @@ for (const [id, item] of items) {
       collect(items.get(name));
     }
     for (const file of current.files) {
+      if (/Copyright (?:\(c\) )?20\d{2} (?:Meng To|Vercel, Inc\.)/.test(file.content)) {
+        assert.ok(file.content.includes('Permission is hereby granted') && file.content.includes('THE SOFTWARE IS PROVIDED "AS IS"'), `${id}: ${file.path} is missing the complete upstream MIT notice`);
+      }
       const target = componentTarget(file);
       if (files.has(target)) assert.equal(files.get(target), file.content, `${id}: conflicting shared file ${target}`);
       files.set(target, file.content);
@@ -115,6 +118,23 @@ for (const [id, component] of Object.entries(entries)) {
   await writeFile(resolve(app, 'app', id, 'page.tsx'), `import { ${component} } from '../../components/${id}/${component}';\nexport default function Page() { return <main><${component}/></main>; }\n`);
   console.log(`${id}: ${installed.size} registry items; ${files.size} files`);
 }
+// Exercise the published CLI package too: shadcn's resolver cannot validate it.
+const cliInstall = resolve(work, 'cli-install');
+await mkdir(cliInstall);
+await writeFile(resolve(cliInstall, 'package.json'), JSON.stringify({ private: true }));
+run('pnpm', ['pack', '--pack-destination', cliInstall], resolve(root, 'packages/cli'));
+const cliArchive = (await readdir(cliInstall)).find(name => name.endsWith('.tgz'));
+assert.ok(cliArchive, 'CLI package archive was not created');
+run('npm', ['install', '--ignore-scripts', '--no-audit', '--no-fund', resolve(cliInstall, cliArchive)], cliInstall);
+run(resolve(cliInstall, 'node_modules/.bin/vfx-ui'), ['add', 'example-launch', 'aurora', 'hero-contour', '--registry', resolve(registry, 'r')], app);
+for (const name of ['ExampleLaunch', 'BlockNav', 'Aurora', 'HeroContour']) {
+  await access(resolve(app, 'components', name + '.tsx'));
+}
+await access(resolve(app, 'components/vfx/VfxCanvas.tsx'));
+await assert.rejects(access(resolve(app, '@components')));
+await mkdir(resolve(app, 'app/cli'));
+await writeFile(resolve(app, 'app/cli/page.tsx'), 'import { ExampleLaunch } from "../../components/ExampleLaunch";\nimport { Aurora } from "../../components/Aurora";\nexport default function Page() { return <main><ExampleLaunch/><Aurora/></main>; }\n');
+console.log('Installed CLI tarball resolved example dependencies and DOM/GPU files into components/.');
 for (const path of allFiles) {
   const content = await readFile(path, 'utf8');
   const source = ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true, extname(path) === '.tsx' ? ts.ScriptKind.TSX : ts.ScriptKind.TS);

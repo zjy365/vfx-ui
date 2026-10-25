@@ -1,95 +1,127 @@
-import Link from "next/link";
+import { ArrowRight, Code2, Database, FolderOpen, Plus } from "lucide-react";
 import { Shell } from "@/components/shell";
 import { ProOffer } from "@/components/pro-offer";
-import { templates } from "@/lib/catalog";
+import { TemplateCard } from "@/components/template-preview";
+import { ProProductSelector } from "@/components/pro-product-selector";
+import { accountUrl, templates, product } from "@/lib/catalog";
+import styles from "@/components/pro-storefront.module.css";
+
 export const metadata = {
-  title: "Pro landing page templates",
+  title: "Pro templates, accounts and workspaces",
   description:
-    "Five original landing page projects, one Pro collection. Agency, Marketing, Playful, SaaS and Startup.",
+    "Pro Lifetime includes every Next.js template and future releases for $199 once. Explore the designs and manage your source downloads.",
 };
+
 export default function Templates() {
   return (
     <Shell>
-      <main id="main" className="templates-page page-width">
-        <div className="page-intro template-intro">
-          <div>
-            <p className="eyebrow">VFX UI PRO / COLLECTION 01</p>
-            <h1>
-              A whole website.
-              <br />A head start.
+      <main id="main" className={styles.page}>
+        <div className={styles.width}>
+          <section
+            className={styles.productIntro}
+            aria-labelledby="collection-title"
+          >
+            <h1 id="collection-title">
+              Your next idea.
+              <br />
+              With a working foundation.
             </h1>
-          </div>
-          <p>
-            Five original landing page projects. Choose a direction, change the
-            content, ship your own.
-          </p>
+            <div>
+              <p>
+                Six editable Next.js projects, from homepage to private
+                workspace.
+              </p>
+              {accountUrl && (
+                <a href={`${accountUrl}/purchases`}>
+                  Your account & downloads{" "}
+                  <ArrowRight size={15} aria-hidden="true" />
+                </a>
+              )}
+            </div>
+          </section>
+          <ProProductSelector />
+          <section
+            className={styles.productIncluded}
+            aria-labelledby="included-heading"
+          >
+            <h2 id="included-heading">A website is just the beginning.</h2>
+            <div>
+              <Code2 size={21} aria-hidden="true" />
+              <h3>Make the source yours.</h3>
+              <p>
+                Responsive pages, components and content you can edit, with
+                setup instructions for your own deployment.
+              </p>
+            </div>
+            <div>
+              <Database size={21} aria-hidden="true" />
+              <h3>Build behind the homepage.</h3>
+              <p>
+                Better Auth accounts, PostgreSQL and Drizzle form the foundation
+                for each private workspace.
+              </p>
+            </div>
+            <div>
+              <FolderOpen size={21} aria-hidden="true" />
+              <h3>Keep building on it.</h3>
+              <p>
+                Lifetime updates follow your purchase. Your account keeps your
+                licenses and available source downloads together.
+              </p>
+            </div>
+          </section>
+          <section
+            id="collection"
+            className={styles.collection}
+            aria-labelledby="templates-title"
+          >
+            <div className={styles.collectionHeading}>
+              <h2 id="templates-title">Find the foundation that fits.</h2>
+              <p>{templates.length} complete project directions</p>
+            </div>
+            <div className={styles.directoryGrid}>
+              {templates.map((template) => (
+                <TemplateCard key={template.id} template={template} />
+              ))}
+            </div>
+          </section>
         </div>
-        <div className="templates-layout">
-          <div className="template-list">
-            {templates.map((item) => (
-              <article
-                key={item.id}
-                className={"template-card theme-" + item.id}
-              >
-                <Link href={"/templates/" + item.id + "/"}>
-                  <div className="template-cover">
-                    <img
-                      src={item.thumbnail}
-                      alt={item.brand + " website preview"}
-                      width="1440"
-                      height="1000"
-                      loading="lazy"
-                    />
-                    <span className="gallery-play">Explore template ↗</span>
-                  </div>
-                </Link>
-                <div className="card-caption">
-                  <h2>{item.title}</h2>
-                  <span>PRO · LIVE PREVIEW</span>
-                </div>
-                <p>{item.description}</p>
-                <div className="template-pages">
-                  {item.pages.map((page) => (
-                    <span key={page}>{page}</span>
-                  ))}
-                </div>
-                <Link
-                  className="text-link"
-                  href={"/templates/" + item.id + "/"}
-                >
-                  Explore this template ↗
-                </Link>
-              </article>
+        <ProOffer />
+        <div className={styles.width}>
+          <section className={styles.faq} aria-labelledby="faq-title">
+            <h2 id="faq-title">Before you start.</h2>
+            {[
+              [
+                "What happens after I choose Pro Lifetime?",
+                "Sign in with your email or an available social provider, review your Pro Lifetime license and complete checkout when it is ready. Confirmed purchases and available versioned source downloads appear in your account.",
+              ],
+              [
+                "Can I use these for client work?",
+                "Yes. One user can build unlimited personal, commercial and client end products. You may hand over a finished client project with the source needed to maintain it. Template resale and redistribution of the collection are excluded.",
+              ],
+              [
+                "What do I need to run a project?",
+                "A Node.js environment, PostgreSQL and the template’s environment settings. Connect the external email, payment, AI or deployment services your product needs. Hosted services and business payment processing are not included.",
+              ],
+              [
+                "Is this a subscription?",
+                `No. Pro Lifetime is $${product.price} USD once for all current and future Pro templates, with lifetime use and source updates. Separately sold skills and hosted services are excluded.`,
+              ],
+              [
+                "Are the free components still free?",
+                "Yes. The VFX UI library remains MIT licensed. Pro is a separate collection of complete application source projects.",
+              ],
+            ].map(([question, answer]) => (
+              <details key={question}>
+                <summary>
+                  {question}
+                  <Plus size={18} aria-hidden="true" />
+                </summary>
+                <p>{answer}</p>
+              </details>
             ))}
-          </div>
-          <ProOffer />
+          </section>
         </div>
-        <section className="product-faq">
-          <h2>A few useful details.</h2>
-          {[
-            [
-              "Are the free components still free?",
-              "Yes. The free library stays MIT licensed. Pro sells complete landing page projects, and does not lock previously published free components.",
-            ],
-            [
-              "Do I need a subscription?",
-              "No. Collection 01 is a one-time purchase. It includes 12 months of updates to these five projects; versions you receive remain yours to use afterward.",
-            ],
-            [
-              "Can I build client websites?",
-              "Yes, under the solo license one user can build unlimited personal and client end products. Reselling templates or redistributing the collection source is not allowed.",
-            ],
-            [
-              "Does this include authentication and payments?",
-              "The product is a landing page template collection. Any account, payment or contact UI needs your own service configuration; a hosted SaaS backend is not included.",
-            ],
-          ].map(([q, a]) => (
-            <details key={q}>
-              <summary>{q}</summary>
-              <p>{a}</p>
-            </details>
-          ))}
-        </section>
       </main>
     </Shell>
   );

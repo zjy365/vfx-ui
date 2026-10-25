@@ -1,1 +1,14 @@
-{"title":"Documentation","pages":["index","installation","accessibility","agents","free-and-pro","license"]}
+{
+  "title": "Documentation",
+  "pages": [
+    "---Get started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "accessibility",
+    "agents",
+    "---Usage & licensing---",
+    "free-and-pro",
+    "license"
+  ]
+}

@@ -1,4 +1,4 @@
-/*
+/*! @license
 Adapted from Vercel vgpu Agent Radiance Cascades.
 MIT License
 

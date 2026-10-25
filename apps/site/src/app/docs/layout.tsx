@@ -10,12 +10,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     >
       <DocsLayout
         tree={source.pageTree}
-        nav={{ title: <span className="wordmark">✳ vfx/ui</span> }}
+        nav={{
+          title: (
+            <span className="docs-brand">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3 3h7v7H3zm11 0h7v7h-7zM3 14h7v7H3zm11 0h7v7h-7z" />
+              </svg>
+              vfx/ui <span>Docs</span>
+            </span>
+          ),
+        }}
         links={[
-          { text: "Components", url: "/components/" },
-          { text: "Pro templates", url: "/templates/" },
+          { text: "Browse components", url: "/components/" },
         ]}
-        themeSwitch={{ enabled: false }}
+        themeSwitch={{ enabled: true }}
       >
         {children}
       </DocsLayout>
