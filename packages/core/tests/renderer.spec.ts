@@ -14,7 +14,11 @@ describe("mock runtime (no GPU required)", () => {
     const { init, target, frame } = await import("vgpu/mock");
     const gpu = await init();
     const t = target(gpu, { size: [4, 4], format: "rgba8unorm" });
-    expect(() => frame(gpu, (f) => f.pass({ target: t }, () => {}))).not.toThrow();
+    try {
+      expect(() => frame(gpu, (f) => f.pass({ target: t }, () => {}))).not.toThrow();
+    } finally {
+      gpu.dispose();
+    }
   });
 
   it("reports capability in non-browser runtime", () => {
@@ -27,26 +31,33 @@ describe("vgpu/node (Dawn) pixel determinism", () => {
     const { init, effect, target, frame } = await import("vgpu/node");
     const gpu = await init();
 
-    const renderAt = async (time: number): Promise<Uint8Array> => {
-      const t = target(gpu, { size: [8, 8], format: "rgba8unorm" });
-      const fx = effect(gpu, TEST_SHADER, { set: { time, speed: 1 } });
-      frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
-      const rgba = await t.read();
-      return rgba;
-    };
+    try {
+      const renderAt = async (time: number): Promise<Uint8Array> => {
+        const t = target(gpu, { size: [8, 8], format: "rgba8unorm" });
+        try {
+          const fx = effect(gpu, TEST_SHADER, { set: { time, speed: 1 } });
+          frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
+          return await t.read();
+        } finally {
+          t.color.destroy();
+        }
+      };
 
-    const a = await renderAt(0.25);
-    const a2 = await renderAt(0.25);
-    const b = await renderAt(0.75);
+      const a = await renderAt(0.25);
+      const a2 = await renderAt(0.25);
+      const b = await renderAt(0.75);
 
-    expect(a.length).toBe(8 * 8 * 4);
-    // uv (0,0) pixel center → r = round(1/16 * 255) = 16; alpha fully opaque.
-    expect(a[0]!).toBeLessThanOrEqual(17);
-    expect(a[1]!).toBeLessThanOrEqual(17);
-    expect(a[3]!).toBe(255);
-    // Deterministic: identical params → identical pixels.
-    expect([...a]).toEqual([...a2]);
-    // Time uniform drives the blue channel (sin(time*speed) mapping).
-    expect([...a]).not.toEqual([...b]);
+      expect(a.length).toBe(8 * 8 * 4);
+      // uv (0,0) pixel center → r = round(1/16 * 255) = 16; alpha fully opaque.
+      expect(a[0]!).toBeLessThanOrEqual(17);
+      expect(a[1]!).toBeLessThanOrEqual(17);
+      expect(a[3]!).toBe(255);
+      // Deterministic: identical params → identical pixels.
+      expect([...a]).toEqual([...a2]);
+      // Time uniform drives the blue channel (sin(time*speed) mapping).
+      expect([...a]).not.toEqual([...b]);
+    } finally {
+      gpu.dispose();
+    }
   }, 60_000);
 });

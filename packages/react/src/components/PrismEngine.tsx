@@ -3005,6 +3005,7 @@ var WALL_MASK_SIZE = [768, 512];
 async function bakeLightAssetTextures(gpu) {
   const wallMask = await loadWallMaskTexture(gpu);
   const baked = [];
+  const mipScratch = [];
   try {
     const bakeModule = gpu.gpu.createShaderModule({
       code: bake_default.wgsl,
@@ -3052,7 +3053,7 @@ async function bakeLightAssetTextures(gpu) {
     );
     encodeBase(gpu, encoder, causticPipeline, baked[2].texture);
     for (const { texture } of baked)
-      encodeMipChain(gpu, encoder, downsamplePipeline, texture);
+      encodeMipChain(gpu, encoder, downsamplePipeline, texture, mipScratch);
     gpu.gpu.queue.submit([encoder.finish()]);
     await gpu.gpu.queue.onSubmittedWorkDone();
     return {
@@ -3064,6 +3065,10 @@ async function bakeLightAssetTextures(gpu) {
     for (const { texture } of baked) texture.destroy();
     throw error;
   } finally {
+    // Encoded copies still reference these textures until the submitted bake
+    // completes. Keep them alive across the whole command buffer, including all
+    // three asset pyramids, and release them on both success and failure.
+    for (const texture of mipScratch) texture.destroy();
     wallMask?.destroy();
   }
 }
@@ -3073,7 +3078,10 @@ function createBakedTexture(gpu, spec) {
       size: spec.size,
       format: "rgba8unorm",
       mipLevelCount: mipLevelCount(spec.size),
-      usage: ["texture_binding", "storage_binding"],
+      usage: [
+        "texture_binding", "storage_binding",
+        ...gpu.device.isCompatibilityMode ? ["copy_dst"] : []
+      ],
       label: `prism.light.${spec.id}`
     })
   };
@@ -3120,10 +3128,20 @@ function encodeBase(gpu, encoder, pipeline, output, mask) {
   );
   pass.end();
 }
-function encodeMipChain(gpu, encoder, pipeline, texture) {
+function encodeMipChain(gpu, encoder, pipeline, texture, scratchTextures) {
   for (let level = 1; level < texture.mipLevelCount; level++) {
     const width = Math.max(1, texture.size[0] >> level);
     const height = Math.max(1, texture.size[1] >> level);
+    // Compatibility mode forbids sampling and storage-writing different views
+    // of one texture in a dispatch, even when their mip ranges do not overlap.
+    // Downsample into a separate texture, then copy back before the next level.
+    const scratch = gpu.device.isCompatibilityMode ? gpu.device.createTexture({
+      size: [width, height],
+      format: texture.format,
+      usage: ["storage_binding", "copy_src"],
+      label: `${texture.label}.scratch-mip${level}`
+    }) : void 0;
+    if (scratch) scratchTextures.push(scratch);
     const pass = encoder.beginComputePass({
       label: `${texture.label}.mip${level}`
     });
@@ -3142,8 +3160,8 @@ function encodeMipChain(gpu, encoder, pipeline, texture) {
           },
           {
             binding: 1,
-            resource: texture.gpu.createView({
-              baseMipLevel: level,
+            resource: (scratch ?? texture).gpu.createView({
+              baseMipLevel: scratch ? 0 : level,
               mipLevelCount: 1
             })
           }
@@ -3155,6 +3173,11 @@ function encodeMipChain(gpu, encoder, pipeline, texture) {
       Math.ceil(height / WORKGROUP_SIZE)
     );
     pass.end();
+    if (scratch) encoder.copyTextureToTexture(
+      { texture: scratch.gpu },
+      { texture: texture.gpu, mipLevel: level },
+      [width, height]
+    );
   }
 }
 async function createPipeline(device, module, entryPoint) {

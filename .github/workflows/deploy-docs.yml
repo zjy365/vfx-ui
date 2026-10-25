@@ -13,6 +13,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       VGPU_ADAPTER: software
     steps:
@@ -49,6 +50,7 @@ jobs:
           pnpm --filter @vfx-ui/core exec vgpu install-software-renderer
           pnpm --filter @vfx-ui/core exec vgpu doctor --pretty
       - name: Unit, regression and MCP smoke tests
+        timeout-minutes: 10
         run: pnpm test
       # Cloudflare Pages publishes main through its existing Git integration.
       # Build output remains apps/docs/dist; this workflow does not deploy.

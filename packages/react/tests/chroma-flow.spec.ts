@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { init, effect, target, frame } from "vgpu/node";
+import { type init, effect, target, frame } from "vgpu/node";
+import { getTestGpu } from "./helpers.ts";
 import { CHROMA_FLOW_SHADER, CHROMA_FLOW_DEFAULTS } from "../src/components/ChromaFlow.tsx";
 
 // Fullscreen opaque field (no clear); res 128×128 for a fast Dawn render.
@@ -27,9 +28,13 @@ async function render(
   uniforms: Record<string, unknown>,
 ): Promise<Uint8Array> {
   const t = target(gpu, { size: [SIZE, SIZE], format: "rgba8unorm" });
-  const fx = effect(gpu, CHROMA_FLOW_SHADER, { set: { ...BASE, ...uniforms } });
-  frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
-  return t.read();
+  try {
+    const fx = effect(gpu, CHROMA_FLOW_SHADER, { set: { ...BASE, ...uniforms } });
+    frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
+    return await t.read();
+  } finally {
+    t.color.destroy();
+  }
 }
 
 function at(px: Uint8Array, x: number, y: number): [number, number, number, number] {
@@ -59,20 +64,20 @@ function diffCount(a: Uint8Array, b: Uint8Array): number {
 
 describe("ChromaFlow shader", () => {
   it("renders deterministically", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const a = await render(gpu, {});
     const a2 = await render(gpu, {});
     expect([...a]).toEqual([...a2]);
   }, 60_000);
 
   it("is fully opaque", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {});
     for (let i = 3; i < px.length; i += 4) expect(px[i]).toBe(255);
   }, 60_000);
 
   it("paints the top band blue and the bottom band light", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {});
     const top = bandMean(px, 0, 12);
     const bottom = bandMean(px, SIZE - 12, SIZE);
@@ -82,7 +87,7 @@ describe("ChromaFlow shader", () => {
   }, 60_000);
 
   it("keeps the true center darker than the top edge", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {});
     // A tight square around the middle — a full-width band would include the
     // bright left/right edge bleeds and invert the comparison.
@@ -98,7 +103,7 @@ describe("ChromaFlow shader", () => {
   }, 60_000);
 
   it("floods the top edge on an upward sweep", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const rest = await render(gpu, {});
     const sweepUp = await render(gpu, { vy: -0.05 });
     const sweepDown = await render(gpu, { vy: 0.05 });
@@ -113,21 +118,21 @@ describe("ChromaFlow shader", () => {
   }, 60_000);
 
   it("ignores velocity at rest (vx=vy=0 is the resting frame)", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const a = await render(gpu, { vx: 0, vy: 0 });
     const b = await render(gpu, { vx: 0, vy: 0 });
     expect(diffCount(a, b)).toBe(0);
   }, 60_000);
 
   it("animates with time", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const a = await render(gpu, { time: 0 });
     const b = await render(gpu, { time: 6 });
     expect(diffCount(a, b)).toBeGreaterThan(SIZE * SIZE * 0.01);
   }, 60_000);
 
   it("recolors the field with the color uniforms", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {
       c1r: 1, c1g: 0, c1b: 0, c2r: 1, c2g: 0, c2b: 0,
       c3r: 1, c3g: 0, c3b: 0, c4r: 1, c4g: 0, c4b: 0,

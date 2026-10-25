@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { init, effect, target, frame } from "vgpu/node";
+import { type init, effect, target, frame } from "vgpu/node";
+import { getTestGpu } from "./helpers.ts";
 import { FIBER_FLOW_SHADER } from "../src/components/FiberFlow.tsx";
 
 // Fullscreen opaque field (no clear); res 128×128 for a fast Dawn render.
@@ -17,9 +18,13 @@ async function render(
   uniforms: Record<string, unknown>,
 ): Promise<Uint8Array> {
   const t = target(gpu, { size: [SIZE, SIZE], format: "rgba8unorm" });
-  const fx = effect(gpu, FIBER_FLOW_SHADER, { set: { ...BASE, ...uniforms } });
-  frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
-  return t.read();
+  try {
+    const fx = effect(gpu, FIBER_FLOW_SHADER, { set: { ...BASE, ...uniforms } });
+    frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
+    return await t.read();
+  } finally {
+    t.color.destroy();
+  }
 }
 
 function at(px: Uint8Array, x: number, y: number): [number, number, number, number] {
@@ -48,27 +53,27 @@ function diffCount(a: Uint8Array, b: Uint8Array): number {
 
 describe("FiberFlow shader", () => {
   it("renders deterministically", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const a = await render(gpu, {});
     const a2 = await render(gpu, {});
     expect([...a]).toEqual([...a2]);
   }, 60_000);
 
   it("is fully opaque", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {});
     for (let i = 3; i < px.length; i += 4) expect(px[i]).toBe(255);
   }, 60_000);
 
   it("draws luminous fibers above the near-black base", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {});
     // Near-black base ≈ (2,2,8)+deep*0.1 — any real fiber peak pushes well above.
     expect(maxLuminance(px)).toBeGreaterThan(40);
   }, 60_000);
 
   it("keeps fiber color indigo-dominant by default", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {});
     let best = -Infinity;
     for (let y = 0; y < SIZE; y++) {
@@ -81,7 +86,7 @@ describe("FiberFlow shader", () => {
   }, 60_000);
 
   it("recolors the field with the color uniforms", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const px = await render(gpu, {
       c0r: 0.35, c0g: 0, c0b: 0, c1r: 1, c1g: 0, c1b: 0, c2r: 1, c2g: 0.4, c2b: 0.4,
     });
@@ -96,7 +101,7 @@ describe("FiberFlow shader", () => {
   }, 60_000);
 
   it("animates with time", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const a = await render(gpu, { time: 0 });
     const b = await render(gpu, { time: 6 });
     const n = diffCount(a, b);
@@ -104,7 +109,7 @@ describe("FiberFlow shader", () => {
   }, 60_000);
 
   it("responds to the pointer (glow + parallax move the frame)", async () => {
-    const gpu = await init();
+    const gpu = await getTestGpu();
     const rest = await render(gpu, { px: 0.1, py: 0.1, pActive: 0 });
     const near = await render(gpu, { px: 0.1, py: 0.1, pActive: 1 });
     const far = await render(gpu, { px: 0.9, py: 0.9, pActive: 1 });
