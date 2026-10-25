@@ -4,7 +4,7 @@ Copy-paste [vfx-ui](https://vfx-ui.com) shader components into your project (sha
 
 ## Usage
 
-This source tree targets the unreleased 0.1.1 CLI. For the current catalog, use `npx shadcn@latest add https://vfx-ui.com/r/<component>.json` until the new CLI is published and verified. Commands below document this source version.
+The commands below document CLI 0.1.1 or later. You can also install editable source directly with `npx shadcn@latest add https://vfx-ui.com/r/<component>.json`.
 
 ```bash
 npx @vfx-ui/cli add wave-background

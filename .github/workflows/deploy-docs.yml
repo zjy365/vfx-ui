@@ -13,6 +13,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VGPU_ADAPTER: software
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -35,6 +37,17 @@ jobs:
         run: pnpm test:consumer
       - name: Verify isolated registry consumers
         run: node scripts/check-registry-consumers.mjs
+      - name: Install and verify CPU WebGPU renderer
+        run: |
+          export VGPU_CACHE_DIR="$RUNNER_TEMP/vgpu-cache"
+          export XDG_RUNTIME_DIR="$RUNNER_TEMP/vgpu-runtime"
+          printf 'VGPU_CACHE_DIR=%s\nXDG_RUNTIME_DIR=%s\n' "$VGPU_CACHE_DIR" "$XDG_RUNTIME_DIR" >> "$GITHUB_ENV"
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libvulkan1 libdrm2 libudev1 libzstd1 zlib1g
+          install -d -m 700 "$XDG_RUNTIME_DIR"
+          # The locked vgpu CLI verifies its portable lavapipe release by SHA-256.
+          pnpm --filter @vfx-ui/core exec vgpu install-software-renderer
+          pnpm --filter @vfx-ui/core exec vgpu doctor --pretty
       - name: Unit, regression and MCP smoke tests
         run: pnpm test
       # Cloudflare Pages publishes main through its existing Git integration.

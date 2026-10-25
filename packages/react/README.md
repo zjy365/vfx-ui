@@ -4,7 +4,7 @@ Expressive React components: GPU atmospheres via [vgpu](https://github.com/verce
 
 ## Install
 
-This source tree is the unreleased 0.1.1 distribution. The npm 0.1.0 package does not have the `/dom` and component exports below. Until 0.1.1 is published and verified, install editable source from [the registry](https://vfx-ui.com/docs/installation/). The following package API applies to a locally built tarball or the verified new release.
+The `/dom` and component exports below require version 0.1.1 or later. Version 0.1.0 does not provide these entry points. For editable component source, use [the registry](https://vfx-ui.com/docs/installation/).
 
 ```bash
 npm install @vfx-ui/react
