@@ -1,15 +1,15 @@
 # Block FAQ
 
-FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.
+FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, arrow-key traversal, CSS grid-rows height animation, long answers with links and lists welcome.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-faq.json
 ```
 
 ```tsx
-import { BlockFaq } from "@vfx-ui/react";
+import { BlockFaq } from "@/components/BlockFaq";
 
 export function Answers() {
   return (

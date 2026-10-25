@@ -2,16 +2,16 @@
 component: hero-mesh-bold
 title: "Hero Mesh Bold"
 category: Heroes
-tags: [hero, landing, gradient, mesh, bold]
+tags: [hero, landing, gradient, mesh, poster]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-mesh-bold.json
 registry: https://vfx-ui.com/r/hero-mesh-bold.json
 docs: https://vfx-ui.com/components/hero-mesh-bold.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Mesh Bold
 
-> Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.
+> Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over a vivid Voronoi mesh field. Keep the title short; the type is drawn to fill the frame.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Mesh Bold” component to this project and use it as the 
 
 ## Context
 
-Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over a vivid Voronoi mesh field. Keep the title short; the type is drawn to fill the frame — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-mesh-bold.md
 
 ````

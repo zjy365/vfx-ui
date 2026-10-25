@@ -1,15 +1,15 @@
 # Glass Panel
 
-A broad ray-marched optical slab that carries your own content across a full panel.
+An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-panel.json
 ```
 
 ```tsx
-import { GlassPanel } from "@vfx-ui/react";
+import { GlassPanel } from "@/components/GlassPanel";
 
 export function Demo() {
   return <GlassPanel />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_PANEL_PRESETS } from "@vfx-ui/react";
+import { GLASS_PANEL_PRESETS } from "@/components/GlassPanel";
 ```
 
 ## Shader

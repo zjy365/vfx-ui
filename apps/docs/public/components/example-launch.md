@@ -1,15 +1,15 @@
 # Example — Product Launch
 
-Complete fictional software launch page ("Orbit" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.
+Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA and footer. All copy is demo content.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-launch.json
 ```
 
 ```tsx
-import { ExampleLaunch } from "@vfx-ui/react";
+import { ExampleLaunch } from "@/components/ExampleLaunch";
 
 export default function LaunchPage() {
   return <ExampleLaunch />;

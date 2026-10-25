@@ -2,16 +2,16 @@
 component: hero-black-hole-cinema
 title: "Hero Black Hole Cinema"
 category: Heroes
-tags: [hero, landing, space, black-hole, cinematic]
+tags: [hero, landing, space, black-hole, cinema]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole-cinema.json
 registry: https://vfx-ui.com/r/hero-black-hole-cinema.json
 docs: https://vfx-ui.com/components/hero-black-hole-cinema.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Black Hole Cinema
 
-> Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.
+> Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accretion disk framed like a feature film, and your title card centered in the quiet band.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Black Hole Cinema” component to this project and use it
 
 ## Context
 
-Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accretion disk framed like a feature film, and your title card centered in the quiet band — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -74,6 +74,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-black-hole-cinema.md
 
 ````

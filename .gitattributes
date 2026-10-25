@@ -1,0 +1,3 @@
+# Compiled Pro demonstrations are copied release artifacts, reviewed in source upstream.
+previews/templates/** -text -diff -whitespace linguist-generated=true
+previews/thumbnails/** binary linguist-generated=true

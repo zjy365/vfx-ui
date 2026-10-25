@@ -1,15 +1,15 @@
 # Ember Drift
 
-Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.
+Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ember-drift.json
 ```
 
 ```tsx
-import { EmberDrift } from "@vfx-ui/react";
+import { EmberDrift } from "@/components/EmberDrift";
 
 export function Demo() {
   return <EmberDrift />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { EMBER_DRIFT_PRESETS } from "@vfx-ui/react";
+import { EMBER_DRIFT_PRESETS } from "@/components/EmberDrift";
 ```
 
 ## Shader

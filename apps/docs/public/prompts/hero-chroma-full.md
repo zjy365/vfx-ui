@@ -6,12 +6,12 @@ tags: [hero, landing, chromatic, gradient, full-bleed]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-chroma-full.json
 registry: https://vfx-ui.com/r/hero-chroma-full.json
 docs: https://vfx-ui.com/components/hero-chroma-full.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Chroma Full
 
-> Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.
+> Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Chroma Full” component to this project and use it as th
 
 ## Context
 
-Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-chroma-full.md
 
 ````

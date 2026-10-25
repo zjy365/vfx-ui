@@ -1,15 +1,15 @@
 # Block Stats
 
-Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.
+Stats band where every number counts up from zero on scroll-in, with a settled, screen-reader-friendly final value always present. Prefixes, suffixes and formatting are props.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-stats.json
 ```
 
 ```tsx
-import { BlockStats } from "@vfx-ui/react";
+import { BlockStats } from "@/components/BlockStats";
 
 export function Demo() {
   return <BlockStats />;

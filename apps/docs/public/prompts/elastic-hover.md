@@ -2,7 +2,7 @@
 component: elastic-hover
 title: "Elastic Hover"
 category: Interactions
-tags: [pointer, interactive]
+tags: [hover, spring, squash, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/elastic-hover.json
 registry: https://vfx-ui.com/r/elastic-hover.json
 docs: https://vfx-ui.com/components/elastic-hover.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Elastic Hover
 
-> Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.
+> Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, and an under-damped spring snaps it back with a wobble.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Elastic Hover” component to this project and use it as an in
 
 ## Context
 
-Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, and an under-damped spring snaps it back with a wobble — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { hexToRgb01 } from "../utils/color";
 import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";

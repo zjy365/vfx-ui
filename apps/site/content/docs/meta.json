@@ -1,0 +1,14 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "---Get started---",
+    "index",
+    "installation",
+    "---Guides---",
+    "accessibility",
+    "agents",
+    "---Usage & licensing---",
+    "free-and-pro",
+    "license"
+  ]
+}

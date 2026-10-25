@@ -1,15 +1,15 @@
 # Hero Starfield Split
 
-Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.
+Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-starfield-split.json
 ```
 
 ```tsx
-import { HeroStarfieldSplit } from "@vfx-ui/react";
+import { HeroStarfieldSplit } from "@/components/HeroStarfieldSplit";
 
 export function Demo() {
   return <HeroStarfieldSplit title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -40,7 +40,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_STARFIELD_SPLIT_PRESETS } from "@vfx-ui/react";
+import { HERO_STARFIELD_SPLIT_PRESETS } from "@/components/HeroStarfieldSplit";
 ```
 
 ## Shader

@@ -2,7 +2,7 @@
 component: spotlight-card
 title: "Spotlight Card"
 category: Interactions
-tags: [pointer, interactive]
+tags: [card, spotlight, reveal, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/spotlight-card.json
 registry: https://vfx-ui.com/r/spotlight-card.json
 docs: https://vfx-ui.com/components/spotlight-card.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Spotlight Card
 
-> A card under a torch: the beam follows the pointer to uncover your content from the dark.
+> A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Spotlight Card” component to this project and use it as an i
 
 ## Context
 
-A card under a torch: the beam follows the pointer to uncover your content from the dark — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

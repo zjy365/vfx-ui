@@ -2,7 +2,7 @@
 component: block-integrations
 title: "Block Integrations"
 category: Blocks
-tags: [block, section, landing, integrations, logos, orbit]
+tags: [block, integrations, logos, orbit, compatibility]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-integrations.json
 registry: https://vfx-ui.com/r/block-integrations.json
 docs: https://vfx-ui.com/components/block-integrations.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Integrations
 
-> Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.
+> Integrations hub: your product at the center of two connection rings of rebrandable tool tiles, with an always-available link grid below and on touch layouts.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Integrations” component to this project and use it as 
 
 ## Context
 
-Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Integrations hub: your product at the center of two connection rings of rebrandable tool tiles, with an always-available link grid below and on touch layouts — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

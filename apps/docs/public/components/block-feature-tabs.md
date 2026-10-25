@@ -1,15 +1,15 @@
 # Block Feature Tabs
 
-Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.
+Feature tabs where the list, copy and illustration switch together. WAI-ARIA tabs pattern with arrow keys; a scrollable strip above the stage on touch layouts.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-tabs.json
 ```
 
 ```tsx
-import { BlockFeatureTabs } from "@vfx-ui/react";
+import { BlockFeatureTabs } from "@/components/BlockFeatureTabs";
 
 export function Surfaces() {
   return (

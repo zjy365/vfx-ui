@@ -2,7 +2,7 @@
 component: block-scroll-story
 title: "Block Scroll Story"
 category: Blocks
-tags: [block, section, landing, scroll, story, sticky]
+tags: [block, scroll, story, sticky, narrative]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-scroll-story.json
 registry: https://vfx-ui.com/r/block-scroll-story.json
 docs: https://vfx-ui.com/components/block-scroll-story.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Scroll Story
 
-> Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.
+> Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Scroll Story” component to this project and use it as 
 
 ## Context
 
-Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

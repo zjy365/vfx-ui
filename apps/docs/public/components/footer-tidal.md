@@ -1,15 +1,15 @@
 # Footer Tidal
 
-Copper tidal lines beneath your brand, with pointer-driven currents.
+Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-tidal.json
 ```
 
 ```tsx
-import { FooterTidal } from "@vfx-ui/react";
+import { FooterTidal } from "@/components/FooterTidal";
 
 export function Demo() {
   return <FooterTidal brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;

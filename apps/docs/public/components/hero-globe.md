@@ -5,11 +5,11 @@ Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behi
 ## Install
 
 ```bash
-npm install @vfx-ui/react cobe@^2.0.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-globe.json
 ```
 
 ```tsx
-import { HeroGlobe } from "@vfx-ui/react";
+import { HeroGlobe } from "@/components/HeroGlobe";
 
 export function Demo() {
   return <HeroGlobe title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -42,7 +42,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_GLOBE_PRESETS } from "@vfx-ui/react";
+import { HERO_GLOBE_PRESETS } from "@/components/HeroGlobe";
 ```
 
 ## Notes for agents

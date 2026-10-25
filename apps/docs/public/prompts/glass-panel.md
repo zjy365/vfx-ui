@@ -2,7 +2,7 @@
 component: glass-panel
 title: "Glass Panel"
 category: Glass
-tags: [glass, panel, refraction, sdf]
+tags: [glass, optical, panel, refraction]
 install: npx shadcn@latest add https://vfx-ui.com/r/glass-panel.json
 registry: https://vfx-ui.com/r/glass-panel.json
 docs: https://vfx-ui.com/components/glass-panel.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Glass Panel
 
-> A broad ray-marched optical slab that carries your own content across a full panel.
+> An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Glass Panel” component to this project and use it as a glass
 
 ## Context
 
-A broad ray-marched optical slab that carries your own content across a full panel — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

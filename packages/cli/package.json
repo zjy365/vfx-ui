@@ -13,6 +13,9 @@
   "files": [
     "bin"
   ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
   "engines": {
     "node": ">=18"
   },

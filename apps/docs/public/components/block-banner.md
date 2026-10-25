@@ -1,15 +1,15 @@
 # Block Banner
 
-Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.
+Announcement banner: a slim accent-tinted strip for one important message with an optional action. Dismissible for real — labeled button, Escape works, onDismiss persists the choice.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-banner.json
 ```
 
 ```tsx
-import { BlockBanner } from "@vfx-ui/react";
+import { BlockBanner } from "@/components/BlockBanner";
 
 export function Demo() {
   return <BlockBanner />;

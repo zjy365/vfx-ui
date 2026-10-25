@@ -2,7 +2,7 @@
 component: halo-rings
 title: "Halo Rings"
 category: Backgrounds
-tags: [background, rings, dispersion, glow]
+tags: [background, rings, light, dispersion]
 install: npx shadcn@latest add https://vfx-ui.com/r/halo-rings.json
 registry: https://vfx-ui.com/r/halo-rings.json
 docs: https://vfx-ui.com/components/halo-rings.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Halo Rings
 
-> Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.
+> Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Halo Rings” component to this project and use it as an anima
 
 ## Context
 
-Concentric rings breathing outward from a luminous core, their edges split into spectral fringes — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

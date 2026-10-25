@@ -1,15 +1,15 @@
 # Block Newsletter
 
-Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.
+Newsletter signup that is a working form, not a mockup: client-side validation with inline announced errors, and a confirmation panel on success. Wire onSubscribe; without it, demo mode says so on screen.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-newsletter.json
 ```
 
 ```tsx
-import { BlockNewsletter } from "@vfx-ui/react";
+import { BlockNewsletter } from "@/components/BlockNewsletter";
 
 export function Demo() {
   return <BlockNewsletter />;

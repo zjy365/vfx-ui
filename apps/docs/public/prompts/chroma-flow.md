@@ -2,7 +2,7 @@
 component: chroma-flow
 title: "Chroma Flow"
 category: Backgrounds
-tags: [background, gradient, chromatic, pointer]
+tags: [background, gradient, chromatic, pointer, hero]
 install: npx shadcn@latest add https://vfx-ui.com/r/chroma-flow.json
 registry: https://vfx-ui.com/r/chroma-flow.json
 docs: https://vfx-ui.com/components/chroma-flow.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Chroma Flow
 
-> Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
+> Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Chroma Flow” component to this project and use it as an anim
 
 ## Context
 
-Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

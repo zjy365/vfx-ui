@@ -1,4 +1,20 @@
-import { expect } from "vitest";
+import { afterAll, expect } from "vitest";
+
+type TestGpu = Awaited<ReturnType<typeof import("vgpu/node").init>>;
+let gpuPromise: Promise<TestGpu> | undefined;
+
+// Dawn's native instance must stay alive until every device in the file has
+// finished. Repeated software init() calls replace that instance in vgpu 0.3.1.
+export function getTestGpu(): Promise<TestGpu> {
+  return gpuPromise ??= import("vgpu/node").then(({ init }) => init());
+}
+
+afterAll(async () => {
+  const pending = gpuPromise;
+  gpuPromise = undefined;
+  // Initialization failures are already reported by the test that requested it.
+  if (pending) (await pending.catch(() => undefined))?.dispose();
+});
 
 /** Offscreen target edge used by every component pixel test. */
 export const SIZE = 16;
@@ -10,13 +26,17 @@ export const SIZE = 16;
 export async function createRenderer(): Promise<
   (shader: string, uniforms: Record<string, number>) => Promise<Uint8Array>
 > {
-  const { init, effect, target, frame } = await import("vgpu/node");
-  const gpu = await init();
+  const { effect, target, frame } = await import("vgpu/node");
+  const gpu = await getTestGpu();
   return async (shader, uniforms) => {
     const t = target(gpu, { size: [SIZE, SIZE], format: "rgba8unorm" });
-    const fx = effect(gpu, shader, { set: uniforms });
-    frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
-    return t.read();
+    try {
+      const fx = effect(gpu, shader, { set: uniforms });
+      frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
+      return await t.read();
+    } finally {
+      t.color.destroy();
+    }
   };
 }
 

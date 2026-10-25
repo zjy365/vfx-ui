@@ -1,0 +1,10 @@
+VFX UI Pro preview images
+Copyright 2026 VFX UI. All rights reserved.
+
+These preview images are provided for viewing
+and evaluating VFX UI Pro. The repository's MIT license does not apply to this
+directory. Commercial template use and editable source delivery require a Pro
+license. No license to resell or redistribute the template collection is granted
+by access to these images.
+
+VFX UI free components remain available under their MIT license.

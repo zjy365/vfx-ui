@@ -1,0 +1,77 @@
+---
+title: Installation & usage
+description: Install editable component source, then add it to your React page.
+---
+
+Start with an existing React project. React 18 and React 19 are verified. Install editable source with the public registry; no VFX UI account or API key is required.
+
+## Install editable source
+
+The registry copies component source and its shared files into your project, so you can edit them directly.
+
+If your project is not configured for shadcn, initialize it first:
+
+```bash
+npx shadcn@latest init
+```
+
+Then add Hero Contour, or use the install command on any component's detail page:
+
+```bash
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
+```
+
+With the default `@/components` alias, the component is available at:
+
+```tsx
+import { HeroContour } from "@/components/HeroContour";
+```
+
+Your `components.json` configuration determines the destination. If your alias is different, update the import to match. Review the files and dependencies added by the CLI before committing them.
+
+The current component catalog is not yet available as a verified npm release. The older `@vfx-ui/react` package on npm does not include all the components and entry points shown here. Use the registry command above for this catalog.
+
+## Add it to a page
+
+This example renders a complete hero. Replace the copy with your own:
+
+```tsx title="components/LandingHero.tsx"
+"use client";
+
+import { HeroContour } from "@/components/HeroContour";
+
+export function LandingHero() {
+  return (
+    <HeroContour
+      title="Find your own way."
+      subtitle="A new perspective for your next project."
+      interactive
+    />
+  );
+}
+```
+
+If your project uses a custom components alias, update the import to match. In a regular React application, render `<LandingHero />` inside your app.
+
+### Using Next.js
+
+Keep the interactive component in a file with `"use client"` at the top, as above. Import it into your page:
+
+```tsx title="app/page.tsx"
+import { LandingHero } from "@/components/LandingHero";
+
+export default function Page() {
+  return <LandingHero />;
+}
+```
+
+The page can remain a Server Component. Keep server-side data fetching there and pass serializable props into the interactive component.
+
+## If something does not appear
+
+- **Import cannot be found:** confirm the registry command completed, then check the destination and alias in `components.json`.
+- **A background is blank or collapsed:** give its container an explicit height. Backgrounds and canvases need space to render; complete hero components provide their own layout.
+- **Next.js reports a client component error:** put `"use client"` at the top of the wrapper that uses the interactive component.
+- **A GPU effect is unavailable:** check the component's rendering requirements and test a static fallback on that device.
+
+Next, review [compatibility and accessibility](/docs/accessibility/). For a component's props, return to its page in the [library](/components/).

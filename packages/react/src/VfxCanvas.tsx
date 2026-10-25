@@ -38,11 +38,14 @@ export function VfxCanvas({
 }: VfxCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rendererRef = useRef<VfxRenderer | null>(null);
+  const visibleRef = useRef(true);
   const [failed, setFailed] = useState(false);
   const uniformsKey = JSON.stringify(uniforms ?? {});
   const latestRef = useRef({ uniforms, animate, onReady });
   latestRef.current = { uniforms, animate, onReady };
   const mayAnimate = () => latestRef.current.animate !== false
+    && visibleRef.current
+    && document.visibilityState !== "hidden"
     && !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 
@@ -52,14 +55,10 @@ export function VfxCanvas({
     let disposed = false;
     let renderer: VfxRenderer | null = null;
     const abort = new AbortController();
-    const reduced =
-      typeof window.matchMedia === "function" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     createVfxRenderer(canvas, {
       shader,
       uniforms,
-      animate: animate !== false && !reduced,
+      animate: mayAnimate(),
       dpr,
       fps,
       label,
@@ -106,7 +105,7 @@ export function VfxCanvas({
   }, [shader, label]);
 
   useEffect(() => {
-    rendererRef.current?.setUniforms(JSON.parse(uniformsKey) as Record<string, number>);
+    rendererRef.current?.setUniforms(JSON.parse(uniformsKey) as NonNullable<VfxRendererOptions["uniforms"]>);
   }, [uniformsKey]);
 
   useEffect(() => {
@@ -114,8 +113,27 @@ export function VfxCanvas({
     const sync = () => rendererRef.current?.setAnimate(mayAnimate());
     sync();
     media?.addEventListener?.("change", sync);
-    return () => media?.removeEventListener?.("change", sync);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      media?.removeEventListener?.("change", sync);
+      document.removeEventListener("visibilitychange", sync);
+    };
   }, [animate]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || typeof IntersectionObserver !== "function") return;
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries.find((item) => item.target === canvas);
+      if (!entry) return;
+      visibleRef.current = entry.isIntersecting;
+      rendererRef.current?.setAnimate(mayAnimate());
+    });
+    observer.observe(canvas);
+    return () => observer.disconnect();
+    // One observer follows this canvas; current props live in latestRef.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (failed) {
     return <>{fallback ?? null}</>;

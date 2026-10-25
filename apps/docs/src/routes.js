@@ -4,7 +4,6 @@ export const STATIC_ROUTE_PATHS = {
   home: "/",
   browse: "/components",
   installation: "/installation",
-  pro: "/pro",
 };
 
 /* Full-page block compositions. These render complete example pages, not the
@@ -163,7 +162,6 @@ export function resolveAppRoute(locationLike, catalog) {
   if (pathname === STATIC_ROUTE_PATHS.home) return staticRoute("home");
   if (pathname === STATIC_ROUTE_PATHS.browse) return staticRoute("browse");
   if (pathname === STATIC_ROUTE_PATHS.installation) return staticRoute("installation");
-  if (pathname === STATIC_ROUTE_PATHS.pro) return staticRoute("pro");
 
   const segments = pathname.slice(1).split("/").map(decodePathSegment);
   if (segments.length === 2 && segments[0] === "examples") {

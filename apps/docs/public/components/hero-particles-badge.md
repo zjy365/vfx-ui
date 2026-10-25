@@ -1,15 +1,15 @@
 # Hero Particles Badge
 
-Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.
+Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-particles-badge.json
 ```
 
 ```tsx
-import { HeroParticlesBadge } from "@vfx-ui/react";
+import { HeroParticlesBadge } from "@/components/HeroParticlesBadge";
 
 export function Demo() {
   return <HeroParticlesBadge title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -40,7 +40,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_PARTICLES_BADGE_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_BADGE_PRESETS } from "@/components/HeroParticlesBadge";
 ```
 
 ## Shader

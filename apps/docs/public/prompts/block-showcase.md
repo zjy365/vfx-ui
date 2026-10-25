@@ -2,7 +2,7 @@
 component: block-showcase
 title: "Block Showcase"
 category: Blocks
-tags: [block, section, landing, showcase, product, media]
+tags: [block, showcase, product, media, screenshot]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-showcase.json
 registry: https://vfx-ui.com/r/block-showcase.json
 docs: https://vfx-ui.com/components/block-showcase.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Showcase
 
-> Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.
+> Product showcase stage: browser-chrome frame with a replaceable screenshot or video (built-in CSS demo screen by default), headline and actions, with a gentle pointer tilt.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Showcase” component to this project and use it as a co
 
 ## Context
 
-Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Product showcase stage: browser-chrome frame with a replaceable screenshot or video (built-in CSS demo screen by default), headline and actions, with a gentle pointer tilt — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

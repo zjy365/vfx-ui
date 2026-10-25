@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Fluid
 
-> Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
+> Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Fluid” component to this project and use it as the hero
 
 ## Context
 
-Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -6,15 +6,7 @@ Visitor mode: Experience in the gallery, Read on the component page.
 
 The user wants a memorable visual library focused on Heroes and Footers, and rejected LiveChart, WebGlobe and EnergyOrb. Remove those three; retain the Hero family. Build complete reusable Footers rather than isolated visual toys. Their navigation, CTA, copyright and brand lettering must come from consumer props.
 
-## External randomness and selection
-
-The supplied Anshu methodology was read before implementation. Python `secrets.choice` generated a 256-character seed from the operating system, not model sampling:
-
-```
-tCTHnAj1jHsKUoRry6PdIun9bWyCft5BaknWzrwLilyOIBcmFUP55kSHazumfBhj8mFC0BpVzkeAJmkcSyROga2tupFZH2MEPZTinKeux1htdHYd87ys0OYJAGvoQ2Pi33WEj9kux5VF91ogZtNNS582obOKh5rD3ssWhpFKYTFiTa28wwyCpr0xElFn4FmwmvwNykhHfZSXWuq9coKCbPzI6LbMsfw6NuD168PcIK8Gw59omGu0Z0w95uJXXRti
-```
-
-Subpatterns were associative prompts, not a mathematical claim: `Lily` suggested organic contours, doubled `55`/`33` and repeated W shapes suggested hinges, and the tightly repeated terminal capitals suggested illuminated cells. The seed never appears in the rendered product.
+## Direction selection
 
 Breadth before depth: tidal engraving, folded print, phosphor lettering, basalt cuts, rolling end credits, print-registration offsets, and a gravity-drop brand. Choose the first three for distinct material behavior that remains usable around real footer links. Set aside the others: extra ornament or motion offered less value in this release.
 

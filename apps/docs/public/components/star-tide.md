@@ -1,15 +1,15 @@
 # Star Tide
 
-Stars carried on slow luminous waves, flaring as the tide crests.
+A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/star-tide.json
 ```
 
 ```tsx
-import { StarTide } from "@vfx-ui/react";
+import { StarTide } from "@/components/StarTide";
 
 export function Demo() {
   return <StarTide />;
@@ -37,7 +37,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { STAR_TIDE_PRESETS } from "@vfx-ui/react";
+import { STAR_TIDE_PRESETS } from "@/components/StarTide";
 ```
 
 ## Shader

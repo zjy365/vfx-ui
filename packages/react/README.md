@@ -4,11 +4,23 @@ Expressive React components: GPU atmospheres via [vgpu](https://github.com/verce
 
 ## Install
 
+The `/dom` and component exports below require version 0.1.1 or later. Version 0.1.0 does not provide these entry points. For editable component source, use [the registry](https://vfx-ui.com/docs/installation/).
+
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npm install @vfx-ui/react
 ```
 
 Requires React >= 18. GPU effects need WebGPU and accept a `fallback`; the Footers, `Magnetic`, `SpectralCard`, and `KineticText` work without it.
+
+The package ships compiled ESM and TypeScript declarations. Import DOM-only components from `@vfx-ui/react/dom` to keep the GPU runtime out of that module graph, or use a component subpath:
+
+```tsx
+import { HeroContour, FooterVinyl } from "@vfx-ui/react/dom";
+import { WaveBackground } from "@vfx-ui/react/components/WaveBackground";
+import { VfxCanvas } from "@vfx-ui/react/canvas";
+```
+
+`VfxCanvas` stops continuous drawing for reduced motion, offscreen canvases and hidden tabs. A paused canvas still refreshes when its uniforms or dimensions change.
 
 ## Usage
 

@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Vortex
 
-> Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
+> Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Vortex” component to this project and use it as the her
 
 ## Context
 
-Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

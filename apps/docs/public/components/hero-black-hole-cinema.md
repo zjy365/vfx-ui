@@ -1,15 +1,15 @@
 # Hero Black Hole Cinema
 
-Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.
+Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accretion disk framed like a feature film, and your title card centered in the quiet band.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole-cinema.json
 ```
 
 ```tsx
-import { HeroBlackHoleCinema } from "@vfx-ui/react";
+import { HeroBlackHoleCinema } from "@/components/HeroBlackHoleCinema";
 
 export function Demo() {
   return <HeroBlackHoleCinema title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -46,7 +46,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_BLACK_HOLE_CINEMA_PRESETS } from "@vfx-ui/react";
+import { HERO_BLACK_HOLE_CINEMA_PRESETS } from "@/components/HeroBlackHoleCinema";
 ```
 
 ## Shader

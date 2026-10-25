@@ -2,7 +2,7 @@
 component: block-timeline
 title: "Block Timeline"
 category: Blocks
-tags: [block, section, landing, timeline, history, scroll]
+tags: [block, timeline, history, story, company]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-timeline.json
 registry: https://vfx-ui.com/r/block-timeline.json
 docs: https://vfx-ui.com/components/block-timeline.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Timeline
 
-> Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.
+> Company or product timeline: a vertical rail that draws itself in on scroll, alternating left/right on wide screens and collapsing to one rail on small ones.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Timeline” component to this project and use it as a co
 
 ## Context
 
-Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Company or product timeline: a vertical rail that draws itself in on scroll, alternating left/right on wide screens and collapsing to one rail on small ones — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -2,7 +2,7 @@
 component: block-feature-grid
 title: "Block Feature Grid"
 category: Blocks
-tags: [block, section, landing, features, bento, grid]
+tags: [block, features, bento, grid]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-feature-grid.json
 registry: https://vfx-ui.com/r/block-feature-grid.json
 docs: https://vfx-ui.com/components/block-feature-grid.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Feature Grid
 
-> Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.
+> Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Feature Grid” component to this project and use it as 
 
 ## Context
 
-Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

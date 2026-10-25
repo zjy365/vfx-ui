@@ -1,15 +1,15 @@
 # Block Pricing
 
-Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.
+Pricing plans with a working monthly/annual switch: amounts, billing basis and the savings pill all render from data, so the toggle can never lie. No payment backend.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-pricing.json
 ```
 
 ```tsx
-import { BlockPricing } from "@vfx-ui/react";
+import { BlockPricing } from "@/components/BlockPricing";
 
 export function Plans() {
   return (

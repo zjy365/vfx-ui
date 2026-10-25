@@ -1,15 +1,15 @@
 # Halo Rings
 
-Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.
+Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/halo-rings.json
 ```
 
 ```tsx
-import { HaloRings } from "@vfx-ui/react";
+import { HaloRings } from "@/components/HaloRings";
 
 export function Demo() {
   return <HaloRings />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HALO_RINGS_PRESETS } from "@vfx-ui/react";
+import { HALO_RINGS_PRESETS } from "@/components/HaloRings";
 ```
 
 ## Shader

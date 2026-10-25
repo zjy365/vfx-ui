@@ -2,7 +2,7 @@
 component: glass-tile
 title: "Glass Tile"
 category: Glass
-tags: [glass, grid, lens, hover]
+tags: [glass, tile, lens, wall]
 install: npx shadcn@latest add https://vfx-ui.com/r/glass-tile.json
 registry: https://vfx-ui.com/r/glass-tile.json
 docs: https://vfx-ui.com/components/glass-tile.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Glass Tile
 
-> A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.
+> A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Glass Tile” component to this project and use it as a glass 
 
 ## Context
 
-A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { VfxCanvas, type VfxCanvasProps } from "../VfxCanvas";
 import { usePointerUniforms, POINTER_REST } from "../usePointerUniforms.ts";
 

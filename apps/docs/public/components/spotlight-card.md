@@ -1,15 +1,15 @@
 # Spotlight Card
 
-A card under a torch: the beam follows the pointer to uncover your content from the dark.
+A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spotlight-card.json
 ```
 
 ```tsx
-import { SpotlightCard } from "@vfx-ui/react";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 export function Demo() {
   return <SpotlightCard />;

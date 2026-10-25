@@ -1,15 +1,15 @@
 # Hero Vortex Centered
 
-Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.
+Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-vortex-centered.json
 ```
 
 ```tsx
-import { HeroVortexCentered } from "@vfx-ui/react";
+import { HeroVortexCentered } from "@/components/HeroVortexCentered";
 
 export function Demo() {
   return <HeroVortexCentered title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -41,7 +41,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_VORTEX_CENTERED_PRESETS } from "@vfx-ui/react";
+import { HERO_VORTEX_CENTERED_PRESETS } from "@/components/HeroVortexCentered";
 ```
 
 ## Shader

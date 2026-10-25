@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
+import { useId, useRef, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import { BLOCK_BASE_CSS, blockAccentStyle } from "./blockShared";
 
 export type ContactChannel = {
@@ -123,13 +123,27 @@ export function BlockContact({
   const channelItems = channels.length ? channels : DEMO_CHANNELS;
   const fieldItems = fields.length ? fields : DEMO_FIELDS;
   const [sent, setSent] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState(false);
+  const submitting = useRef(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submitting.current) return;
     const data = new FormData(event.currentTarget);
     const values = Object.fromEntries(Array.from(data.entries(), ([key, value]) => [key, String(value)]));
-    onSubmit?.(values);
-    setSent(true);
+    submitting.current = true;
+    setPending(true);
+    setError(false);
+    try {
+      await onSubmit?.(values);
+      setSent(true);
+    } catch {
+      setError(true);
+    } finally {
+      submitting.current = false;
+      setPending(false);
+    }
   };
 
   return (
@@ -176,7 +190,7 @@ export function BlockContact({
                 </button>
               </div>
             ) : (
-              <form className="vfx-contact-form" onSubmit={handleSubmit}>
+              <form className="vfx-contact-form" onSubmit={handleSubmit} aria-busy={pending}>
                 {fieldItems.map((field) => {
                   const id = `${instanceId}-${field.name}`;
                   const common = {
@@ -186,6 +200,7 @@ export function BlockContact({
                     placeholder: field.placeholder,
                     required: field.required ?? false,
                     autoComplete: field.autoComplete,
+                    disabled: pending,
                   };
                   return (
                     <div className="vfx-contact-field" key={field.name}>
@@ -198,7 +213,8 @@ export function BlockContact({
                     </div>
                   );
                 })}
-                <button type="submit" className="vfx-block-btn vfx-block-btn--primary">{submitLabel}</button>
+                {error && <p className="vfx-block-subtle" role="alert">We couldn’t send your message. Please try again.</p>}
+                <button type="submit" className="vfx-block-btn vfx-block-btn--primary" disabled={pending}>{pending ? "Sending…" : submitLabel}</button>
               </form>
             )}
             {demoNote ? <p className="vfx-contact-note vfx-block-subtle" style={{ gridColumn: "1 / -1", margin: 0 }}>{demoNote}</p> : null}

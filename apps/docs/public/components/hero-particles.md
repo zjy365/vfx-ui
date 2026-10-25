@@ -1,15 +1,15 @@
 # Hero Particles
 
-Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
+Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-particles.json
 ```
 
 ```tsx
-import { HeroParticles } from "@vfx-ui/react";
+import { HeroParticles } from "@/components/HeroParticles";
 
 export function Demo() {
   return <HeroParticles title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -40,7 +40,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_PARTICLES_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_PRESETS } from "@/components/HeroParticles";
 ```
 
 ## Shader

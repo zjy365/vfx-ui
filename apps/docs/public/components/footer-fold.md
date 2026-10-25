@@ -1,15 +1,15 @@
 # Footer Fold
 
-A wordmark printed across hinged paper panels that respond to the pointer.
+Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-fold.json
 ```
 
 ```tsx
-import { FooterFold } from "@vfx-ui/react";
+import { FooterFold } from "@/components/FooterFold";
 
 export function Demo() {
   return <FooterFold brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;

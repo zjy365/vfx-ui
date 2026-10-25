@@ -1,15 +1,15 @@
 # Kinetic Text
 
-A pointer-driven force field lifts your words into a soft wave.
+Letters lift into a soft wave as your cursor passes through.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/kinetic-text.json
 ```
 
 ```tsx
-import { KineticText } from "@vfx-ui/react";
+import { KineticText } from "@/components/KineticText";
 
 export function Demo() {
   return <KineticText />;

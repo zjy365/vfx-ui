@@ -1,15 +1,15 @@
 # Spectral Card
 
-Holographic light and spatial tilt around your own content.
+A touch of iridescence. Real content, spatial tilt, and light that follows you.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spectral-card.json
 ```
 
 ```tsx
-import { SpectralCard } from "@vfx-ui/react";
+import { SpectralCard } from "@/components/SpectralCard";
 
 export function Demo() {
   return <SpectralCard />;

@@ -1,15 +1,15 @@
 # Chromatic Text
 
-The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.
+The pointer is the prism: letters near the cursor split into red and blue fringes while the rainbow underneath slides with it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/chromatic-text.json
 ```
 
 ```tsx
-import { ChromaticText } from "@vfx-ui/react";
+import { ChromaticText } from "@/components/ChromaticText";
 
 export function Demo() {
   return <ChromaticText />;

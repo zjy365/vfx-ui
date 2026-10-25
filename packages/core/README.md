@@ -11,9 +11,13 @@ Renderer core for [vfx-ui](https://vfx-ui.com): the vgpu-backed WebGPU effect re
 
 ## Install
 
+This API targets version 0.1.1 or later. For editable component source, use the public VFX UI registry.
+
 ```bash
-npm install @vfx-ui/core vgpu@0.3.1
+npm install @vfx-ui/core
 ```
+
+The package ships compiled ESM and TypeScript declarations. `animate: false` and `renderer.setAnimate(false)` stop the continuous frame loop. The renderer draws a single frame on attachment, uniform changes and element resizing; resuming resets the delta clock so time does not jump after a pause. Dispose the renderer when its canvas is removed.
 
 ## License
 

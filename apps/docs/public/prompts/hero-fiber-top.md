@@ -2,16 +2,16 @@
 component: hero-fiber-top
 title: "Hero Fiber Top"
 category: Heroes
-tags: [hero, landing, fibers, silk, top-aligned]
+tags: [hero, landing, fibers, silk, studio]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-fiber-top.json
 registry: https://vfx-ui.com/r/hero-fiber-top.json
 docs: https://vfx-ui.com/components/hero-fiber-top.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Fiber Top
 
-> Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.
+> Drop-in hero: a left-set masthead pressed against the top edge while the silk-fiber field streams beneath it — fibers carry the lower two-thirds, the scrim carries the type.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Fiber Top” component to this project and use it as the 
 
 ## Context
 
-Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: a left-set masthead pressed against the top edge while the silk-fiber field streams beneath it — fibers carry the lower two-thirds, the scrim carries the type — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-fiber-top.md
 
 ````

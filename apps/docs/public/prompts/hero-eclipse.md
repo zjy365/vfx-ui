@@ -2,7 +2,7 @@
 component: hero-eclipse
 title: "Hero Eclipse"
 category: Heroes
-tags: [hero, pointer, editorial]
+tags: [hero, pointer, eclipse, astronomy, editorial]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-eclipse.json
 registry: https://vfx-ui.com/r/hero-eclipse.json
 docs: https://vfx-ui.com/components/hero-eclipse.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Hero Eclipse
 
-> An engraved astronomical dial with a pointer-controlled eclipse.
+> An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Eclipse” component to this project and use it as the he
 
 ## Context
 
-An engraved astronomical dial with a pointer-controlled eclipse — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

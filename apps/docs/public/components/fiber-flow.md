@@ -1,15 +1,15 @@
 # Fiber Flow
 
-Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/fiber-flow.json
 ```
 
 ```tsx
-import { FiberFlow } from "@vfx-ui/react";
+import { FiberFlow } from "@/components/FiberFlow";
 
 export function Demo() {
   return <FiberFlow />;
@@ -36,7 +36,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FIBER_FLOW_PRESETS } from "@vfx-ui/react";
+import { FIBER_FLOW_PRESETS } from "@/components/FiberFlow";
 ```
 
 ## Shader

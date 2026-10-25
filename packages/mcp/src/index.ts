@@ -28,7 +28,8 @@ const TOOLS: Tool[] = [
       properties: {
         category: {
           type: "string",
-          description: 'Exact category name, case-insensitive (e.g. "Heroes"). Omit to list all.',
+          description:
+            'Exact category name, case-insensitive (e.g. "Heroes"). Omit to list all.',
         },
       },
       additionalProperties: false,
@@ -38,13 +39,13 @@ const TOOLS: Tool[] = [
     name: "vfx_search_components",
     title: "Search VFX UI components",
     description:
-      "Keyword-search VFX UI components across name, title, description, tags and categories. Returns ranked matches. Use this to find a component by effect (e.g. \"aurora\", \"glass\", \"pricing\").",
+      'Keyword-search VFX UI components across name, title, description, tags and categories. Returns ranked matches. Use this to find a component by effect (e.g. "aurora", "glass", "pricing").',
     inputSchema: {
       type: "object",
       properties: {
         query: {
           type: "string",
-          description: "Search keyword(s), e.g. \"aurora\" or \"glass card\".",
+          description: 'Search keyword(s), e.g. "aurora" or "glass card".',
         },
       },
       required: ["query"],
@@ -77,7 +78,7 @@ const TOOLS: Tool[] = [
     name: "vfx_get_styles",
     title: "Get VFX UI styles and palette",
     description:
-      "VFX UI visual language: core palette with hex values (mineral paper, charcoal green, cobalt), typography (Figtree Black display), and styling guidance for composing pages with VFX UI components.",
+      "VFX UI visual language: product palette and typography, consumer-owned component styling, Free/Pro boundaries, and composition guidance for composing pages with VFX UI components.",
     inputSchema: {
       type: "object",
       properties: {},
@@ -127,7 +128,10 @@ async function main(): Promise<void> {
 
   server.setRequestHandler(CallToolRequestSchema, async (request) => {
     try {
-      const text = await callTool(request.params.name, request.params.arguments);
+      const text = await callTool(
+        request.params.name,
+        request.params.arguments,
+      );
       return {
         content: [{ type: "text", text }],
       };

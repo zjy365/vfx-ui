@@ -2,7 +2,7 @@
 component: ink-bloom
 title: "Ink Bloom"
 category: Backgrounds
-tags: [background, ink, paper, diffusion]
+tags: [background, ink, paper, sumi-e]
 install: npx shadcn@latest add https://vfx-ui.com/r/ink-bloom.json
 registry: https://vfx-ui.com/r/ink-bloom.json
 docs: https://vfx-ui.com/components/ink-bloom.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Ink Bloom
 
-> Ink drops blooming and feathering into warm paper on staggered cycles.
+> Ink drops blooming and feathering across wet paper — each front is an fbm-perturbed radius, denser at the core and ring-deposited at the edge, paling as it ages. Light paper base.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Ink Bloom” component to this project and use it as an animat
 
 ## Context
 
-Ink drops blooming and feathering into warm paper on staggered cycles — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Ink drops blooming and feathering across wet paper — each front is an fbm-perturbed radius, denser at the core and ring-deposited at the edge, paling as it ages. Light paper base — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

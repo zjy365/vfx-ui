@@ -1,15 +1,15 @@
 # Block Gallery
 
-Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.
+Work gallery: a responsive grid of tiles that lift on hover, with an optional lightbox — a real dialog (focus moves in, Escape closes, arrows navigate, Tab stays trapped, focus returns).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-gallery.json
 ```
 
 ```tsx
-import { BlockGallery } from "@vfx-ui/react";
+import { BlockGallery } from "@/components/BlockGallery";
 
 export function Demo() {
   return <BlockGallery />;

@@ -20,7 +20,7 @@ export interface VfxRendererOptions {
   shader: VfxShaderSource;
   /** Initial uniform values. `time` is managed by the renderer unless `animate` is false. */
   uniforms?: VfxUniforms;
-  /** Advance the `time` uniform every frame. Defaults to true. */
+  /** Continuously draw and advance time. False draws only on attach, updates and resize. Defaults to true. */
   animate?: boolean;
   /** Device pixel ratio, or a [min, max] clamp. Defaults to the display's DPR. */
   dpr?: number | readonly [number, number];
@@ -40,7 +40,7 @@ export interface VfxRenderer {
   readonly label: string;
   /** Update uniform values (WGSL field names). */
   setUniforms(values: VfxUniforms): void;
-  /** Pause/resume time advancement. Resuming resets the delta clock. */
+  /** Pause/resume continuous drawing. Uniform updates and resize still refresh a paused canvas once. */
   setAnimate(animate: boolean): void;
   /** Stop the frame loop and release GPU resources. */
   dispose(): void;

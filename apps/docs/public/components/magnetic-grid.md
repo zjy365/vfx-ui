@@ -1,15 +1,15 @@
 # Magnetic Grid
 
-A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.
+A lattice of iron filings for the cursor: each dot feels the pointer's field, slides and swells as it passes, and settles back when it leaves.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic-grid.json
 ```
 
 ```tsx
-import { MagneticGrid } from "@vfx-ui/react";
+import { MagneticGrid } from "@/components/MagneticGrid";
 
 export function Demo() {
   return <MagneticGrid />;

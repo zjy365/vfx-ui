@@ -1,15 +1,15 @@
 # Solar Corona
 
-A boiling sun disk crowned with streaming corona light and polar plumes.
+A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/solar-corona.json
 ```
 
 ```tsx
-import { SolarCorona } from "@vfx-ui/react";
+import { SolarCorona } from "@/components/SolarCorona";
 
 export function Demo() {
   return <SolarCorona />;
@@ -36,7 +36,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { SOLAR_CORONA_PRESETS } from "@vfx-ui/react";
+import { SOLAR_CORONA_PRESETS } from "@/components/SolarCorona";
 ```
 
 ## Shader

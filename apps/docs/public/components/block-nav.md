@@ -1,15 +1,15 @@
 # Block Nav
 
-Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.
+Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet. Sticky variant gains a scrim once the page scrolls.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-nav.json
 ```
 
 ```tsx
-import { BlockNav } from "@vfx-ui/react";
+import { BlockNav } from "@/components/BlockNav";
 
 export function SiteHeader() {
   return (

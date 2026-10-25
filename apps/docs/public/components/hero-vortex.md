@@ -1,15 +1,15 @@
 # Hero Vortex
 
-Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
+Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-vortex.json
 ```
 
 ```tsx
-import { HeroVortex } from "@vfx-ui/react";
+import { HeroVortex } from "@/components/HeroVortex";
 
 export function Demo() {
   return <HeroVortex title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -41,7 +41,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_VORTEX_PRESETS } from "@vfx-ui/react";
+import { HERO_VORTEX_PRESETS } from "@/components/HeroVortex";
 ```
 
 ## Shader

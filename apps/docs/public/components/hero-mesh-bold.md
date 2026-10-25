@@ -1,15 +1,15 @@
 # Hero Mesh Bold
 
-Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.
+Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over a vivid Voronoi mesh field. Keep the title short; the type is drawn to fill the frame.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-mesh-bold.json
 ```
 
 ```tsx
-import { HeroMeshBold } from "@vfx-ui/react";
+import { HeroMeshBold } from "@/components/HeroMeshBold";
 
 export function Demo() {
   return <HeroMeshBold title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -42,7 +42,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_MESH_BOLD_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_BOLD_PRESETS } from "@/components/HeroMeshBold";
 ```
 
 ## Shader

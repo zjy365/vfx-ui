@@ -2,16 +2,16 @@
 component: hero-aurora-editorial
 title: "Hero Aurora Editorial"
 category: Heroes
-tags: [hero, landing, aurora, editorial, typography]
+tags: [hero, landing, aurora, editorial, serif]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-aurora-editorial.json
 registry: https://vfx-ui.com/r/hero-aurora-editorial.json
 docs: https://vfx-ui.com/components/hero-aurora-editorial.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Aurora Editorial
 
-> Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.
+> Drop-in hero: a centered serif masthead — display title, two standfirst lines, dual CTAs — under full-bleed aurora curtains, with a radial scrim holding WCAG AA contrast.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Aurora Editorial” component to this project and use it 
 
 ## Context
 
-Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: a centered serif masthead — display title, two standfirst lines, dual CTAs — under full-bleed aurora curtains, with a radial scrim holding WCAG AA contrast — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -75,6 +75,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-aurora-editorial.md
 
 ````

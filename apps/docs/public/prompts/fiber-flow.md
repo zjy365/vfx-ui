@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Fiber Flow
 
-> Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+> Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Fiber Flow” component to this project and use it as an anima
 
 ## Context
 
-Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Aurora
 
-> Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
+> Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Aurora” component to this project and use it as the her
 
 ## Context
 
-Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

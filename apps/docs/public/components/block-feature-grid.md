@@ -1,15 +1,15 @@
 # Block Feature Grid
 
-Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.
+Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-grid.json
 ```
 
 ```tsx
-import { BlockFeatureGrid } from "@vfx-ui/react";
+import { BlockFeatureGrid } from "@/components/BlockFeatureGrid";
 
 export function Features() {
   return (

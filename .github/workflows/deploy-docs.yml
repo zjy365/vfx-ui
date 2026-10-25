@@ -1,75 +1,56 @@
-name: Check docs build
-
+name: Check public product build
 on:
   push:
     branches: [main]
-    paths:
-      - "apps/docs/**"
-      - "packages/react/**"
-      - "packages/core/**"
-      - "registry/**"
-      - "scripts/generate-agentic.mjs"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - ".github/workflows/deploy-docs.yml"
   pull_request:
     branches: [main]
-    paths:
-      - "apps/docs/**"
-      - "packages/react/**"
-      - "packages/core/**"
-      - "registry/**"
-      - "scripts/generate-agentic.mjs"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "pnpm-workspace.yaml"
-      - ".github/workflows/deploy-docs.yml"
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
   group: docs-build-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VGPU_ADAPTER: software
     steps:
       - uses: actions/checkout@v4
-
       - uses: pnpm/action-setup@v4
         with:
           version: 8.15.9
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: pnpm
-
       - run: pnpm install --frozen-lockfile
-
-      # Rebuild the copy-paste registry from live component sources so the
-      # served catalog can never drift from the published package.
-      - name: Build registry
-        run: node registry/build.mjs
-
-      # llms.txt, agents.md, and one .md per component — consumed by coding agents.
-      - name: Generate agentic docs
-        run: node scripts/generate-agentic.mjs
-
-      # Serve the shadcn-format registry at vfx-ui.com/r/<name>.json, which is
-      # the DEFAULT_REGISTRY the CLI fetches from (packages/cli/bin/cli.mjs).
-      - name: Stage registry into docs site
+      - name: Audit production and development dependencies
+        run: pnpm audit --audit-level=low
+      - name: Build packages and static product site
+        run: pnpm build
+      - name: Typecheck all packages and applications
+        run: pnpm typecheck
+      - name: Verify catalog, free registry and MCP boundary
+        run: pnpm catalog:check
+      - name: Verify packaged React 18 and React 19 consumers
+        run: pnpm test:consumer
+      - name: Verify isolated registry consumers
+        run: node scripts/check-registry-consumers.mjs
+      - name: Install and verify CPU WebGPU renderer
         run: |
-          mkdir -p apps/docs/public/r
-          cp registry/dist/r/*.json apps/docs/public/r/
-          cp registry/dist/index.json apps/docs/public/r/index.json
-
-      - name: Build docs site
-        run: pnpm --filter @vfx-ui/docs build
-
-      # Cloudflare Pages builds and deploys main through its GitHub integration.
-      # This workflow checks the same build without requiring deployment secrets.
+          export VGPU_CACHE_DIR="$RUNNER_TEMP/vgpu-cache"
+          export XDG_RUNTIME_DIR="$RUNNER_TEMP/vgpu-runtime"
+          printf 'VGPU_CACHE_DIR=%s\nXDG_RUNTIME_DIR=%s\n' "$VGPU_CACHE_DIR" "$XDG_RUNTIME_DIR" >> "$GITHUB_ENV"
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libvulkan1 libdrm2 libudev1 libzstd1 zlib1g
+          install -d -m 700 "$XDG_RUNTIME_DIR"
+          # The locked vgpu CLI verifies its portable lavapipe release by SHA-256.
+          pnpm --filter @vfx-ui/core exec vgpu install-software-renderer
+          pnpm --filter @vfx-ui/core exec vgpu doctor --pretty
+      - name: Unit, regression and MCP smoke tests
+        timeout-minutes: 10
+        run: pnpm test
+      # Cloudflare Pages publishes main through its existing Git integration.
+      # Build output remains apps/docs/dist; this workflow does not deploy.

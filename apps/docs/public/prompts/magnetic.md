@@ -2,7 +2,7 @@
 component: magnetic
 title: "Magnetic"
 category: Interactions
-tags: [pointer, interactive]
+tags: [button, pointer, magnetic]
 install: npx shadcn@latest add https://vfx-ui.com/r/magnetic.json
 registry: https://vfx-ui.com/r/magnetic.json
 docs: https://vfx-ui.com/components/magnetic.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Magnetic
 
-> A gentle magnetic pull for your own buttons, links, and content.
+> Give a button, link, or any small piece of content a gentle pull.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Magnetic” component to this project and use it as an interac
 
 ## Context
 
-A gentle magnetic pull for your own buttons, links, and content — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Give a button, link, or any small piece of content a gentle pull — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

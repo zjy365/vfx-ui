@@ -1,15 +1,15 @@
 # Tilt Card
 
-A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.
+A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/tilt-card.json
 ```
 
 ```tsx
-import { TiltCard } from "@vfx-ui/react";
+import { TiltCard } from "@/components/TiltCard";
 
 export function Demo() {
   return <TiltCard />;

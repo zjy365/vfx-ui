@@ -1,15 +1,15 @@
 # Hero Ribbon Left
 
-Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.
+Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon-left.json
 ```
 
 ```tsx
-import { HeroRibbonLeft } from "@vfx-ui/react";
+import { HeroRibbonLeft } from "@/components/HeroRibbonLeft";
 
 export function Demo() {
   return <HeroRibbonLeft title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -39,7 +39,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_RIBBON_LEFT_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_LEFT_PRESETS } from "@/components/HeroRibbonLeft";
 ```
 
 ## Shader

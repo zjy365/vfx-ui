@@ -2,7 +2,7 @@
 component: plasma-sheet
 title: "Plasma Sheet"
 category: Backgrounds
-tags: [background, plasma, domain-warp, flow]
+tags: [background, plasma, gradient, flow]
 install: npx shadcn@latest add https://vfx-ui.com/r/plasma-sheet.json
 registry: https://vfx-ui.com/r/plasma-sheet.json
 docs: https://vfx-ui.com/components/plasma-sheet.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Plasma Sheet
 
-> Molten color currents folding through each other in a double domain-warped field.
+> Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Plasma Sheet” component to this project and use it as an ani
 
 ## Context
 
-Molten color currents folding through each other in a double domain-warped field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

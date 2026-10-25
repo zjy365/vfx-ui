@@ -2,7 +2,7 @@
 component: glass-lens
 title: "Glass Lens"
 category: Glass
-tags: [glass, refraction, lens, liquid-glass]
+tags: [glass, lens, optical]
 install: npx shadcn@latest add https://vfx-ui.com/r/glass-lens.json
 registry: https://vfx-ui.com/r/glass-lens.json
 docs: https://vfx-ui.com/components/glass-lens.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Glass Lens
 
-> A biconvex glass lens that magnifies and inverts a printed studio scene.
+> A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Glass Lens” component to this project and use it as a glass 
 
 ## Context
 
-A biconvex glass lens that magnifies and inverts a printed studio scene — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -1,0 +1,38 @@
+---
+title: Compatibility & accessibility
+description: Keep your page useful across browsers, devices and motion preferences.
+---
+
+VFX UI includes DOM, CSS, SVG and WebGPU components. Check the rendering method on the component's detail page before choosing an effect for your project.
+
+## Browser and GPU support
+
+DOM, CSS and SVG components do not need WebGPU. WebGPU effects require support from both the browser and device; test on the environments your visitors use.
+
+Keep essential headings, links and actions in HTML. Provide a useful static background or image when the GPU effect is unavailable. Do not put essential information only inside a canvas.
+
+## Reduced motion
+
+Respect the visitor's `prefers-reduced-motion: reduce` setting. A static composition should still communicate the same content and allow the same actions.
+
+Test the component with reduced motion enabled in your operating system or browser tools. Check pointer movement and continuous animation, as behavior can differ between components.
+
+## Touch and keyboard
+
+Pointer effects are an enhancement. On a touch screen, visitors must still be able to read the content and activate every link and button.
+
+Navigate your page using Tab and Shift+Tab. Check that focus is visible, follows a sensible order and reaches every action. Avoid content or controls that only appear on hover.
+
+## Layout and performance
+
+Give backgrounds and shader canvases an explicit size. Check that text and actions fit on a narrow screen without horizontal scrolling.
+
+Start with one main visual effect per section. Multiple active shaders increase GPU work, so test the finished page on a lower-powered device as well as your development machine.
+
+## Before you publish
+
+- Check the page on desktop and a narrow touch screen.
+- Reach and activate all controls with a keyboard.
+- Enable reduced motion and confirm the content remains useful.
+- Test GPU effects with a static fallback.
+- Replace example text, links and actions with your own content.

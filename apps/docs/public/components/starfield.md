@@ -1,15 +1,15 @@
 # Starfield
 
-Hashed star grid with twinkle and slow parallax drift.
+Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/starfield.json
 ```
 
 ```tsx
-import { Starfield } from "@vfx-ui/react";
+import { Starfield } from "@/components/Starfield";
 
 export function Demo() {
   return <Starfield />;
@@ -32,7 +32,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { STARFIELD_PRESETS } from "@vfx-ui/react";
+import { STARFIELD_PRESETS } from "@/components/Starfield";
 ```
 
 ## Shader

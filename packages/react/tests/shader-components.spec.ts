@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { init, effect, target, frame } from "vgpu/node";
+import { effect, target, frame } from "vgpu/node";
+import { getTestGpu } from "./helpers.ts";
 import { MESH_GRADIENT_SHADER } from "../src/components/MeshGradient.tsx";
 import { IRIDESCENT_SHADER } from "../src/components/Iridescent.tsx";
 import { VORTEX_SHADER } from "../src/components/Vortex.tsx";
@@ -14,11 +15,15 @@ const BASE = {
 };
 
 async function render(shader: string, uniforms: Record<string, unknown>): Promise<Uint8Array> {
-  const gpu = await init();
+  const gpu = await getTestGpu();
   const t = target(gpu, { size: [16, 16], format: "rgba8unorm" });
-  const fx = effect(gpu, shader, { set: uniforms });
-  frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
-  return t.read();
+  try {
+    const fx = effect(gpu, shader, { set: uniforms });
+    frame(gpu, (f) => f.pass({ target: t }, (p) => p.draw(fx)));
+    return await t.read();
+  } finally {
+    t.color.destroy();
+  }
 }
 
 describe("MeshGradient", () => {

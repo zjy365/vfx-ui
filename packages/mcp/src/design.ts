@@ -6,38 +6,43 @@
 
 export const STYLES_MARKDOWN = `# VFX UI styles and visual language
 
-Source: vfx-ui DESIGN.md (shader-native React components rendered via WebGPU/vgpu).
+Source: vfx-ui DESIGN.md. VFX UI provides free React components and complete Pro landing-page projects.
 
-## Core palette
+## Product-site palette
 
 | Color | Hex | Use |
 | --- | --- | --- |
-| Mineral paper | \`#eeefe9\` | Light studio surfaces, editorial pages |
-| Charcoal green | \`#202520\` | Dark studio chrome, quiet panels |
-| Cobalt | \`#2349db\` | Interaction accent, links, focus states |
-| Exhibition black | near-black stage | Cinematic openings hosting a live GPU artwork |
-| Warm white | soft off-white | Oversized display typography on black |
+| Canvas | \`#ffffff\` | Light product canvas |
+| Ink | \`#17191c\` | Text and primary controls |
+| Muted | \`#555b64\` | Secondary text |
+| Surface | \`#f1f2f4\` | Preview controls and quiet surfaces |
+| Line | \`#dde0e4\` | Borders |
+| Yellow | \`#f5d547\` | Magnetic study and product accent |
 
-Suggested accent ramp for shader uniforms: pass \`primary\`/\`secondary\` props
-(cobalt \`#2349db\` pairs well with mineral paper and warm white). Component
-presets (e.g. \`AURORA_PRESETS\`) are the fastest way to stay on-palette.
+The website uses Manrope for text and DM Mono for metadata. Desktop gutters are
+64px, mobile gutters 24px. Main display is 80/84px; gallery display is 72/76px;
+component titles are 44/50px. Mobile display is 48–52px.
 
-## Typography
+## Composing consumer websites
 
-- Display: Figtree Black (local, OFL-licensed) for oversized headlines.
-- Interface: the existing neutral sans-serif.
-- Source/code: monospace.
+- Use the consumer's own typography and palette through component props.
+  Existing library artwork includes mineral paper, charcoal and cobalt presets;
+  those are component choices, not a requirement to copy the product website.
+- Let actual components supply the spectacle: restrained borders, quiet labels,
+  generous space and one clear visual idea per section.
+- Hero copy is example content. Replace it through React nodes, CTA objects or
+  custom children before shipping a real product.
+- Preserve the full composition at mobile sizes; place artwork below the copy
+  rather than clipping headlines or actions.
+- The public gallery is a product preview, with code and API disclosed on demand.
+  Fumadocs is reserved for technical documentation.
 
-## Styling guidance
+## Free and Pro
 
-- Let actual components supply the spectacle: restrained borders, quiet
-  labels, generous space, deliberate transition from exhibition to docs.
-- Content is consumer-owned: hero copy is example content; components accept
-  React nodes, CTA objects, or fully custom children.
-- Scale a full Hero composition inside a preview instead of clipping its
-  title or actions; at 390px mobile the hero artwork flows below the copy.
-- One component gets one catalog entry; presets stay discoverable inside
-  components and through search.
+All 93 existing registry entries remain free MIT components. Pro Collection 01
+contains five complete editable landing-page projects: Agency, Marketing,
+Playful, SaaS and Startup. Public previews contain compiled demonstrations;
+paid project source is delivered privately. Content-creation skills are separate.
 `;
 
 export const DESIGN_NOTES_MARKDOWN = `# VFX UI design notes
@@ -52,18 +57,18 @@ when composing pages or contributing components.
 - Magnetic controls keep a stationary hit region; motion settles through an
   imperative animation loop instead of causing React renders on every pointer
   movement.
-- Respect \`prefers-reduced-motion\` (shader time freezes automatically),
+- Respect \`prefers-reduced-motion\` (GPU drawing pauses for reduced motion),
   ignore touch hover emulation, clean up listeners and frames, preserve
   native keyboard behavior.
-- The homepage can pause its GPU exhibition and releases it offscreen; that
-  is separate from freezing shader time inside the library renderer.
+- The current homepage uses an optical DOM/SVG study. Component canvases pause
+  when offscreen, hidden or reduced motion is requested.
 - Keep component defaults conservative; interactive demos explicitly enable
   pointer response.
 
 ## Runtime behavior to tell users about
 
-- WebGPU-capable browser required; components degrade gracefully otherwise
-  via the \`fallback\` prop.
+- Check each component runtime. DOM/CSS components need no GPU; WebGPU effects
+  require support and expose a \`fallback\` prop. A small number use WebGL.
 - SSR-safe: server rendering produces an inert canvas; init happens on mount.
 - Uniforms are plain f32 fields passed via \`uniforms\`; no shader edits needed.
 - WGSL source is exported per component (e.g. \`AURORA_SHADER\`) for learning.

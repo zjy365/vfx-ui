@@ -6,6 +6,7 @@ describe("LightPrism complete optical pipeline", () => {
   it("renders opaque geometry and changes spectral caustics with dispersion", async () => {
     const gpu = await init();
     const output = target(gpu, { size: [96, 96], format: "rgba8unorm" });
+    gpu.gpu.pushErrorScope("validation");
     try {
       await renderPrismThumbnail(gpu, output, { settings: { dispersion: 0 } });
       const mono = await output.read();
@@ -13,6 +14,7 @@ describe("LightPrism complete optical pipeline", () => {
         settings: { dispersion: 0.15 },
       });
       const spectrum = await output.read();
+      expect(await gpu.gpu.popErrorScope()).toBeNull();
       let changed = 0,
         range = 0;
       for (let i = 0; i < mono.length; i += 4) {

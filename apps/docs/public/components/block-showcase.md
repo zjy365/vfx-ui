@@ -1,15 +1,15 @@
 # Block Showcase
 
-Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.
+Product showcase stage: browser-chrome frame with a replaceable screenshot or video (built-in CSS demo screen by default), headline and actions, with a gentle pointer tilt.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-showcase.json
 ```
 
 ```tsx
-import { BlockShowcase } from "@vfx-ui/react";
+import { BlockShowcase } from "@/components/BlockShowcase";
 
 export function Tour() {
   return (

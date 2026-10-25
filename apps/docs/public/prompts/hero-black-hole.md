@@ -2,7 +2,7 @@
 component: hero-black-hole
 title: "Hero Black Hole"
 category: Heroes
-tags: [hero, landing, space, black-hole]
+tags: [hero, landing, space, black-hole, physics]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole.json
 registry: https://vfx-ui.com/r/hero-black-hole.json
 docs: https://vfx-ui.com/components/hero-black-hole.md
@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Black Hole
 
-> Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
+> Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Black Hole” component to this project and use it as the
 
 ## Context
 
-Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

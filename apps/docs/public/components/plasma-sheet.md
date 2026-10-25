@@ -1,15 +1,15 @@
 # Plasma Sheet
 
-Molten color currents folding through each other in a double domain-warped field.
+Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/plasma-sheet.json
 ```
 
 ```tsx
-import { PlasmaSheet } from "@vfx-ui/react";
+import { PlasmaSheet } from "@/components/PlasmaSheet";
 
 export function Demo() {
   return <PlasmaSheet />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PLASMA_SHEET_PRESETS } from "@vfx-ui/react";
+import { PLASMA_SHEET_PRESETS } from "@/components/PlasmaSheet";
 ```
 
 ## Shader

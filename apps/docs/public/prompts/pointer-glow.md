@@ -2,7 +2,7 @@
 component: pointer-glow
 title: "Pointer Glow"
 category: Interactions
-tags: [pointer, interactive]
+tags: [pointer, glow, light, layout]
 install: npx shadcn@latest add https://vfx-ui.com/r/pointer-glow.json
 registry: https://vfx-ui.com/r/pointer-glow.json
 docs: https://vfx-ui.com/components/pointer-glow.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Pointer Glow
 
-> A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.
+> A handheld light for layouts: the region dims slightly and a warm source follows the pointer, brightening whatever it rests on.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Pointer Glow” component to this project and use it as an int
 
 ## Context
 
-A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A handheld light for layouts: the region dims slightly and a warm source follows the pointer, brightening whatever it rests on — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

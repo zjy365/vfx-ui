@@ -2,16 +2,16 @@
 component: hero-ribbon-left
 title: "Hero Ribbon Left"
 category: Heroes
-tags: [hero, landing, ribbon, split, typography]
+tags: [hero, landing, ribbon, split, telemetry]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon-left.json
 registry: https://vfx-ui.com/r/hero-ribbon-left.json
 docs: https://vfx-ui.com/components/hero-ribbon-left.md
-requiresWebGPU: false
+requiresWebGPU: true
 ---
 
 # AI builder prompt — Hero Ribbon Left
 
-> Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.
+> Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Ribbon Left” component to this project and use it as th
 
 ## Context
 
-Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 
@@ -74,6 +74,7 @@ export function Hero() {
 ## Constraints
 
 - Treat the installed files under `components/` (including `components/vfx/`) as generated library code: never rewrite them, configure everything from props in your own page files.
+- The effect renders through WebGPU: give the component a sized parent, and pass the `fallback` prop (a ReactNode) for browsers without WebGPU support.
 - Full prop-by-prop documentation: https://vfx-ui.com/components/hero-ribbon-left.md
 
 ````

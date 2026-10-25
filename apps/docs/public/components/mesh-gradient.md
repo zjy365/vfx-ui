@@ -1,15 +1,15 @@
 # Mesh Gradient
 
-Voronoi-cell color fields flowing through a curated palette.
+Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/mesh-gradient.json
 ```
 
 ```tsx
-import { MeshGradient } from "@vfx-ui/react";
+import { MeshGradient } from "@/components/MeshGradient";
 
 export function Demo() {
   return <MeshGradient />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { MESH_GRADIENT_PRESETS } from "@vfx-ui/react";
+import { MESH_GRADIENT_PRESETS } from "@/components/MeshGradient";
 ```
 
 ## Shader

@@ -1,15 +1,15 @@
 # Block Quote Wall
 
-Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.
+Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friendly rotator (real prev/next controls, focus and hover pause, reduced motion disables auto-advance).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-quote-wall.json
 ```
 
 ```tsx
-import { BlockQuoteWall } from "@vfx-ui/react";
+import { BlockQuoteWall } from "@/components/BlockQuoteWall";
 
 export function Demo() {
   return <BlockQuoteWall />;

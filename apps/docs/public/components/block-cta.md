@@ -1,15 +1,16 @@
 # Block CTA
 
-Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).
+Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-cta.json https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { BlockCta, WaveBackground } from "@vfx-ui/react";
+import { BlockCta } from "@/components/BlockCta";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Closing() {
   return (

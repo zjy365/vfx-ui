@@ -2,7 +2,7 @@
 component: footer-vinyl
 title: "Footer Vinyl"
 category: Footers
-tags: [footer, vinyl, pointer]
+tags: [footer, typography, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/footer-vinyl.json
 registry: https://vfx-ui.com/r/footer-vinyl.json
 docs: https://vfx-ui.com/components/footer-vinyl.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Footer Vinyl
 
-> A record-sleeve footer with a pointer-rotated vinyl and your own label.
+> A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Footer Vinyl” component to this project and use it as the si
 
 ## Context
 
-A record-sleeve footer with a pointer-rotated vinyl and your own label — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

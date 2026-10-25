@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Fluid Gradient
 
-> Domain-warped fBm noise flowing through a tri-color palette.
+> Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Fluid Gradient” component to this project and use it as an a
 
 ## Context
 
-Domain-warped fBm noise flowing through a tri-color palette — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

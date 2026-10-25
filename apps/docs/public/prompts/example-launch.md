@@ -2,7 +2,7 @@
 component: example-launch
 title: "Example — Product Launch"
 category: Blocks
-tags: [example, landing, launch, product]
+tags: [block, example, landing, launch, product]
 install: npx shadcn@latest add https://vfx-ui.com/r/example-launch.json
 registry: https://vfx-ui.com/r/example-launch.json
 docs: https://vfx-ui.com/components/example-launch.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Example — Product Launch
 
-> Complete fictional software launch page ("Orbit" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.
+> Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA and footer. All copy is demo content.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Example — Product Launch” component to this project and us
 
 ## Context
 
-Complete fictional software launch page ("Orbit" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA and footer. All copy is demo content — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

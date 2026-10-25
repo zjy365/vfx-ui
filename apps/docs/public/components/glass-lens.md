@@ -1,15 +1,15 @@
 # Glass Lens
 
-A biconvex glass lens that magnifies and inverts a printed studio scene.
+A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-lens.json
 ```
 
 ```tsx
-import { GlassLens } from "@vfx-ui/react";
+import { GlassLens } from "@/components/GlassLens";
 
 export function Demo() {
   return <div style={{ height: 520 }}><GlassLens interactive /></div>;
@@ -34,7 +34,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_LENS_PRESETS } from "@vfx-ui/react";
+import { GLASS_LENS_PRESETS } from "@/components/GlassLens";
 ```
 
 ## Shader

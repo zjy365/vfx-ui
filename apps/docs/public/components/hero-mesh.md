@@ -1,15 +1,15 @@
 # Hero Mesh
 
-Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
+Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-mesh.json
 ```
 
 ```tsx
-import { HeroMesh } from "@vfx-ui/react";
+import { HeroMesh } from "@/components/HeroMesh";
 
 export function Demo() {
   return <HeroMesh title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -42,7 +42,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_MESH_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_PRESETS } from "@/components/HeroMesh";
 ```
 
 ## Shader

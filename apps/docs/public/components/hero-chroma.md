@@ -5,11 +5,11 @@ Drop-in hero section: bottom-left copy over a four-edge liquid color field that 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-chroma.json
 ```
 
 ```tsx
-import { HeroChroma } from "@vfx-ui/react";
+import { HeroChroma } from "@/components/HeroChroma";
 
 export function Demo() {
   return <HeroChroma title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -44,7 +44,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_CHROMA_PRESETS } from "@vfx-ui/react";
+import { HERO_CHROMA_PRESETS } from "@/components/HeroChroma";
 ```
 
 ## Shader

@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Iridescent
 
-> Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
+> Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Iridescent” component to this project and use it as the
 
 ## Context
 
-Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

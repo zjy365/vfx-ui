@@ -1,15 +1,15 @@
 # Block Integrations
 
-Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.
+Integrations hub: your product at the center of two connection rings of rebrandable tool tiles, with an always-available link grid below and on touch layouts.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-integrations.json
 ```
 
 ```tsx
-import { BlockIntegrations } from "@vfx-ui/react";
+import { BlockIntegrations } from "@/components/BlockIntegrations";
 
 export function Stack() {
   return (

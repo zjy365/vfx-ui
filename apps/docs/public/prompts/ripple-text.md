@@ -2,7 +2,7 @@
 component: ripple-text
 title: "Ripple Text"
 category: Text
-tags: [pointer, interactive]
+tags: [text, ripple, pointer, water]
 install: npx shadcn@latest add https://vfx-ui.com/r/ripple-text.json
 registry: https://vfx-ui.com/r/ripple-text.json
 docs: https://vfx-ui.com/components/ripple-text.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Ripple Text
 
-> Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.
+> Type you can touch: a click (or tap) drops a ripple that travels outward through the letters, and a resting pointer leaves a soft dimple.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Ripple Text” component to this project and use it to animate
 
 ## Context
 
-Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Type you can touch: a click (or tap) drops a ripple that travels outward through the letters, and a resting pointer leaves a soft dimple — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

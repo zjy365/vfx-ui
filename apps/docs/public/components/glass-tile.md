@@ -1,15 +1,15 @@
 # Glass Tile
 
-A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.
+A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-tile.json
 ```
 
 ```tsx
-import { GlassTile } from "@vfx-ui/react";
+import { GlassTile } from "@/components/GlassTile";
 
 export function Demo() {
   return <GlassTile />;

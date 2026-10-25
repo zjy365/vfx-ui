@@ -2,7 +2,7 @@
 component: block-feature-tabs
 title: "Block Feature Tabs"
 category: Blocks
-tags: [block, section, landing, tabs, features, keyboard]
+tags: [block, tabs, features, keyboard, interactive]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-feature-tabs.json
 registry: https://vfx-ui.com/r/block-feature-tabs.json
 docs: https://vfx-ui.com/components/block-feature-tabs.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Feature Tabs
 
-> Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.
+> Feature tabs where the list, copy and illustration switch together. WAI-ARIA tabs pattern with arrow keys; a scrollable strip above the stage on touch layouts.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Feature Tabs” component to this project and use it as 
 
 ## Context
 
-Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Feature tabs where the list, copy and illustration switch together. WAI-ARIA tabs pattern with arrow keys; a scrollable strip above the stage on touch layouts — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

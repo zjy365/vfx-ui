@@ -1,0 +1,32 @@
+---
+title: Use with AI agents
+description: Give your coding agent a component URL, an installation method and clear constraints.
+---
+
+Open a component in the [library](/components/) and share its URL with your coding agent. The detail page contains the usage example, props and implementation notes it needs.
+
+## A prompt you can adapt
+
+Include the component you want, where it belongs and what should stay consistent with your project:
+
+```text
+Add VFX UI Hero Contour to my React landing page.
+Component: https://vfx-ui.com/heroes/hero-contour/
+Install editable source:
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
+
+Keep my existing brand colors and typography.
+Replace the example text and links with my content.
+Preserve keyboard access and reduced-motion behavior.
+Check desktop and a 390px viewport.
+```
+
+Ask the agent to use the local import from the component page after installing source. The npm package currently published does not match this catalog; see [installation & usage](/docs/installation/).
+
+## Machine-readable references
+
+- [Library overview](/llms.txt): an entry point for agents exploring the library.
+- [Agent guidance](/agents.md): installation and implementation guidance.
+- [Public registry](/r/index.json): the list of installable free components.
+
+Free components can be installed without authentication. Pro template source is private and is not included in the public registry. When Pro sales open, downloads will require a purchase and an authenticated account.

@@ -1,15 +1,15 @@
 # Footer Phosphor
 
-A luminous cell wordmark that disperses around your pointer and settles home.
+A wordmark made of light. Its cells scatter around your pointer and settle back into place.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-phosphor.json
 ```
 
 ```tsx
-import { FooterPhosphor } from "@vfx-ui/react";
+import { FooterPhosphor } from "@/components/FooterPhosphor";
 
 export function Demo() {
   return <FooterPhosphor brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;

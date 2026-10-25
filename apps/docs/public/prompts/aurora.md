@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Aurora
 
-> Vertical light curtains driven by fBm perturbation and gaussian bands.
+> Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Aurora” component to this project and use it as an animated,
 
 ## Context
 
-Vertical light curtains driven by fBm perturbation and gaussian bands — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

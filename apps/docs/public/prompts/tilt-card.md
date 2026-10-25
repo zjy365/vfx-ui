@@ -2,7 +2,7 @@
 component: tilt-card
 title: "Tilt Card"
 category: Interactions
-tags: [pointer, interactive]
+tags: [card, tilt, pointer, glare]
 install: npx shadcn@latest add https://vfx-ui.com/r/tilt-card.json
 registry: https://vfx-ui.com/r/tilt-card.json
 docs: https://vfx-ui.com/components/tilt-card.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Tilt Card
 
-> A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.
+> A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Tilt Card” component to this project and use it as an intera
 
 ## Context
 
-A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

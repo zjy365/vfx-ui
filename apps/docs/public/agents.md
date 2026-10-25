@@ -8,104 +8,106 @@
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 ```
+
+Install editable source from the registry and use local component imports. The npm 0.1.0 release does not match this catalog; do not use it for these examples.
 
 ## Component catalog
 
-- [Hero Eclipse](https://vfx-ui.com/components/hero-eclipse.md): An engraved astronomical dial with a pointer-controlled eclipse.
-- [Hero Contour](https://vfx-ui.com/components/hero-contour.md): A seeded topographic paper landscape that lifts around the pointer.
-- [Footer Vinyl](https://vfx-ui.com/components/footer-vinyl.md): A record-sleeve footer with a pointer-rotated vinyl and your own label.
-- [Astra Field](https://vfx-ui.com/components/astra-field.md): A rotatable spiral galaxy of glowing stars.
-- [Radiant Dots](https://vfx-ui.com/components/radiant-dots.md): Orbital emitters with jump-flooded distance fields and radiance cascades.
-- [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath your brand, with pointer-driven currents.
-- [Footer Fold](https://vfx-ui.com/components/footer-fold.md): A wordmark printed across hinged paper panels that respond to the pointer.
-- [Footer Phosphor](https://vfx-ui.com/components/footer-phosphor.md): A luminous cell wordmark that disperses around your pointer and settles home.
-- [Spectral Card](https://vfx-ui.com/components/spectral-card.md): Holographic light and spatial tilt around your own content.
-- [Kinetic Text](https://vfx-ui.com/components/kinetic-text.md): A pointer-driven force field lifts your words into a soft wave.
-- [Magnetic](https://vfx-ui.com/components/magnetic.md): A gentle magnetic pull for your own buttons, links, and content.
-- [Wave Background](https://vfx-ui.com/components/wave-background.md): Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
-- [Fluid Gradient](https://vfx-ui.com/components/fluid-gradient.md): Domain-warped fBm noise flowing through a tri-color palette.
-- [Aurora](https://vfx-ui.com/components/aurora.md): Vertical light curtains driven by fBm perturbation and gaussian bands.
-- [Starfield](https://vfx-ui.com/components/starfield.md): Hashed star grid with twinkle and slow parallax drift.
-- [Particle Field](https://vfx-ui.com/components/particle-field.md): Procedural cell-hashed particles with drift and size breathing.
-- [Glass Card](https://vfx-ui.com/components/glass-card.md): Thick-cut optical glass with two-interface refraction and studio reflections.
-- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): A molten glass annulus with a travelling silhouette and spectral transmission.
-- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): A biconvex glass lens that magnifies and inverts a printed studio scene.
-- [Black Hole](https://vfx-ui.com/components/black-hole.md): The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
-- [Mesh Gradient](https://vfx-ui.com/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette.
-- [Iridescent](https://vfx-ui.com/components/iridescent.md): Silky thin-film interference colors drifting across the surface.
-- [Vortex](https://vfx-ui.com/components/vortex.md): Spiral galaxy swirl with star speckles and trailing arms.
-- [Ribbon Field](https://vfx-ui.com/components/ribbon-field.md): Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
-- [Fiber Flow](https://vfx-ui.com/components/fiber-flow.md): Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
-- [Light Prism](https://vfx-ui.com/components/light-prism.md): A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
-- [Hero Fluid](https://vfx-ui.com/components/hero-fluid.md): Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
-- [Hero Aurora](https://vfx-ui.com/components/hero-aurora.md): Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
-- [Hero Fiber](https://vfx-ui.com/components/hero-fiber.md): Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
+- [Hero Eclipse](https://vfx-ui.com/components/hero-eclipse.md): An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial.
+- [Hero Contour](https://vfx-ui.com/components/hero-contour.md): A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer.
+- [Footer Vinyl](https://vfx-ui.com/components/footer-vinyl.md): A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve.
+- [Astra Field](https://vfx-ui.com/components/astra-field.md): A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field.
+- [Radiant Dots](https://vfx-ui.com/components/radiant-dots.md): A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field.
+- [Footer Tidal](https://vfx-ui.com/components/footer-tidal.md): Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.
+- [Footer Fold](https://vfx-ui.com/components/footer-fold.md): Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.
+- [Footer Phosphor](https://vfx-ui.com/components/footer-phosphor.md): A wordmark made of light. Its cells scatter around your pointer and settle back into place.
+- [Spectral Card](https://vfx-ui.com/components/spectral-card.md): A touch of iridescence. Real content, spatial tilt, and light that follows you.
+- [Kinetic Text](https://vfx-ui.com/components/kinetic-text.md): Letters lift into a soft wave as your cursor passes through.
+- [Magnetic](https://vfx-ui.com/components/magnetic.md): Give a button, link, or any small piece of content a gentle pull.
+- [Wave Background](https://vfx-ui.com/components/wave-background.md): Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU.
+- [Fluid Gradient](https://vfx-ui.com/components/fluid-gradient.md): Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video.
+- [Aurora](https://vfx-ui.com/components/aurora.md): Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky.
+- [Starfield](https://vfx-ui.com/components/starfield.md): Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.
+- [Particle Field](https://vfx-ui.com/components/particle-field.md): Procedural cell-hashed particles with drift and size breathing — a living texture, no sprite sheet.
+- [Glass Card](https://vfx-ui.com/components/glass-card.md): Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer.
+- [Liquid Glass](https://vfx-ui.com/components/liquid-glass.md): A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it.
+- [Glass Lens](https://vfx-ui.com/components/glass-lens.md): A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.
+- [Black Hole](https://vfx-ui.com/components/black-hole.md): The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).
+- [Mesh Gradient](https://vfx-ui.com/components/mesh-gradient.md): Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.
+- [Iridescent](https://vfx-ui.com/components/iridescent.md): Thin-film interference colors drifting as silk — cosine-palette holography in a single pass.
+- [Vortex](https://vfx-ui.com/components/vortex.md): Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.
+- [Ribbon Field](https://vfx-ui.com/components/ribbon-field.md): Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores and film grain — WGSL port of ThreeUI's RibbonField (MIT).
+- [Fiber Flow](https://vfx-ui.com/components/fiber-flow.md): Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.
+- [Light Prism](https://vfx-ui.com/components/light-prism.md): A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline.
+- [Hero Fluid](https://vfx-ui.com/components/hero-fluid.md): Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.
+- [Hero Aurora](https://vfx-ui.com/components/hero-aurora.md): Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
+- [Hero Fiber](https://vfx-ui.com/components/hero-fiber.md): Drop-in hero: top-weighted headline over luminous silk fibers streaming through the dark.
 - [Hero Globe](https://vfx-ui.com/components/hero-globe.md): Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behind vercel.com) glowing on the right.
-- [Hero Mesh](https://vfx-ui.com/components/hero-mesh.md): Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
-- [Hero Iridescent](https://vfx-ui.com/components/hero-iridescent.md): Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
-- [Hero Vortex](https://vfx-ui.com/components/hero-vortex.md): Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
+- [Hero Mesh](https://vfx-ui.com/components/hero-mesh.md): Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
+- [Hero Iridescent](https://vfx-ui.com/components/hero-iridescent.md): Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.
+- [Hero Vortex](https://vfx-ui.com/components/hero-vortex.md): Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
 - [Hero Ribbon](https://vfx-ui.com/components/hero-ribbon.md): Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
-- [Hero Particles](https://vfx-ui.com/components/hero-particles.md): Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
-- [Hero Starfield](https://vfx-ui.com/components/hero-starfield.md): Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.
-- [Hero Black Hole](https://vfx-ui.com/components/hero-black-hole.md): Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
-- [Chroma Flow](https://vfx-ui.com/components/chroma-flow.md): Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
+- [Hero Particles](https://vfx-ui.com/components/hero-particles.md): Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.
+- [Hero Starfield](https://vfx-ui.com/components/hero-starfield.md): Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax drift.
+- [Hero Black Hole](https://vfx-ui.com/components/hero-black-hole.md): Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
+- [Chroma Flow](https://vfx-ui.com/components/chroma-flow.md): Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design.
 - [Hero Chroma](https://vfx-ui.com/components/hero-chroma.md): Drop-in hero section: bottom-left copy over a four-edge liquid color field that floods toward the cursor's sweep direction.
-- [Block Nav](https://vfx-ui.com/components/block-nav.md): Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.
-- [Block Showcase](https://vfx-ui.com/components/block-showcase.md): Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.
-- [Block Feature Grid](https://vfx-ui.com/components/block-feature-grid.md): Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.
-- [Block Feature Tabs](https://vfx-ui.com/components/block-feature-tabs.md): Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.
-- [Block Scroll Story](https://vfx-ui.com/components/block-scroll-story.md): Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.
-- [Block Process Steps](https://vfx-ui.com/components/block-process-steps.md): Three-to-four step process with a self-drawing connector line and replaceable media per step.
-- [Block Integrations](https://vfx-ui.com/components/block-integrations.md): Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.
-- [Block Comparison](https://vfx-ui.com/components/block-comparison.md): Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).
-- [Block Testimonials](https://vfx-ui.com/components/block-testimonials.md): Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.
-- [Block Pricing](https://vfx-ui.com/components/block-pricing.md): Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.
-- [Block FAQ](https://vfx-ui.com/components/block-faq.md): FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.
-- [Block CTA](https://vfx-ui.com/components/block-cta.md): Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).
-- [Example — Product Launch](https://vfx-ui.com/components/example-launch.md): Complete fictional software launch page ("Orbit" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.
-- [Example — Design Studio](https://vfx-ui.com/components/example-studio.md): Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
-- [Ember Drift](https://vfx-ui.com/components/ember-drift.md): Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.
-- [Caustics Field](https://vfx-ui.com/components/caustics-field.md): Sunlit pool-floor caustics: a crawling net of focused light over deep water.
-- [Halo Rings](https://vfx-ui.com/components/halo-rings.md): Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.
-- [Terrain Ridge](https://vfx-ui.com/components/terrain-ridge.md): Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.
-- [Silk Veil](https://vfx-ui.com/components/silk-veil.md): A draped silk curtain of warped folds with a luster band sweeping the weave.
-- [Plasma Sheet](https://vfx-ui.com/components/plasma-sheet.md): Molten color currents folding through each other in a double domain-warped field.
-- [Star Tide](https://vfx-ui.com/components/star-tide.md): Stars carried on slow luminous waves, flaring as the tide crests.
-- [Ink Bloom](https://vfx-ui.com/components/ink-bloom.md): Ink drops blooming and feathering into warm paper on staggered cycles.
-- [Solar Corona](https://vfx-ui.com/components/solar-corona.md): A boiling sun disk crowned with streaming corona light and polar plumes.
-- [Dust Motes](https://vfx-ui.com/components/dust-motes.md): Dust motes drifting through slanted Tyndall beams in a dark room.
-- [Hero Aurora Editorial](https://vfx-ui.com/components/hero-aurora-editorial.md): Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.
-- [Hero Starfield Split](https://vfx-ui.com/components/hero-starfield-split.md): Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.
-- [Hero Vortex Centered](https://vfx-ui.com/components/hero-vortex-centered.md): Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.
-- [Hero Mesh Bold](https://vfx-ui.com/components/hero-mesh-bold.md): Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.
-- [Hero Fiber Top](https://vfx-ui.com/components/hero-fiber-top.md): Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.
-- [Hero Chroma Full](https://vfx-ui.com/components/hero-chroma-full.md): Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.
-- [Hero Black Hole Cinema](https://vfx-ui.com/components/hero-black-hole-cinema.md): Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.
-- [Hero Particles Badge](https://vfx-ui.com/components/hero-particles-badge.md): Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.
-- [Hero Ribbon Left](https://vfx-ui.com/components/hero-ribbon-left.md): Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.
-- [Hero Fluid Minimal](https://vfx-ui.com/components/hero-fluid-minimal.md): Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.
-- [Glass Panel](https://vfx-ui.com/components/glass-panel.md): A broad ray-marched optical slab that carries your own content across a full panel.
-- [Glass Tile](https://vfx-ui.com/components/glass-tile.md): A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.
-- [Chromatic Text](https://vfx-ui.com/components/chromatic-text.md): The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.
-- [Ripple Text](https://vfx-ui.com/components/ripple-text.md): Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.
-- [Spectrum Text](https://vfx-ui.com/components/spectrum-text.md): A spectral light band flows continuously through your words and leans toward the pointer.
-- [Tilt Card](https://vfx-ui.com/components/tilt-card.md): A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.
-- [Pointer Glow](https://vfx-ui.com/components/pointer-glow.md): A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.
-- [Spotlight Card](https://vfx-ui.com/components/spotlight-card.md): A card under a torch: the beam follows the pointer to uncover your content from the dark.
-- [Elastic Hover](https://vfx-ui.com/components/elastic-hover.md): Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.
-- [Magnetic Grid](https://vfx-ui.com/components/magnetic-grid.md): A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.
-- [Block Logos](https://vfx-ui.com/components/block-logos.md): Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.
-- [Block Stats](https://vfx-ui.com/components/block-stats.md): Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.
-- [Block Team](https://vfx-ui.com/components/block-team.md): Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.
-- [Block Gallery](https://vfx-ui.com/components/block-gallery.md): Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.
-- [Block Timeline](https://vfx-ui.com/components/block-timeline.md): Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.
-- [Block Newsletter](https://vfx-ui.com/components/block-newsletter.md): Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.
-- [Block Contact](https://vfx-ui.com/components/block-contact.md): Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.
-- [Block Banner](https://vfx-ui.com/components/block-banner.md): Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.
-- [Block Milestones](https://vfx-ui.com/components/block-milestones.md): Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.
-- [Block Quote Wall](https://vfx-ui.com/components/block-quote-wall.md): Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.
+- [Block Nav](https://vfx-ui.com/components/block-nav.md): Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet. Sticky variant gains a scrim once the page scrolls.
+- [Block Showcase](https://vfx-ui.com/components/block-showcase.md): Product showcase stage: browser-chrome frame with a replaceable screenshot or video (built-in CSS demo screen by default), headline and actions, with a gentle pointer tilt.
+- [Block Feature Grid](https://vfx-ui.com/components/block-feature-grid.md): Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable.
+- [Block Feature Tabs](https://vfx-ui.com/components/block-feature-tabs.md): Feature tabs where the list, copy and illustration switch together. WAI-ARIA tabs pattern with arrow keys; a scrollable strip above the stage on touch layouts.
+- [Block Scroll Story](https://vfx-ui.com/components/block-scroll-story.md): Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end.
+- [Block Process Steps](https://vfx-ui.com/components/block-process-steps.md): Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step.
+- [Block Integrations](https://vfx-ui.com/components/block-integrations.md): Integrations hub: your product at the center of two connection rings of rebrandable tool tiles, with an always-available link grid below and on touch layouts.
+- [Block Comparison](https://vfx-ui.com/components/block-comparison.md): Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input.
+- [Block Testimonials](https://vfx-ui.com/components/block-testimonials.md): Testimonials with a featured quote plus a field-note grid. The built-in quotes are fictional and visibly marked — swap in real customers via props and clear the marker.
+- [Block Pricing](https://vfx-ui.com/components/block-pricing.md): Pricing plans with a working monthly/annual switch: amounts, billing basis and the savings pill all render from data, so the toggle can never lie. No payment backend.
+- [Block FAQ](https://vfx-ui.com/components/block-faq.md): FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, arrow-key traversal, CSS grid-rows height animation, long answers with links and lists welcome.
+- [Block CTA](https://vfx-ui.com/components/block-cta.md): Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one.
+- [Example — Product Launch](https://vfx-ui.com/components/example-launch.md): Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA and footer. All copy is demo content.
+- [Example — Design Studio](https://vfx-ui.com/components/example-studio.md): Complete fictional design-studio page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
+- [Ember Drift](https://vfx-ui.com/components/ember-drift.md): Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp.
+- [Caustics Field](https://vfx-ui.com/components/caustics-field.md): Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi net of focused light in three stacked octaves, with drifting silt motes.
+- [Halo Rings](https://vfx-ui.com/components/halo-rings.md): Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism.
+- [Terrain Ridge](https://vfx-ui.com/components/terrain-ridge.md): Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede into haze, each scrolling at its own speed, under a low sun that rims the nearest crest.
+- [Silk Veil](https://vfx-ui.com/components/silk-veil.md): A draped silk curtain with a sheen band sweeping across it — domain-warped folds shaded anisotropically like cloth-of-gold, with fine weave grain.
+- [Plasma Sheet](https://vfx-ui.com/components/plasma-sheet.md): Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges.
+- [Star Tide](https://vfx-ui.com/components/star-tide.md): A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide.
+- [Ink Bloom](https://vfx-ui.com/components/ink-bloom.md): Ink drops blooming and feathering across wet paper — each front is an fbm-perturbed radius, denser at the core and ring-deposited at the edge, paling as it ages. Light paper base.
+- [Solar Corona](https://vfx-ui.com/components/solar-corona.md): A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field.
+- [Dust Motes](https://vfx-ui.com/components/dust-motes.md): Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room.
+- [Hero Aurora Editorial](https://vfx-ui.com/components/hero-aurora-editorial.md): Drop-in hero: a centered serif masthead — display title, two standfirst lines, dual CTAs — under full-bleed aurora curtains, with a radial scrim holding WCAG AA contrast.
+- [Hero Starfield Split](https://vfx-ui.com/components/hero-starfield-split.md): Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop.
+- [Hero Vortex Centered](https://vfx-ui.com/components/hero-vortex-centered.md): Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline.
+- [Hero Mesh Bold](https://vfx-ui.com/components/hero-mesh-bold.md): Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over a vivid Voronoi mesh field. Keep the title short; the type is drawn to fill the frame.
+- [Hero Fiber Top](https://vfx-ui.com/components/hero-fiber-top.md): Drop-in hero: a left-set masthead pressed against the top edge while the silk-fiber field streams beneath it — fibers carry the lower two-thirds, the scrim carries the type.
+- [Hero Chroma Full](https://vfx-ui.com/components/hero-chroma-full.md): Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default.
+- [Hero Black Hole Cinema](https://vfx-ui.com/components/hero-black-hole-cinema.md): Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accretion disk framed like a feature film, and your title card centered in the quiet band.
+- [Hero Particles Badge](https://vfx-ui.com/components/hero-particles-badge.md): Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field.
+- [Hero Ribbon Left](https://vfx-ui.com/components/hero-ribbon-left.md): Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
+- [Hero Fluid Minimal](https://vfx-ui.com/components/hero-fluid-minimal.md): Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient. The entire hero for products that can be named in a breath.
+- [Glass Panel](https://vfx-ui.com/components/glass-panel.md): An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it.
+- [Glass Tile](https://vfx-ui.com/components/glass-tile.md): A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks.
+- [Chromatic Text](https://vfx-ui.com/components/chromatic-text.md): The pointer is the prism: letters near the cursor split into red and blue fringes while the rainbow underneath slides with it.
+- [Ripple Text](https://vfx-ui.com/components/ripple-text.md): Type you can touch: a click (or tap) drops a ripple that travels outward through the letters, and a resting pointer leaves a soft dimple.
+- [Spectrum Text](https://vfx-ui.com/components/spectrum-text.md): A ribbon of daylight sliding through the words: one spectral gradient flows continuously across the type and leans toward the pointer.
+- [Tilt Card](https://vfx-ui.com/components/tilt-card.md): A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it.
+- [Pointer Glow](https://vfx-ui.com/components/pointer-glow.md): A handheld light for layouts: the region dims slightly and a warm source follows the pointer, brightening whatever it rests on.
+- [Spotlight Card](https://vfx-ui.com/components/spotlight-card.md): A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there.
+- [Elastic Hover](https://vfx-ui.com/components/elastic-hover.md): Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, and an under-damped spring snaps it back with a wobble.
+- [Magnetic Grid](https://vfx-ui.com/components/magnetic-grid.md): A lattice of iron filings for the cursor: each dot feels the pointer's field, slides and swells as it passes, and settles back when it leaves.
+- [Block Logos](https://vfx-ui.com/components/block-logos.md): Customer logo wall: a hairline grid of brand tiles that sit desaturated until hover. Real marks via logo (img or inline svg) or styled wordmarks — no assets required.
+- [Block Stats](https://vfx-ui.com/components/block-stats.md): Stats band where every number counts up from zero on scroll-in, with a settled, screen-reader-friendly final value always present. Prefixes, suffixes and formatting are props.
+- [Block Team](https://vfx-ui.com/components/block-team.md): Team grid: cards with an avatar (your image node or an auto-generated initials badge), name, role and profile links. Names can link out.
+- [Block Gallery](https://vfx-ui.com/components/block-gallery.md): Work gallery: a responsive grid of tiles that lift on hover, with an optional lightbox — a real dialog (focus moves in, Escape closes, arrows navigate, Tab stays trapped, focus returns).
+- [Block Timeline](https://vfx-ui.com/components/block-timeline.md): Company or product timeline: a vertical rail that draws itself in on scroll, alternating left/right on wide screens and collapsing to one rail on small ones.
+- [Block Newsletter](https://vfx-ui.com/components/block-newsletter.md): Newsletter signup that is a working form, not a mockup: client-side validation with inline announced errors, and a confirmation panel on success. Wire onSubscribe; without it, demo mode says so on screen.
+- [Block Contact](https://vfx-ui.com/components/block-contact.md): Contact section: a direct-channels list (email, phone, office — real links) beside a configurable form skeleton with labels wired to inputs and native validation intact.
+- [Block Banner](https://vfx-ui.com/components/block-banner.md): Announcement banner: a slim accent-tinted strip for one important message with an optional action. Dismissible for real — labeled button, Escape works, onDismiss persists the choice.
+- [Block Milestones](https://vfx-ui.com/components/block-milestones.md): Milestone progress: a roadmap strip whose completed steps light up in sequence on scroll-in, the current step breathes, and upcoming steps stay dimmed. Which steps are done is pure data.
+- [Block Quote Wall](https://vfx-ui.com/components/block-quote-wall.md): Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friendly rotator (real prev/next controls, focus and hover pause, reduced motion disables auto-advance).
 
 ## Per-component docs (machine-readable)
 
@@ -214,16 +216,16 @@ DOM interaction components and blocks do not require WebGPU. This is not a gener
 
 # Astra Field
 
-A rotatable spiral galaxy of glowing stars.
+A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/astra-field.json
 ```
 
 ```tsx
-import { AstraField } from "@vfx-ui/react";
+import { AstraField } from "@/components/AstraField";
 
 export function Demo() {
   return <div style={{ height: 520 }}><AstraField interactive /></div>;
@@ -249,7 +251,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { ASTRA_FIELD_PRESETS } from "@vfx-ui/react";
+import { ASTRA_FIELD_PRESETS } from "@/components/AstraField";
 ```
 
 ## Notes for agents
@@ -261,16 +263,16 @@ import { ASTRA_FIELD_PRESETS } from "@vfx-ui/react";
 
 # Aurora
 
-Vertical light curtains driven by fBm perturbation and gaussian bands.
+Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/aurora.json
 ```
 
 ```tsx
-import { Aurora } from "@vfx-ui/react";
+import { Aurora } from "@/components/Aurora";
 
 export function Demo() {
   return <Aurora />;
@@ -294,7 +296,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { AURORA_PRESETS } from "@vfx-ui/react";
+import { AURORA_PRESETS } from "@/components/Aurora";
 ```
 
 ## Shader
@@ -310,16 +312,16 @@ WGSL source is exported as `AURORA_SHADER` — read it to learn how the effect w
 
 # Black Hole
 
-The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
+The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/black-hole.json
 ```
 
 ```tsx
-import { BlackHole } from "@vfx-ui/react";
+import { BlackHole } from "@/components/BlackHole";
 
 export function Demo() {
   return <BlackHole />;
@@ -353,7 +355,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { BLACK_HOLE_PRESETS } from "@/components/BlackHole";
 ```
 
 ## Shader
@@ -369,16 +371,16 @@ WGSL source is exported as `BLACK_HOLE_BAKE_SHADER` — read it to learn how the
 
 # Block Banner
 
-Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.
+Announcement banner: a slim accent-tinted strip for one important message with an optional action. Dismissible for real — labeled button, Escape works, onDismiss persists the choice.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-banner.json
 ```
 
 ```tsx
-import { BlockBanner } from "@vfx-ui/react";
+import { BlockBanner } from "@/components/BlockBanner";
 
 export function Demo() {
   return <BlockBanner />;
@@ -408,16 +410,16 @@ export function Demo() {
 
 # Block Comparison
 
-Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).
+Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-comparison.json
 ```
 
 ```tsx
-import { BlockComparison } from "@vfx-ui/react";
+import { BlockComparison } from "@/components/BlockComparison";
 
 export function BeforeAfter() {
   return (
@@ -455,16 +457,16 @@ export function BeforeAfter() {
 
 # Block Contact
 
-Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.
+Contact section: a direct-channels list (email, phone, office — real links) beside a configurable form skeleton with labels wired to inputs and native validation intact.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-contact.json
 ```
 
 ```tsx
-import { BlockContact } from "@vfx-ui/react";
+import { BlockContact } from "@/components/BlockContact";
 
 export function Demo() {
   return <BlockContact />;
@@ -497,16 +499,17 @@ export function Demo() {
 
 # Block CTA
 
-Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).
+Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-cta.json https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { BlockCta, WaveBackground } from "@vfx-ui/react";
+import { BlockCta } from "@/components/BlockCta";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Closing() {
   return (
@@ -544,16 +547,16 @@ export function Closing() {
 
 # Block FAQ
 
-FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.
+FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, arrow-key traversal, CSS grid-rows height animation, long answers with links and lists welcome.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-faq.json
 ```
 
 ```tsx
-import { BlockFaq } from "@vfx-ui/react";
+import { BlockFaq } from "@/components/BlockFaq";
 
 export function Answers() {
   return (
@@ -587,16 +590,16 @@ export function Answers() {
 
 # Block Feature Grid
 
-Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.
+Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-grid.json
 ```
 
 ```tsx
-import { BlockFeatureGrid } from "@vfx-ui/react";
+import { BlockFeatureGrid } from "@/components/BlockFeatureGrid";
 
 export function Features() {
   return (
@@ -632,16 +635,16 @@ export function Features() {
 
 # Block Feature Tabs
 
-Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.
+Feature tabs where the list, copy and illustration switch together. WAI-ARIA tabs pattern with arrow keys; a scrollable strip above the stage on touch layouts.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-tabs.json
 ```
 
 ```tsx
-import { BlockFeatureTabs } from "@vfx-ui/react";
+import { BlockFeatureTabs } from "@/components/BlockFeatureTabs";
 
 export function Surfaces() {
   return (
@@ -677,16 +680,16 @@ export function Surfaces() {
 
 # Block Gallery
 
-Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.
+Work gallery: a responsive grid of tiles that lift on hover, with an optional lightbox — a real dialog (focus moves in, Escape closes, arrows navigate, Tab stays trapped, focus returns).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-gallery.json
 ```
 
 ```tsx
-import { BlockGallery } from "@vfx-ui/react";
+import { BlockGallery } from "@/components/BlockGallery";
 
 export function Demo() {
   return <BlockGallery />;
@@ -718,16 +721,16 @@ export function Demo() {
 
 # Block Integrations
 
-Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.
+Integrations hub: your product at the center of two connection rings of rebrandable tool tiles, with an always-available link grid below and on touch layouts.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-integrations.json
 ```
 
 ```tsx
-import { BlockIntegrations } from "@vfx-ui/react";
+import { BlockIntegrations } from "@/components/BlockIntegrations";
 
 export function Stack() {
   return (
@@ -764,16 +767,16 @@ export function Stack() {
 
 # Block Logos
 
-Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.
+Customer logo wall: a hairline grid of brand tiles that sit desaturated until hover. Real marks via logo (img or inline svg) or styled wordmarks — no assets required.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-logos.json
 ```
 
 ```tsx
-import { BlockLogos } from "@vfx-ui/react";
+import { BlockLogos } from "@/components/BlockLogos";
 
 export function Demo() {
   return <BlockLogos />;
@@ -802,16 +805,16 @@ export function Demo() {
 
 # Block Milestones
 
-Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.
+Milestone progress: a roadmap strip whose completed steps light up in sequence on scroll-in, the current step breathes, and upcoming steps stay dimmed. Which steps are done is pure data.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-milestones.json
 ```
 
 ```tsx
-import { BlockMilestones } from "@vfx-ui/react";
+import { BlockMilestones } from "@/components/BlockMilestones";
 
 export function Demo() {
   return <BlockMilestones />;
@@ -840,16 +843,16 @@ export function Demo() {
 
 # Block Nav
 
-Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.
+Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet. Sticky variant gains a scrim once the page scrolls.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-nav.json
 ```
 
 ```tsx
-import { BlockNav } from "@vfx-ui/react";
+import { BlockNav } from "@/components/BlockNav";
 
 export function SiteHeader() {
   return (
@@ -884,16 +887,16 @@ export function SiteHeader() {
 
 # Block Newsletter
 
-Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.
+Newsletter signup that is a working form, not a mockup: client-side validation with inline announced errors, and a confirmation panel on success. Wire onSubscribe; without it, demo mode says so on screen.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-newsletter.json
 ```
 
 ```tsx
-import { BlockNewsletter } from "@vfx-ui/react";
+import { BlockNewsletter } from "@/components/BlockNewsletter";
 
 export function Demo() {
   return <BlockNewsletter />;
@@ -928,16 +931,16 @@ export function Demo() {
 
 # Block Pricing
 
-Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.
+Pricing plans with a working monthly/annual switch: amounts, billing basis and the savings pill all render from data, so the toggle can never lie. No payment backend.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-pricing.json
 ```
 
 ```tsx
-import { BlockPricing } from "@vfx-ui/react";
+import { BlockPricing } from "@/components/BlockPricing";
 
 export function Plans() {
   return (
@@ -976,16 +979,16 @@ export function Plans() {
 
 # Block Process Steps
 
-Three-to-four step process with a self-drawing connector line and replaceable media per step.
+Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-process-steps.json
 ```
 
 ```tsx
-import { BlockProcessSteps } from "@vfx-ui/react";
+import { BlockProcessSteps } from "@/components/BlockProcessSteps";
 
 export function HowItWorks() {
   return (
@@ -1022,16 +1025,16 @@ export function HowItWorks() {
 
 # Block Quote Wall
 
-Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.
+Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friendly rotator (real prev/next controls, focus and hover pause, reduced motion disables auto-advance).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-quote-wall.json
 ```
 
 ```tsx
-import { BlockQuoteWall } from "@vfx-ui/react";
+import { BlockQuoteWall } from "@/components/BlockQuoteWall";
 
 export function Demo() {
   return <BlockQuoteWall />;
@@ -1065,16 +1068,16 @@ export function Demo() {
 
 # Block Scroll Story
 
-Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.
+Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-scroll-story.json
 ```
 
 ```tsx
-import { BlockScrollStory } from "@vfx-ui/react";
+import { BlockScrollStory } from "@/components/BlockScrollStory";
 
 export function Story() {
   return (
@@ -1111,16 +1114,16 @@ export function Story() {
 
 # Block Showcase
 
-Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.
+Product showcase stage: browser-chrome frame with a replaceable screenshot or video (built-in CSS demo screen by default), headline and actions, with a gentle pointer tilt.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-showcase.json
 ```
 
 ```tsx
-import { BlockShowcase } from "@vfx-ui/react";
+import { BlockShowcase } from "@/components/BlockShowcase";
 
 export function Tour() {
   return (
@@ -1159,16 +1162,16 @@ export function Tour() {
 
 # Block Stats
 
-Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.
+Stats band where every number counts up from zero on scroll-in, with a settled, screen-reader-friendly final value always present. Prefixes, suffixes and formatting are props.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-stats.json
 ```
 
 ```tsx
-import { BlockStats } from "@vfx-ui/react";
+import { BlockStats } from "@/components/BlockStats";
 
 export function Demo() {
   return <BlockStats />;
@@ -1196,16 +1199,16 @@ export function Demo() {
 
 # Block Team
 
-Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.
+Team grid: cards with an avatar (your image node or an auto-generated initials badge), name, role and profile links. Names can link out.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-team.json
 ```
 
 ```tsx
-import { BlockTeam } from "@vfx-ui/react";
+import { BlockTeam } from "@/components/BlockTeam";
 
 export function Demo() {
   return <BlockTeam />;
@@ -1233,16 +1236,16 @@ export function Demo() {
 
 # Block Testimonials
 
-Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.
+Testimonials with a featured quote plus a field-note grid. The built-in quotes are fictional and visibly marked — swap in real customers via props and clear the marker.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-testimonials.json
 ```
 
 ```tsx
-import { BlockTestimonials } from "@vfx-ui/react";
+import { BlockTestimonials } from "@/components/BlockTestimonials";
 
 export function Voices() {
   return (
@@ -1276,16 +1279,16 @@ export function Voices() {
 
 # Block Timeline
 
-Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.
+Company or product timeline: a vertical rail that draws itself in on scroll, alternating left/right on wide screens and collapsing to one rail on small ones.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-timeline.json
 ```
 
 ```tsx
-import { BlockTimeline } from "@vfx-ui/react";
+import { BlockTimeline } from "@/components/BlockTimeline";
 
 export function Demo() {
   return <BlockTimeline />;
@@ -1313,16 +1316,16 @@ export function Demo() {
 
 # Caustics Field
 
-Sunlit pool-floor caustics: a crawling net of focused light over deep water.
+Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi net of focused light in three stacked octaves, with drifting silt motes.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/caustics-field.json
 ```
 
 ```tsx
-import { CausticsField } from "@vfx-ui/react";
+import { CausticsField } from "@/components/CausticsField";
 
 export function Demo() {
   return <CausticsField />;
@@ -1348,7 +1351,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { CAUSTICS_FIELD_PRESETS } from "@vfx-ui/react";
+import { CAUSTICS_FIELD_PRESETS } from "@/components/CausticsField";
 ```
 
 ## Shader
@@ -1364,16 +1367,16 @@ WGSL source is exported as `CAUSTICS_FIELD_SHADER` — read it to learn how the 
 
 # Chroma Flow
 
-Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.
+Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/chroma-flow.json
 ```
 
 ```tsx
-import { ChromaFlow } from "@vfx-ui/react";
+import { ChromaFlow } from "@/components/ChromaFlow";
 
 export function Demo() {
   return <ChromaFlow />;
@@ -1402,7 +1405,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { CHROMA_FLOW_PRESETS } from "@vfx-ui/react";
+import { CHROMA_FLOW_PRESETS } from "@/components/ChromaFlow";
 ```
 
 ## Shader
@@ -1418,16 +1421,16 @@ WGSL source is exported as `CHROMA_FLOW_SHADER` — read it to learn how the eff
 
 # Chromatic Text
 
-The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.
+The pointer is the prism: letters near the cursor split into red and blue fringes while the rainbow underneath slides with it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/chromatic-text.json
 ```
 
 ```tsx
-import { ChromaticText } from "@vfx-ui/react";
+import { ChromaticText } from "@/components/ChromaticText";
 
 export function Demo() {
   return <ChromaticText />;
@@ -1452,16 +1455,16 @@ export function Demo() {
 
 # Dust Motes
 
-Dust motes drifting through slanted Tyndall beams in a dark room.
+Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/dust-motes.json
 ```
 
 ```tsx
-import { DustMotes } from "@vfx-ui/react";
+import { DustMotes } from "@/components/DustMotes";
 
 export function Demo() {
   return <DustMotes />;
@@ -1489,7 +1492,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { DUST_MOTES_PRESETS } from "@vfx-ui/react";
+import { DUST_MOTES_PRESETS } from "@/components/DustMotes";
 ```
 
 ## Shader
@@ -1505,16 +1508,16 @@ WGSL source is exported as `DUST_MOTES_SHADER` — read it to learn how the effe
 
 # Elastic Hover
 
-Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.
+Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, and an under-damped spring snaps it back with a wobble.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/elastic-hover.json
 ```
 
 ```tsx
-import { ElasticHover } from "@vfx-ui/react";
+import { ElasticHover } from "@/components/ElasticHover";
 
 export function Demo() {
   return <ElasticHover />;
@@ -1540,16 +1543,16 @@ export function Demo() {
 
 # Ember Drift
 
-Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.
+Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ember-drift.json
 ```
 
 ```tsx
-import { EmberDrift } from "@vfx-ui/react";
+import { EmberDrift } from "@/components/EmberDrift";
 
 export function Demo() {
   return <EmberDrift />;
@@ -1575,7 +1578,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { EMBER_DRIFT_PRESETS } from "@vfx-ui/react";
+import { EMBER_DRIFT_PRESETS } from "@/components/EmberDrift";
 ```
 
 ## Shader
@@ -1591,16 +1594,16 @@ WGSL source is exported as `EMBER_DRIFT_SHADER` — read it to learn how the eff
 
 # Example — Product Launch
 
-Complete fictional software launch page ("Orbit" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.
+Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA and footer. All copy is demo content.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-launch.json
 ```
 
 ```tsx
-import { ExampleLaunch } from "@vfx-ui/react";
+import { ExampleLaunch } from "@/components/ExampleLaunch";
 
 export default function LaunchPage() {
   return <ExampleLaunch />;
@@ -1619,16 +1622,16 @@ export default function LaunchPage() {
 
 # Example — Design Studio
 
-Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
+Complete fictional design-studio page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-studio.json
 ```
 
 ```tsx
-import { ExampleStudio } from "@vfx-ui/react";
+import { ExampleStudio } from "@/components/ExampleStudio";
 
 export default function StudioPage() {
   return <ExampleStudio />;
@@ -1647,16 +1650,16 @@ export default function StudioPage() {
 
 # Fiber Flow
 
-Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).
+Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/fiber-flow.json
 ```
 
 ```tsx
-import { FiberFlow } from "@vfx-ui/react";
+import { FiberFlow } from "@/components/FiberFlow";
 
 export function Demo() {
   return <FiberFlow />;
@@ -1683,7 +1686,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FIBER_FLOW_PRESETS } from "@vfx-ui/react";
+import { FIBER_FLOW_PRESETS } from "@/components/FiberFlow";
 ```
 
 ## Shader
@@ -1699,16 +1702,16 @@ WGSL source is exported as `FIBER_FLOW_SHADER` — read it to learn how the effe
 
 # Fluid Gradient
 
-Domain-warped fBm noise flowing through a tri-color palette.
+Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/fluid-gradient.json
 ```
 
 ```tsx
-import { FluidGradient } from "@vfx-ui/react";
+import { FluidGradient } from "@/components/FluidGradient";
 
 export function Demo() {
   return <FluidGradient />;
@@ -1733,7 +1736,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FLUID_PRESETS } from "@vfx-ui/react";
+import { FLUID_PRESETS } from "@/components/FluidGradient";
 ```
 
 ## Shader
@@ -1749,16 +1752,16 @@ WGSL source is exported as `FLUID_SHADER` — read it to learn how the effect wo
 
 # Footer Fold
 
-A wordmark printed across hinged paper panels that respond to the pointer.
+Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-fold.json
 ```
 
 ```tsx
-import { FooterFold } from "@vfx-ui/react";
+import { FooterFold } from "@/components/FooterFold";
 
 export function Demo() {
   return <FooterFold brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1790,16 +1793,16 @@ export function Demo() {
 
 # Footer Phosphor
 
-A luminous cell wordmark that disperses around your pointer and settles home.
+A wordmark made of light. Its cells scatter around your pointer and settle back into place.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-phosphor.json
 ```
 
 ```tsx
-import { FooterPhosphor } from "@vfx-ui/react";
+import { FooterPhosphor } from "@/components/FooterPhosphor";
 
 export function Demo() {
   return <FooterPhosphor brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1830,16 +1833,16 @@ export function Demo() {
 
 # Footer Tidal
 
-Copper tidal lines beneath your brand, with pointer-driven currents.
+Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-tidal.json
 ```
 
 ```tsx
-import { FooterTidal } from "@vfx-ui/react";
+import { FooterTidal } from "@/components/FooterTidal";
 
 export function Demo() {
   return <FooterTidal brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1871,16 +1874,16 @@ export function Demo() {
 
 # Footer Vinyl
 
-A record-sleeve footer with a pointer-rotated vinyl and your own label.
+A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-vinyl.json
 ```
 
 ```tsx
-import { FooterVinyl } from "@vfx-ui/react";
+import { FooterVinyl } from "@/components/FooterVinyl";
 
 export function Demo() {
   return <FooterVinyl brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1912,16 +1915,16 @@ export function Demo() {
 
 # Glass Card
 
-Thick-cut optical glass with two-interface refraction and studio reflections.
+Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-card.json
 ```
 
 ```tsx
-import { GlassCard } from "@vfx-ui/react";
+import { GlassCard } from "@/components/GlassCard";
 
 export function Demo() {
   return <div style={{ height: 520 }}><GlassCard interactive /></div>;
@@ -1946,7 +1949,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_CARD_PRESETS } from "@vfx-ui/react";
+import { GLASS_CARD_PRESETS } from "@/components/GlassCard";
 ```
 
 ## Shader
@@ -1962,16 +1965,16 @@ WGSL source is exported as `GLASS_CARD_SHADER` — read it to learn how the effe
 
 # Glass Lens
 
-A biconvex glass lens that magnifies and inverts a printed studio scene.
+A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-lens.json
 ```
 
 ```tsx
-import { GlassLens } from "@vfx-ui/react";
+import { GlassLens } from "@/components/GlassLens";
 
 export function Demo() {
   return <div style={{ height: 520 }}><GlassLens interactive /></div>;
@@ -1996,7 +1999,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_LENS_PRESETS } from "@vfx-ui/react";
+import { GLASS_LENS_PRESETS } from "@/components/GlassLens";
 ```
 
 ## Shader
@@ -2012,16 +2015,16 @@ WGSL source is exported as `GLASS_LENS_SHADER` — read it to learn how the effe
 
 # Glass Panel
 
-A broad ray-marched optical slab that carries your own content across a full panel.
+An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-panel.json
 ```
 
 ```tsx
-import { GlassPanel } from "@vfx-ui/react";
+import { GlassPanel } from "@/components/GlassPanel";
 
 export function Demo() {
   return <GlassPanel />;
@@ -2047,7 +2050,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_PANEL_PRESETS } from "@vfx-ui/react";
+import { GLASS_PANEL_PRESETS } from "@/components/GlassPanel";
 ```
 
 ## Shader
@@ -2063,16 +2066,16 @@ WGSL source is exported as `GLASS_PANEL_SHADER` — read it to learn how the eff
 
 # Glass Tile
 
-A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.
+A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-tile.json
 ```
 
 ```tsx
-import { GlassTile } from "@vfx-ui/react";
+import { GlassTile } from "@/components/GlassTile";
 
 export function Demo() {
   return <GlassTile />;
@@ -2106,16 +2109,16 @@ WGSL source is exported as `GLASS_TILE_SHADER` — read it to learn how the effe
 
 # Halo Rings
 
-Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.
+Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/halo-rings.json
 ```
 
 ```tsx
-import { HaloRings } from "@vfx-ui/react";
+import { HaloRings } from "@/components/HaloRings";
 
 export function Demo() {
   return <HaloRings />;
@@ -2141,7 +2144,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HALO_RINGS_PRESETS } from "@vfx-ui/react";
+import { HALO_RINGS_PRESETS } from "@/components/HaloRings";
 ```
 
 ## Shader
@@ -2157,16 +2160,16 @@ WGSL source is exported as `HALO_RINGS_SHADER` — read it to learn how the effe
 
 # Hero Aurora Editorial
 
-Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.
+Drop-in hero: a centered serif masthead — display title, two standfirst lines, dual CTAs — under full-bleed aurora curtains, with a radial scrim holding WCAG AA contrast.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-aurora-editorial.json
 ```
 
 ```tsx
-import { HeroAuroraEditorial } from "@vfx-ui/react";
+import { HeroAuroraEditorial } from "@/components/HeroAuroraEditorial";
 
 export function Demo() {
   return <HeroAuroraEditorial title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2198,7 +2201,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_AURORA_EDITORIAL_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_EDITORIAL_PRESETS } from "@/components/HeroAuroraEditorial";
 ```
 
 ## Shader
@@ -2214,16 +2217,16 @@ WGSL source is exported as `AURORA_SHADER` — read it to learn how the effect w
 
 # Hero Aurora
 
-Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
+Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-aurora.json
 ```
 
 ```tsx
-import { HeroAurora } from "@vfx-ui/react";
+import { HeroAurora } from "@/components/HeroAurora";
 
 export function Demo() {
   return <HeroAurora title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2254,7 +2257,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_AURORA_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_PRESETS } from "@/components/HeroAurora";
 ```
 
 ## Shader
@@ -2270,16 +2273,16 @@ WGSL source is exported as `AURORA_SHADER` — read it to learn how the effect w
 
 # Hero Black Hole Cinema
 
-Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.
+Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accretion disk framed like a feature film, and your title card centered in the quiet band.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole-cinema.json
 ```
 
 ```tsx
-import { HeroBlackHoleCinema } from "@vfx-ui/react";
+import { HeroBlackHoleCinema } from "@/components/HeroBlackHoleCinema";
 
 export function Demo() {
   return <HeroBlackHoleCinema title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2316,7 +2319,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_BLACK_HOLE_CINEMA_PRESETS } from "@vfx-ui/react";
+import { HERO_BLACK_HOLE_CINEMA_PRESETS } from "@/components/HeroBlackHoleCinema";
 ```
 
 ## Shader
@@ -2332,16 +2335,16 @@ WGSL source is exported as `BLACK_HOLE_BAKE_SHADER` — read it to learn how the
 
 # Hero Black Hole
 
-Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
+Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole.json
 ```
 
 ```tsx
-import { HeroBlackHole } from "@vfx-ui/react";
+import { HeroBlackHole } from "@/components/HeroBlackHole";
 
 export function Demo() {
   return <HeroBlackHole title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2377,7 +2380,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { HERO_BLACK_HOLE_PRESETS } from "@/components/HeroBlackHole";
 ```
 
 ## Shader
@@ -2393,16 +2396,16 @@ WGSL source is exported as `BLACK_HOLE_BAKE_SHADER` — read it to learn how the
 
 # Hero Chroma Full
 
-Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.
+Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-chroma-full.json
 ```
 
 ```tsx
-import { HeroChromaFull } from "@vfx-ui/react";
+import { HeroChromaFull } from "@/components/HeroChromaFull";
 
 export function Demo() {
   return <HeroChromaFull title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2437,7 +2440,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_CHROMA_FULL_PRESETS } from "@vfx-ui/react";
+import { HERO_CHROMA_FULL_PRESETS } from "@/components/HeroChromaFull";
 ```
 
 ## Shader
@@ -2458,11 +2461,11 @@ Drop-in hero section: bottom-left copy over a four-edge liquid color field that 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-chroma.json
 ```
 
 ```tsx
-import { HeroChroma } from "@vfx-ui/react";
+import { HeroChroma } from "@/components/HeroChroma";
 
 export function Demo() {
   return <HeroChroma title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2497,7 +2500,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_CHROMA_PRESETS } from "@vfx-ui/react";
+import { HERO_CHROMA_PRESETS } from "@/components/HeroChroma";
 ```
 
 ## Shader
@@ -2513,16 +2516,16 @@ WGSL source is exported as `CHROMA_FLOW_SHADER` — read it to learn how the eff
 
 # Hero Contour
 
-A seeded topographic paper landscape that lifts around the pointer.
+A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 ```
 
 ```tsx
-import { HeroContour } from "@vfx-ui/react";
+import { HeroContour } from "@/components/HeroContour";
 
 export function Demo() {
   return <HeroContour title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2553,16 +2556,16 @@ export function Demo() {
 
 # Hero Eclipse
 
-An engraved astronomical dial with a pointer-controlled eclipse.
+An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-eclipse.json
 ```
 
 ```tsx
-import { HeroEclipse } from "@vfx-ui/react";
+import { HeroEclipse } from "@/components/HeroEclipse";
 
 export function Demo() {
   return <HeroEclipse title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2592,16 +2595,16 @@ export function Demo() {
 
 # Hero Fiber Top
 
-Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.
+Drop-in hero: a left-set masthead pressed against the top edge while the silk-fiber field streams beneath it — fibers carry the lower two-thirds, the scrim carries the type.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-fiber-top.json
 ```
 
 ```tsx
-import { HeroFiberTop } from "@vfx-ui/react";
+import { HeroFiberTop } from "@/components/HeroFiberTop";
 
 export function Demo() {
   return <HeroFiberTop title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2635,7 +2638,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FIBER_TOP_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_TOP_PRESETS } from "@/components/HeroFiberTop";
 ```
 
 ## Shader
@@ -2651,16 +2654,16 @@ WGSL source is exported as `FIBER_FLOW_SHADER` — read it to learn how the effe
 
 # Hero Fiber
 
-Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.
+Drop-in hero: top-weighted headline over luminous silk fibers streaming through the dark.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fiber.json
 ```
 
 ```tsx
-import { HeroFiber } from "@vfx-ui/react";
+import { HeroFiber } from "@/components/HeroFiber";
 
 export function Demo() {
   return <HeroFiber title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2695,7 +2698,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FIBER_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_PRESETS } from "@/components/HeroFiber";
 ```
 
 ## Shader
@@ -2711,16 +2714,16 @@ WGSL source is exported as `FIBER_FLOW_SHADER` — read it to learn how the effe
 
 # Hero Fluid Minimal
 
-Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.
+Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient. The entire hero for products that can be named in a breath.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-fluid-minimal.json
 ```
 
 ```tsx
-import { HeroFluidMinimal } from "@vfx-ui/react";
+import { HeroFluidMinimal } from "@/components/HeroFluidMinimal";
 
 export function Demo() {
   return <HeroFluidMinimal title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2752,7 +2755,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FLUID_MINIMAL_PRESETS } from "@vfx-ui/react";
+import { HERO_FLUID_MINIMAL_PRESETS } from "@/components/HeroFluidMinimal";
 ```
 
 ## Shader
@@ -2768,16 +2771,16 @@ WGSL source is exported as `FLUID_SHADER` — read it to learn how the effect wo
 
 # Hero Fluid
 
-Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
+Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fluid.json
 ```
 
 ```tsx
-import { HeroFluid } from "@vfx-ui/react";
+import { HeroFluid } from "@/components/HeroFluid";
 
 export function Demo() {
   return <HeroFluid title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2809,7 +2812,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FLUID_PRESETS } from "@vfx-ui/react";
+import { HERO_FLUID_PRESETS } from "@/components/HeroFluid";
 ```
 
 ## Shader
@@ -2830,11 +2833,11 @@ Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behi
 ## Install
 
 ```bash
-npm install @vfx-ui/react cobe@^2.0.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-globe.json
 ```
 
 ```tsx
-import { HeroGlobe } from "@vfx-ui/react";
+import { HeroGlobe } from "@/components/HeroGlobe";
 
 export function Demo() {
   return <HeroGlobe title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2867,7 +2870,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_GLOBE_PRESETS } from "@vfx-ui/react";
+import { HERO_GLOBE_PRESETS } from "@/components/HeroGlobe";
 ```
 
 ## Notes for agents
@@ -2878,16 +2881,16 @@ import { HERO_GLOBE_PRESETS } from "@vfx-ui/react";
 
 # Hero Iridescent
 
-Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.
+Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-iridescent.json
 ```
 
 ```tsx
-import { HeroIridescent } from "@vfx-ui/react";
+import { HeroIridescent } from "@/components/HeroIridescent";
 
 export function Demo() {
   return <HeroIridescent title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2918,7 +2921,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_IRIDESCENT_PRESETS } from "@/components/HeroIridescent";
 ```
 
 ## Shader
@@ -2934,16 +2937,16 @@ WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effe
 
 # Hero Mesh Bold
 
-Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.
+Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over a vivid Voronoi mesh field. Keep the title short; the type is drawn to fill the frame.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-mesh-bold.json
 ```
 
 ```tsx
-import { HeroMeshBold } from "@vfx-ui/react";
+import { HeroMeshBold } from "@/components/HeroMeshBold";
 
 export function Demo() {
   return <HeroMeshBold title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2976,7 +2979,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_MESH_BOLD_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_BOLD_PRESETS } from "@/components/HeroMeshBold";
 ```
 
 ## Shader
@@ -2992,16 +2995,16 @@ WGSL source is exported as `MESH_GRADIENT_SHADER` — read it to learn how the e
 
 # Hero Mesh
 
-Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
+Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-mesh.json
 ```
 
 ```tsx
-import { HeroMesh } from "@vfx-ui/react";
+import { HeroMesh } from "@/components/HeroMesh";
 
 export function Demo() {
   return <HeroMesh title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3034,7 +3037,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_MESH_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_PRESETS } from "@/components/HeroMesh";
 ```
 
 ## Shader
@@ -3050,16 +3053,16 @@ WGSL source is exported as `MESH_GRADIENT_SHADER` — read it to learn how the e
 
 # Hero Particles Badge
 
-Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.
+Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-particles-badge.json
 ```
 
 ```tsx
-import { HeroParticlesBadge } from "@vfx-ui/react";
+import { HeroParticlesBadge } from "@/components/HeroParticlesBadge";
 
 export function Demo() {
   return <HeroParticlesBadge title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3090,7 +3093,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_PARTICLES_BADGE_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_BADGE_PRESETS } from "@/components/HeroParticlesBadge";
 ```
 
 ## Shader
@@ -3106,16 +3109,16 @@ WGSL source is exported as `PARTICLE_SHADER` — read it to learn how the effect
 
 # Hero Particles
 
-Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
+Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-particles.json
 ```
 
 ```tsx
-import { HeroParticles } from "@vfx-ui/react";
+import { HeroParticles } from "@/components/HeroParticles";
 
 export function Demo() {
   return <HeroParticles title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3146,7 +3149,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_PARTICLES_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_PRESETS } from "@/components/HeroParticles";
 ```
 
 ## Shader
@@ -3162,16 +3165,16 @@ WGSL source is exported as `PARTICLE_SHADER` — read it to learn how the effect
 
 # Hero Ribbon Left
 
-Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.
+Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon-left.json
 ```
 
 ```tsx
-import { HeroRibbonLeft } from "@vfx-ui/react";
+import { HeroRibbonLeft } from "@/components/HeroRibbonLeft";
 
 export function Demo() {
   return <HeroRibbonLeft title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3201,7 +3204,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_RIBBON_LEFT_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_LEFT_PRESETS } from "@/components/HeroRibbonLeft";
 ```
 
 ## Shader
@@ -3222,11 +3225,11 @@ Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right o
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon.json
 ```
 
 ```tsx
-import { HeroRibbon } from "@vfx-ui/react";
+import { HeroRibbon } from "@/components/HeroRibbon";
 
 export function Demo() {
   return <HeroRibbon title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3256,7 +3259,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_RIBBON_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_PRESETS } from "@/components/HeroRibbon";
 ```
 
 ## Shader
@@ -3272,16 +3275,16 @@ WGSL source is exported as `RIBBON_FIELD_SHADER` — read it to learn how the ef
 
 # Hero Starfield Split
 
-Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.
+Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-starfield-split.json
 ```
 
 ```tsx
-import { HeroStarfieldSplit } from "@vfx-ui/react";
+import { HeroStarfieldSplit } from "@/components/HeroStarfieldSplit";
 
 export function Demo() {
   return <HeroStarfieldSplit title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3312,7 +3315,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_STARFIELD_SPLIT_PRESETS } from "@vfx-ui/react";
+import { HERO_STARFIELD_SPLIT_PRESETS } from "@/components/HeroStarfieldSplit";
 ```
 
 ## Shader
@@ -3328,16 +3331,16 @@ WGSL source is exported as `STARFIELD_SHADER` — read it to learn how the effec
 
 # Hero Starfield
 
-Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.
+Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax drift.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-starfield.json
 ```
 
 ```tsx
-import { HeroStarfield } from "@vfx-ui/react";
+import { HeroStarfield } from "@/components/HeroStarfield";
 
 export function Demo() {
   return <HeroStarfield title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3367,7 +3370,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_STARFIELD_PRESETS } from "@vfx-ui/react";
+import { HERO_STARFIELD_PRESETS } from "@/components/HeroStarfield";
 ```
 
 ## Shader
@@ -3383,16 +3386,16 @@ WGSL source is exported as `STARFIELD_SHADER` — read it to learn how the effec
 
 # Hero Vortex Centered
 
-Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.
+Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-vortex-centered.json
 ```
 
 ```tsx
-import { HeroVortexCentered } from "@vfx-ui/react";
+import { HeroVortexCentered } from "@/components/HeroVortexCentered";
 
 export function Demo() {
   return <HeroVortexCentered title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3424,7 +3427,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_VORTEX_CENTERED_PRESETS } from "@vfx-ui/react";
+import { HERO_VORTEX_CENTERED_PRESETS } from "@/components/HeroVortexCentered";
 ```
 
 ## Shader
@@ -3440,16 +3443,16 @@ WGSL source is exported as `VORTEX_SHADER` — read it to learn how the effect w
 
 # Hero Vortex
 
-Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
+Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-vortex.json
 ```
 
 ```tsx
-import { HeroVortex } from "@vfx-ui/react";
+import { HeroVortex } from "@/components/HeroVortex";
 
 export function Demo() {
   return <HeroVortex title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3481,7 +3484,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_VORTEX_PRESETS } from "@vfx-ui/react";
+import { HERO_VORTEX_PRESETS } from "@/components/HeroVortex";
 ```
 
 ## Shader
@@ -3497,16 +3500,16 @@ WGSL source is exported as `VORTEX_SHADER` — read it to learn how the effect w
 
 # Ink Bloom
 
-Ink drops blooming and feathering into warm paper on staggered cycles.
+Ink drops blooming and feathering across wet paper — each front is an fbm-perturbed radius, denser at the core and ring-deposited at the edge, paling as it ages. Light paper base.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ink-bloom.json
 ```
 
 ```tsx
-import { InkBloom } from "@vfx-ui/react";
+import { InkBloom } from "@/components/InkBloom";
 
 export function Demo() {
   return <InkBloom />;
@@ -3533,7 +3536,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { INK_BLOOM_PRESETS } from "@vfx-ui/react";
+import { INK_BLOOM_PRESETS } from "@/components/InkBloom";
 ```
 
 ## Shader
@@ -3549,16 +3552,16 @@ WGSL source is exported as `INK_BLOOM_SHADER` — read it to learn how the effec
 
 # Iridescent
 
-Silky thin-film interference colors drifting across the surface.
+Thin-film interference colors drifting as silk — cosine-palette holography in a single pass.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/iridescent.json
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { Iridescent } from "@/components/Iridescent";
 
 export function Demo() {
   return <Iridescent />;
@@ -3582,7 +3585,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { IRIDESCENT_PRESETS } from "@/components/Iridescent";
 ```
 
 ## Shader
@@ -3598,16 +3601,16 @@ WGSL source is exported as `IRIDESCENT_SHADER` — read it to learn how the effe
 
 # Kinetic Text
 
-A pointer-driven force field lifts your words into a soft wave.
+Letters lift into a soft wave as your cursor passes through.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/kinetic-text.json
 ```
 
 ```tsx
-import { KineticText } from "@vfx-ui/react";
+import { KineticText } from "@/components/KineticText";
 
 export function Demo() {
   return <KineticText />;
@@ -3631,16 +3634,16 @@ export function Demo() {
 
 # Light Prism
 
-A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.
+A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/light-prism.json
 ```
 
 ```tsx
-import { LightPrism } from "@vfx-ui/react";
+import { LightPrism } from "@/components/LightPrism";
 
 export function Demo() {
   return <div style={{ height: 520 }}><LightPrism interactive /></div>;
@@ -3668,7 +3671,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
+import { LIGHT_PRISM_PRESETS } from "@/components/LightPrism";
 ```
 
 ## Notes for agents
@@ -3679,16 +3682,16 @@ import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
 
 # Liquid Glass
 
-A molten glass annulus with a travelling silhouette and spectral transmission.
+A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/liquid-glass.json
 ```
 
 ```tsx
-import { LiquidGlass } from "@vfx-ui/react";
+import { LiquidGlass } from "@/components/LiquidGlass";
 
 export function Demo() {
   return <div style={{ height: 520 }}><LiquidGlass interactive /></div>;
@@ -3711,7 +3714,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { LIQUID_GLASS_PRESETS } from "@vfx-ui/react";
+import { LIQUID_GLASS_PRESETS } from "@/components/LiquidGlass";
 ```
 
 ## Shader
@@ -3727,16 +3730,16 @@ WGSL source is exported as `LIQUID_GLASS_SHADER` — read it to learn how the ef
 
 # Magnetic Grid
 
-A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.
+A lattice of iron filings for the cursor: each dot feels the pointer's field, slides and swells as it passes, and settles back when it leaves.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic-grid.json
 ```
 
 ```tsx
-import { MagneticGrid } from "@vfx-ui/react";
+import { MagneticGrid } from "@/components/MagneticGrid";
 
 export function Demo() {
   return <MagneticGrid />;
@@ -3765,16 +3768,16 @@ export function Demo() {
 
 # Magnetic
 
-A gentle magnetic pull for your own buttons, links, and content.
+Give a button, link, or any small piece of content a gentle pull.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic.json
 ```
 
 ```tsx
-import { Magnetic } from "@vfx-ui/react";
+import { Magnetic } from "@/components/Magnetic";
 
 export function Demo() {
   return <Magnetic />;
@@ -3797,16 +3800,16 @@ export function Demo() {
 
 # Mesh Gradient
 
-Voronoi-cell color fields flowing through a curated palette.
+Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/mesh-gradient.json
 ```
 
 ```tsx
-import { MeshGradient } from "@vfx-ui/react";
+import { MeshGradient } from "@/components/MeshGradient";
 
 export function Demo() {
   return <MeshGradient />;
@@ -3832,7 +3835,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { MESH_GRADIENT_PRESETS } from "@vfx-ui/react";
+import { MESH_GRADIENT_PRESETS } from "@/components/MeshGradient";
 ```
 
 ## Shader
@@ -3848,16 +3851,16 @@ WGSL source is exported as `MESH_GRADIENT_SHADER` — read it to learn how the e
 
 # Particle Field
 
-Procedural cell-hashed particles with drift and size breathing.
+Procedural cell-hashed particles with drift and size breathing — a living texture, no sprite sheet.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/particle-field.json
 ```
 
 ```tsx
-import { ParticleField } from "@vfx-ui/react";
+import { ParticleField } from "@/components/ParticleField";
 
 export function Demo() {
   return <ParticleField />;
@@ -3880,7 +3883,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PARTICLE_PRESETS } from "@vfx-ui/react";
+import { PARTICLE_PRESETS } from "@/components/ParticleField";
 ```
 
 ## Shader
@@ -3896,16 +3899,16 @@ WGSL source is exported as `PARTICLE_SHADER` — read it to learn how the effect
 
 # Plasma Sheet
 
-Molten color currents folding through each other in a double domain-warped field.
+Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/plasma-sheet.json
 ```
 
 ```tsx
-import { PlasmaSheet } from "@vfx-ui/react";
+import { PlasmaSheet } from "@/components/PlasmaSheet";
 
 export function Demo() {
   return <PlasmaSheet />;
@@ -3931,7 +3934,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PLASMA_SHEET_PRESETS } from "@vfx-ui/react";
+import { PLASMA_SHEET_PRESETS } from "@/components/PlasmaSheet";
 ```
 
 ## Shader
@@ -3947,16 +3950,16 @@ WGSL source is exported as `PLASMA_SHEET_SHADER` — read it to learn how the ef
 
 # Pointer Glow
 
-A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.
+A handheld light for layouts: the region dims slightly and a warm source follows the pointer, brightening whatever it rests on.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/pointer-glow.json
 ```
 
 ```tsx
-import { PointerGlow } from "@vfx-ui/react";
+import { PointerGlow } from "@/components/PointerGlow";
 
 export function Demo() {
   return <PointerGlow />;
@@ -3982,16 +3985,16 @@ export function Demo() {
 
 # Radiant Dots
 
-Orbital emitters with jump-flooded distance fields and radiance cascades.
+A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/radiant-dots.json
 ```
 
 ```tsx
-import { RadiantDots } from "@vfx-ui/react";
+import { RadiantDots } from "@/components/RadiantDots";
 
 export function Demo() {
   return <div style={{ height: 520 }}><RadiantDots interactive /></div>;
@@ -4016,7 +4019,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { RADIANT_DOTS_PRESETS } from "@vfx-ui/react";
+import { RADIANT_DOTS_PRESETS } from "@/components/RadiantDots";
 ```
 
 ## Notes for agents
@@ -4029,16 +4032,16 @@ import { RADIANT_DOTS_PRESETS } from "@vfx-ui/react";
 
 # Ribbon Field
 
-Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).
+Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores and film grain — WGSL port of ThreeUI's RibbonField (MIT).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ribbon-field.json
 ```
 
 ```tsx
-import { RibbonField } from "@vfx-ui/react";
+import { RibbonField } from "@/components/RibbonField";
 
 export function Demo() {
   return <RibbonField />;
@@ -4061,7 +4064,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { RIBBON_FIELD_PRESETS } from "@vfx-ui/react";
+import { RIBBON_FIELD_PRESETS } from "@/components/RibbonField";
 ```
 
 ## Shader
@@ -4077,16 +4080,16 @@ WGSL source is exported as `RIBBON_FIELD_SHADER` — read it to learn how the ef
 
 # Ripple Text
 
-Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.
+Type you can touch: a click (or tap) drops a ripple that travels outward through the letters, and a resting pointer leaves a soft dimple.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/ripple-text.json
 ```
 
 ```tsx
-import { RippleText } from "@vfx-ui/react";
+import { RippleText } from "@/components/RippleText";
 
 export function Demo() {
   return <RippleText />;
@@ -4111,16 +4114,16 @@ export function Demo() {
 
 # Silk Veil
 
-A draped silk curtain of warped folds with a luster band sweeping the weave.
+A draped silk curtain with a sheen band sweeping across it — domain-warped folds shaded anisotropically like cloth-of-gold, with fine weave grain.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/silk-veil.json
 ```
 
 ```tsx
-import { SilkVeil } from "@vfx-ui/react";
+import { SilkVeil } from "@/components/SilkVeil";
 
 export function Demo() {
   return <SilkVeil />;
@@ -4146,7 +4149,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { SILK_VEIL_PRESETS } from "@vfx-ui/react";
+import { SILK_VEIL_PRESETS } from "@/components/SilkVeil";
 ```
 
 ## Shader
@@ -4162,16 +4165,16 @@ WGSL source is exported as `SILK_VEIL_SHADER` — read it to learn how the effec
 
 # Solar Corona
 
-A boiling sun disk crowned with streaming corona light and polar plumes.
+A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/solar-corona.json
 ```
 
 ```tsx
-import { SolarCorona } from "@vfx-ui/react";
+import { SolarCorona } from "@/components/SolarCorona";
 
 export function Demo() {
   return <SolarCorona />;
@@ -4198,7 +4201,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { SOLAR_CORONA_PRESETS } from "@vfx-ui/react";
+import { SOLAR_CORONA_PRESETS } from "@/components/SolarCorona";
 ```
 
 ## Shader
@@ -4214,16 +4217,16 @@ WGSL source is exported as `SOLAR_CORONA_SHADER` — read it to learn how the ef
 
 # Spectral Card
 
-Holographic light and spatial tilt around your own content.
+A touch of iridescence. Real content, spatial tilt, and light that follows you.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spectral-card.json
 ```
 
 ```tsx
-import { SpectralCard } from "@vfx-ui/react";
+import { SpectralCard } from "@/components/SpectralCard";
 
 export function Demo() {
   return <SpectralCard />;
@@ -4248,16 +4251,16 @@ export function Demo() {
 
 # Spectrum Text
 
-A spectral light band flows continuously through your words and leans toward the pointer.
+A ribbon of daylight sliding through the words: one spectral gradient flows continuously across the type and leans toward the pointer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spectrum-text.json
 ```
 
 ```tsx
-import { SpectrumText } from "@vfx-ui/react";
+import { SpectrumText } from "@/components/SpectrumText";
 
 export function Demo() {
   return <SpectrumText />;
@@ -4282,16 +4285,16 @@ export function Demo() {
 
 # Spotlight Card
 
-A card under a torch: the beam follows the pointer to uncover your content from the dark.
+A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spotlight-card.json
 ```
 
 ```tsx
-import { SpotlightCard } from "@vfx-ui/react";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 export function Demo() {
   return <SpotlightCard />;
@@ -4315,16 +4318,16 @@ export function Demo() {
 
 # Star Tide
 
-Stars carried on slow luminous waves, flaring as the tide crests.
+A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/star-tide.json
 ```
 
 ```tsx
-import { StarTide } from "@vfx-ui/react";
+import { StarTide } from "@/components/StarTide";
 
 export function Demo() {
   return <StarTide />;
@@ -4352,7 +4355,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { STAR_TIDE_PRESETS } from "@vfx-ui/react";
+import { STAR_TIDE_PRESETS } from "@/components/StarTide";
 ```
 
 ## Shader
@@ -4368,16 +4371,16 @@ WGSL source is exported as `STAR_TIDE_SHADER` — read it to learn how the effec
 
 # Starfield
 
-Hashed star grid with twinkle and slow parallax drift.
+Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/starfield.json
 ```
 
 ```tsx
-import { Starfield } from "@vfx-ui/react";
+import { Starfield } from "@/components/Starfield";
 
 export function Demo() {
   return <Starfield />;
@@ -4400,7 +4403,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { STARFIELD_PRESETS } from "@vfx-ui/react";
+import { STARFIELD_PRESETS } from "@/components/Starfield";
 ```
 
 ## Shader
@@ -4416,16 +4419,16 @@ WGSL source is exported as `STARFIELD_SHADER` — read it to learn how the effec
 
 # Terrain Ridge
 
-Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.
+Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede into haze, each scrolling at its own speed, under a low sun that rims the nearest crest.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/terrain-ridge.json
 ```
 
 ```tsx
-import { TerrainRidge } from "@vfx-ui/react";
+import { TerrainRidge } from "@/components/TerrainRidge";
 
 export function Demo() {
   return <TerrainRidge />;
@@ -4451,7 +4454,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { TERRAIN_RIDGE_PRESETS } from "@vfx-ui/react";
+import { TERRAIN_RIDGE_PRESETS } from "@/components/TerrainRidge";
 ```
 
 ## Shader
@@ -4467,16 +4470,16 @@ WGSL source is exported as `TERRAIN_RIDGE_SHADER` — read it to learn how the e
 
 # Tilt Card
 
-A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.
+A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/tilt-card.json
 ```
 
 ```tsx
-import { TiltCard } from "@vfx-ui/react";
+import { TiltCard } from "@/components/TiltCard";
 
 export function Demo() {
   return <TiltCard />;
@@ -4501,16 +4504,16 @@ export function Demo() {
 
 # Vortex
 
-Spiral galaxy swirl with star speckles and trailing arms.
+Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/vortex.json
 ```
 
 ```tsx
-import { Vortex } from "@vfx-ui/react";
+import { Vortex } from "@/components/Vortex";
 
 export function Demo() {
   return <Vortex />;
@@ -4535,7 +4538,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { VORTEX_PRESETS } from "@vfx-ui/react";
+import { VORTEX_PRESETS } from "@/components/Vortex";
 ```
 
 ## Shader
@@ -4551,16 +4554,16 @@ WGSL source is exported as `VORTEX_SHADER` — read it to learn how the effect w
 
 # Wave Background
 
-Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.
+Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { WaveBackground } from "@vfx-ui/react";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Demo() {
   return <WaveBackground />;

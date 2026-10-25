@@ -2,7 +2,7 @@
 component: block-testimonials
 title: "Block Testimonials"
 category: Blocks
-tags: [block, section, landing, testimonials, quotes, social-proof]
+tags: [block, testimonials, quotes, social-proof]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-testimonials.json
 registry: https://vfx-ui.com/r/block-testimonials.json
 docs: https://vfx-ui.com/components/block-testimonials.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block Testimonials
 
-> Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.
+> Testimonials with a featured quote plus a field-note grid. The built-in quotes are fictional and visibly marked — swap in real customers via props and clear the marker.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block Testimonials” component to this project and use it as 
 
 ## Context
 
-Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Testimonials with a featured quote plus a field-note grid. The built-in quotes are fictional and visibly marked — swap in real customers via props and clear the marker — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

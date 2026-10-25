@@ -1,15 +1,15 @@
 # Hero Fluid
 
-Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.
+Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fluid.json
 ```
 
 ```tsx
-import { HeroFluid } from "@vfx-ui/react";
+import { HeroFluid } from "@/components/HeroFluid";
 
 export function Demo() {
   return <HeroFluid title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -41,7 +41,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FLUID_PRESETS } from "@vfx-ui/react";
+import { HERO_FLUID_PRESETS } from "@/components/HeroFluid";
 ```
 
 ## Shader

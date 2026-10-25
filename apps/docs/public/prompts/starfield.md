@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Starfield
 
-> Hashed star grid with twinkle and slow parallax drift.
+> Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Starfield” component to this project and use it as an animat
 
 ## Context
 
-Hashed star grid with twinkle and slow parallax drift — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -178,7 +178,7 @@ async function main() {
     arguments: { name: "aurora", include_files: true },
   });
   const fullText = toolText(detailFull);
-  const hasSource = fullText.includes("### vfx/VfxCanvas.tsx") || fullText.includes("Full source unavailable");
+  const hasSource = fullText.includes("### components/Aurora.tsx") || fullText.includes("Full source unavailable");
   check(
     "get aurora include_files=true -> source or explicit unavailability",
     hasSource && fullText.includes("## Source"),
@@ -195,7 +195,7 @@ async function main() {
   console.log(`  >> ${snippet(stylesText, 200)}`);
   check(
     "styles include palette hexes",
-    stylesText.includes("#eeefe9") && stylesText.includes("#2349db") && stylesText.includes("#202520"),
+    stylesText.includes("#17191c") && stylesText.includes("#f5d547") && stylesText.includes("#555b64"),
   );
 
   const notes = await server.request("tools/call", {

@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Vortex
 
-> Spiral galaxy swirl with star speckles and trailing arms.
+> Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Vortex” component to this project and use it as an animated,
 
 ## Context
 
-Spiral galaxy swirl with star speckles and trailing arms — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Spiral galaxy with logarithmic arms, hashed starlight and a breathing core — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

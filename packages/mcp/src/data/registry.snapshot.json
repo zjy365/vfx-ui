@@ -8,34 +8,36 @@
       "name": "hero-eclipse",
       "title": "Hero Eclipse",
       "type": "registry:component",
-      "description": "An engraved astronomical dial with a pointer-controlled eclipse.",
+      "description": "An astronomical instrument in warm copper. Move the pointer to shift the eclipse and rotate its engraved dial.",
       "categories": [
         "Heroes"
       ],
       "tags": [
         "hero",
         "pointer",
+        "eclipse",
+        "astronomy",
         "editorial"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/StudioHeroFrame.tsx",
+          "path": "@components/vfx/StudioHeroFrame.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroEclipse.tsx",
+          "path": "@components/HeroEclipse.tsx",
           "type": "registry:component"
         }
       ]
@@ -45,34 +47,36 @@
       "name": "hero-contour",
       "title": "Hero Contour",
       "type": "registry:component",
-      "description": "A seeded topographic paper landscape that lifts around the pointer.",
+      "description": "A sunlit topographic print. Seed your own landscape and let the paper ridges rise around your pointer.",
       "categories": [
         "Heroes"
       ],
       "tags": [
         "hero",
         "pointer",
-        "editorial"
+        "terrain",
+        "topography",
+        "generative"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/StudioHeroFrame.tsx",
+          "path": "@components/vfx/StudioHeroFrame.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroContour.tsx",
+          "path": "@components/HeroContour.tsx",
           "type": "registry:component"
         }
       ]
@@ -82,26 +86,30 @@
       "name": "footer-vinyl",
       "title": "Footer Vinyl",
       "type": "registry:component",
-      "description": "A record-sleeve footer with a pointer-rotated vinyl and your own label.",
+      "description": "A closing track for your website. A grooved record turns with your pointer, framed by a bold pink sleeve.",
       "categories": [
         "Footers"
       ],
       "tags": [
         "footer",
-        "vinyl",
+        "typography",
         "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FooterFrame.tsx",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/FooterVinyl.tsx",
+          "path": "@components/vfx/FooterFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/FooterVinyl.tsx",
           "type": "registry:component"
         }
       ]
@@ -111,17 +119,19 @@
       "name": "astra-field",
       "title": "Astra Field",
       "type": "registry:component",
-      "description": "A rotatable spiral galaxy of glowing stars.",
+      "description": "A spiral written in starlight. Cool stellar dust, warm distant suns and a luminous core, suspended in a deep blue field.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "galaxy",
-        "stars"
+        "particles",
+        "stars",
+        "hero"
       ],
       "files": [
         {
-          "path": "components/AstraField.tsx",
+          "path": "@components/AstraField.tsx",
           "type": "registry:component"
         }
       ]
@@ -131,34 +141,31 @@
       "name": "radiant-dots",
       "title": "Radiant Dots",
       "type": "registry:component",
-      "description": "Orbital emitters with jump-flooded distance fields and radiance cascades.",
+      "description": "A constellation of light. Each dot emits and occludes, sending soft illumination through a real radiance-cascade field.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "radiance",
+        "dots",
         "light",
-        "dots"
+        "loading"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/RadianceEngine.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/RadianceEngine.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/RadiantDots.tsx",
+          "path": "@components/RadiantDots.tsx",
           "type": "registry:component"
         }
       ]
@@ -168,26 +175,30 @@
       "name": "footer-tidal",
       "title": "Footer Tidal",
       "type": "registry:component",
-      "description": "Copper tidal lines beneath your brand, with pointer-driven currents.",
+      "description": "Copper tidal lines beneath monumental lettering. Move across the footer and reshape the current.",
       "categories": [
         "Footers"
       ],
       "tags": [
         "footer",
-        "pointer",
-        "typography"
+        "typography",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/FooterFrame.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FooterArtwork.tsx",
+          "path": "@components/vfx/FooterFrame.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/FooterTidal.tsx",
+          "path": "@components/vfx/FooterArtwork.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/FooterTidal.tsx",
           "type": "registry:component"
         }
       ]
@@ -197,26 +208,30 @@
       "name": "footer-fold",
       "title": "Footer Fold",
       "type": "registry:component",
-      "description": "A wordmark printed across hinged paper panels that respond to the pointer.",
+      "description": "Your wordmark becomes a hinged paper screen. Each panel turns toward the passing pointer.",
       "categories": [
         "Footers"
       ],
       "tags": [
         "footer",
-        "pointer",
-        "typography"
+        "typography",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FooterFrame.tsx",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/FooterFold.tsx",
+          "path": "@components/vfx/FooterFrame.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/FooterFold.tsx",
           "type": "registry:component"
         }
       ]
@@ -226,26 +241,30 @@
       "name": "footer-phosphor",
       "title": "Footer Phosphor",
       "type": "registry:component",
-      "description": "A luminous cell wordmark that disperses around your pointer and settles home.",
+      "description": "A wordmark made of light. Its cells scatter around your pointer and settle back into place.",
       "categories": [
         "Footers"
       ],
       "tags": [
         "footer",
-        "pointer",
-        "typography"
+        "typography",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/FooterFrame.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FooterArtwork.tsx",
+          "path": "@components/vfx/FooterFrame.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/FooterPhosphor.tsx",
+          "path": "@components/vfx/FooterArtwork.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/FooterPhosphor.tsx",
           "type": "registry:component"
         }
       ]
@@ -255,21 +274,22 @@
       "name": "spectral-card",
       "title": "Spectral Card",
       "type": "registry:component",
-      "description": "Holographic light and spatial tilt around your own content.",
+      "description": "A touch of iridescence. Real content, spatial tilt, and light that follows you.",
       "categories": [
         "Interactions"
       ],
       "tags": [
-        "pointer",
-        "interactive"
+        "card",
+        "holographic",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/SpectralCard.tsx",
+          "path": "@components/SpectralCard.tsx",
           "type": "registry:component"
         }
       ]
@@ -279,21 +299,22 @@
       "name": "kinetic-text",
       "title": "Kinetic Text",
       "type": "registry:component",
-      "description": "A pointer-driven force field lifts your words into a soft wave.",
+      "description": "Letters lift into a soft wave as your cursor passes through.",
       "categories": [
         "Text"
       ],
       "tags": [
+        "text",
         "pointer",
-        "interactive"
+        "typography"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/KineticText.tsx",
+          "path": "@components/KineticText.tsx",
           "type": "registry:component"
         }
       ]
@@ -303,21 +324,22 @@
       "name": "magnetic",
       "title": "Magnetic",
       "type": "registry:component",
-      "description": "A gentle magnetic pull for your own buttons, links, and content.",
+      "description": "Give a button, link, or any small piece of content a gentle pull.",
       "categories": [
         "Interactions"
       ],
       "tags": [
+        "button",
         "pointer",
-        "interactive"
+        "magnetic"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/Magnetic.tsx",
+          "path": "@components/Magnetic.tsx",
           "type": "registry:component"
         }
       ]
@@ -327,31 +349,31 @@
       "name": "wave-background",
       "title": "Wave Background",
       "type": "registry:component",
-      "description": "Three layered sine bands sweeping over a tri-color gradient. GPU-rendered via WebGPU; DOM cannot reproduce it.",
+      "description": "Three layered sine bands sweeping over a tri-color gradient, rendered fully on the GPU via WebGPU.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
         "gradient",
-        "wave",
+        "waves",
         "hero"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/WaveBackground.tsx",
+          "path": "@components/WaveBackground.tsx",
           "type": "registry:component"
         }
       ]
@@ -361,7 +383,7 @@
       "name": "fluid-gradient",
       "title": "Fluid Gradient",
       "type": "registry:component",
-      "description": "Domain-warped fBm noise flowing through a tri-color palette.",
+      "description": "Domain-warped fBm noise flowing through a curated palette — organic liquid color, zero video.",
       "categories": [
         "Backgrounds"
       ],
@@ -372,19 +394,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/FluidGradient.tsx",
+          "path": "@components/FluidGradient.tsx",
           "type": "registry:component"
         }
       ]
@@ -394,7 +416,7 @@
       "name": "aurora",
       "title": "Aurora",
       "type": "registry:component",
-      "description": "Vertical light curtains driven by fBm perturbation and gaussian bands.",
+      "description": "Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black GPU sky.",
       "categories": [
         "Backgrounds"
       ],
@@ -405,19 +427,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/Aurora.tsx",
+          "path": "@components/Aurora.tsx",
           "type": "registry:component"
         }
       ]
@@ -427,7 +449,7 @@
       "name": "starfield",
       "title": "Starfield",
       "type": "registry:component",
-      "description": "Hashed star grid with twinkle and slow parallax drift.",
+      "description": "Hashed star grid with twinkle and slow parallax drift — deep-space depth from one fullscreen pass.",
       "categories": [
         "Backgrounds"
       ],
@@ -438,19 +460,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/Starfield.tsx",
+          "path": "@components/Starfield.tsx",
           "type": "registry:component"
         }
       ]
@@ -460,7 +482,7 @@
       "name": "particle-field",
       "title": "Particle Field",
       "type": "registry:component",
-      "description": "Procedural cell-hashed particles with drift and size breathing.",
+      "description": "Procedural cell-hashed particles with drift and size breathing — a living texture, no sprite sheet.",
       "categories": [
         "Backgrounds"
       ],
@@ -470,19 +492,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/ParticleField.tsx",
+          "path": "@components/ParticleField.tsx",
           "type": "registry:component"
         }
       ]
@@ -492,34 +514,34 @@
       "name": "glass-card",
       "title": "Glass Card",
       "type": "registry:component",
-      "description": "Thick-cut optical glass with two-interface refraction and studio reflections.",
+      "description": "Thick-cut glass over a printed studio scene. Beveled edges split light while the solid tilts toward your pointer.",
       "categories": [
         "Glass"
       ],
       "tags": [
         "glass",
-        "card",
-        "sdf"
+        "optical",
+        "refraction"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/OpticalGlass.tsx",
+          "path": "@components/vfx/OpticalGlass.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/GlassCard.tsx",
+          "path": "@components/GlassCard.tsx",
           "type": "registry:component"
         }
       ]
@@ -529,34 +551,30 @@
       "name": "liquid-glass",
       "title": "Liquid Glass",
       "type": "registry:component",
-      "description": "A molten glass annulus with a travelling silhouette and spectral transmission.",
+      "description": "A molten glass loop. Travelling waves reshape its silhouette and the image transmitted through it.",
       "categories": [
         "Glass"
       ],
       "tags": [
         "glass",
-        "refraction",
+        "sculpture",
         "liquid"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/OpticalGlass.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/OpticalGlass.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/LiquidGlass.tsx",
+          "path": "@components/LiquidGlass.tsx",
           "type": "registry:component"
         }
       ]
@@ -566,35 +584,34 @@
       "name": "glass-lens",
       "title": "Glass Lens",
       "type": "registry:component",
-      "description": "A biconvex glass lens that magnifies and inverts a printed studio scene.",
+      "description": "A biconvex lens: magnification through the center, inversion at the edges, and fine spectral fringes.",
       "categories": [
         "Glass"
       ],
       "tags": [
         "glass",
-        "refraction",
         "lens",
-        "liquid-glass"
+        "optical"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/OpticalGlass.tsx",
+          "path": "@components/vfx/OpticalGlass.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/GlassLens.tsx",
+          "path": "@components/GlassLens.tsx",
           "type": "registry:component"
         }
       ]
@@ -604,7 +621,7 @@
       "name": "black-hole",
       "title": "Black Hole",
       "type": "registry:component",
-      "description": "The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).",
+      "description": "The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).",
       "categories": [
         "Backgrounds"
       ],
@@ -612,23 +629,12 @@
         "background",
         "space",
         "black-hole",
-        "ray-tracing"
+        "ray-tracing",
+        "physics"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/vfx/color.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/vfx/usePointerUniforms.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/BlackHole.tsx",
+          "path": "@components/BlackHole.tsx",
           "type": "registry:component"
         }
       ]
@@ -638,7 +644,7 @@
       "name": "mesh-gradient",
       "title": "Mesh Gradient",
       "type": "registry:component",
-      "description": "Voronoi-cell color fields flowing through a curated palette.",
+      "description": "Voronoi-cell color fields flowing through a curated palette — the classic mesh-gradient look, live on the GPU.",
       "categories": [
         "Backgrounds"
       ],
@@ -649,19 +655,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/MeshGradient.tsx",
+          "path": "@components/MeshGradient.tsx",
           "type": "registry:component"
         }
       ]
@@ -671,7 +677,7 @@
       "name": "iridescent",
       "title": "Iridescent",
       "type": "registry:component",
-      "description": "Silky thin-film interference colors drifting across the surface.",
+      "description": "Thin-film interference colors drifting as silk — cosine-palette holography in a single pass.",
       "categories": [
         "Backgrounds"
       ],
@@ -682,19 +688,15 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/Iridescent.tsx",
+          "path": "@components/Iridescent.tsx",
           "type": "registry:component"
         }
       ]
@@ -704,7 +706,7 @@
       "name": "vortex",
       "title": "Vortex",
       "type": "registry:component",
-      "description": "Spiral galaxy swirl with star speckles and trailing arms.",
+      "description": "Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.",
       "categories": [
         "Backgrounds"
       ],
@@ -715,19 +717,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/Vortex.tsx",
+          "path": "@components/Vortex.tsx",
           "type": "registry:component"
         }
       ]
@@ -737,7 +739,7 @@
       "name": "ribbon-field",
       "title": "Ribbon Field",
       "type": "registry:component",
-      "description": "Three Gaussian light ribbons over a dot-matrix grid with bloom and grain — WGSL port of ThreeUI's RibbonField (MIT, Copyright 2026 Meng To).",
+      "description": "Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores and film grain — WGSL port of ThreeUI's RibbonField (MIT).",
       "categories": [
         "Backgrounds"
       ],
@@ -749,19 +751,15 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/RibbonField.tsx",
+          "path": "@components/RibbonField.tsx",
           "type": "registry:component"
         }
       ]
@@ -771,7 +769,7 @@
       "name": "fiber-flow",
       "title": "Fiber Flow",
       "type": "registry:component",
-      "description": "Luminous silk fibers streaming through the dark — domain-warped fbm ridge field with pointer parallax (opt-in).",
+      "description": "Luminous silk fibers streaming through the dark — a domain-warped fbm ridge field with strands that ebb and flow, pointer parallax and a soft cursor glow. Original vfx-ui design.",
       "categories": [
         "Backgrounds"
       ],
@@ -784,19 +782,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/FiberFlow.tsx",
+          "path": "@components/FiberFlow.tsx",
           "type": "registry:component"
         }
       ]
@@ -806,7 +804,7 @@
       "name": "light-prism",
       "title": "Light Prism",
       "type": "registry:component",
-      "description": "A solid beveled optical prism using Vercel’s complete MIT spectral optics and multi-pass glass pipeline.",
+      "description": "A solid optical prism with internal reflections, spectral caustics and a textured light field. Powered by Vercel’s complete MIT prism pipeline.",
       "categories": [
         "Glass"
       ],
@@ -819,31 +817,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/OpticalGlass.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/OpticalGlass.tsx",
+          "path": "@components/vfx/PrismScene.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/PrismScene.tsx",
+          "path": "@components/vfx/PrismEngine.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/PrismEngine.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/LightPrism.tsx",
+          "path": "@components/LightPrism.tsx",
           "type": "registry:component"
         }
       ]
@@ -853,7 +847,7 @@
       "name": "hero-fluid",
       "title": "Hero Fluid",
       "type": "registry:component",
-      "description": "Drop-in hero section: centered headline over a GPU liquid-gradient field with real selectable DOM text, scrim-backed contrast, and a reduced-motion static fallback.",
+      "description": "Drop-in hero: centered headline over a GPU liquid-gradient field with real selectable text and scrim-backed contrast.",
       "categories": [
         "Heroes"
       ],
@@ -865,27 +859,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FluidGradient.tsx",
+          "path": "@components/vfx/FluidGradient.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroFluid.tsx",
+          "path": "@components/HeroFluid.tsx",
           "type": "registry:component"
         }
       ]
@@ -895,7 +889,7 @@
       "name": "hero-aurora",
       "title": "Hero Aurora",
       "type": "registry:component",
-      "description": "Drop-in hero section: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.",
+      "description": "Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendered per-pixel on the GPU.",
       "categories": [
         "Heroes"
       ],
@@ -907,27 +901,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Aurora.tsx",
+          "path": "@components/vfx/Aurora.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroAurora.tsx",
+          "path": "@components/HeroAurora.tsx",
           "type": "registry:component"
         }
       ]
@@ -937,7 +931,7 @@
       "name": "hero-fiber",
       "title": "Hero Fiber",
       "type": "registry:component",
-      "description": "Drop-in hero section: top-weighted headline over luminous silk fibers streaming through the dark.",
+      "description": "Drop-in hero: top-weighted headline over luminous silk fibers streaming through the dark.",
       "categories": [
         "Heroes"
       ],
@@ -949,27 +943,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FiberFlow.tsx",
+          "path": "@components/vfx/FiberFlow.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroFiber.tsx",
+          "path": "@components/HeroFiber.tsx",
           "type": "registry:component"
         }
       ]
@@ -991,15 +985,15 @@
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroGlobe.tsx",
+          "path": "@components/HeroGlobe.tsx",
           "type": "registry:component"
         }
       ]
@@ -1009,7 +1003,7 @@
       "name": "hero-mesh",
       "title": "Hero Mesh",
       "type": "registry:component",
-      "description": "Drop-in hero section: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.",
+      "description": "Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — every frame a different poster.",
       "categories": [
         "Heroes"
       ],
@@ -1021,27 +1015,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/MeshGradient.tsx",
+          "path": "@components/vfx/MeshGradient.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroMesh.tsx",
+          "path": "@components/HeroMesh.tsx",
           "type": "registry:component"
         }
       ]
@@ -1051,7 +1045,7 @@
       "name": "hero-iridescent",
       "title": "Hero Iridescent",
       "type": "registry:component",
-      "description": "Drop-in hero section: left copy over a holographic thin-film sheen — the premium product-launch look, computed per-pixel.",
+      "description": "Drop-in hero: left copy over a holographic thin-film sheen — the premium product-launch look.",
       "categories": [
         "Heroes"
       ],
@@ -1063,27 +1057,23 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/Iridescent.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Iridescent.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/HeroIridescent.tsx",
+          "path": "@components/HeroIridescent.tsx",
           "type": "registry:component"
         }
       ]
@@ -1093,7 +1083,7 @@
       "name": "hero-vortex",
       "title": "Hero Vortex",
       "type": "registry:component",
-      "description": "Drop-in hero section: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.",
+      "description": "Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles and trailing arms.",
       "categories": [
         "Heroes"
       ],
@@ -1105,27 +1095,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Vortex.tsx",
+          "path": "@components/vfx/Vortex.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroVortex.tsx",
+          "path": "@components/HeroVortex.tsx",
           "type": "registry:component"
         }
       ]
@@ -1147,27 +1137,23 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/RibbonField.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/RibbonField.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/HeroRibbon.tsx",
+          "path": "@components/HeroRibbon.tsx",
           "type": "registry:component"
         }
       ]
@@ -1177,7 +1163,7 @@
       "name": "hero-particles",
       "title": "Hero Particles",
       "type": "registry:component",
-      "description": "Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.",
+      "description": "Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.",
       "categories": [
         "Heroes"
       ],
@@ -1188,27 +1174,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/ParticleField.tsx",
+          "path": "@components/vfx/ParticleField.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroParticles.tsx",
+          "path": "@components/HeroParticles.tsx",
           "type": "registry:component"
         }
       ]
@@ -1218,7 +1204,7 @@
       "name": "hero-starfield",
       "title": "Hero Starfield",
       "type": "registry:component",
-      "description": "Drop-in hero section: bottom-left copy under a twinkling hashed star grid with parallax drift.",
+      "description": "Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax drift.",
       "categories": [
         "Heroes"
       ],
@@ -1230,27 +1216,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Starfield.tsx",
+          "path": "@components/vfx/Starfield.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroStarfield.tsx",
+          "path": "@components/HeroStarfield.tsx",
           "type": "registry:component"
         }
       ]
@@ -1260,7 +1246,7 @@
       "name": "hero-black-hole",
       "title": "Hero Black Hole",
       "type": "registry:component",
-      "description": "Drop-in hero section: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.",
+      "description": "Drop-in hero: left copy beside a ray-traced accretion disk with relativistic beaming and a lensed star field.",
       "categories": [
         "Heroes"
       ],
@@ -1268,31 +1254,24 @@
         "hero",
         "landing",
         "space",
-        "black-hole"
+        "black-hole",
+        "physics"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/BlackHole.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/vfx/BlackHole.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/HeroBlackHole.tsx",
+          "path": "@components/HeroBlackHole.tsx",
           "type": "registry:component"
         }
       ]
@@ -1302,7 +1281,7 @@
       "name": "chroma-flow",
       "title": "Chroma Flow",
       "type": "registry:component",
-      "description": "Four-edge liquid color field that floods inward toward the direction the cursor sweeps — fbm-noise bleed boundaries driven by pointer velocity.",
+      "description": "Four-edge liquid color field on a midnight base — the palette sloshes from the edges in whichever direction the cursor sweeps. Original vfx-ui design.",
       "categories": [
         "Backgrounds"
       ],
@@ -1310,23 +1289,24 @@
         "background",
         "gradient",
         "chromatic",
-        "pointer"
+        "pointer",
+        "hero"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/ChromaFlow.tsx",
+          "path": "@components/ChromaFlow.tsx",
           "type": "registry:component"
         }
       ]
@@ -1344,31 +1324,32 @@
         "hero",
         "landing",
         "chromatic",
-        "gradient"
+        "gradient",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/ChromaFlow.tsx",
+          "path": "@components/vfx/ChromaFlow.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroChroma.tsx",
+          "path": "@components/HeroChroma.tsx",
           "type": "registry:component"
         }
       ]
@@ -1378,25 +1359,24 @@
       "name": "block-nav",
       "title": "Block Nav",
       "type": "registry:component",
-      "description": "Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet with Escape handling.",
+      "description": "Complete navigation bar: brand, desktop links, actions, and an accessible mobile sheet. Sticky variant gains a scrim once the page scrolls.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "navigation",
+        "header",
         "menu",
         "mobile"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockNav.tsx",
+          "path": "@components/BlockNav.tsx",
           "type": "registry:component"
         }
       ]
@@ -1406,29 +1386,28 @@
       "name": "block-showcase",
       "title": "Block Showcase",
       "type": "registry:component",
-      "description": "Product showcase stage: browser-chrome frame with a replaceable screenshot or video (CSS demo UI by default), headline and actions.",
+      "description": "Product showcase stage: browser-chrome frame with a replaceable screenshot or video (built-in CSS demo screen by default), headline and actions, with a gentle pointer tilt.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "showcase",
         "product",
-        "media"
+        "media",
+        "screenshot"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockShowcase.tsx",
+          "path": "@components/BlockShowcase.tsx",
           "type": "registry:component"
         }
       ]
@@ -1438,25 +1417,23 @@
       "name": "block-feature-grid",
       "title": "Block Feature Grid",
       "type": "registry:component",
-      "description": "Feature grid with real hierarchy: one bento feature card plus supporting cells, replaceable icons and media.",
+      "description": "Feature grid with real hierarchy: one bento feature card with media plus supporting cells. Icons, media, links and copy all replaceable.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "features",
         "bento",
         "grid"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockFeatureGrid.tsx",
+          "path": "@components/BlockFeatureGrid.tsx",
           "type": "registry:component"
         }
       ]
@@ -1466,25 +1443,24 @@
       "name": "block-feature-tabs",
       "title": "Block Feature Tabs",
       "type": "registry:component",
-      "description": "Feature tabs where list, copy and illustration switch together; WAI-ARIA keyboard pattern, touch-friendly strip on mobile.",
+      "description": "Feature tabs where the list, copy and illustration switch together. WAI-ARIA tabs pattern with arrow keys; a scrollable strip above the stage on touch layouts.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "tabs",
         "features",
-        "keyboard"
+        "keyboard",
+        "interactive"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockFeatureTabs.tsx",
+          "path": "@components/BlockFeatureTabs.tsx",
           "type": "registry:component"
         }
       ]
@@ -1494,25 +1470,24 @@
       "name": "block-scroll-story",
       "title": "Block Scroll Story",
       "type": "registry:component",
-      "description": "Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.",
+      "description": "Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "scroll",
         "story",
-        "sticky"
+        "sticky",
+        "narrative"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockScrollStory.tsx",
+          "path": "@components/BlockScrollStory.tsx",
           "type": "registry:component"
         }
       ]
@@ -1522,25 +1497,24 @@
       "name": "block-process-steps",
       "title": "Block Process Steps",
       "type": "registry:component",
-      "description": "Three-to-four step process with a self-drawing connector line and replaceable media per step.",
+      "description": "Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "steps",
         "process",
-        "timeline"
+        "timeline",
+        "how-it-works"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockProcessSteps.tsx",
+          "path": "@components/BlockProcessSteps.tsx",
           "type": "registry:component"
         }
       ]
@@ -1550,25 +1524,24 @@
       "name": "block-integrations",
       "title": "Block Integrations",
       "type": "registry:component",
-      "description": "Integrations hub with static connection rings of rebrandable tool tiles and an always-available link grid fallback.",
+      "description": "Integrations hub: your product at the center of two connection rings of rebrandable tool tiles, with an always-available link grid below and on touch layouts.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "integrations",
         "logos",
-        "orbit"
+        "orbit",
+        "compatibility"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockIntegrations.tsx",
+          "path": "@components/BlockIntegrations.tsx",
           "type": "registry:component"
         }
       ]
@@ -1578,25 +1551,23 @@
       "name": "block-comparison",
       "title": "Block Comparison",
       "type": "registry:component",
-      "description": "Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).",
+      "description": "Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "comparison",
         "before-after",
         "slider"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockComparison.tsx",
+          "path": "@components/BlockComparison.tsx",
           "type": "registry:component"
         }
       ]
@@ -1606,25 +1577,23 @@
       "name": "block-testimonials",
       "title": "Block Testimonials",
       "type": "registry:component",
-      "description": "Testimonials with a featured quote and field notes; fictional demo copy is visibly marked and fully replaceable.",
+      "description": "Testimonials with a featured quote plus a field-note grid. The built-in quotes are fictional and visibly marked — swap in real customers via props and clear the marker.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "testimonials",
         "quotes",
         "social-proof"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockTestimonials.tsx",
+          "path": "@components/BlockTestimonials.tsx",
           "type": "registry:component"
         }
       ]
@@ -1634,25 +1603,23 @@
       "name": "block-pricing",
       "title": "Block Pricing",
       "type": "registry:component",
-      "description": "Pricing plans with a working monthly/annual switch — amounts, basis lines and savings render from data.",
+      "description": "Pricing plans with a working monthly/annual switch: amounts, billing basis and the savings pill all render from data, so the toggle can never lie. No payment backend.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "pricing",
         "plans",
         "billing"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockPricing.tsx",
+          "path": "@components/BlockPricing.tsx",
           "type": "registry:component"
         }
       ]
@@ -1662,25 +1629,24 @@
       "name": "block-faq",
       "title": "Block FAQ",
       "type": "registry:component",
-      "description": "FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.",
+      "description": "FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, arrow-key traversal, CSS grid-rows height animation, long answers with links and lists welcome.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "faq",
         "accordion",
-        "keyboard"
+        "keyboard",
+        "questions"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockFaq.tsx",
+          "path": "@components/BlockFaq.tsx",
           "type": "registry:component"
         }
       ]
@@ -1690,25 +1656,23 @@
       "name": "block-cta",
       "title": "Block CTA",
       "type": "registry:component",
-      "description": "Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).",
+      "description": "Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "cta",
         "closing",
         "conversion"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockCta.tsx",
+          "path": "@components/BlockCta.tsx",
           "type": "registry:component"
         }
       ]
@@ -1718,11 +1682,12 @@
       "name": "example-launch",
       "title": "Example — Product Launch",
       "type": "registry:component",
-      "description": "Complete fictional software launch page (\"Orbit\" by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA. All copy is demo content.",
+      "description": "Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showcase, feature grid, tabs, scroll story, integrations, pricing, testimonials, FAQ, CTA and footer. All copy is demo content.",
       "categories": [
         "Blocks"
       ],
       "tags": [
+        "block",
         "example",
         "landing",
         "launch",
@@ -1730,7 +1695,7 @@
       ],
       "files": [
         {
-          "path": "components/ExampleLaunch.tsx",
+          "path": "@components/ExampleLaunch.tsx",
           "type": "registry:component"
         }
       ]
@@ -1740,11 +1705,12 @@
       "name": "example-studio",
       "title": "Example — Design Studio",
       "type": "registry:component",
-      "description": "Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.",
+      "description": "Complete fictional design-studio page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.",
       "categories": [
         "Blocks"
       ],
       "tags": [
+        "block",
         "example",
         "portfolio",
         "studio",
@@ -1752,7 +1718,7 @@
       ],
       "files": [
         {
-          "path": "components/ExampleStudio.tsx",
+          "path": "@components/ExampleStudio.tsx",
           "type": "registry:component"
         }
       ]
@@ -1762,31 +1728,31 @@
       "name": "ember-drift",
       "title": "Ember Drift",
       "type": "registry:component",
-      "description": "Sparks rising from a bed of coals, cooling from gold to red through shimmering heat.",
+      "description": "Sparks rising from a bed of coals, cooling from gold to red through shimmering heat — two cell-hashed ember layers under an fbm thermal warp.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
-        "particles",
+        "embers",
         "fire",
-        "heat"
+        "sparks"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/EmberDrift.tsx",
+          "path": "@components/EmberDrift.tsx",
           "type": "registry:component"
         }
       ]
@@ -1796,31 +1762,31 @@
       "name": "caustics-field",
       "title": "Caustics Field",
       "type": "registry:component",
-      "description": "Sunlit pool-floor caustics: a crawling net of focused light over deep water.",
+      "description": "Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi net of focused light in three stacked octaves, with drifting silt motes.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
         "water",
-        "voronoi",
-        "caustics"
+        "caustics",
+        "pool"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/CausticsField.tsx",
+          "path": "@components/CausticsField.tsx",
           "type": "registry:component"
         }
       ]
@@ -1830,31 +1796,31 @@
       "name": "halo-rings",
       "title": "Halo Rings",
       "type": "registry:component",
-      "description": "Concentric rings breathing outward from a luminous core, their edges split into spectral fringes.",
+      "description": "Concentric light rings breathing outward from a luminous core, each sampled at three radii so the band edges split into spectral fringes like light through a prism.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
         "rings",
-        "dispersion",
-        "glow"
+        "light",
+        "dispersion"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HaloRings.tsx",
+          "path": "@components/HaloRings.tsx",
           "type": "registry:component"
         }
       ]
@@ -1864,31 +1830,31 @@
       "name": "terrain-ridge",
       "title": "Terrain Ridge",
       "type": "registry:component",
-      "description": "Layered ridged-noise mountain silhouettes rolling in parallax under a low sun.",
+      "description": "Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede into haze, each scrolling at its own speed, under a low sun that rims the nearest crest.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
-        "terrain",
         "mountains",
-        "parallax"
+        "terrain",
+        "landscape"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/TerrainRidge.tsx",
+          "path": "@components/TerrainRidge.tsx",
           "type": "registry:component"
         }
       ]
@@ -1898,7 +1864,7 @@
       "name": "silk-veil",
       "title": "Silk Veil",
       "type": "registry:component",
-      "description": "A draped silk curtain of warped folds with a luster band sweeping the weave.",
+      "description": "A draped silk curtain with a sheen band sweeping across it — domain-warped folds shaded anisotropically like cloth-of-gold, with fine weave grain.",
       "categories": [
         "Backgrounds"
       ],
@@ -1910,19 +1876,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/SilkVeil.tsx",
+          "path": "@components/SilkVeil.tsx",
           "type": "registry:component"
         }
       ]
@@ -1932,31 +1898,31 @@
       "name": "plasma-sheet",
       "title": "Plasma Sheet",
       "type": "registry:component",
-      "description": "Molten color currents folding through each other in a double domain-warped field.",
+      "description": "Molten color currents folding through each other — two chained domain warps advect and fold the field so colors stir like dense dye, with filament highlights on the fold edges.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
         "plasma",
-        "domain-warp",
+        "gradient",
         "flow"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/PlasmaSheet.tsx",
+          "path": "@components/PlasmaSheet.tsx",
           "type": "registry:component"
         }
       ]
@@ -1966,7 +1932,7 @@
       "name": "star-tide",
       "title": "Star Tide",
       "type": "registry:component",
-      "description": "Stars carried on slow luminous waves, flaring as the tide crests.",
+      "description": "A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide.",
       "categories": [
         "Backgrounds"
       ],
@@ -1978,19 +1944,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/StarTide.tsx",
+          "path": "@components/StarTide.tsx",
           "type": "registry:component"
         }
       ]
@@ -2000,7 +1966,7 @@
       "name": "ink-bloom",
       "title": "Ink Bloom",
       "type": "registry:component",
-      "description": "Ink drops blooming and feathering into warm paper on staggered cycles.",
+      "description": "Ink drops blooming and feathering across wet paper — each front is an fbm-perturbed radius, denser at the core and ring-deposited at the edge, paling as it ages. Light paper base.",
       "categories": [
         "Backgrounds"
       ],
@@ -2008,23 +1974,23 @@
         "background",
         "ink",
         "paper",
-        "diffusion"
+        "sumi-e"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/InkBloom.tsx",
+          "path": "@components/InkBloom.tsx",
           "type": "registry:component"
         }
       ]
@@ -2034,7 +2000,7 @@
       "name": "solar-corona",
       "title": "Solar Corona",
       "type": "registry:component",
-      "description": "A boiling sun disk crowned with streaming corona light and polar plumes.",
+      "description": "A blazing sun disk crowned with streaming corona light — a limb-darkened photosphere with boiling granulation, red-shifted rim, fbm streamers and long polar plumes over a star field.",
       "categories": [
         "Backgrounds"
       ],
@@ -2046,19 +2012,19 @@
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/SolarCorona.tsx",
+          "path": "@components/SolarCorona.tsx",
           "type": "registry:component"
         }
       ]
@@ -2068,31 +2034,31 @@
       "name": "dust-motes",
       "title": "Dust Motes",
       "type": "registry:component",
-      "description": "Dust motes drifting through slanted Tyndall beams in a dark room.",
+      "description": "Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room.",
       "categories": [
         "Backgrounds"
       ],
       "tags": [
         "background",
-        "particles",
-        "light-beams",
-        "dust"
+        "dust",
+        "beams",
+        "attic"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/DustMotes.tsx",
+          "path": "@components/DustMotes.tsx",
           "type": "registry:component"
         }
       ]
@@ -2102,7 +2068,7 @@
       "name": "hero-aurora-editorial",
       "title": "Hero Aurora Editorial",
       "type": "registry:component",
-      "description": "Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.",
+      "description": "Drop-in hero: a centered serif masthead — display title, two standfirst lines, dual CTAs — under full-bleed aurora curtains, with a radial scrim holding WCAG AA contrast.",
       "categories": [
         "Heroes"
       ],
@@ -2111,27 +2077,31 @@
         "landing",
         "aurora",
         "editorial",
-        "typography"
+        "serif"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Aurora.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroAuroraEditorial.tsx",
+          "path": "@components/vfx/Aurora.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroAuroraEditorial.tsx",
           "type": "registry:component"
         }
       ]
@@ -2141,7 +2111,7 @@
       "name": "hero-starfield-split",
       "title": "Hero Starfield Split",
       "type": "registry:component",
-      "description": "Drop-in split hero: copy on the left, a frosted badge wall on the right, over a twinkling hashed star grid.",
+      "description": "Drop-in split hero: copy left, a badge wall in frosted chips right, so the twinkling star grid reads as the trust-panel backdrop.",
       "categories": [
         "Heroes"
       ],
@@ -2149,29 +2119,32 @@
         "hero",
         "landing",
         "stars",
-        "space",
         "split",
         "badges"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Starfield.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroStarfieldSplit.tsx",
+          "path": "@components/vfx/Starfield.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroStarfieldSplit.tsx",
           "type": "registry:component"
         }
       ]
@@ -2181,7 +2154,7 @@
       "name": "hero-vortex-centered",
       "title": "Hero Vortex Centered",
       "type": "registry:component",
-      "description": "Drop-in hero section: a short centered headline resting in the calm eye of a tight, slow spiral galaxy.",
+      "description": "Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright core lands exactly behind a short centered headline.",
       "categories": [
         "Heroes"
       ],
@@ -2194,23 +2167,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/Vortex.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroVortexCentered.tsx",
+          "path": "@components/vfx/Vortex.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroVortexCentered.tsx",
           "type": "registry:component"
         }
       ]
@@ -2220,7 +2197,7 @@
       "name": "hero-mesh-bold",
       "title": "Hero Mesh Bold",
       "type": "registry:component",
-      "description": "Drop-in hero section: one oversized ultra-bold slogan over a vivid Voronoi mesh-gradient field — the poster hero.",
+      "description": "Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over a vivid Voronoi mesh field. Keep the title short; the type is drawn to fill the frame.",
       "categories": [
         "Heroes"
       ],
@@ -2229,27 +2206,31 @@
         "landing",
         "gradient",
         "mesh",
-        "bold"
+        "poster"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/MeshGradient.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroMeshBold.tsx",
+          "path": "@components/vfx/MeshGradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroMeshBold.tsx",
           "type": "registry:component"
         }
       ]
@@ -2259,7 +2240,7 @@
       "name": "hero-fiber-top",
       "title": "Hero Fiber Top",
       "type": "registry:component",
-      "description": "Drop-in hero section: a top-aligned left masthead pressing down on silk fibers streaming through the dark.",
+      "description": "Drop-in hero: a left-set masthead pressed against the top edge while the silk-fiber field streams beneath it — fibers carry the lower two-thirds, the scrim carries the type.",
       "categories": [
         "Heroes"
       ],
@@ -2268,27 +2249,31 @@
         "landing",
         "fibers",
         "silk",
-        "top-aligned"
+        "studio"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FiberFlow.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroFiberTop.tsx",
+          "path": "@components/vfx/FiberFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroFiberTop.tsx",
           "type": "registry:component"
         }
       ]
@@ -2298,7 +2283,7 @@
       "name": "hero-chroma-full",
       "title": "Hero Chroma Full",
       "type": "registry:component",
-      "description": "Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.",
+      "description": "Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default.",
       "categories": [
         "Heroes"
       ],
@@ -2311,23 +2296,27 @@
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/ChromaFlow.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroChromaFull.tsx",
+          "path": "@components/vfx/ChromaFlow.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroChromaFull.tsx",
           "type": "registry:component"
         }
       ]
@@ -2337,7 +2326,7 @@
       "name": "hero-black-hole-cinema",
       "title": "Hero Black Hole Cinema",
       "type": "registry:component",
-      "description": "Drop-in hero section: the ray-traced accretion disk letterboxed like a feature film — hard bars top and bottom, title card centered.",
+      "description": "Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accretion disk framed like a feature film, and your title card centered in the quiet band.",
       "categories": [
         "Heroes"
       ],
@@ -2346,27 +2335,23 @@
         "landing",
         "space",
         "black-hole",
-        "cinematic"
+        "cinema"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/BlackHole.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/BlackHole.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/HeroBlackHoleCinema.tsx",
+          "path": "@components/HeroBlackHoleCinema.tsx",
           "type": "registry:component"
         }
       ]
@@ -2376,7 +2361,7 @@
       "name": "hero-particles-badge",
       "title": "Hero Particles Badge",
       "type": "registry:component",
-      "description": "Drop-in hero section: a frosted badge row leads a centered headline over a drifting GPU particle field.",
+      "description": "Drop-in hero: the badge-first cut — trust chips lead the stack at the very top on their own frosted backing, then a centered headline over the drifting particle field.",
       "categories": [
         "Heroes"
       ],
@@ -2384,27 +2369,32 @@
         "hero",
         "landing",
         "particles",
-        "badges"
+        "badges",
+        "community"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/ParticleField.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroParticlesBadge.tsx",
+          "path": "@components/vfx/ParticleField.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroParticlesBadge.tsx",
           "type": "registry:component"
         }
       ]
@@ -2414,7 +2404,7 @@
       "name": "hero-ribbon-left",
       "title": "Hero Ribbon Left",
       "type": "registry:component",
-      "description": "Drop-in hero section: copy in a left column with a vertical eyebrow rail while the light ribbons read as the right-hand visual.",
+      "description": "Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along its edge, three Gaussian light ribbons sweeping the right over a dot-matrix grid.",
       "categories": [
         "Heroes"
       ],
@@ -2423,27 +2413,27 @@
         "landing",
         "ribbon",
         "split",
-        "typography"
+        "telemetry"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/RibbonField.tsx",
+          "path": "@components/vfx/RibbonField.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroRibbonLeft.tsx",
+          "path": "@components/HeroRibbonLeft.tsx",
           "type": "registry:component"
         }
       ]
@@ -2453,36 +2443,40 @@
       "name": "hero-fluid-minimal",
       "title": "Hero Fluid Minimal",
       "type": "registry:component",
-      "description": "Drop-in hero section: one line of copy, one CTA, one liquid gradient — the entire hero for products that can be named in a breath.",
+      "description": "Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient. The entire hero for products that can be named in a breath.",
       "categories": [
         "Heroes"
       ],
       "tags": [
         "hero",
         "landing",
-        "gradient",
         "fluid",
-        "minimal"
+        "minimal",
+        "gradient"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/HeroShell.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/FluidGradient.tsx",
+          "path": "@components/vfx/HeroShell.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/HeroFluidMinimal.tsx",
+          "path": "@components/vfx/FluidGradient.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "@components/HeroFluidMinimal.tsx",
           "type": "registry:component"
         }
       ]
@@ -2492,35 +2486,35 @@
       "name": "glass-panel",
       "title": "Glass Panel",
       "type": "registry:component",
-      "description": "A broad ray-marched optical slab that carries your own content across a full panel.",
+      "description": "An original ray-marched optical slab built to carry content: beveled edges split light while the solid tilts toward your pointer, and real DOM content rides above it.",
       "categories": [
         "Glass"
       ],
       "tags": [
         "glass",
+        "optical",
         "panel",
-        "refraction",
-        "sdf"
+        "refraction"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/OpticalGlass.tsx",
+          "path": "@components/vfx/OpticalGlass.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/GlassPanel.tsx",
+          "path": "@components/GlassPanel.tsx",
           "type": "registry:component"
         }
       ]
@@ -2530,35 +2524,35 @@
       "name": "glass-tile",
       "title": "Glass Tile",
       "type": "registry:component",
-      "description": "A wall of glass bricks where one shared biconvex lens travels to the hovered tile and bulges through it.",
+      "description": "A wall of glass bricks on the shared optical pipeline: one biconvex lens lives in a layer that travels to the hovered brick and bulges through it — a single renderer, however many bricks.",
       "categories": [
         "Glass"
       ],
       "tags": [
         "glass",
-        "grid",
+        "tile",
         "lens",
-        "hover"
+        "wall"
       ],
       "files": [
         {
-          "path": "components/vfx/VfxCanvas.tsx",
+          "path": "@components/vfx/VfxCanvas.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/color.ts",
+          "path": "@components/vfx/color.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/usePointerUniforms.tsx",
+          "path": "@components/vfx/usePointerUniforms.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/vfx/OpticalGlass.tsx",
+          "path": "@components/vfx/OpticalGlass.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/GlassTile.tsx",
+          "path": "@components/GlassTile.tsx",
           "type": "registry:component"
         }
       ]
@@ -2568,21 +2562,23 @@
       "name": "chromatic-text",
       "title": "Chromatic Text",
       "type": "registry:component",
-      "description": "The pointer is the prism: nearby letters split into red and blue fringes over a sliding rainbow.",
+      "description": "The pointer is the prism: letters near the cursor split into red and blue fringes while the rainbow underneath slides with it.",
       "categories": [
         "Text"
       ],
       "tags": [
+        "text",
         "pointer",
-        "interactive"
+        "chromatic",
+        "prism"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/ChromaticText.tsx",
+          "path": "@components/ChromaticText.tsx",
           "type": "registry:component"
         }
       ]
@@ -2592,21 +2588,19 @@
       "name": "ripple-text",
       "title": "Ripple Text",
       "type": "registry:component",
-      "description": "Clicks and taps drop ripples that travel outward through your words; a resting pointer leaves a dimple.",
+      "description": "Type you can touch: a click (or tap) drops a ripple that travels outward through the letters, and a resting pointer leaves a soft dimple.",
       "categories": [
         "Text"
       ],
       "tags": [
+        "text",
+        "ripple",
         "pointer",
-        "interactive"
+        "water"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/RippleText.tsx",
+          "path": "@components/RippleText.tsx",
           "type": "registry:component"
         }
       ]
@@ -2616,21 +2610,19 @@
       "name": "spectrum-text",
       "title": "Spectrum Text",
       "type": "registry:component",
-      "description": "A spectral light band flows continuously through your words and leans toward the pointer.",
+      "description": "A ribbon of daylight sliding through the words: one spectral gradient flows continuously across the type and leans toward the pointer.",
       "categories": [
         "Text"
       ],
       "tags": [
-        "pointer",
-        "interactive"
+        "text",
+        "gradient",
+        "spectrum",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/SpectrumText.tsx",
+          "path": "@components/SpectrumText.tsx",
           "type": "registry:component"
         }
       ]
@@ -2640,21 +2632,23 @@
       "name": "tilt-card",
       "title": "Tilt Card",
       "type": "registry:component",
-      "description": "A porcelain card that tilts in space while its specular highlight tracks the pointer across the surface.",
+      "description": "A porcelain card on a gimbal: the surface tilts in space while a specular highlight tracks the pointer across it.",
       "categories": [
         "Interactions"
       ],
       "tags": [
+        "card",
+        "tilt",
         "pointer",
-        "interactive"
+        "glare"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/TiltCard.tsx",
+          "path": "@components/TiltCard.tsx",
           "type": "registry:component"
         }
       ]
@@ -2664,21 +2658,23 @@
       "name": "pointer-glow",
       "title": "Pointer Glow",
       "type": "registry:component",
-      "description": "A handheld light for layouts: the room dims slightly and a warm source follows your pointer over your own content.",
+      "description": "A handheld light for layouts: the region dims slightly and a warm source follows the pointer, brightening whatever it rests on.",
       "categories": [
         "Interactions"
       ],
       "tags": [
         "pointer",
-        "interactive"
+        "glow",
+        "light",
+        "layout"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/PointerGlow.tsx",
+          "path": "@components/PointerGlow.tsx",
           "type": "registry:component"
         }
       ]
@@ -2688,21 +2684,23 @@
       "name": "spotlight-card",
       "title": "Spotlight Card",
       "type": "registry:component",
-      "description": "A card under a torch: the beam follows the pointer to uncover your content from the dark.",
+      "description": "A card played under a torch: a soft pool of light rests at the center, then follows the pointer to uncover what is written there.",
       "categories": [
         "Interactions"
       ],
       "tags": [
-        "pointer",
-        "interactive"
+        "card",
+        "spotlight",
+        "reveal",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/SpotlightCard.tsx",
+          "path": "@components/SpotlightCard.tsx",
           "type": "registry:component"
         }
       ]
@@ -2712,21 +2710,19 @@
       "name": "elastic-hover",
       "title": "Elastic Hover",
       "type": "registry:component",
-      "description": "Rubber around anything you wrap: hover swells, press squashes, and an under-damped spring wobbles it home.",
+      "description": "Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, and an under-damped spring snaps it back with a wobble.",
       "categories": [
         "Interactions"
       ],
       "tags": [
-        "pointer",
-        "interactive"
+        "hover",
+        "spring",
+        "squash",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
-          "type": "registry:component"
-        },
-        {
-          "path": "components/ElasticHover.tsx",
+          "path": "@components/ElasticHover.tsx",
           "type": "registry:component"
         }
       ]
@@ -2736,21 +2732,23 @@
       "name": "magnetic-grid",
       "title": "Magnetic Grid",
       "type": "registry:component",
-      "description": "A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.",
+      "description": "A lattice of iron filings for the cursor: each dot feels the pointer's field, slides and swells as it passes, and settles back when it leaves.",
       "categories": [
         "Interactions"
       ],
       "tags": [
-        "pointer",
-        "interactive"
+        "grid",
+        "dots",
+        "magnetic",
+        "pointer"
       ],
       "files": [
         {
-          "path": "components/vfx/usePointerMotion.ts",
+          "path": "@components/vfx/usePointerMotion.ts",
           "type": "registry:component"
         },
         {
-          "path": "components/MagneticGrid.tsx",
+          "path": "@components/MagneticGrid.tsx",
           "type": "registry:component"
         }
       ]
@@ -2760,25 +2758,24 @@
       "name": "block-logos",
       "title": "Block Logos",
       "type": "registry:component",
-      "description": "Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.",
+      "description": "Customer logo wall: a hairline grid of brand tiles that sit desaturated until hover. Real marks via logo (img or inline svg) or styled wordmarks — no assets required.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "logos",
-        "customers",
-        "social-proof"
+        "social-proof",
+        "trust",
+        "customers"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockLogos.tsx",
+          "path": "@components/BlockLogos.tsx",
           "type": "registry:component"
         }
       ]
@@ -2788,25 +2785,24 @@
       "name": "block-stats",
       "title": "Block Stats",
       "type": "registry:component",
-      "description": "Stats band: numbers count up from zero on scroll-in with an always-present settled value for screen readers; formatting, prefixes and suffixes are props.",
+      "description": "Stats band where every number counts up from zero on scroll-in, with a settled, screen-reader-friendly final value always present. Prefixes, suffixes and formatting are props.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "stats",
         "numbers",
+        "metrics",
         "count-up"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockStats.tsx",
+          "path": "@components/BlockStats.tsx",
           "type": "registry:component"
         }
       ]
@@ -2816,25 +2812,24 @@
       "name": "block-team",
       "title": "Block Team",
       "type": "registry:component",
-      "description": "Team cards: avatar (image or auto-generated initials badge), name, role and profile links; the whole card is hoverable and linkable.",
+      "description": "Team grid: cards with an avatar (your image node or an auto-generated initials badge), name, role and profile links. Names can link out.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "team",
         "people",
-        "cards"
+        "about",
+        "grid"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockTeam.tsx",
+          "path": "@components/BlockTeam.tsx",
           "type": "registry:component"
         }
       ]
@@ -2844,25 +2839,24 @@
       "name": "block-gallery",
       "title": "Block Gallery",
       "type": "registry:component",
-      "description": "Work gallery grid with hover lift and an optional lightbox — a real dialog with Escape, arrow keys, focus trap and focus restore; generated CSS artwork by default.",
+      "description": "Work gallery: a responsive grid of tiles that lift on hover, with an optional lightbox — a real dialog (focus moves in, Escape closes, arrows navigate, Tab stays trapped, focus returns).",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "gallery",
         "portfolio",
-        "lightbox"
+        "lightbox",
+        "work"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockGallery.tsx",
+          "path": "@components/BlockGallery.tsx",
           "type": "registry:component"
         }
       ]
@@ -2872,25 +2866,24 @@
       "name": "block-timeline",
       "title": "Block Timeline",
       "type": "registry:component",
-      "description": "Company or product timeline: a rail that draws itself in on scroll, dots lighting up in sequence, alternating sides on wide screens.",
+      "description": "Company or product timeline: a vertical rail that draws itself in on scroll, alternating left/right on wide screens and collapsing to one rail on small ones.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "timeline",
         "history",
-        "scroll"
+        "story",
+        "company"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockTimeline.tsx",
+          "path": "@components/BlockTimeline.tsx",
           "type": "registry:component"
         }
       ]
@@ -2900,25 +2893,24 @@
       "name": "block-newsletter",
       "title": "Block Newsletter",
       "type": "registry:component",
-      "description": "Email signup with working client-side validation, announced inline errors and a confirmation panel; runs in an honestly-labeled demo mode until wired up.",
+      "description": "Newsletter signup that is a working form, not a mockup: client-side validation with inline announced errors, and a confirmation panel on success. Wire onSubscribe; without it, demo mode says so on screen.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "newsletter",
-        "subscribe",
-        "form"
+        "signup",
+        "form",
+        "email"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockNewsletter.tsx",
+          "path": "@components/BlockNewsletter.tsx",
           "type": "registry:component"
         }
       ]
@@ -2928,25 +2920,24 @@
       "name": "block-contact",
       "title": "Block Contact",
       "type": "registry:component",
-      "description": "Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.",
+      "description": "Contact section: a direct-channels list (email, phone, office — real links) beside a configurable form skeleton with labels wired to inputs and native validation intact.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "contact",
         "form",
-        "channels"
+        "channels",
+        "email"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockContact.tsx",
+          "path": "@components/BlockContact.tsx",
           "type": "registry:component"
         }
       ]
@@ -2956,25 +2947,24 @@
       "name": "block-banner",
       "title": "Block Banner",
       "type": "registry:component",
-      "description": "Announcement banner: a slim accent strip with an optional action, a labeled dismiss control, Escape handling and sticky-top positioning.",
+      "description": "Announcement banner: a slim accent-tinted strip for one important message with an optional action. Dismissible for real — labeled button, Escape works, onDismiss persists the choice.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "banner",
         "announcement",
-        "sticky"
+        "topbar",
+        "dismissible"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockBanner.tsx",
+          "path": "@components/BlockBanner.tsx",
           "type": "registry:component"
         }
       ]
@@ -2984,25 +2974,24 @@
       "name": "block-milestones",
       "title": "Block Milestones",
       "type": "registry:component",
-      "description": "Milestone progress: completed steps light up in sequence on scroll, the current step breathes, and upcoming steps stay dimmed — all driven by one index.",
+      "description": "Milestone progress: a roadmap strip whose completed steps light up in sequence on scroll-in, the current step breathes, and upcoming steps stay dimmed. Which steps are done is pure data.",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
-        "milestones",
+        "roadmap",
         "progress",
-        "roadmap"
+        "milestones",
+        "steps"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockMilestones.tsx",
+          "path": "@components/BlockMilestones.tsx",
           "type": "registry:component"
         }
       ]
@@ -3012,25 +3001,24 @@
       "name": "block-quote-wall",
       "title": "Block Quote Wall",
       "type": "registry:component",
-      "description": "Quote wall: many quotes in masonry columns, or one at a time in a rotator with keyboard controls, hover/focus pause and reduced-motion respect.",
+      "description": "Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friendly rotator (real prev/next controls, focus and hover pause, reduced motion disables auto-advance).",
       "categories": [
         "Blocks"
       ],
       "tags": [
         "block",
-        "section",
-        "landing",
         "quotes",
-        "carousel",
-        "masonry"
+        "testimonials",
+        "masonry",
+        "rotator"
       ],
       "files": [
         {
-          "path": "components/vfx/blockShared.tsx",
+          "path": "@components/vfx/blockShared.tsx",
           "type": "registry:component"
         },
         {
-          "path": "components/BlockQuoteWall.tsx",
+          "path": "@components/BlockQuoteWall.tsx",
           "type": "registry:component"
         }
       ]

@@ -1,15 +1,15 @@
 # Black Hole
 
-The vgpu optimized-black-hole pipeline as a component: baked null-geodesic G-buffer, HDR bloom, prefiltered lensed star field, Doppler beaming — a verbatim port (MIT, Vercel).
+The vgpu optimized-black-hole example as a drop-in component: a baked null-geodesic G-buffer, 4×4 photon-ring AA, animated disk shading, and HDR bloom — a verbatim port of the official pipeline (MIT, Vercel).
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/black-hole.json
 ```
 
 ```tsx
-import { BlackHole } from "@vfx-ui/react";
+import { BlackHole } from "@/components/BlackHole";
 
 export function Demo() {
   return <BlackHole />;
@@ -43,7 +43,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { BLACK_HOLE_PRESETS } from "@/components/BlackHole";
 ```
 
 ## Shader

@@ -1,15 +1,15 @@
 # Block Contact
 
-Contact section: a direct-channels list beside a configurable form skeleton — labeled fields, native validation, and a confirmation state on submit.
+Contact section: a direct-channels list (email, phone, office — real links) beside a configurable form skeleton with labels wired to inputs and native validation intact.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-contact.json
 ```
 
 ```tsx
-import { BlockContact } from "@vfx-ui/react";
+import { BlockContact } from "@/components/BlockContact";
 
 export function Demo() {
   return <BlockContact />;

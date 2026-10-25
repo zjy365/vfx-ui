@@ -1,15 +1,15 @@
 # Hero Aurora Editorial
 
-Drop-in hero section: centered serif editorial masthead under aurora curtains — large display title, two standfirst lines, dual CTAs.
+Drop-in hero: a centered serif masthead — display title, two standfirst lines, dual CTAs — under full-bleed aurora curtains, with a radial scrim holding WCAG AA contrast.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-aurora-editorial.json
 ```
 
 ```tsx
-import { HeroAuroraEditorial } from "@vfx-ui/react";
+import { HeroAuroraEditorial } from "@/components/HeroAuroraEditorial";
 
 export function Demo() {
   return <HeroAuroraEditorial title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -41,7 +41,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_AURORA_EDITORIAL_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_EDITORIAL_PRESETS } from "@/components/HeroAuroraEditorial";
 ```
 
 ## Shader

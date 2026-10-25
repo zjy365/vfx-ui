@@ -2,7 +2,7 @@
 component: block-cta
 title: "Block CTA"
 category: Blocks
-tags: [block, section, landing, cta, closing, conversion]
+tags: [block, cta, closing, conversion]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-cta.json
 registry: https://vfx-ui.com/r/block-cta.json
 docs: https://vfx-ui.com/components/block-cta.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block CTA
 
-> Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default).
+> Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block CTA” component to this project and use it as a complet
 
 ## Context
 
-Closing call to action with primary/secondary actions and a replaceable brand visual layer (concentric line artwork by default) — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Closing call to action: headline, supporting copy, primary and secondary actions and a replaceable brand visual layer — a concentric line artwork by default, any background component or media if you pass one — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

@@ -2,7 +2,7 @@
 component: block-faq
 title: "Block FAQ"
 category: Blocks
-tags: [block, section, landing, faq, accordion, keyboard]
+tags: [block, faq, accordion, keyboard, questions]
 install: npx shadcn@latest add https://vfx-ui.com/r/block-faq.json
 registry: https://vfx-ui.com/r/block-faq.json
 docs: https://vfx-ui.com/components/block-faq.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Block FAQ
 
-> FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome.
+> FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, arrow-key traversal, CSS grid-rows height animation, long answers with links and lists welcome.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Block FAQ” component to this project and use it as a complet
 
 ## Context
 
-FAQ accordion with real disclosure semantics, arrow-key traversal and CSS grid-rows animation; long answers welcome — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, arrow-key traversal, CSS grid-rows height animation, long answers with links and lists welcome — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

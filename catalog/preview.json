@@ -1,0 +1,905 @@
+{
+  "components": [
+    {
+      "id": "hero-eclipse",
+      "componentName": "HeroEclipse",
+      "category": "Heroes",
+      "runtime": "dom",
+      "previewProps": {
+        "primaryCta": {
+          "label": "Explore the collection",
+          "href": "/heroes"
+        }
+      }
+    },
+    {
+      "id": "hero-contour",
+      "componentName": "HeroContour",
+      "category": "Heroes",
+      "runtime": "dom",
+      "previewProps": {
+        "primaryCta": {
+          "label": "Explore the collection",
+          "href": "/heroes"
+        }
+      }
+    },
+    {
+      "id": "footer-vinyl",
+      "componentName": "FooterVinyl",
+      "category": "Footers",
+      "runtime": "dom",
+      "previewProps": {
+        "cta": {
+          "label": "Start a conversation",
+          "href": "mailto:hello@example.com"
+        },
+        "groups": [
+          {
+            "label": "Explore",
+            "links": [
+              {
+                "label": "Our work",
+                "href": "/heroes"
+              },
+              {
+                "label": "The collection",
+                "href": "/footers"
+              },
+              {
+                "label": "Get started",
+                "href": "/installation"
+              }
+            ]
+          },
+          {
+            "label": "Elsewhere",
+            "links": [
+              {
+                "label": "GitHub",
+                "href": "https://github.com/zjy365/vfx-ui"
+              },
+              {
+                "label": "For agents",
+                "href": "/llms.txt"
+              }
+            ]
+          }
+        ],
+        "copyright": "© 2026 SIDE B",
+        "legal": [
+          {
+            "label": "Back to the collection",
+            "href": "/footers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "footer-tidal",
+      "componentName": "FooterTidal",
+      "category": "Footers",
+      "runtime": "dom",
+      "previewProps": {
+        "cta": {
+          "label": "Start a conversation",
+          "href": "mailto:hello@example.com"
+        },
+        "groups": [
+          {
+            "label": "Explore",
+            "links": [
+              {
+                "label": "Our work",
+                "href": "/heroes"
+              },
+              {
+                "label": "The collection",
+                "href": "/footers"
+              },
+              {
+                "label": "Get started",
+                "href": "/installation"
+              }
+            ]
+          },
+          {
+            "label": "Elsewhere",
+            "links": [
+              {
+                "label": "GitHub",
+                "href": "https://github.com/zjy365/vfx-ui"
+              },
+              {
+                "label": "For agents",
+                "href": "/llms.txt"
+              }
+            ]
+          }
+        ],
+        "copyright": "© 2026 AFTER",
+        "legal": [
+          {
+            "label": "Back to the collection",
+            "href": "/footers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "footer-fold",
+      "componentName": "FooterFold",
+      "category": "Footers",
+      "runtime": "dom",
+      "previewProps": {
+        "cta": {
+          "label": "Begin a project",
+          "href": "mailto:hello@example.com"
+        },
+        "groups": [
+          {
+            "label": "Explore",
+            "links": [
+              {
+                "label": "Our work",
+                "href": "/heroes"
+              },
+              {
+                "label": "The collection",
+                "href": "/footers"
+              },
+              {
+                "label": "Get started",
+                "href": "/installation"
+              }
+            ]
+          },
+          {
+            "label": "Elsewhere",
+            "links": [
+              {
+                "label": "GitHub",
+                "href": "https://github.com/zjy365/vfx-ui"
+              },
+              {
+                "label": "For agents",
+                "href": "/llms.txt"
+              }
+            ]
+          }
+        ],
+        "copyright": "© 2026 FORM",
+        "legal": [
+          {
+            "label": "Back to the collection",
+            "href": "/footers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "footer-phosphor",
+      "componentName": "FooterPhosphor",
+      "category": "Footers",
+      "runtime": "dom",
+      "previewProps": {
+        "cta": {
+          "label": "Say hello",
+          "href": "mailto:hello@example.com"
+        },
+        "groups": [
+          {
+            "label": "Explore",
+            "links": [
+              {
+                "label": "Our work",
+                "href": "/heroes"
+              },
+              {
+                "label": "The collection",
+                "href": "/footers"
+              },
+              {
+                "label": "Get started",
+                "href": "/installation"
+              }
+            ]
+          },
+          {
+            "label": "Elsewhere",
+            "links": [
+              {
+                "label": "GitHub",
+                "href": "https://github.com/zjy365/vfx-ui"
+              },
+              {
+                "label": "For agents",
+                "href": "/llms.txt"
+              }
+            ]
+          }
+        ],
+        "copyright": "© 2026 STILL",
+        "legal": [
+          {
+            "label": "Back to the collection",
+            "href": "/footers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "block-nav",
+      "componentName": "BlockNav",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-showcase",
+      "componentName": "BlockShowcase",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-feature-grid",
+      "componentName": "BlockFeatureGrid",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-feature-tabs",
+      "componentName": "BlockFeatureTabs",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-scroll-story",
+      "componentName": "BlockScrollStory",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-process-steps",
+      "componentName": "BlockProcessSteps",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-integrations",
+      "componentName": "BlockIntegrations",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-comparison",
+      "componentName": "BlockComparison",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-testimonials",
+      "componentName": "BlockTestimonials",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-pricing",
+      "componentName": "BlockPricing",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-faq",
+      "componentName": "BlockFaq",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-cta",
+      "componentName": "BlockCta",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-logos",
+      "componentName": "BlockLogos",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-stats",
+      "componentName": "BlockStats",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-team",
+      "componentName": "BlockTeam",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-gallery",
+      "componentName": "BlockGallery",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-timeline",
+      "componentName": "BlockTimeline",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-newsletter",
+      "componentName": "BlockNewsletter",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-contact",
+      "componentName": "BlockContact",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-banner",
+      "componentName": "BlockBanner",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-milestones",
+      "componentName": "BlockMilestones",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "block-quote-wall",
+      "componentName": "BlockQuoteWall",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "example-launch",
+      "componentName": "ExampleLaunch",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "example-studio",
+      "componentName": "ExampleStudio",
+      "category": "Blocks",
+      "runtime": "dom"
+    },
+    {
+      "id": "spectral-card",
+      "componentName": "SpectralCard",
+      "category": "Interactions",
+      "runtime": "dom"
+    },
+    {
+      "id": "kinetic-text",
+      "componentName": "KineticText",
+      "category": "Text",
+      "runtime": "dom"
+    },
+    {
+      "id": "magnetic",
+      "componentName": "Magnetic",
+      "category": "Interactions",
+      "runtime": "dom"
+    },
+    {
+      "id": "hero-fluid",
+      "componentName": "HeroFluid",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-aurora",
+      "componentName": "HeroAurora",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-fiber",
+      "componentName": "HeroFiber",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-globe",
+      "componentName": "HeroGlobe",
+      "category": "Heroes",
+      "runtime": "webgl"
+    },
+    {
+      "id": "hero-mesh",
+      "componentName": "HeroMesh",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-iridescent",
+      "componentName": "HeroIridescent",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-vortex",
+      "componentName": "HeroVortex",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-ribbon",
+      "componentName": "HeroRibbon",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-particles",
+      "componentName": "HeroParticles",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-starfield",
+      "componentName": "HeroStarfield",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-black-hole",
+      "componentName": "HeroBlackHole",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-chroma",
+      "componentName": "HeroChroma",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "wave-background",
+      "componentName": "WaveBackground",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "fluid-gradient",
+      "componentName": "FluidGradient",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "aurora",
+      "componentName": "Aurora",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "starfield",
+      "componentName": "Starfield",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "particle-field",
+      "componentName": "ParticleField",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "glass-card",
+      "componentName": "GlassCard",
+      "category": "Glass",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "liquid-glass",
+      "componentName": "LiquidGlass",
+      "category": "Glass",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "glass-lens",
+      "componentName": "GlassLens",
+      "category": "Glass",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "astra-field",
+      "componentName": "AstraField",
+      "category": "Backgrounds",
+      "runtime": "webgl"
+    },
+    {
+      "id": "radiant-dots",
+      "componentName": "RadiantDots",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "mesh-gradient",
+      "componentName": "MeshGradient",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "iridescent",
+      "componentName": "Iridescent",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "vortex",
+      "componentName": "Vortex",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "black-hole",
+      "componentName": "BlackHole",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "ribbon-field",
+      "componentName": "RibbonField",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "fiber-flow",
+      "componentName": "FiberFlow",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "chroma-flow",
+      "componentName": "ChromaFlow",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "light-prism",
+      "componentName": "LightPrism",
+      "category": "Glass",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-aurora-editorial",
+      "componentName": "HeroAuroraEditorial",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-starfield-split",
+      "componentName": "HeroStarfieldSplit",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-vortex-centered",
+      "componentName": "HeroVortexCentered",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-mesh-bold",
+      "componentName": "HeroMeshBold",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-fiber-top",
+      "componentName": "HeroFiberTop",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-chroma-full",
+      "componentName": "HeroChromaFull",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-black-hole-cinema",
+      "componentName": "HeroBlackHoleCinema",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-particles-badge",
+      "componentName": "HeroParticlesBadge",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-ribbon-left",
+      "componentName": "HeroRibbonLeft",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "hero-fluid-minimal",
+      "componentName": "HeroFluidMinimal",
+      "category": "Heroes",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "ember-drift",
+      "componentName": "EmberDrift",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "caustics-field",
+      "componentName": "CausticsField",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "halo-rings",
+      "componentName": "HaloRings",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "terrain-ridge",
+      "componentName": "TerrainRidge",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "silk-veil",
+      "componentName": "SilkVeil",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "plasma-sheet",
+      "componentName": "PlasmaSheet",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "star-tide",
+      "componentName": "StarTide",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "ink-bloom",
+      "componentName": "InkBloom",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "solar-corona",
+      "componentName": "SolarCorona",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "dust-motes",
+      "componentName": "DustMotes",
+      "category": "Backgrounds",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "glass-panel",
+      "componentName": "GlassPanel",
+      "category": "Glass",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "glass-tile",
+      "componentName": "GlassTile",
+      "category": "Glass",
+      "runtime": "webgpu"
+    },
+    {
+      "id": "chromatic-text",
+      "componentName": "ChromaticText",
+      "category": "Text",
+      "runtime": "dom"
+    },
+    {
+      "id": "ripple-text",
+      "componentName": "RippleText",
+      "category": "Text",
+      "runtime": "dom"
+    },
+    {
+      "id": "spectrum-text",
+      "componentName": "SpectrumText",
+      "category": "Text",
+      "runtime": "dom"
+    },
+    {
+      "id": "tilt-card",
+      "componentName": "TiltCard",
+      "category": "Interactions",
+      "runtime": "dom"
+    },
+    {
+      "id": "pointer-glow",
+      "componentName": "PointerGlow",
+      "category": "Interactions",
+      "runtime": "dom",
+      "previewProps": {
+        "children": {
+          "type": "div",
+          "key": null,
+          "ref": null,
+          "props": {
+            "style": {
+              "display": "grid",
+              "gap": 14,
+              "padding": "48px 40px",
+              "maxWidth": 560
+            },
+            "children": [
+              {
+                "type": "strong",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "style": {
+                    "fontSize": 20
+                  },
+                  "children": "Move the light across this panel."
+                },
+                "_owner": null,
+                "_store": {}
+              },
+              {
+                "type": "p",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "style": {
+                    "margin": 0,
+                    "opacity": 0.8,
+                    "lineHeight": 1.6
+                  },
+                  "children": "The room dims a little; whatever the glow rests on comes forward. Keyboard focus carries the light to the focused control."
+                },
+                "_owner": null,
+                "_store": {}
+              },
+              {
+                "type": "div",
+                "key": null,
+                "ref": null,
+                "props": {
+                  "style": {
+                    "display": "flex",
+                    "gap": 10
+                  },
+                  "children": [
+                    {
+                      "type": "span",
+                      "key": null,
+                      "ref": null,
+                      "props": {
+                        "style": {
+                          "padding": "8px 14px",
+                          "border": "1px solid rgba(255,255,255,.2)",
+                          "borderRadius": 999
+                        },
+                        "children": "Controls"
+                      },
+                      "_owner": null,
+                      "_store": {}
+                    },
+                    {
+                      "type": "span",
+                      "key": null,
+                      "ref": null,
+                      "props": {
+                        "style": {
+                          "padding": "8px 14px",
+                          "border": "1px solid rgba(255,255,255,.2)",
+                          "borderRadius": 999
+                        },
+                        "children": "Stay lit"
+                      },
+                      "_owner": null,
+                      "_store": {}
+                    }
+                  ]
+                },
+                "_owner": null,
+                "_store": {}
+              }
+            ]
+          },
+          "_owner": null,
+          "_store": {}
+        }
+      }
+    },
+    {
+      "id": "spotlight-card",
+      "componentName": "SpotlightCard",
+      "category": "Interactions",
+      "runtime": "dom"
+    },
+    {
+      "id": "elastic-hover",
+      "componentName": "ElasticHover",
+      "category": "Interactions",
+      "runtime": "dom"
+    },
+    {
+      "id": "magnetic-grid",
+      "componentName": "MagneticGrid",
+      "category": "Interactions",
+      "runtime": "dom",
+      "previewProps": {
+        "children": {
+          "type": "div",
+          "key": null,
+          "ref": null,
+          "props": {
+            "style": {
+              "display": "grid",
+              "placeItems": "center",
+              "height": "100%",
+              "minHeight": 260
+            },
+            "children": {
+              "type": "div",
+              "key": null,
+              "ref": null,
+              "props": {
+                "style": {
+                  "textAlign": "center"
+                },
+                "children": [
+                  {
+                    "type": "strong",
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                      "style": {
+                        "fontSize": 20,
+                        "display": "block",
+                        "marginBottom": 6
+                      },
+                      "children": "Sweep the cursor across the dots"
+                    },
+                    "_owner": null,
+                    "_store": {}
+                  },
+                  {
+                    "type": "span",
+                    "key": null,
+                    "ref": null,
+                    "props": {
+                      "style": {
+                        "opacity": 0.7
+                      },
+                      "children": "The lattice follows the field; your content stays interactive above it."
+                    },
+                    "_owner": null,
+                    "_store": {}
+                  }
+                ]
+              },
+              "_owner": null,
+              "_store": {}
+            }
+          },
+          "_owner": null,
+          "_store": {}
+        }
+      }
+    }
+  ]
+}

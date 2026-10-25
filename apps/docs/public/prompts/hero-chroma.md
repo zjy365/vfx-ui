@@ -2,7 +2,7 @@
 component: hero-chroma
 title: "Hero Chroma"
 category: Heroes
-tags: [hero, landing, chromatic, gradient]
+tags: [hero, landing, chromatic, gradient, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/hero-chroma.json
 registry: https://vfx-ui.com/r/hero-chroma.json
 docs: https://vfx-ui.com/components/hero-chroma.md

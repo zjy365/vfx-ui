@@ -1,15 +1,15 @@
 # Example — Design Studio
 
-Complete fictional design-studio service page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
+Complete fictional design-studio page (Atelier North): daylight editorial hero, engagement steps, portfolio showcase, before/after slider, services grid, fixed-fee engagements, testimonials, FAQ and a typographic footer.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-studio.json
 ```
 
 ```tsx
-import { ExampleStudio } from "@vfx-ui/react";
+import { ExampleStudio } from "@/components/ExampleStudio";
 
 export default function StudioPage() {
   return <ExampleStudio />;

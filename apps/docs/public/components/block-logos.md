@@ -1,15 +1,15 @@
 # Block Logos
 
-Customer logo wall: brand tiles that sit desaturated and colorize on hover, as real links with styled wordmarks when no image assets exist.
+Customer logo wall: a hairline grid of brand tiles that sit desaturated until hover. Real marks via logo (img or inline svg) or styled wordmarks — no assets required.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-logos.json
 ```
 
 ```tsx
-import { BlockLogos } from "@vfx-ui/react";
+import { BlockLogos } from "@/components/BlockLogos";
 
 export function Demo() {
   return <BlockLogos />;

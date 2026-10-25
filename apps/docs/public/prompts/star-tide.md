@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Star Tide
 
-> Stars carried on slow luminous waves, flaring as the tide crests.
+> A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Star Tide” component to this project and use it as an animat
 
 ## Context
 
-Stars carried on slow luminous waves, flaring as the tide crests — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A field of stars drifting on slow luminous waves — two hashed star grids ride a shared interference field so the whole sky visibly sloshes like a tide — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

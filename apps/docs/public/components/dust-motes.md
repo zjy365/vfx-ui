@@ -1,15 +1,15 @@
 # Dust Motes
 
-Dust motes drifting through slanted Tyndall beams in a dark room.
+Dust motes drifting through slanted Tyndall light beams — parallel volumetric shafts whose width and brightness breathe with fbm, over a shadowed room.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/dust-motes.json
 ```
 
 ```tsx
-import { DustMotes } from "@vfx-ui/react";
+import { DustMotes } from "@/components/DustMotes";
 
 export function Demo() {
   return <DustMotes />;
@@ -37,7 +37,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { DUST_MOTES_PRESETS } from "@vfx-ui/react";
+import { DUST_MOTES_PRESETS } from "@/components/DustMotes";
 ```
 
 ## Shader

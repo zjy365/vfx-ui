@@ -1,15 +1,15 @@
 # Hero Chroma Full
 
-Drop-in hero section: the four-edge chroma field run full-bleed with bottom-left copy in a dusk palette.
+Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wall with copy anchored bottom-left over the side scrim, a dusk palette by default.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-chroma-full.json
 ```
 
 ```tsx
-import { HeroChromaFull } from "@vfx-ui/react";
+import { HeroChromaFull } from "@/components/HeroChromaFull";
 
 export function Demo() {
   return <HeroChromaFull title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -44,7 +44,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_CHROMA_FULL_PRESETS } from "@vfx-ui/react";
+import { HERO_CHROMA_FULL_PRESETS } from "@/components/HeroChromaFull";
 ```
 
 ## Shader

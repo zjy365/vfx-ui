@@ -1,15 +1,15 @@
 # Block Scroll Story
 
-Scroll narrative: a sticky scene crossfades as story steps cross the viewport; docks above the steps on mobile.
+Scroll narrative: a sticky scene crossfades as story steps cross the viewport center; on small screens the scene docks above the steps so the story reads end to end.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-scroll-story.json
 ```
 
 ```tsx
-import { BlockScrollStory } from "@vfx-ui/react";
+import { BlockScrollStory } from "@/components/BlockScrollStory";
 
 export function Story() {
   return (

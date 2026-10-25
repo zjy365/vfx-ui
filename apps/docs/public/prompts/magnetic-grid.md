@@ -2,7 +2,7 @@
 component: magnetic-grid
 title: "Magnetic Grid"
 category: Interactions
-tags: [pointer, interactive]
+tags: [grid, dots, magnetic, pointer]
 install: npx shadcn@latest add https://vfx-ui.com/r/magnetic-grid.json
 registry: https://vfx-ui.com/r/magnetic-grid.json
 docs: https://vfx-ui.com/components/magnetic-grid.md
@@ -11,7 +11,7 @@ requiresWebGPU: false
 
 # AI builder prompt — Magnetic Grid
 
-> A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings.
+> A lattice of iron filings for the cursor: each dot feels the pointer's field, slides and swells as it passes, and settles back when it leaves.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Magnetic Grid” component to this project and use it as an in
 
 ## Context
 
-A lattice of dots that feel the pointer's field — sliding, swelling and settling like iron filings — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+A lattice of iron filings for the cursor: each dot feels the pointer's field, slides and swells as it passes, and settles back when it leaves — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

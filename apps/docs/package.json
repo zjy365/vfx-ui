@@ -1,13 +1,13 @@
 {
-  "name": "@vfx-ui/docs",
+  "name": "@vfx-ui/legacy-docs",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.json --noEmit && node scripts/generate-sitemap.mjs && vite build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:legacy": "tsc -p tsconfig.json --noEmit && node scripts/generate-sitemap.mjs && vite build"
   },
   "dependencies": {
     "@vfx-ui/react": "workspace:*",
@@ -15,10 +15,10 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.7.3",
-    "vite": "^6.0.7"
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5"
   }
 }

@@ -1,15 +1,15 @@
 # Block Process Steps
 
-Three-to-four step process with a self-drawing connector line and replaceable media per step.
+Three-to-four step process with numbered badges and a connector line that draws itself in on scroll; vertical timeline on narrow screens, replaceable media per step.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-process-steps.json
 ```
 
 ```tsx
-import { BlockProcessSteps } from "@vfx-ui/react";
+import { BlockProcessSteps } from "@/components/BlockProcessSteps";
 
 export function HowItWorks() {
   return (

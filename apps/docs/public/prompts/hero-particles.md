@@ -11,7 +11,7 @@ requiresWebGPU: true
 
 # AI builder prompt — Hero Particles
 
-> Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field.
+> Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field.
 
 Copy the prompt below and paste it into your AI builder:
 
@@ -26,7 +26,7 @@ Add the VFX UI “Hero Particles” component to this project and use it as the 
 
 ## Context
 
-Drop-in hero section: top-weighted headline with a badge row over a drifting GPU particle field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
+Drop-in hero: top-weighted headline with a badge row over a drifting GPU particle field — a React component from the VFX UI library (https://vfx-ui.com). Install it with its CLI command rather than retyping it, and customize it through props only.
 
 ## Step 1 — Install
 

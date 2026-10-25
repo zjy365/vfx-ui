@@ -1,15 +1,15 @@
 # Block Comparison
 
-Before/after comparison with a draggable, keyboard- and touch-operable reveal handle (a real range input).
+Before/after comparison with a draggable reveal handle — keyboard (arrow keys, Home/End), touch and screen readers all work because the handle is a real range input.
 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-comparison.json
 ```
 
 ```tsx
-import { BlockComparison } from "@vfx-ui/react";
+import { BlockComparison } from "@/components/BlockComparison";
 
 export function BeforeAfter() {
   return (
