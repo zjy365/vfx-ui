@@ -5,11 +5,11 @@ Integrations hub: your product at the center of two connection rings of rebranda
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-integrations.json
 ```
 
 ```tsx
-import { BlockIntegrations } from "@vfx-ui/react";
+import { BlockIntegrations } from "@/components/BlockIntegrations";
 
 export function Stack() {
   return (

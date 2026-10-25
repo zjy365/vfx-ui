@@ -11,6 +11,8 @@ Renderer core for [vfx-ui](https://vfx-ui.com): the vgpu-backed WebGPU effect re
 
 ## Install
 
+This tree targets the unreleased 0.1.1 distribution. npm currently serves the older 0.1.0 API. Use the public component registry for current components; the package command below applies after publishing and verifying 0.1.1.
+
 ```bash
 npm install @vfx-ui/core
 ```

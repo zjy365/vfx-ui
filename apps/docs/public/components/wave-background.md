@@ -5,11 +5,11 @@ Three layered sine bands sweeping over a tri-color gradient, rendered fully on t
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { WaveBackground } from "@vfx-ui/react";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Demo() {
   return <WaveBackground />;

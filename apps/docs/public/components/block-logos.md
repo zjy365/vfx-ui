@@ -5,11 +5,11 @@ Customer logo wall: a hairline grid of brand tiles that sit desaturated until ho
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-logos.json
 ```
 
 ```tsx
-import { BlockLogos } from "@vfx-ui/react";
+import { BlockLogos } from "@/components/BlockLogos";
 
 export function Demo() {
   return <BlockLogos />;

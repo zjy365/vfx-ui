@@ -5,11 +5,11 @@ Drop-in hero: a left-set masthead pressed against the top edge while the silk-fi
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fiber-top.json
 ```
 
 ```tsx
-import { HeroFiberTop } from "@vfx-ui/react";
+import { HeroFiberTop } from "@/components/HeroFiberTop";
 
 export function Demo() {
   return <HeroFiberTop title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -43,7 +43,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FIBER_TOP_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_TOP_PRESETS } from "@/components/HeroFiberTop";
 ```
 
 ## Shader

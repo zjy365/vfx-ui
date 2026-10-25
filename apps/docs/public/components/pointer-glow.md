@@ -5,11 +5,11 @@ A handheld light for layouts: the region dims slightly and a warm source follows
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/pointer-glow.json
 ```
 
 ```tsx
-import { PointerGlow } from "@vfx-ui/react";
+import { PointerGlow } from "@/components/PointerGlow";
 
 export function Demo() {
   return <PointerGlow />;

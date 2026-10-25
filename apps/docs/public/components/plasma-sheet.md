@@ -5,11 +5,11 @@ Molten color currents folding through each other — two chained domain warps ad
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/plasma-sheet.json
 ```
 
 ```tsx
-import { PlasmaSheet } from "@vfx-ui/react";
+import { PlasmaSheet } from "@/components/PlasmaSheet";
 
 export function Demo() {
   return <PlasmaSheet />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PLASMA_SHEET_PRESETS } from "@vfx-ui/react";
+import { PLASMA_SHEET_PRESETS } from "@/components/PlasmaSheet";
 ```
 
 ## Shader

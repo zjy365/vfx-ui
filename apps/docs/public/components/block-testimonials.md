@@ -5,11 +5,11 @@ Testimonials with a featured quote plus a field-note grid. The built-in quotes a
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-testimonials.json
 ```
 
 ```tsx
-import { BlockTestimonials } from "@vfx-ui/react";
+import { BlockTestimonials } from "@/components/BlockTestimonials";
 
 export function Voices() {
   return (

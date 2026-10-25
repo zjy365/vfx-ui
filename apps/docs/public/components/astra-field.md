@@ -5,11 +5,11 @@ A spiral written in starlight. Cool stellar dust, warm distant suns and a lumino
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/astra-field.json
 ```
 
 ```tsx
-import { AstraField } from "@vfx-ui/react";
+import { AstraField } from "@/components/AstraField";
 
 export function Demo() {
   return <div style={{ height: 520 }}><AstraField interactive /></div>;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { ASTRA_FIELD_PRESETS } from "@vfx-ui/react";
+import { ASTRA_FIELD_PRESETS } from "@/components/AstraField";
 ```
 
 ## Notes for agents

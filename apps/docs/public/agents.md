@@ -8,8 +8,10 @@
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 ```
+
+Install editable source from the registry and use local component imports. The npm 0.1.0 release does not match this catalog; do not use it for these examples.
 
 ## Component catalog
 
@@ -219,11 +221,11 @@ A spiral written in starlight. Cool stellar dust, warm distant suns and a lumino
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/astra-field.json
 ```
 
 ```tsx
-import { AstraField } from "@vfx-ui/react";
+import { AstraField } from "@/components/AstraField";
 
 export function Demo() {
   return <div style={{ height: 520 }}><AstraField interactive /></div>;
@@ -249,7 +251,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { ASTRA_FIELD_PRESETS } from "@vfx-ui/react";
+import { ASTRA_FIELD_PRESETS } from "@/components/AstraField";
 ```
 
 ## Notes for agents
@@ -266,11 +268,11 @@ Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/aurora.json
 ```
 
 ```tsx
-import { Aurora } from "@vfx-ui/react";
+import { Aurora } from "@/components/Aurora";
 
 export function Demo() {
   return <Aurora />;
@@ -294,7 +296,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { AURORA_PRESETS } from "@vfx-ui/react";
+import { AURORA_PRESETS } from "@/components/Aurora";
 ```
 
 ## Shader
@@ -315,11 +317,11 @@ The vgpu optimized-black-hole example as a drop-in component: a baked null-geode
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/black-hole.json
 ```
 
 ```tsx
-import { BlackHole } from "@vfx-ui/react";
+import { BlackHole } from "@/components/BlackHole";
 
 export function Demo() {
   return <BlackHole />;
@@ -353,7 +355,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { BLACK_HOLE_PRESETS } from "@/components/BlackHole";
 ```
 
 ## Shader
@@ -374,11 +376,11 @@ Announcement banner: a slim accent-tinted strip for one important message with a
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-banner.json
 ```
 
 ```tsx
-import { BlockBanner } from "@vfx-ui/react";
+import { BlockBanner } from "@/components/BlockBanner";
 
 export function Demo() {
   return <BlockBanner />;
@@ -413,11 +415,11 @@ Before/after comparison with a draggable reveal handle — keyboard (arrow keys,
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-comparison.json
 ```
 
 ```tsx
-import { BlockComparison } from "@vfx-ui/react";
+import { BlockComparison } from "@/components/BlockComparison";
 
 export function BeforeAfter() {
   return (
@@ -460,11 +462,11 @@ Contact section: a direct-channels list (email, phone, office — real links) be
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-contact.json
 ```
 
 ```tsx
-import { BlockContact } from "@vfx-ui/react";
+import { BlockContact } from "@/components/BlockContact";
 
 export function Demo() {
   return <BlockContact />;
@@ -502,11 +504,12 @@ Closing call to action: headline, supporting copy, primary and secondary actions
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-cta.json https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { BlockCta, WaveBackground } from "@vfx-ui/react";
+import { BlockCta } from "@/components/BlockCta";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Closing() {
   return (
@@ -549,11 +552,11 @@ FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-faq.json
 ```
 
 ```tsx
-import { BlockFaq } from "@vfx-ui/react";
+import { BlockFaq } from "@/components/BlockFaq";
 
 export function Answers() {
   return (
@@ -592,11 +595,11 @@ Feature grid with real hierarchy: one bento feature card with media plus support
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-grid.json
 ```
 
 ```tsx
-import { BlockFeatureGrid } from "@vfx-ui/react";
+import { BlockFeatureGrid } from "@/components/BlockFeatureGrid";
 
 export function Features() {
   return (
@@ -637,11 +640,11 @@ Feature tabs where the list, copy and illustration switch together. WAI-ARIA tab
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-tabs.json
 ```
 
 ```tsx
-import { BlockFeatureTabs } from "@vfx-ui/react";
+import { BlockFeatureTabs } from "@/components/BlockFeatureTabs";
 
 export function Surfaces() {
   return (
@@ -682,11 +685,11 @@ Work gallery: a responsive grid of tiles that lift on hover, with an optional li
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-gallery.json
 ```
 
 ```tsx
-import { BlockGallery } from "@vfx-ui/react";
+import { BlockGallery } from "@/components/BlockGallery";
 
 export function Demo() {
   return <BlockGallery />;
@@ -723,11 +726,11 @@ Integrations hub: your product at the center of two connection rings of rebranda
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-integrations.json
 ```
 
 ```tsx
-import { BlockIntegrations } from "@vfx-ui/react";
+import { BlockIntegrations } from "@/components/BlockIntegrations";
 
 export function Stack() {
   return (
@@ -769,11 +772,11 @@ Customer logo wall: a hairline grid of brand tiles that sit desaturated until ho
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-logos.json
 ```
 
 ```tsx
-import { BlockLogos } from "@vfx-ui/react";
+import { BlockLogos } from "@/components/BlockLogos";
 
 export function Demo() {
   return <BlockLogos />;
@@ -807,11 +810,11 @@ Milestone progress: a roadmap strip whose completed steps light up in sequence o
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-milestones.json
 ```
 
 ```tsx
-import { BlockMilestones } from "@vfx-ui/react";
+import { BlockMilestones } from "@/components/BlockMilestones";
 
 export function Demo() {
   return <BlockMilestones />;
@@ -845,11 +848,11 @@ Complete navigation bar: brand, desktop links, actions, and an accessible mobile
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-nav.json
 ```
 
 ```tsx
-import { BlockNav } from "@vfx-ui/react";
+import { BlockNav } from "@/components/BlockNav";
 
 export function SiteHeader() {
   return (
@@ -889,11 +892,11 @@ Newsletter signup that is a working form, not a mockup: client-side validation w
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-newsletter.json
 ```
 
 ```tsx
-import { BlockNewsletter } from "@vfx-ui/react";
+import { BlockNewsletter } from "@/components/BlockNewsletter";
 
 export function Demo() {
   return <BlockNewsletter />;
@@ -933,11 +936,11 @@ Pricing plans with a working monthly/annual switch: amounts, billing basis and t
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-pricing.json
 ```
 
 ```tsx
-import { BlockPricing } from "@vfx-ui/react";
+import { BlockPricing } from "@/components/BlockPricing";
 
 export function Plans() {
   return (
@@ -981,11 +984,11 @@ Three-to-four step process with numbered badges and a connector line that draws 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-process-steps.json
 ```
 
 ```tsx
-import { BlockProcessSteps } from "@vfx-ui/react";
+import { BlockProcessSteps } from "@/components/BlockProcessSteps";
 
 export function HowItWorks() {
   return (
@@ -1027,11 +1030,11 @@ Quote wall: many quotes as a masonry wall, or one at a time in a keyboard-friend
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-quote-wall.json
 ```
 
 ```tsx
-import { BlockQuoteWall } from "@vfx-ui/react";
+import { BlockQuoteWall } from "@/components/BlockQuoteWall";
 
 export function Demo() {
   return <BlockQuoteWall />;
@@ -1070,11 +1073,11 @@ Scroll narrative: a sticky scene crossfades as story steps cross the viewport ce
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-scroll-story.json
 ```
 
 ```tsx
-import { BlockScrollStory } from "@vfx-ui/react";
+import { BlockScrollStory } from "@/components/BlockScrollStory";
 
 export function Story() {
   return (
@@ -1116,11 +1119,11 @@ Product showcase stage: browser-chrome frame with a replaceable screenshot or vi
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-showcase.json
 ```
 
 ```tsx
-import { BlockShowcase } from "@vfx-ui/react";
+import { BlockShowcase } from "@/components/BlockShowcase";
 
 export function Tour() {
   return (
@@ -1164,11 +1167,11 @@ Stats band where every number counts up from zero on scroll-in, with a settled, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-stats.json
 ```
 
 ```tsx
-import { BlockStats } from "@vfx-ui/react";
+import { BlockStats } from "@/components/BlockStats";
 
 export function Demo() {
   return <BlockStats />;
@@ -1201,11 +1204,11 @@ Team grid: cards with an avatar (your image node or an auto-generated initials b
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-team.json
 ```
 
 ```tsx
-import { BlockTeam } from "@vfx-ui/react";
+import { BlockTeam } from "@/components/BlockTeam";
 
 export function Demo() {
   return <BlockTeam />;
@@ -1238,11 +1241,11 @@ Testimonials with a featured quote plus a field-note grid. The built-in quotes a
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-testimonials.json
 ```
 
 ```tsx
-import { BlockTestimonials } from "@vfx-ui/react";
+import { BlockTestimonials } from "@/components/BlockTestimonials";
 
 export function Voices() {
   return (
@@ -1281,11 +1284,11 @@ Company or product timeline: a vertical rail that draws itself in on scroll, alt
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-timeline.json
 ```
 
 ```tsx
-import { BlockTimeline } from "@vfx-ui/react";
+import { BlockTimeline } from "@/components/BlockTimeline";
 
 export function Demo() {
   return <BlockTimeline />;
@@ -1318,11 +1321,11 @@ Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi n
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/caustics-field.json
 ```
 
 ```tsx
-import { CausticsField } from "@vfx-ui/react";
+import { CausticsField } from "@/components/CausticsField";
 
 export function Demo() {
   return <CausticsField />;
@@ -1348,7 +1351,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { CAUSTICS_FIELD_PRESETS } from "@vfx-ui/react";
+import { CAUSTICS_FIELD_PRESETS } from "@/components/CausticsField";
 ```
 
 ## Shader
@@ -1369,11 +1372,11 @@ Four-edge liquid color field on a midnight base — the palette sloshes from the
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/chroma-flow.json
 ```
 
 ```tsx
-import { ChromaFlow } from "@vfx-ui/react";
+import { ChromaFlow } from "@/components/ChromaFlow";
 
 export function Demo() {
   return <ChromaFlow />;
@@ -1402,7 +1405,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { CHROMA_FLOW_PRESETS } from "@vfx-ui/react";
+import { CHROMA_FLOW_PRESETS } from "@/components/ChromaFlow";
 ```
 
 ## Shader
@@ -1423,11 +1426,11 @@ The pointer is the prism: letters near the cursor split into red and blue fringe
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/chromatic-text.json
 ```
 
 ```tsx
-import { ChromaticText } from "@vfx-ui/react";
+import { ChromaticText } from "@/components/ChromaticText";
 
 export function Demo() {
   return <ChromaticText />;
@@ -1457,11 +1460,11 @@ Dust motes drifting through slanted Tyndall light beams — parallel volumetric 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/dust-motes.json
 ```
 
 ```tsx
-import { DustMotes } from "@vfx-ui/react";
+import { DustMotes } from "@/components/DustMotes";
 
 export function Demo() {
   return <DustMotes />;
@@ -1489,7 +1492,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { DUST_MOTES_PRESETS } from "@vfx-ui/react";
+import { DUST_MOTES_PRESETS } from "@/components/DustMotes";
 ```
 
 ## Shader
@@ -1510,11 +1513,11 @@ Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/elastic-hover.json
 ```
 
 ```tsx
-import { ElasticHover } from "@vfx-ui/react";
+import { ElasticHover } from "@/components/ElasticHover";
 
 export function Demo() {
   return <ElasticHover />;
@@ -1545,11 +1548,11 @@ Sparks rising from a bed of coals, cooling from gold to red through shimmering h
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ember-drift.json
 ```
 
 ```tsx
-import { EmberDrift } from "@vfx-ui/react";
+import { EmberDrift } from "@/components/EmberDrift";
 
 export function Demo() {
   return <EmberDrift />;
@@ -1575,7 +1578,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { EMBER_DRIFT_PRESETS } from "@vfx-ui/react";
+import { EMBER_DRIFT_PRESETS } from "@/components/EmberDrift";
 ```
 
 ## Shader
@@ -1596,11 +1599,11 @@ Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showc
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-launch.json
 ```
 
 ```tsx
-import { ExampleLaunch } from "@vfx-ui/react";
+import { ExampleLaunch } from "@/components/ExampleLaunch";
 
 export default function LaunchPage() {
   return <ExampleLaunch />;
@@ -1624,11 +1627,11 @@ Complete fictional design-studio page (Atelier North): daylight editorial hero, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-studio.json
 ```
 
 ```tsx
-import { ExampleStudio } from "@vfx-ui/react";
+import { ExampleStudio } from "@/components/ExampleStudio";
 
 export default function StudioPage() {
   return <ExampleStudio />;
@@ -1652,11 +1655,11 @@ Luminous silk fibers streaming through the dark — a domain-warped fbm ridge fi
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/fiber-flow.json
 ```
 
 ```tsx
-import { FiberFlow } from "@vfx-ui/react";
+import { FiberFlow } from "@/components/FiberFlow";
 
 export function Demo() {
   return <FiberFlow />;
@@ -1683,7 +1686,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FIBER_FLOW_PRESETS } from "@vfx-ui/react";
+import { FIBER_FLOW_PRESETS } from "@/components/FiberFlow";
 ```
 
 ## Shader
@@ -1704,11 +1707,11 @@ Domain-warped fBm noise flowing through a curated palette — organic liquid col
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/fluid-gradient.json
 ```
 
 ```tsx
-import { FluidGradient } from "@vfx-ui/react";
+import { FluidGradient } from "@/components/FluidGradient";
 
 export function Demo() {
   return <FluidGradient />;
@@ -1733,7 +1736,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FLUID_PRESETS } from "@vfx-ui/react";
+import { FLUID_PRESETS } from "@/components/FluidGradient";
 ```
 
 ## Shader
@@ -1754,11 +1757,11 @@ Your wordmark becomes a hinged paper screen. Each panel turns toward the passing
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-fold.json
 ```
 
 ```tsx
-import { FooterFold } from "@vfx-ui/react";
+import { FooterFold } from "@/components/FooterFold";
 
 export function Demo() {
   return <FooterFold brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1795,11 +1798,11 @@ A wordmark made of light. Its cells scatter around your pointer and settle back 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-phosphor.json
 ```
 
 ```tsx
-import { FooterPhosphor } from "@vfx-ui/react";
+import { FooterPhosphor } from "@/components/FooterPhosphor";
 
 export function Demo() {
   return <FooterPhosphor brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1835,11 +1838,11 @@ Copper tidal lines beneath monumental lettering. Move across the footer and resh
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-tidal.json
 ```
 
 ```tsx
-import { FooterTidal } from "@vfx-ui/react";
+import { FooterTidal } from "@/components/FooterTidal";
 
 export function Demo() {
   return <FooterTidal brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1876,11 +1879,11 @@ A closing track for your website. A grooved record turns with your pointer, fram
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-vinyl.json
 ```
 
 ```tsx
-import { FooterVinyl } from "@vfx-ui/react";
+import { FooterVinyl } from "@/components/FooterVinyl";
 
 export function Demo() {
   return <FooterVinyl brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;
@@ -1917,11 +1920,11 @@ Thick-cut glass over a printed studio scene. Beveled edges split light while the
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-card.json
 ```
 
 ```tsx
-import { GlassCard } from "@vfx-ui/react";
+import { GlassCard } from "@/components/GlassCard";
 
 export function Demo() {
   return <div style={{ height: 520 }}><GlassCard interactive /></div>;
@@ -1946,7 +1949,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_CARD_PRESETS } from "@vfx-ui/react";
+import { GLASS_CARD_PRESETS } from "@/components/GlassCard";
 ```
 
 ## Shader
@@ -1967,11 +1970,11 @@ A biconvex lens: magnification through the center, inversion at the edges, and f
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-lens.json
 ```
 
 ```tsx
-import { GlassLens } from "@vfx-ui/react";
+import { GlassLens } from "@/components/GlassLens";
 
 export function Demo() {
   return <div style={{ height: 520 }}><GlassLens interactive /></div>;
@@ -1996,7 +1999,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_LENS_PRESETS } from "@vfx-ui/react";
+import { GLASS_LENS_PRESETS } from "@/components/GlassLens";
 ```
 
 ## Shader
@@ -2017,11 +2020,11 @@ An original ray-marched optical slab built to carry content: beveled edges split
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-panel.json
 ```
 
 ```tsx
-import { GlassPanel } from "@vfx-ui/react";
+import { GlassPanel } from "@/components/GlassPanel";
 
 export function Demo() {
   return <GlassPanel />;
@@ -2047,7 +2050,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_PANEL_PRESETS } from "@vfx-ui/react";
+import { GLASS_PANEL_PRESETS } from "@/components/GlassPanel";
 ```
 
 ## Shader
@@ -2068,11 +2071,11 @@ A wall of glass bricks on the shared optical pipeline: one biconvex lens lives i
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-tile.json
 ```
 
 ```tsx
-import { GlassTile } from "@vfx-ui/react";
+import { GlassTile } from "@/components/GlassTile";
 
 export function Demo() {
   return <GlassTile />;
@@ -2111,11 +2114,11 @@ Concentric light rings breathing outward from a luminous core, each sampled at t
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/halo-rings.json
 ```
 
 ```tsx
-import { HaloRings } from "@vfx-ui/react";
+import { HaloRings } from "@/components/HaloRings";
 
 export function Demo() {
   return <HaloRings />;
@@ -2141,7 +2144,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HALO_RINGS_PRESETS } from "@vfx-ui/react";
+import { HALO_RINGS_PRESETS } from "@/components/HaloRings";
 ```
 
 ## Shader
@@ -2162,11 +2165,11 @@ Drop-in hero: a centered serif masthead — display title, two standfirst lines,
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-aurora-editorial.json
 ```
 
 ```tsx
-import { HeroAuroraEditorial } from "@vfx-ui/react";
+import { HeroAuroraEditorial } from "@/components/HeroAuroraEditorial";
 
 export function Demo() {
   return <HeroAuroraEditorial title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2198,7 +2201,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_AURORA_EDITORIAL_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_EDITORIAL_PRESETS } from "@/components/HeroAuroraEditorial";
 ```
 
 ## Shader
@@ -2219,11 +2222,11 @@ Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendere
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-aurora.json
 ```
 
 ```tsx
-import { HeroAurora } from "@vfx-ui/react";
+import { HeroAurora } from "@/components/HeroAurora";
 
 export function Demo() {
   return <HeroAurora title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2254,7 +2257,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_AURORA_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_PRESETS } from "@/components/HeroAurora";
 ```
 
 ## Shader
@@ -2275,11 +2278,11 @@ Drop-in hero: the cinema cut — hard letterbox bars top and bottom, the accreti
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole-cinema.json
 ```
 
 ```tsx
-import { HeroBlackHoleCinema } from "@vfx-ui/react";
+import { HeroBlackHoleCinema } from "@/components/HeroBlackHoleCinema";
 
 export function Demo() {
   return <HeroBlackHoleCinema title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2316,7 +2319,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_BLACK_HOLE_CINEMA_PRESETS } from "@vfx-ui/react";
+import { HERO_BLACK_HOLE_CINEMA_PRESETS } from "@/components/HeroBlackHoleCinema";
 ```
 
 ## Shader
@@ -2337,11 +2340,11 @@ Drop-in hero: left copy beside a ray-traced accretion disk with relativistic bea
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole.json
 ```
 
 ```tsx
-import { HeroBlackHole } from "@vfx-ui/react";
+import { HeroBlackHole } from "@/components/HeroBlackHole";
 
 export function Demo() {
   return <HeroBlackHole title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2377,7 +2380,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { HERO_BLACK_HOLE_PRESETS } from "@/components/HeroBlackHole";
 ```
 
 ## Shader
@@ -2398,11 +2401,11 @@ Drop-in hero: the full-bleed cut — the four-edge chroma field runs wall to wal
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-chroma-full.json
 ```
 
 ```tsx
-import { HeroChromaFull } from "@vfx-ui/react";
+import { HeroChromaFull } from "@/components/HeroChromaFull";
 
 export function Demo() {
   return <HeroChromaFull title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2437,7 +2440,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_CHROMA_FULL_PRESETS } from "@vfx-ui/react";
+import { HERO_CHROMA_FULL_PRESETS } from "@/components/HeroChromaFull";
 ```
 
 ## Shader
@@ -2458,11 +2461,11 @@ Drop-in hero section: bottom-left copy over a four-edge liquid color field that 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-chroma.json
 ```
 
 ```tsx
-import { HeroChroma } from "@vfx-ui/react";
+import { HeroChroma } from "@/components/HeroChroma";
 
 export function Demo() {
   return <HeroChroma title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2497,7 +2500,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_CHROMA_PRESETS } from "@vfx-ui/react";
+import { HERO_CHROMA_PRESETS } from "@/components/HeroChroma";
 ```
 
 ## Shader
@@ -2518,11 +2521,11 @@ A sunlit topographic print. Seed your own landscape and let the paper ridges ris
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 ```
 
 ```tsx
-import { HeroContour } from "@vfx-ui/react";
+import { HeroContour } from "@/components/HeroContour";
 
 export function Demo() {
   return <HeroContour title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2558,11 +2561,11 @@ An astronomical instrument in warm copper. Move the pointer to shift the eclipse
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-eclipse.json
 ```
 
 ```tsx
-import { HeroEclipse } from "@vfx-ui/react";
+import { HeroEclipse } from "@/components/HeroEclipse";
 
 export function Demo() {
   return <HeroEclipse title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2597,11 +2600,11 @@ Drop-in hero: a left-set masthead pressed against the top edge while the silk-fi
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fiber-top.json
 ```
 
 ```tsx
-import { HeroFiberTop } from "@vfx-ui/react";
+import { HeroFiberTop } from "@/components/HeroFiberTop";
 
 export function Demo() {
   return <HeroFiberTop title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2635,7 +2638,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FIBER_TOP_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_TOP_PRESETS } from "@/components/HeroFiberTop";
 ```
 
 ## Shader
@@ -2656,11 +2659,11 @@ Drop-in hero: top-weighted headline over luminous silk fibers streaming through 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fiber.json
 ```
 
 ```tsx
-import { HeroFiber } from "@vfx-ui/react";
+import { HeroFiber } from "@/components/HeroFiber";
 
 export function Demo() {
   return <HeroFiber title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2695,7 +2698,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FIBER_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_PRESETS } from "@/components/HeroFiber";
 ```
 
 ## Shader
@@ -2716,11 +2719,11 @@ Drop-in hero: the minimal cut — one line of copy, one CTA, one liquid gradient
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fluid-minimal.json
 ```
 
 ```tsx
-import { HeroFluidMinimal } from "@vfx-ui/react";
+import { HeroFluidMinimal } from "@/components/HeroFluidMinimal";
 
 export function Demo() {
   return <HeroFluidMinimal title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2752,7 +2755,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FLUID_MINIMAL_PRESETS } from "@vfx-ui/react";
+import { HERO_FLUID_MINIMAL_PRESETS } from "@/components/HeroFluidMinimal";
 ```
 
 ## Shader
@@ -2773,11 +2776,11 @@ Drop-in hero: centered headline over a GPU liquid-gradient field with real selec
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fluid.json
 ```
 
 ```tsx
-import { HeroFluid } from "@vfx-ui/react";
+import { HeroFluid } from "@/components/HeroFluid";
 
 export function Demo() {
   return <HeroFluid title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2809,7 +2812,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FLUID_PRESETS } from "@vfx-ui/react";
+import { HERO_FLUID_PRESETS } from "@/components/HeroFluid";
 ```
 
 ## Shader
@@ -2830,11 +2833,11 @@ Drop-in split hero: copy on the left, the dot-matrix cobe planet (the globe behi
 ## Install
 
 ```bash
-npm install @vfx-ui/react cobe@^2.0.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-globe.json
 ```
 
 ```tsx
-import { HeroGlobe } from "@vfx-ui/react";
+import { HeroGlobe } from "@/components/HeroGlobe";
 
 export function Demo() {
   return <HeroGlobe title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2867,7 +2870,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_GLOBE_PRESETS } from "@vfx-ui/react";
+import { HERO_GLOBE_PRESETS } from "@/components/HeroGlobe";
 ```
 
 ## Notes for agents
@@ -2883,11 +2886,11 @@ Drop-in hero: left copy over a holographic thin-film sheen — the premium produ
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-iridescent.json
 ```
 
 ```tsx
-import { HeroIridescent } from "@vfx-ui/react";
+import { HeroIridescent } from "@/components/HeroIridescent";
 
 export function Demo() {
   return <HeroIridescent title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2918,7 +2921,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_IRIDESCENT_PRESETS } from "@/components/HeroIridescent";
 ```
 
 ## Shader
@@ -2939,11 +2942,11 @@ Drop-in hero: the poster cut — one oversized ultra-bold headline shouting over
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-mesh-bold.json
 ```
 
 ```tsx
-import { HeroMeshBold } from "@vfx-ui/react";
+import { HeroMeshBold } from "@/components/HeroMeshBold";
 
 export function Demo() {
   return <HeroMeshBold title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -2976,7 +2979,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_MESH_BOLD_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_BOLD_PRESETS } from "@/components/HeroMeshBold";
 ```
 
 ## Shader
@@ -2997,11 +3000,11 @@ Drop-in hero: centered headline over a slow Voronoi mesh-gradient field — ever
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-mesh.json
 ```
 
 ```tsx
-import { HeroMesh } from "@vfx-ui/react";
+import { HeroMesh } from "@/components/HeroMesh";
 
 export function Demo() {
   return <HeroMesh title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3034,7 +3037,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_MESH_PRESETS } from "@vfx-ui/react";
+import { HERO_MESH_PRESETS } from "@/components/HeroMesh";
 ```
 
 ## Shader
@@ -3055,11 +3058,11 @@ Drop-in hero: the badge-first cut — trust chips lead the stack at the very top
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-particles-badge.json
 ```
 
 ```tsx
-import { HeroParticlesBadge } from "@vfx-ui/react";
+import { HeroParticlesBadge } from "@/components/HeroParticlesBadge";
 
 export function Demo() {
   return <HeroParticlesBadge title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3090,7 +3093,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_PARTICLES_BADGE_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_BADGE_PRESETS } from "@/components/HeroParticlesBadge";
 ```
 
 ## Shader
@@ -3111,11 +3114,11 @@ Drop-in hero: top-weighted headline with a badge row over a drifting GPU particl
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-particles.json
 ```
 
 ```tsx
-import { HeroParticles } from "@vfx-ui/react";
+import { HeroParticles } from "@/components/HeroParticles";
 
 export function Demo() {
   return <HeroParticles title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3146,7 +3149,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_PARTICLES_PRESETS } from "@vfx-ui/react";
+import { HERO_PARTICLES_PRESETS } from "@/components/HeroParticles";
 ```
 
 ## Shader
@@ -3167,11 +3170,11 @@ Drop-in hero: the mirrored cut — copy left with a vertical eyebrow rail along 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon-left.json
 ```
 
 ```tsx
-import { HeroRibbonLeft } from "@vfx-ui/react";
+import { HeroRibbonLeft } from "@/components/HeroRibbonLeft";
 
 export function Demo() {
   return <HeroRibbonLeft title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3201,7 +3204,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_RIBBON_LEFT_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_LEFT_PRESETS } from "@/components/HeroRibbonLeft";
 ```
 
 ## Shader
@@ -3222,11 +3225,11 @@ Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right o
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon.json
 ```
 
 ```tsx
-import { HeroRibbon } from "@vfx-ui/react";
+import { HeroRibbon } from "@/components/HeroRibbon";
 
 export function Demo() {
   return <HeroRibbon title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3256,7 +3259,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_RIBBON_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_PRESETS } from "@/components/HeroRibbon";
 ```
 
 ## Shader
@@ -3277,11 +3280,11 @@ Drop-in split hero: copy left, a badge wall in frosted chips right, so the twink
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-starfield-split.json
 ```
 
 ```tsx
-import { HeroStarfieldSplit } from "@vfx-ui/react";
+import { HeroStarfieldSplit } from "@/components/HeroStarfieldSplit";
 
 export function Demo() {
   return <HeroStarfieldSplit title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3312,7 +3315,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_STARFIELD_SPLIT_PRESETS } from "@vfx-ui/react";
+import { HERO_STARFIELD_SPLIT_PRESETS } from "@/components/HeroStarfieldSplit";
 ```
 
 ## Shader
@@ -3333,11 +3336,11 @@ Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-starfield.json
 ```
 
 ```tsx
-import { HeroStarfield } from "@vfx-ui/react";
+import { HeroStarfield } from "@/components/HeroStarfield";
 
 export function Demo() {
   return <HeroStarfield title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3367,7 +3370,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_STARFIELD_PRESETS } from "@vfx-ui/react";
+import { HERO_STARFIELD_PRESETS } from "@/components/HeroStarfield";
 ```
 
 ## Shader
@@ -3388,11 +3391,11 @@ Drop-in hero: the eye-of-the-storm cut — a tighter, slower spiral whose bright
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-vortex-centered.json
 ```
 
 ```tsx
-import { HeroVortexCentered } from "@vfx-ui/react";
+import { HeroVortexCentered } from "@/components/HeroVortexCentered";
 
 export function Demo() {
   return <HeroVortexCentered title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3424,7 +3427,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_VORTEX_CENTERED_PRESETS } from "@vfx-ui/react";
+import { HERO_VORTEX_CENTERED_PRESETS } from "@/components/HeroVortexCentered";
 ```
 
 ## Shader
@@ -3445,11 +3448,11 @@ Drop-in hero: centered headline at the eye of a spiral galaxy with star speckles
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-vortex.json
 ```
 
 ```tsx
-import { HeroVortex } from "@vfx-ui/react";
+import { HeroVortex } from "@/components/HeroVortex";
 
 export function Demo() {
   return <HeroVortex title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -3481,7 +3484,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_VORTEX_PRESETS } from "@vfx-ui/react";
+import { HERO_VORTEX_PRESETS } from "@/components/HeroVortex";
 ```
 
 ## Shader
@@ -3502,11 +3505,11 @@ Ink drops blooming and feathering across wet paper — each front is an fbm-pert
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ink-bloom.json
 ```
 
 ```tsx
-import { InkBloom } from "@vfx-ui/react";
+import { InkBloom } from "@/components/InkBloom";
 
 export function Demo() {
   return <InkBloom />;
@@ -3533,7 +3536,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { INK_BLOOM_PRESETS } from "@vfx-ui/react";
+import { INK_BLOOM_PRESETS } from "@/components/InkBloom";
 ```
 
 ## Shader
@@ -3554,11 +3557,11 @@ Thin-film interference colors drifting as silk — cosine-palette holography in 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/iridescent.json
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { Iridescent } from "@/components/Iridescent";
 
 export function Demo() {
   return <Iridescent />;
@@ -3582,7 +3585,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { IRIDESCENT_PRESETS } from "@/components/Iridescent";
 ```
 
 ## Shader
@@ -3603,11 +3606,11 @@ Letters lift into a soft wave as your cursor passes through.
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/kinetic-text.json
 ```
 
 ```tsx
-import { KineticText } from "@vfx-ui/react";
+import { KineticText } from "@/components/KineticText";
 
 export function Demo() {
   return <KineticText />;
@@ -3636,11 +3639,11 @@ A solid optical prism with internal reflections, spectral caustics and a texture
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/light-prism.json
 ```
 
 ```tsx
-import { LightPrism } from "@vfx-ui/react";
+import { LightPrism } from "@/components/LightPrism";
 
 export function Demo() {
   return <div style={{ height: 520 }}><LightPrism interactive /></div>;
@@ -3668,7 +3671,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
+import { LIGHT_PRISM_PRESETS } from "@/components/LightPrism";
 ```
 
 ## Notes for agents
@@ -3684,11 +3687,11 @@ A molten glass loop. Travelling waves reshape its silhouette and the image trans
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/liquid-glass.json
 ```
 
 ```tsx
-import { LiquidGlass } from "@vfx-ui/react";
+import { LiquidGlass } from "@/components/LiquidGlass";
 
 export function Demo() {
   return <div style={{ height: 520 }}><LiquidGlass interactive /></div>;
@@ -3711,7 +3714,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { LIQUID_GLASS_PRESETS } from "@vfx-ui/react";
+import { LIQUID_GLASS_PRESETS } from "@/components/LiquidGlass";
 ```
 
 ## Shader
@@ -3732,11 +3735,11 @@ A lattice of iron filings for the cursor: each dot feels the pointer's field, sl
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic-grid.json
 ```
 
 ```tsx
-import { MagneticGrid } from "@vfx-ui/react";
+import { MagneticGrid } from "@/components/MagneticGrid";
 
 export function Demo() {
   return <MagneticGrid />;
@@ -3770,11 +3773,11 @@ Give a button, link, or any small piece of content a gentle pull.
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic.json
 ```
 
 ```tsx
-import { Magnetic } from "@vfx-ui/react";
+import { Magnetic } from "@/components/Magnetic";
 
 export function Demo() {
   return <Magnetic />;
@@ -3802,11 +3805,11 @@ Voronoi-cell color fields flowing through a curated palette — the classic mesh
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/mesh-gradient.json
 ```
 
 ```tsx
-import { MeshGradient } from "@vfx-ui/react";
+import { MeshGradient } from "@/components/MeshGradient";
 
 export function Demo() {
   return <MeshGradient />;
@@ -3832,7 +3835,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { MESH_GRADIENT_PRESETS } from "@vfx-ui/react";
+import { MESH_GRADIENT_PRESETS } from "@/components/MeshGradient";
 ```
 
 ## Shader
@@ -3853,11 +3856,11 @@ Procedural cell-hashed particles with drift and size breathing — a living text
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/particle-field.json
 ```
 
 ```tsx
-import { ParticleField } from "@vfx-ui/react";
+import { ParticleField } from "@/components/ParticleField";
 
 export function Demo() {
   return <ParticleField />;
@@ -3880,7 +3883,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PARTICLE_PRESETS } from "@vfx-ui/react";
+import { PARTICLE_PRESETS } from "@/components/ParticleField";
 ```
 
 ## Shader
@@ -3901,11 +3904,11 @@ Molten color currents folding through each other — two chained domain warps ad
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/plasma-sheet.json
 ```
 
 ```tsx
-import { PlasmaSheet } from "@vfx-ui/react";
+import { PlasmaSheet } from "@/components/PlasmaSheet";
 
 export function Demo() {
   return <PlasmaSheet />;
@@ -3931,7 +3934,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PLASMA_SHEET_PRESETS } from "@vfx-ui/react";
+import { PLASMA_SHEET_PRESETS } from "@/components/PlasmaSheet";
 ```
 
 ## Shader
@@ -3952,11 +3955,11 @@ A handheld light for layouts: the region dims slightly and a warm source follows
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/pointer-glow.json
 ```
 
 ```tsx
-import { PointerGlow } from "@vfx-ui/react";
+import { PointerGlow } from "@/components/PointerGlow";
 
 export function Demo() {
   return <PointerGlow />;
@@ -3987,11 +3990,11 @@ A constellation of light. Each dot emits and occludes, sending soft illumination
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/radiant-dots.json
 ```
 
 ```tsx
-import { RadiantDots } from "@vfx-ui/react";
+import { RadiantDots } from "@/components/RadiantDots";
 
 export function Demo() {
   return <div style={{ height: 520 }}><RadiantDots interactive /></div>;
@@ -4016,7 +4019,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { RADIANT_DOTS_PRESETS } from "@vfx-ui/react";
+import { RADIANT_DOTS_PRESETS } from "@/components/RadiantDots";
 ```
 
 ## Notes for agents
@@ -4034,11 +4037,11 @@ Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores an
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ribbon-field.json
 ```
 
 ```tsx
-import { RibbonField } from "@vfx-ui/react";
+import { RibbonField } from "@/components/RibbonField";
 
 export function Demo() {
   return <RibbonField />;
@@ -4061,7 +4064,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { RIBBON_FIELD_PRESETS } from "@vfx-ui/react";
+import { RIBBON_FIELD_PRESETS } from "@/components/RibbonField";
 ```
 
 ## Shader
@@ -4082,11 +4085,11 @@ Type you can touch: a click (or tap) drops a ripple that travels outward through
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/ripple-text.json
 ```
 
 ```tsx
-import { RippleText } from "@vfx-ui/react";
+import { RippleText } from "@/components/RippleText";
 
 export function Demo() {
   return <RippleText />;
@@ -4116,11 +4119,11 @@ A draped silk curtain with a sheen band sweeping across it — domain-warped fol
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/silk-veil.json
 ```
 
 ```tsx
-import { SilkVeil } from "@vfx-ui/react";
+import { SilkVeil } from "@/components/SilkVeil";
 
 export function Demo() {
   return <SilkVeil />;
@@ -4146,7 +4149,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { SILK_VEIL_PRESETS } from "@vfx-ui/react";
+import { SILK_VEIL_PRESETS } from "@/components/SilkVeil";
 ```
 
 ## Shader
@@ -4167,11 +4170,11 @@ A blazing sun disk crowned with streaming corona light — a limb-darkened photo
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/solar-corona.json
 ```
 
 ```tsx
-import { SolarCorona } from "@vfx-ui/react";
+import { SolarCorona } from "@/components/SolarCorona";
 
 export function Demo() {
   return <SolarCorona />;
@@ -4198,7 +4201,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { SOLAR_CORONA_PRESETS } from "@vfx-ui/react";
+import { SOLAR_CORONA_PRESETS } from "@/components/SolarCorona";
 ```
 
 ## Shader
@@ -4219,11 +4222,11 @@ A touch of iridescence. Real content, spatial tilt, and light that follows you.
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spectral-card.json
 ```
 
 ```tsx
-import { SpectralCard } from "@vfx-ui/react";
+import { SpectralCard } from "@/components/SpectralCard";
 
 export function Demo() {
   return <SpectralCard />;
@@ -4253,11 +4256,11 @@ A ribbon of daylight sliding through the words: one spectral gradient flows cont
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spectrum-text.json
 ```
 
 ```tsx
-import { SpectrumText } from "@vfx-ui/react";
+import { SpectrumText } from "@/components/SpectrumText";
 
 export function Demo() {
   return <SpectrumText />;
@@ -4287,11 +4290,11 @@ A card played under a torch: a soft pool of light rests at the center, then foll
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spotlight-card.json
 ```
 
 ```tsx
-import { SpotlightCard } from "@vfx-ui/react";
+import { SpotlightCard } from "@/components/SpotlightCard";
 
 export function Demo() {
   return <SpotlightCard />;
@@ -4320,11 +4323,11 @@ A field of stars drifting on slow luminous waves — two hashed star grids ride 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/star-tide.json
 ```
 
 ```tsx
-import { StarTide } from "@vfx-ui/react";
+import { StarTide } from "@/components/StarTide";
 
 export function Demo() {
   return <StarTide />;
@@ -4352,7 +4355,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { STAR_TIDE_PRESETS } from "@vfx-ui/react";
+import { STAR_TIDE_PRESETS } from "@/components/StarTide";
 ```
 
 ## Shader
@@ -4373,11 +4376,11 @@ Hashed star grid with twinkle and slow parallax drift — deep-space depth from 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/starfield.json
 ```
 
 ```tsx
-import { Starfield } from "@vfx-ui/react";
+import { Starfield } from "@/components/Starfield";
 
 export function Demo() {
   return <Starfield />;
@@ -4400,7 +4403,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { STARFIELD_PRESETS } from "@vfx-ui/react";
+import { STARFIELD_PRESETS } from "@/components/Starfield";
 ```
 
 ## Shader
@@ -4421,11 +4424,11 @@ Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/terrain-ridge.json
 ```
 
 ```tsx
-import { TerrainRidge } from "@vfx-ui/react";
+import { TerrainRidge } from "@/components/TerrainRidge";
 
 export function Demo() {
   return <TerrainRidge />;
@@ -4451,7 +4454,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { TERRAIN_RIDGE_PRESETS } from "@vfx-ui/react";
+import { TERRAIN_RIDGE_PRESETS } from "@/components/TerrainRidge";
 ```
 
 ## Shader
@@ -4472,11 +4475,11 @@ A porcelain card on a gimbal: the surface tilts in space while a specular highli
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/tilt-card.json
 ```
 
 ```tsx
-import { TiltCard } from "@vfx-ui/react";
+import { TiltCard } from "@/components/TiltCard";
 
 export function Demo() {
   return <TiltCard />;
@@ -4506,11 +4509,11 @@ Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/vortex.json
 ```
 
 ```tsx
-import { Vortex } from "@vfx-ui/react";
+import { Vortex } from "@/components/Vortex";
 
 export function Demo() {
   return <Vortex />;
@@ -4535,7 +4538,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { VORTEX_PRESETS } from "@vfx-ui/react";
+import { VORTEX_PRESETS } from "@/components/Vortex";
 ```
 
 ## Shader
@@ -4556,11 +4559,11 @@ Three layered sine bands sweeping over a tri-color gradient, rendered fully on t
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { WaveBackground } from "@vfx-ui/react";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Demo() {
   return <WaveBackground />;

@@ -5,11 +5,11 @@ Type you can touch: a click (or tap) drops a ripple that travels outward through
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/ripple-text.json
 ```
 
 ```tsx
-import { RippleText } from "@vfx-ui/react";
+import { RippleText } from "@/components/RippleText";
 
 export function Demo() {
   return <RippleText />;

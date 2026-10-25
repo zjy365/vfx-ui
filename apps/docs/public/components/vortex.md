@@ -5,11 +5,11 @@ Spiral galaxy with logarithmic arms, hashed starlight and a breathing core.
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/vortex.json
 ```
 
 ```tsx
-import { Vortex } from "@vfx-ui/react";
+import { Vortex } from "@/components/Vortex";
 
 export function Demo() {
   return <Vortex />;
@@ -34,7 +34,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { VORTEX_PRESETS } from "@vfx-ui/react";
+import { VORTEX_PRESETS } from "@/components/Vortex";
 ```
 
 ## Shader

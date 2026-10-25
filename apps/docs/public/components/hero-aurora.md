@@ -5,11 +5,11 @@ Drop-in hero: bottom-left copy anchored under full-bleed aurora curtains rendere
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-aurora.json
 ```
 
 ```tsx
-import { HeroAurora } from "@vfx-ui/react";
+import { HeroAurora } from "@/components/HeroAurora";
 
 export function Demo() {
   return <HeroAurora title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -40,7 +40,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_AURORA_PRESETS } from "@vfx-ui/react";
+import { HERO_AURORA_PRESETS } from "@/components/HeroAurora";
 ```
 
 ## Shader

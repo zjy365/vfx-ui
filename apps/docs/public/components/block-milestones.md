@@ -5,11 +5,11 @@ Milestone progress: a roadmap strip whose completed steps light up in sequence o
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-milestones.json
 ```
 
 ```tsx
-import { BlockMilestones } from "@vfx-ui/react";
+import { BlockMilestones } from "@/components/BlockMilestones";
 
 export function Demo() {
   return <BlockMilestones />;

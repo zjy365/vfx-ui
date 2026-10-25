@@ -5,11 +5,11 @@ Drop-in hero: top-weighted headline over luminous silk fibers streaming through 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-fiber.json
 ```
 
 ```tsx
-import { HeroFiber } from "@vfx-ui/react";
+import { HeroFiber } from "@/components/HeroFiber";
 
 export function Demo() {
   return <HeroFiber title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -44,7 +44,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_FIBER_PRESETS } from "@vfx-ui/react";
+import { HERO_FIBER_PRESETS } from "@/components/HeroFiber";
 ```
 
 ## Shader

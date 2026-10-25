@@ -5,11 +5,11 @@ FAQ accordion with real disclosure semantics: buttons + aria-expanded/controls, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-faq.json
 ```
 
 ```tsx
-import { BlockFaq } from "@vfx-ui/react";
+import { BlockFaq } from "@/components/BlockFaq";
 
 export function Answers() {
   return (

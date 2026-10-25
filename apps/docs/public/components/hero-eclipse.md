@@ -5,11 +5,11 @@ An astronomical instrument in warm copper. Move the pointer to shift the eclipse
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-eclipse.json
 ```
 
 ```tsx
-import { HeroEclipse } from "@vfx-ui/react";
+import { HeroEclipse } from "@/components/HeroEclipse";
 
 export function Demo() {
   return <HeroEclipse title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;

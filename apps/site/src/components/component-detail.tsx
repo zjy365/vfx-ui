@@ -108,9 +108,6 @@ export function ComponentDetail({
     ? props.scheme : previewScheme;
   const [viewport, setViewport] = useState("desktop");
   const [controlsOpen, setControlsOpen] = useState(true);
-  const [installation, setInstallation] = useState<"registry" | "package">(
-    "registry",
-  );
   const [installOpen, setInstallOpen] = useState(false);
   const [codeExpanded, setCodeExpanded] = useState(false);
   const [running, setRunning] = useState(true);
@@ -220,21 +217,16 @@ export function ComponentDetail({
       }),
     );
   }
-  const command =
-    installation === "registry"
-      ? `npx shadcn@latest add ${item.registryUsageIds.map((id) => `https://vfx-ui.com/r/${id}.json`).join(" ")}`
-      : "npm install @vfx-ui/react";
+  const command = `npx shadcn@latest add ${item.registryUsageIds.map((id) => `https://vfx-ui.com/r/${id}.json`).join(" ")}`;
   const example = useMemo(
     () =>
       usageWithProps(
-        installation === "registry" ? item.registrySourceCode : item.sourceCode,
+        item.registrySourceCode,
         item.componentName,
         props,
       ),
     [
-      installation,
       item.registrySourceCode,
-      item.sourceCode,
       item.componentName,
       props,
     ],
@@ -559,20 +551,6 @@ export function ComponentDetail({
         <div className="dw-usage-heading">
           <div className="dw-usage-tabs">
             <h2>Usage</h2>
-            <button
-              type="button"
-              aria-pressed={installation === "registry"}
-              onClick={() => setInstallation("registry")}
-            >
-              Registry source
-            </button>
-            <button
-              type="button"
-              aria-pressed={installation === "package"}
-              onClick={() => setInstallation("package")}
-            >
-              npm package
-            </button>
           </div>
           <CopyButton label="Copy code" value={example} />
         </div>
@@ -615,9 +593,7 @@ export function ComponentDetail({
                 <CopyButton value={command} />
               </div>
               <p>
-                {installation === "registry"
-                  ? "Uses your configured components directory and @/ import alias. "
-                  : "Imports components from the React package. "}
+                Uses your configured components directory and @/ import alias.{" "}
                 <Link href="/docs/installation/">
                   Installation guide
                   <ArrowUpRight size={12} />

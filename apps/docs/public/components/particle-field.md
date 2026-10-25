@@ -5,11 +5,11 @@ Procedural cell-hashed particles with drift and size breathing — a living text
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/particle-field.json
 ```
 
 ```tsx
-import { ParticleField } from "@vfx-ui/react";
+import { ParticleField } from "@/components/ParticleField";
 
 export function Demo() {
   return <ParticleField />;
@@ -32,7 +32,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { PARTICLE_PRESETS } from "@vfx-ui/react";
+import { PARTICLE_PRESETS } from "@/components/ParticleField";
 ```
 
 ## Shader

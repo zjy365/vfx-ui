@@ -236,9 +236,9 @@ export async function getComponent(
   sections.push(`- Agent docs: ${docsUrl(name)}`);
 
   const docsMd = await getDocsMarkdown(name);
-  const usageImport = docsMd?.match(/^import\s*\{[^}]*\}\s*from\s*"@vfx-ui\/react";\s*$/m)?.[0];
+  const usageImport = docsMd?.match(/^import\s*\{[^}]*\}\s*from\s*"@\/components\/[^\"]+";\s*$/m)?.[0];
   if (usageImport) {
-    sections.push(`- npm package usage: \`${usageImport.replace(/\s+/g, " ").trim()}\` (requires \`npm install @vfx-ui/react\` plus any deps above)`);
+    sections.push(`- Registry source usage: \`${usageImport.replace(/\s+/g, " ").trim()}\` (use your configured components alias)`);
   }
   const propsSection = docsMd ? extractPropsSection(docsMd) : null;
   sections.push("", "## Props");

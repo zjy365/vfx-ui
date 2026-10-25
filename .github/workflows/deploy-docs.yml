@@ -23,6 +23,8 @@ jobs:
           node-version: 22
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Audit production and development dependencies
+        run: pnpm audit --audit-level=low
       - name: Build packages and static product site
         run: pnpm build
       - name: Typecheck all packages and applications

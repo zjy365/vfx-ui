@@ -5,11 +5,11 @@ Complete navigation bar: brand, desktop links, actions, and an accessible mobile
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-nav.json
 ```
 
 ```tsx
-import { BlockNav } from "@vfx-ui/react";
+import { BlockNav } from "@/components/BlockNav";
 
 export function SiteHeader() {
   return (

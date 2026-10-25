@@ -5,11 +5,11 @@ Sunlit pool-floor caustics dancing over deep water — a jittered-grid Voronoi n
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/caustics-field.json
 ```
 
 ```tsx
-import { CausticsField } from "@vfx-ui/react";
+import { CausticsField } from "@/components/CausticsField";
 
 export function Demo() {
   return <CausticsField />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { CAUSTICS_FIELD_PRESETS } from "@vfx-ui/react";
+import { CAUSTICS_FIELD_PRESETS } from "@/components/CausticsField";
 ```
 
 ## Shader

@@ -1,11 +1,11 @@
 ---
 title: Installation & usage
-description: Choose editable source or the React package, then add a component to your page.
+description: Install editable component source, then add it to your React page.
 ---
 
-Start with an existing React project. React 18 and React 19 are verified. You only need **one** of the installation methods below; neither requires a VFX UI account or API key.
+Start with an existing React project. React 18 and React 19 are verified. Install editable source with the public registry; no VFX UI account or API key is required.
 
-## Option A: copy editable source
+## Install editable source
 
 The registry copies component source and its shared files into your project, so you can edit them directly.
 
@@ -29,30 +29,16 @@ import { HeroContour } from "@/components/HeroContour";
 
 Your `components.json` configuration determines the destination. If your alias is different, update the import to match. Review the files and dependencies added by the CLI before committing them.
 
-## Option B: install the React package
-
-Use the package when you want to import components without copying their source into your project.
-
-```bash
-npm install @vfx-ui/react
-```
-
-For DOM and SVG components, import from `/dom`. This entry keeps GPU modules out of the import graph:
-
-```tsx
-import { HeroContour } from "@vfx-ui/react/dom";
-```
-
-GPU components use the main package entry or their component subpath. Copy the import shown on the component's detail page.
+The current component catalog is not yet available as a verified npm release. The older `@vfx-ui/react` package on npm does not include all the components and entry points shown here. Use the registry command above for this catalog.
 
 ## Add it to a page
 
-This package example renders a complete hero. Replace the copy with your own:
+This example renders a complete hero. Replace the copy with your own:
 
 ```tsx title="components/LandingHero.tsx"
 "use client";
 
-import { HeroContour } from "@vfx-ui/react/dom";
+import { HeroContour } from "@/components/HeroContour";
 
 export function LandingHero() {
   return (
@@ -65,7 +51,7 @@ export function LandingHero() {
 }
 ```
 
-If you chose editable source, replace that import with the local import from Option A. In a regular React application, render `<LandingHero />` inside your app.
+If your project uses a custom components alias, update the import to match. In a regular React application, render `<LandingHero />` inside your app.
 
 ### Using Next.js
 
@@ -83,7 +69,7 @@ The page can remain a Server Component. Keep server-side data fetching there and
 
 ## If something does not appear
 
-- **Import cannot be found:** check whether you installed source or the package, then use the matching import. For source installs, check the alias in `components.json`.
+- **Import cannot be found:** confirm the registry command completed, then check the destination and alias in `components.json`.
 - **A background is blank or collapsed:** give its container an explicit height. Backgrounds and canvases need space to render; complete hero components provide their own layout.
 - **Next.js reports a client component error:** put `"use client"` at the top of the wrapper that uses the interactive component.
 - **A GPU effect is unavailable:** check the component's rendering requirements and test a static fallback on that device.

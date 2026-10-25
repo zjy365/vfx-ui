@@ -5,11 +5,11 @@ Three Gaussian light ribbons drifting over a dot-matrix grid with bloom cores an
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ribbon-field.json
 ```
 
 ```tsx
-import { RibbonField } from "@vfx-ui/react";
+import { RibbonField } from "@/components/RibbonField";
 
 export function Demo() {
   return <RibbonField />;
@@ -32,7 +32,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { RIBBON_FIELD_PRESETS } from "@vfx-ui/react";
+import { RIBBON_FIELD_PRESETS } from "@/components/RibbonField";
 ```
 
 ## Shader

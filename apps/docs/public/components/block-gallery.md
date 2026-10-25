@@ -5,11 +5,11 @@ Work gallery: a responsive grid of tiles that lift on hover, with an optional li
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-gallery.json
 ```
 
 ```tsx
-import { BlockGallery } from "@vfx-ui/react";
+import { BlockGallery } from "@/components/BlockGallery";
 
 export function Demo() {
   return <BlockGallery />;

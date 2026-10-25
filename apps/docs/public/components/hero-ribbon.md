@@ -5,11 +5,11 @@ Drop-in split hero: copy left, three Gaussian light ribbons sweeping the right o
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-ribbon.json
 ```
 
 ```tsx
-import { HeroRibbon } from "@vfx-ui/react";
+import { HeroRibbon } from "@/components/HeroRibbon";
 
 export function Demo() {
   return <HeroRibbon title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -39,7 +39,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_RIBBON_PRESETS } from "@vfx-ui/react";
+import { HERO_RIBBON_PRESETS } from "@/components/HeroRibbon";
 ```
 
 ## Shader

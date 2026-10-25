@@ -5,11 +5,11 @@ Thick-cut glass over a printed studio scene. Beveled edges split light while the
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/glass-card.json
 ```
 
 ```tsx
-import { GlassCard } from "@vfx-ui/react";
+import { GlassCard } from "@/components/GlassCard";
 
 export function Demo() {
   return <div style={{ height: 520 }}><GlassCard interactive /></div>;
@@ -34,7 +34,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { GLASS_CARD_PRESETS } from "@vfx-ui/react";
+import { GLASS_CARD_PRESETS } from "@/components/GlassCard";
 ```
 
 ## Shader

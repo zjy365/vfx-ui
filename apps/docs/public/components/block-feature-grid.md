@@ -5,11 +5,11 @@ Feature grid with real hierarchy: one bento feature card with media plus support
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-feature-grid.json
 ```
 
 ```tsx
-import { BlockFeatureGrid } from "@vfx-ui/react";
+import { BlockFeatureGrid } from "@/components/BlockFeatureGrid";
 
 export function Features() {
   return (

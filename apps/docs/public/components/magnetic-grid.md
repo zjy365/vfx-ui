@@ -5,11 +5,11 @@ A lattice of iron filings for the cursor: each dot feels the pointer's field, sl
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic-grid.json
 ```
 
 ```tsx
-import { MagneticGrid } from "@vfx-ui/react";
+import { MagneticGrid } from "@/components/MagneticGrid";
 
 export function Demo() {
   return <MagneticGrid />;

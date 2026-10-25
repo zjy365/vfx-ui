@@ -5,11 +5,11 @@ Three-to-four step process with numbered badges and a connector line that draws 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-process-steps.json
 ```
 
 ```tsx
-import { BlockProcessSteps } from "@vfx-ui/react";
+import { BlockProcessSteps } from "@/components/BlockProcessSteps";
 
 export function HowItWorks() {
   return (

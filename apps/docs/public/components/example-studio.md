@@ -5,11 +5,11 @@ Complete fictional design-studio page (Atelier North): daylight editorial hero, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-studio.json
 ```
 
 ```tsx
-import { ExampleStudio } from "@vfx-ui/react";
+import { ExampleStudio } from "@/components/ExampleStudio";
 
 export default function StudioPage() {
   return <ExampleStudio />;

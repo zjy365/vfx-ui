@@ -5,11 +5,11 @@ A closing track for your website. A grooved record turns with your pointer, fram
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/footer-vinyl.json
 ```
 
 ```tsx
-import { FooterVinyl } from "@vfx-ui/react";
+import { FooterVinyl } from "@/components/FooterVinyl";
 
 export function Demo() {
   return <FooterVinyl brand="YOUR BRAND" title="Let’s talk." cta={{ label: "Contact", href: "mailto:hello@example.com" }} groups={[{ label: "Explore", links: [{ label: "About", href: "/about" }] }]} copyright="© Your studio" />;

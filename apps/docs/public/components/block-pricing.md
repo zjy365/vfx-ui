@@ -5,11 +5,11 @@ Pricing plans with a working monthly/annual switch: amounts, billing basis and t
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-pricing.json
 ```
 
 ```tsx
-import { BlockPricing } from "@vfx-ui/react";
+import { BlockPricing } from "@/components/BlockPricing";
 
 export function Plans() {
   return (

@@ -5,11 +5,12 @@ Closing call to action: headline, supporting copy, primary and secondary actions
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-cta.json https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { BlockCta, WaveBackground } from "@vfx-ui/react";
+import { BlockCta } from "@/components/BlockCta";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Closing() {
   return (

@@ -5,11 +5,11 @@ Four-edge liquid color field on a midnight base — the palette sloshes from the
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/chroma-flow.json
 ```
 
 ```tsx
-import { ChromaFlow } from "@vfx-ui/react";
+import { ChromaFlow } from "@/components/ChromaFlow";
 
 export function Demo() {
   return <ChromaFlow />;
@@ -38,7 +38,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { CHROMA_FLOW_PRESETS } from "@vfx-ui/react";
+import { CHROMA_FLOW_PRESETS } from "@/components/ChromaFlow";
 ```
 
 ## Shader

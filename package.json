@@ -19,8 +19,13 @@
     "dev:legacy": "pnpm --filter @vfx-ui/legacy-docs dev"
   },
   "devDependencies": {
-    "esbuild": "^0.25.0",
+    "esbuild": "^0.28.1",
     "pngjs": "^7.0.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "vgpu>@modelcontextprotocol/server": "2.4.0"
+    }
   }
 }

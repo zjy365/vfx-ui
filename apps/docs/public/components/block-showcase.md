@@ -5,11 +5,11 @@ Product showcase stage: browser-chrome frame with a replaceable screenshot or vi
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-showcase.json
 ```
 
 ```tsx
-import { BlockShowcase } from "@vfx-ui/react";
+import { BlockShowcase } from "@/components/BlockShowcase";
 
 export function Tour() {
   return (

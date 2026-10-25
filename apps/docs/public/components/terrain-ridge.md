@@ -5,11 +5,11 @@ Layered ridged-fbm mountain silhouettes in parallax drift — ridgelines recede 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/terrain-ridge.json
 ```
 
 ```tsx
-import { TerrainRidge } from "@vfx-ui/react";
+import { TerrainRidge } from "@/components/TerrainRidge";
 
 export function Demo() {
   return <TerrainRidge />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { TERRAIN_RIDGE_PRESETS } from "@vfx-ui/react";
+import { TERRAIN_RIDGE_PRESETS } from "@/components/TerrainRidge";
 ```
 
 ## Shader

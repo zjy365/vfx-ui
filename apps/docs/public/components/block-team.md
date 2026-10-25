@@ -5,11 +5,11 @@ Team grid: cards with an avatar (your image node or an auto-generated initials b
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-team.json
 ```
 
 ```tsx
-import { BlockTeam } from "@vfx-ui/react";
+import { BlockTeam } from "@/components/BlockTeam";
 
 export function Demo() {
   return <BlockTeam />;

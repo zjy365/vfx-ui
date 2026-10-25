@@ -5,11 +5,11 @@ Rubber around whatever you wrap: hovering swells it, pressing squashes it wide, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/elastic-hover.json
 ```
 
 ```tsx
-import { ElasticHover } from "@vfx-ui/react";
+import { ElasticHover } from "@/components/ElasticHover";
 
 export function Demo() {
   return <ElasticHover />;

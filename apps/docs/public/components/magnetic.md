@@ -5,11 +5,11 @@ Give a button, link, or any small piece of content a gentle pull.
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/magnetic.json
 ```
 
 ```tsx
-import { Magnetic } from "@vfx-ui/react";
+import { Magnetic } from "@/components/Magnetic";
 
 export function Demo() {
   return <Magnetic />;

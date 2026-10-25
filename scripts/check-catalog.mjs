@@ -74,6 +74,9 @@ for (const item of data.components) {
     );
   }
   assert(!item.sourcePath.startsWith("pro/"));
+  const agentDoc = await readFile(resolve(root, "apps/docs/public/components", item.id + ".md"), "utf8");
+  assert(agentDoc.includes(`https://vfx-ui.com/r/${item.id}.json`), "Agent instructions must install the current registry component");
+  assert(!/npm install @vfx-ui\/react|from ["']@vfx-ui\/react(?:\/[^"']*)?["']/.test(agentDoc), "Agent instructions must not advertise the earlier npm distribution");
 }
 assert.equal(TEMPLATES.length, 6);
 assert.equal(PRODUCT.templateIds.length, TEMPLATES.length);

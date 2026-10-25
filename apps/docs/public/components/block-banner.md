@@ -5,11 +5,11 @@ Announcement banner: a slim accent-tinted strip for one important message with a
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-banner.json
 ```
 
 ```tsx
-import { BlockBanner } from "@vfx-ui/react";
+import { BlockBanner } from "@/components/BlockBanner";
 
 export function Demo() {
   return <BlockBanner />;

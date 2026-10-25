@@ -5,11 +5,11 @@ A solid optical prism with internal reflections, spectral caustics and a texture
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/light-prism.json
 ```
 
 ```tsx
-import { LightPrism } from "@vfx-ui/react";
+import { LightPrism } from "@/components/LightPrism";
 
 export function Demo() {
   return <div style={{ height: 520 }}><LightPrism interactive /></div>;
@@ -37,7 +37,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { LIGHT_PRISM_PRESETS } from "@vfx-ui/react";
+import { LIGHT_PRISM_PRESETS } from "@/components/LightPrism";
 ```
 
 ## Notes for agents

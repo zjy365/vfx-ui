@@ -5,11 +5,11 @@ Stats band where every number counts up from zero on scroll-in, with a settled, 
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-stats.json
 ```
 
 ```tsx
-import { BlockStats } from "@vfx-ui/react";
+import { BlockStats } from "@/components/BlockStats";
 
 export function Demo() {
   return <BlockStats />;

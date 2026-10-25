@@ -5,11 +5,11 @@ Complete fictional software launch page (“Orbit” by Lumen Labs): hero, showc
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/example-launch.json
 ```
 
 ```tsx
-import { ExampleLaunch } from "@vfx-ui/react";
+import { ExampleLaunch } from "@/components/ExampleLaunch";
 
 export default function LaunchPage() {
   return <ExampleLaunch />;

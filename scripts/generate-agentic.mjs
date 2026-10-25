@@ -12,6 +12,7 @@
 import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { CATALOG } from "../catalog/components.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const registryDir = join(root, "registry", "dist");
@@ -73,7 +74,7 @@ function itemDoc(name) {
     "## Install",
     "",
     "```bash",
-    `npm install @vfx-ui/react${needsVgpu ? " vgpu@0.3.1" : ""}${extraDeps.length ? ` ${extraDeps.join(" ")}` : ""}`,
+    "__REGISTRY_INSTALL_COMMAND__",
     "```",
     "",
     ...(BLOCK_USAGE[name] ? [
@@ -142,7 +143,24 @@ function itemDoc(name) {
         ]),
     "",
   );
-  return lines.join("\n");
+  const installIds = new Set([name]);
+  const doc = lines.join("\n").replace(
+    /import\s*\{([^}]+)\}\s*from\s*"@vfx-ui\/react";/g,
+    (_, specifiers) => specifiers.split(",").map((specifier) => {
+      const symbol = specifier.trim().split(/\s+as\s+/)[0];
+      const component = CATALOG.find((entry) => entry.component === symbol);
+      if (component) {
+        installIds.add(component.name);
+        return `import { ${specifier.trim()} } from "@/components/${component.component}";`;
+      }
+      if (symbol === presetsMatch?.[1]) {
+        const entry = CATALOG.find((entry) => entry.name === name);
+        return `import { ${specifier.trim()} } from "@/components/${entry.component}";`;
+      }
+      throw new Error(`Unresolved registry documentation import ${symbol} in ${name}`);
+    }).join("\n"),
+  );
+  return doc.replace("__REGISTRY_INSTALL_COMMAND__", `npx shadcn@latest add ${[...installIds].map((id) => `https://vfx-ui.com/r/${id}.json`).join(" ")}`);
 }
 
 const BLOCK_USAGE = {
@@ -323,8 +341,10 @@ function main() {
     "## Install",
     "",
     "```bash",
-    "npm install @vfx-ui/react vgpu@0.3.1",
+    "npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json",
     "```",
+    "",
+    "Install editable source from the registry and use local component imports. The npm 0.1.0 release does not match this catalog; do not use it for these examples.",
     "",
     "## Component catalog",
     "",

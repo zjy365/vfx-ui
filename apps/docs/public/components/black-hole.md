@@ -5,11 +5,11 @@ The vgpu optimized-black-hole example as a drop-in component: a baked null-geode
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/black-hole.json
 ```
 
 ```tsx
-import { BlackHole } from "@vfx-ui/react";
+import { BlackHole } from "@/components/BlackHole";
 
 export function Demo() {
   return <BlackHole />;
@@ -43,7 +43,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { BLACK_HOLE_PRESETS } from "@/components/BlackHole";
 ```
 
 ## Shader

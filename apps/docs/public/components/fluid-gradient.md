@@ -5,11 +5,11 @@ Domain-warped fBm noise flowing through a curated palette — organic liquid col
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/fluid-gradient.json
 ```
 
 ```tsx
-import { FluidGradient } from "@vfx-ui/react";
+import { FluidGradient } from "@/components/FluidGradient";
 
 export function Demo() {
   return <FluidGradient />;
@@ -34,7 +34,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { FLUID_PRESETS } from "@vfx-ui/react";
+import { FLUID_PRESETS } from "@/components/FluidGradient";
 ```
 
 ## Shader

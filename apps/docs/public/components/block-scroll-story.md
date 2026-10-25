@@ -5,11 +5,11 @@ Scroll narrative: a sticky scene crossfades as story steps cross the viewport ce
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-scroll-story.json
 ```
 
 ```tsx
-import { BlockScrollStory } from "@vfx-ui/react";
+import { BlockScrollStory } from "@/components/BlockScrollStory";
 
 export function Story() {
   return (

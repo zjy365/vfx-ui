@@ -5,11 +5,11 @@ The pointer is the prism: letters near the cursor split into red and blue fringe
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/chromatic-text.json
 ```
 
 ```tsx
-import { ChromaticText } from "@vfx-ui/react";
+import { ChromaticText } from "@/components/ChromaticText";
 
 export function Demo() {
   return <ChromaticText />;

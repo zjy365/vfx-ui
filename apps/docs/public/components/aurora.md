@@ -5,11 +5,11 @@ Polar-light curtains: fBm-perturbed Gaussian bands drifting across a near-black 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/aurora.json
 ```
 
 ```tsx
-import { Aurora } from "@vfx-ui/react";
+import { Aurora } from "@/components/Aurora";
 
 export function Demo() {
   return <Aurora />;
@@ -33,7 +33,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { AURORA_PRESETS } from "@vfx-ui/react";
+import { AURORA_PRESETS } from "@/components/Aurora";
 ```
 
 ## Shader

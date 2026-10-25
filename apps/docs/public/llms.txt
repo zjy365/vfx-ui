@@ -6,8 +6,10 @@
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 ```
+
+Install editable source from the registry and use local component imports. The npm 0.1.0 release does not match this catalog; do not use it for these examples.
 
 ## Component catalog
 

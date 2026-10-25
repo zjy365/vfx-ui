@@ -5,11 +5,11 @@ Thin-film interference colors drifting as silk — cosine-palette holography in 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/iridescent.json
 ```
 
 ```tsx
-import { Iridescent } from "@vfx-ui/react";
+import { Iridescent } from "@/components/Iridescent";
 
 export function Demo() {
   return <Iridescent />;
@@ -33,7 +33,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { IRIDESCENT_PRESETS } from "@/components/Iridescent";
 ```
 
 ## Shader

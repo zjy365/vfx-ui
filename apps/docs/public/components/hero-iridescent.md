@@ -5,11 +5,11 @@ Drop-in hero: left copy over a holographic thin-film sheen — the premium produ
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-iridescent.json
 ```
 
 ```tsx
-import { HeroIridescent } from "@vfx-ui/react";
+import { HeroIridescent } from "@/components/HeroIridescent";
 
 export function Demo() {
   return <HeroIridescent title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -40,7 +40,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_IRIDESCENT_PRESETS } from "@vfx-ui/react";
+import { HERO_IRIDESCENT_PRESETS } from "@/components/HeroIridescent";
 ```
 
 ## Shader

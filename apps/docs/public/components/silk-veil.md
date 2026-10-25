@@ -5,11 +5,11 @@ A draped silk curtain with a sheen band sweeping across it — domain-warped fol
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/silk-veil.json
 ```
 
 ```tsx
-import { SilkVeil } from "@vfx-ui/react";
+import { SilkVeil } from "@/components/SilkVeil";
 
 export function Demo() {
   return <SilkVeil />;
@@ -35,7 +35,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { SILK_VEIL_PRESETS } from "@vfx-ui/react";
+import { SILK_VEIL_PRESETS } from "@/components/SilkVeil";
 ```
 
 ## Shader

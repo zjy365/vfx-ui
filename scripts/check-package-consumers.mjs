@@ -43,7 +43,7 @@ for (const version of ['18.3.1', '19.3.1']) {
   await mkdir(directory);
   await writeFile(resolve(directory, 'package.json'), JSON.stringify({ private: true, type: 'module', dependencies: {
     '@vfx-ui/core': `file:${core}`, '@vfx-ui/react': `file:${react}`, react: version, 'react-dom': version,
-    ...(next ? { next: '16.4.2' } : { vite: '6.4.3' }),
+    ...(next ? { next: '16.4.2' } : { vite: '6.4.5' }),
   }, devDependencies: { typescript: '5.7.3', '@types/node': '^22.0.0', '@types/react': next ? '^19.0.0' : '^18.3.0', '@types/react-dom': next ? '^19.0.0' : '^18.3.0' } }, null, 2));
   run('npm', ['install', '--no-audit', '--no-fund', '--ignore-scripts'], directory);
   await writeFile(resolve(directory, 'ssr.mjs'), `import assert from 'node:assert/strict';\nimport React from 'react';\nimport { renderToString } from 'react-dom/server';\nimport { Magnetic, HeroContour } from '@vfx-ui/react/dom';\nimport { WaveBackground } from '@vfx-ui/react/components/WaveBackground';\nconst html = renderToString(React.createElement(React.Fragment, null, React.createElement(Magnetic, null, 'A real consumer'), React.createElement(HeroContour, { title: 'Original interfaces' }), React.createElement(WaveBackground)));\nassert.ok(html.includes('Original interfaces') && html.includes('<canvas'));\nconsole.log('SSR passed: React ${version}');\n`);

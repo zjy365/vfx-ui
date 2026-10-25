@@ -5,11 +5,11 @@ Drop-in hero: left copy beside a ray-traced accretion disk with relativistic bea
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-black-hole.json
 ```
 
 ```tsx
-import { HeroBlackHole } from "@vfx-ui/react";
+import { HeroBlackHole } from "@/components/HeroBlackHole";
 
 export function Demo() {
   return <HeroBlackHole title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -45,7 +45,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_BLACK_HOLE_PRESETS } from "@vfx-ui/react";
+import { HERO_BLACK_HOLE_PRESETS } from "@/components/HeroBlackHole";
 ```
 
 ## Shader

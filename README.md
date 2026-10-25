@@ -7,11 +7,11 @@ Product conventions and design guidance are documented in [PRODUCT.md](PRODUCT.m
 GPU effects use [vgpu](https://github.com/vercel-labs/vgpu). The four Footers, Magnetic, SpectralCard, and KineticText use DOM/CSS/Canvas and work without WebGPU. All ship as TypeScript React components and copy-paste registry items.
 
 ```bash
-npm install @vfx-ui/react vgpu
+npx shadcn@latest add https://vfx-ui.com/r/wave-background.json
 ```
 
 ```tsx
-import { WaveBackground } from "@vfx-ui/react";
+import { WaveBackground } from "@/components/WaveBackground";
 
 export function Hero() {
   return (
@@ -22,6 +22,8 @@ export function Hero() {
   );
 }
 ```
+
+The npm registry still serves the earlier `0.1.0` packages. This catalog targets the unreleased `0.1.1` distribution; use the registry source command above until the new packages have been published and independently verified. Local tarball validation is available with `pnpm test:consumer`.
 
 ## The catalog
 
@@ -78,6 +80,8 @@ node registry/build.mjs              # rebuild copy-paste registry from sources
 node scripts/generate-agentic.mjs    # rebuild llms.txt / agents.md
 ```
 
+Before advertising npm installation again, publish the tested Core, React and CLI versions in that order, then run `node scripts/check-npm-release.mjs`. That separate release check verifies npm's actual `latest` metadata, export maps and a clean registry consumer. The manual “Verify public npm release” workflow runs the same check; ordinary site CI validates the source/registry distribution without pretending unpublished packages are available. npm credentials and two-factor authentication are managed outside this repository.
+
 Monorepo: `packages/core` (vgpu-backed renderer contract) · `packages/react` (components) · `packages/cli` · `apps/site` (Next.js product site and documentation) · `apps/preview` (isolated React 18 examples) · `apps/docs` (legacy metadata/source assets) · `registry` · `scripts`.
 
 ## Website deployment
@@ -116,7 +120,7 @@ Adapted component sources and generated distributions retain their upstream copy
 `FooterTidal` draws copper tidal lines beneath your wordmark. `FooterFold` prints it across hinged paper panels. `FooterPhosphor` builds it from light cells that scatter around the pointer. `FooterVinyl` turns the closing navigation into a pink record sleeve. All four are complete semantic footers, with real DOM navigation and a static reduced-motion composition.
 
 ```tsx
-import { FooterTidal } from "@vfx-ui/react";
+import { FooterTidal } from "@/components/FooterTidal";
 
 <FooterTidal
   brand="YOUR STUDIO"

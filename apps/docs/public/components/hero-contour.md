@@ -5,11 +5,11 @@ A sunlit topographic print. Seed your own landscape and let the paper ridges ris
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
 ```
 
 ```tsx
-import { HeroContour } from "@vfx-ui/react";
+import { HeroContour } from "@/components/HeroContour";
 
 export function Demo() {
   return <HeroContour title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;

@@ -5,11 +5,11 @@ Newsletter signup that is a working form, not a mockup: client-side validation w
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-newsletter.json
 ```
 
 ```tsx
-import { BlockNewsletter } from "@vfx-ui/react";
+import { BlockNewsletter } from "@/components/BlockNewsletter";
 
 export function Demo() {
   return <BlockNewsletter />;

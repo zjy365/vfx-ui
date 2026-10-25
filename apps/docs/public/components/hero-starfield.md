@@ -5,11 +5,11 @@ Drop-in hero: bottom-left copy under a twinkling hashed star grid with parallax 
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/hero-starfield.json
 ```
 
 ```tsx
-import { HeroStarfield } from "@vfx-ui/react";
+import { HeroStarfield } from "@/components/HeroStarfield";
 
 export function Demo() {
   return <HeroStarfield title="Your next big idea." primaryCta={{ label: "Get started", href: "/start" }} secondaryCta={null} interactive />;
@@ -39,7 +39,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { HERO_STARFIELD_PRESETS } from "@vfx-ui/react";
+import { HERO_STARFIELD_PRESETS } from "@/components/HeroStarfield";
 ```
 
 ## Shader

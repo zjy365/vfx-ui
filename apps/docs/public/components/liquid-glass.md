@@ -5,11 +5,11 @@ A molten glass loop. Travelling waves reshape its silhouette and the image trans
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/liquid-glass.json
 ```
 
 ```tsx
-import { LiquidGlass } from "@vfx-ui/react";
+import { LiquidGlass } from "@/components/LiquidGlass";
 
 export function Demo() {
   return <div style={{ height: 520 }}><LiquidGlass interactive /></div>;
@@ -32,7 +32,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { LIQUID_GLASS_PRESETS } from "@vfx-ui/react";
+import { LIQUID_GLASS_PRESETS } from "@/components/LiquidGlass";
 ```
 
 ## Shader

@@ -5,11 +5,11 @@ Contact section: a direct-channels list (email, phone, office — real links) be
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-contact.json
 ```
 
 ```tsx
-import { BlockContact } from "@vfx-ui/react";
+import { BlockContact } from "@/components/BlockContact";
 
 export function Demo() {
   return <BlockContact />;

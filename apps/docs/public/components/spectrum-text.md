@@ -5,11 +5,11 @@ A ribbon of daylight sliding through the words: one spectral gradient flows cont
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/spectrum-text.json
 ```
 
 ```tsx
-import { SpectrumText } from "@vfx-ui/react";
+import { SpectrumText } from "@/components/SpectrumText";
 
 export function Demo() {
   return <SpectrumText />;

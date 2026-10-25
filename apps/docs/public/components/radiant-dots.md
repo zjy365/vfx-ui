@@ -5,11 +5,11 @@ A constellation of light. Each dot emits and occludes, sending soft illumination
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/radiant-dots.json
 ```
 
 ```tsx
-import { RadiantDots } from "@vfx-ui/react";
+import { RadiantDots } from "@/components/RadiantDots";
 
 export function Demo() {
   return <div style={{ height: 520 }}><RadiantDots interactive /></div>;
@@ -34,7 +34,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { RADIANT_DOTS_PRESETS } from "@vfx-ui/react";
+import { RADIANT_DOTS_PRESETS } from "@/components/RadiantDots";
 ```
 
 ## Notes for agents

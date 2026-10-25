@@ -5,11 +5,11 @@ Ink drops blooming and feathering across wet paper — each front is an fbm-pert
 ## Install
 
 ```bash
-npm install @vfx-ui/react vgpu@0.3.1
+npx shadcn@latest add https://vfx-ui.com/r/ink-bloom.json
 ```
 
 ```tsx
-import { InkBloom } from "@vfx-ui/react";
+import { InkBloom } from "@/components/InkBloom";
 
 export function Demo() {
   return <InkBloom />;
@@ -36,7 +36,7 @@ export function Demo() {
 Import the preset bag and spread it into props:
 
 ```tsx
-import { INK_BLOOM_PRESETS } from "@vfx-ui/react";
+import { INK_BLOOM_PRESETS } from "@/components/InkBloom";
 ```
 
 ## Shader

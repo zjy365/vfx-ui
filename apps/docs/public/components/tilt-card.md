@@ -5,11 +5,11 @@ A porcelain card on a gimbal: the surface tilts in space while a specular highli
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/tilt-card.json
 ```
 
 ```tsx
-import { TiltCard } from "@vfx-ui/react";
+import { TiltCard } from "@/components/TiltCard";
 
 export function Demo() {
   return <TiltCard />;

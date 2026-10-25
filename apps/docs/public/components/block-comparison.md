@@ -5,11 +5,11 @@ Before/after comparison with a draggable reveal handle — keyboard (arrow keys,
 ## Install
 
 ```bash
-npm install @vfx-ui/react
+npx shadcn@latest add https://vfx-ui.com/r/block-comparison.json
 ```
 
 ```tsx
-import { BlockComparison } from "@vfx-ui/react";
+import { BlockComparison } from "@/components/BlockComparison";
 
 export function BeforeAfter() {
   return (
