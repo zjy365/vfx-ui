@@ -433,7 +433,7 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
               <h1>{shader.label}</h1>
               <div className="doc-actions">
                 <div className="export-control" ref={exportControlRef}>
-                  <button className="export-primary" disabled={exportBusy} onClick={copyPromptBundle}>
+                  <button className="export-primary" disabled={exportBusy} data-rybbit-event="copy_prompt_click" data-rybbit-prop-component={shader.id} onClick={copyPromptBundle}>
                     {promptCopied ? <><CheckIcon />Copied</> : <><CopyIcon />Copy Prompt</>}
                   </button>
                   <button
@@ -449,8 +449,8 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
                   </button>
                   {exportMenuOpen ? (
                     <div className="export-menu card" id="shader-export-menu" role="menu">
-                      <button role="menuitem" disabled={exportBusy} onClick={copyPromptBundle}>Copy Prompt</button>
-                      <button role="menuitem" disabled={exportBusy} onClick={copyUsageCode}>Copy Code</button>
+                      <button role="menuitem" disabled={exportBusy} data-rybbit-event="copy_prompt_click" data-rybbit-prop-component={shader.id} onClick={copyPromptBundle}>Copy Prompt</button>
+                      <button role="menuitem" disabled={exportBusy} data-rybbit-event="copy_code_click" data-rybbit-prop-component={shader.id} onClick={copyUsageCode}>Copy Code</button>
                       <button role="menuitem" onClick={() => copyExport(skillMarkdown, "SKILL.md copied")}>Copy SKILL.md</button>
                     </div>
                   ) : null}
@@ -736,6 +736,9 @@ function OpenShaderDocumentation({ shader, activeVariantId, onSearchTag, onSelec
                 ) : null}
                 <button
                   className="icon-btn inset-shadow"
+                  data-rybbit-event="copy_source_click"
+                  data-rybbit-prop-component={shader.id}
+                  data-rybbit-prop-tab={sourceTab}
                   aria-label="Copy source"
                   onClick={() => {
                     if (sourceTab === "usage") recordCopy();

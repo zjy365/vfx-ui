@@ -74,6 +74,7 @@ export function MainContentFooter({ onNavigate }: MainContentFooterProps) {
       <div className="main-content-footer__meta">
         <span>© {new Date().getFullYear()} VFX UI</span>
         <span>React · WebGPU · WGSL</span>
+        <span>Self-hosted Rybbit measures visits and selected clicks using a browser visitor identifier. No raw IP storage, session replay or clipboard capture.</span>
       </div>
     </footer>
   );

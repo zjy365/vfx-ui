@@ -46,6 +46,8 @@ export function InstallationSteps({ importName, onNotify }: InstallationStepsPro
             </div>
             <button
               className="icon-btn inset-shadow"
+              data-rybbit-event="copy_install_click"
+              data-rybbit-prop-package-manager={packageManager}
               aria-label="Copy install command"
               onClick={() => copyText(INSTALL_COMMANDS[packageManager]).then(() => onNotify("Copied"))}
             >
@@ -63,6 +65,8 @@ export function InstallationSteps({ importName, onNotify }: InstallationStepsPro
         <div className="code-card padded card code-inline">
           <button
             className="icon-btn inset-shadow copy-corner"
+            data-rybbit-event="copy_code_click"
+            data-rybbit-prop-component={importName}
             aria-label="Copy component import"
             onClick={() => copyText(`import { ${importName} } from "@vfx-ui/react";`).then(() => onNotify("Copied"))}
           >
