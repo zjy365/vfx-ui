@@ -72,6 +72,7 @@ function CopyInstall() {
   useEffect(() => () => clearTimeout(timer.current), []);
   return (
     <button
+      data-rybbit-event="copy_install_click"
       className="install-command"
       type="button"
       aria-label={state}
