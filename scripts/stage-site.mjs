@@ -33,6 +33,7 @@ for (const name of [
   "og-cover.png",
   "llms.txt",
   "agents.md",
+  "google0084f0785b157d7b.html",
 ]) {
   await cp(resolve(root, "apps/docs/public", name), resolve(publicDir, name), {
     recursive: true,
