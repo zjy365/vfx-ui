@@ -11,6 +11,7 @@ import {
   X,
 } from "lucide-react";
 import styles from "./site-header.module.css";
+import { PRO_PUBLISHED } from "../../../../catalog/publication.mjs";
 
 const links = [
   {
@@ -25,12 +26,12 @@ const links = [
     description: "Installation, guides & API reference",
     pro: false,
   },
-  {
+  ...(PRO_PUBLISHED ? [{
     href: "/templates/",
     label: "Templates",
     description: "Complete projects to make your own",
     pro: true,
-  },
+  }] : []),
 ];
 const componentSections = [
   "components",
@@ -144,19 +145,26 @@ export function MobileNavigation({ accountUrl = "" }: { accountUrl?: string }) {
           ))}
         </ul>
         <div className={styles.resources}>
-          <a href="https://github.com/zjy365/vfx-ui">
+          <a href="https://github.com/zjy365/vfx-ui" data-rybbit-event="github_click">
             <Github size={17} aria-hidden="true" />
             GitHub
             <ArrowUpRight size={14} aria-hidden="true" />
           </a>
           {accountUrl && (
-            <a href={`${accountUrl}/sign-in?next=%2Fpurchases`}>
+            <a
+              href={`${accountUrl}/sign-in?next=%2Fpurchases`}
+              data-rybbit-event="sign_in_click"
+            >
               Sign in
               <ArrowUpRight size={14} aria-hidden="true" />
             </a>
           )}
         </div>
-        <Link className={styles.startLink} href="/docs/installation/">
+        <Link
+          className={styles.startLink}
+          href="/docs/installation/"
+          data-rybbit-event="get_started_click"
+        >
           Get started
           <ArrowRight size={15} aria-hidden="true" />
         </Link>

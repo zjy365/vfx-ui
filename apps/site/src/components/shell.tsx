@@ -30,7 +30,11 @@ export function Header() {
         </div>
         <div className={styles.actions}>
           {accountUrl && (
-            <a className={styles.accountLink} href={`${accountUrl}/sign-in?next=%2Fpurchases`}>
+            <a
+              className={styles.accountLink}
+              href={`${accountUrl}/sign-in?next=%2Fpurchases`}
+              data-rybbit-event="sign_in_click"
+            >
               Sign in
             </a>
           )}
@@ -38,13 +42,18 @@ export function Header() {
             className={styles.githubLink}
             href="https://github.com/zjy365/vfx-ui"
             aria-label="VFX UI on GitHub"
+            data-rybbit-event="github_click"
           >
             <Github size={18} aria-hidden="true" />
             <span>GitHub</span>
           </a>
           <span className={styles.divider} aria-hidden="true" />
           <ThemeToggle />
-          <Link className={styles.startLink} href="/docs/installation/">
+          <Link
+            className={styles.startLink}
+            href="/docs/installation/"
+            data-rybbit-event="get_started_click"
+          >
             Get started <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>
@@ -67,8 +76,9 @@ export function Footer() {
         <span>Made for a more expressive web.</span>
       </div>
       <nav aria-label="Footer navigation">
-        <a href="https://github.com/zjy365/vfx-ui">GitHub</a>
+        <a href="https://github.com/zjy365/vfx-ui" data-rybbit-event="github_click">GitHub</a>
         <Link href="/docs/">Documentation</Link>
+        <Link href="/blog/">Articles</Link>
         <a href="/llms.txt">For AI agents</a>
         <Link href="/privacy/">Privacy</Link>
         <Link href="/terms/">Terms</Link>

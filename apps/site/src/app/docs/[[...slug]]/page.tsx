@@ -7,6 +7,8 @@ import {
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { notFound } from "next/navigation";
 import { source } from "@/lib/source";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbs, canonicalUrl, pageMetadata } from "@/lib/seo";
 export const dynamicParams = false;
 export function generateStaticParams() {
   return source.generateParams();
@@ -18,7 +20,8 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const page = source.getPage(slug);
-  return { title: page?.data.title, description: page?.data.description };
+  if (!page) notFound();
+  return pageMetadata({ title: page.data.title, description: page.data.description || "VFX UI React component documentation.", path: page.url });
 }
 export default async function Page({
   params,
@@ -31,6 +34,18 @@ export default async function Page({
   const MDX = page.data.body;
   return (
     <DocsPage toc={page.data.toc}>
+      <StructuredData data={[
+        breadcrumbs([
+          ...(slug?.length ? [{ name: "Docs", path: "/docs/" }] : []),
+          { name: page.data.title, path: page.url },
+        ]),
+        {
+          "@context": "https://schema.org", "@type": "TechArticle",
+          headline: page.data.title, description: page.data.description,
+          url: canonicalUrl(page.url), inLanguage: "en",
+          isPartOf: { "@type": "WebSite", name: "VFX UI", url: "https://vfx-ui.com/" },
+        },
+      ]} />
       <DocsTitle id="main" tabIndex={-1}>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>

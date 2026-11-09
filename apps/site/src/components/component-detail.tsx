@@ -79,10 +79,12 @@ export function ComponentDetail({
   item,
   variantId,
   fullscreen = false,
+  heading,
 }: {
   item: CatalogComponent;
   variantId?: string;
   fullscreen?: boolean;
+  heading?: string;
 }) {
   const initialVariant = item.variants?.find(
     (variant) => variant.id === variantId,
@@ -309,7 +311,7 @@ export function ComponentDetail({
     <div className="detail-workbench">
       <div className="dw-heading">
         <div>
-          <h1>{item.title}</h1>
+          <h1>{heading || item.title}</h1>
           <p>{initialVariant?.description || item.description}</p>
         </div>
         <div className="dw-heading-actions">
@@ -552,7 +554,7 @@ export function ComponentDetail({
           <div className="dw-usage-tabs">
             <h2>Usage</h2>
           </div>
-          <CopyButton label="Copy code" value={example} />
+          <CopyButton label="Copy code" value={example} event="copy_code_click" component={item.id} />
         </div>
         <div
           className="dw-code"
@@ -590,7 +592,7 @@ export function ComponentDetail({
             <div className="dw-install-body">
               <div className="dw-command">
                 <code>{command}</code>
-                <CopyButton value={command} />
+                <CopyButton value={command} component={item.id} />
               </div>
               <p>
                 Uses your configured components directory and @/ import alias.{" "}

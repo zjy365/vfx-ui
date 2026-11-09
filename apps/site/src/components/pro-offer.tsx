@@ -21,6 +21,7 @@ export function ProOffer({ template }: { template?: Template }) {
         <a
           className={styles.selectorCta}
           href={`${accountUrl}/buy/${product.id}`}
+          data-rybbit-event="pro_buy_click"
         >
           Get Pro Lifetime · ${product.price}
           <ArrowRight size={17} aria-hidden="true" />
@@ -63,7 +64,7 @@ export function ProOffer({ template }: { template?: Template }) {
             <ArrowRight size={14} aria-hidden="true" />
           </a>
         )}
-        <Link href="/docs/license/">
+        <Link href="/docs/pro-license/">
           Read the license
           <ArrowRight size={14} aria-hidden="true" />
         </Link>
@@ -96,7 +97,7 @@ function CollectionPricing() {
             <br />
             For personal projects and client work.
           </p>
-          <Link href="/docs/license/" className={styles.inlineLink}>
+          <Link href="/docs/pro-license/" className={styles.inlineLink}>
             Single-user commercial license
             <ArrowRight size={15} aria-hidden="true" />
           </Link>
@@ -125,6 +126,7 @@ function CollectionPricing() {
               <a
                 href={`${accountUrl}/buy/${product.id}`}
                 className={styles.selectorCta}
+                data-rybbit-event="pro_buy_click"
               >
                 Get Pro Lifetime · ${product.price}
                 <ArrowRight size={16} aria-hidden="true" />

@@ -2389,3 +2389,15 @@ html.dark .preview-back {
     bottom: 16px;
   }
 }
+.topic-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  margin-block: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+.topic-links a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}

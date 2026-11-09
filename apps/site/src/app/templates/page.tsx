@@ -5,24 +5,34 @@ import { TemplateCard } from "@/components/template-preview";
 import { ProProductSelector } from "@/components/pro-product-selector";
 import { accountUrl, templates, product } from "@/lib/catalog";
 import styles from "@/components/pro-storefront.module.css";
+import { notFound } from "next/navigation";
+import { PRO_PUBLISHED } from "../../../../../catalog/publication.mjs";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbs, collectionData, pageMetadata, templateTitle } from "@/lib/seo";
 
-export const metadata = {
-  title: "Pro templates, accounts and workspaces",
+export const metadata = pageMetadata({
+  title: "Next.js Website & SaaS Templates",
   description:
-    "Pro Lifetime includes every Next.js template and future releases for $199 once. Explore the designs and manage your source downloads.",
-};
+    "Explore editable Next.js templates for agencies, marketing, research and SaaS products. Compare page previews, source contents and setup requirements.",
+  path: "/templates/",
+});
 
 export default function Templates() {
+  if (!PRO_PUBLISHED) notFound();
   return (
     <Shell>
       <main id="main" className={styles.page}>
+        <StructuredData data={[
+          breadcrumbs([{ name: "Next.js templates", path: "/templates/" }]),
+          collectionData("Next.js Website & SaaS Templates", "Editable Next.js project source and previews.", "/templates/", templates.map(item => ({ title: templateTitle(item), path: `/templates/${item.id}/` }))),
+        ]} />
         <div className={styles.width}>
           <section
             className={styles.productIntro}
             aria-labelledby="collection-title"
           >
             <h1 id="collection-title">
-              Your next idea.
+              Next.js templates.
               <br />
               With a working foundation.
             </h1>

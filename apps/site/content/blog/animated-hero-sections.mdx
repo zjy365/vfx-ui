@@ -1,0 +1,88 @@
+---
+title: "12 React Hero Section Ideas with Editable Examples"
+description: "Choose a React hero section from 12 editable examples: contours, eclipse, fluid gradients, aurora, globe and more. Compare runtimes and plan accessible content."
+---
+
+A hero section needs to explain your product and offer a useful next action. Animation can support that message, but the headline, link and layout must work before an effect starts.
+
+These twelve examples come from the [VFX UI hero library](/heroes/). Each has editable React source and a live preview. The runtime labels below describe these implementations; a similar visual could also be built with a different technique.
+
+## Start with content and a runtime
+
+Write your headline, supporting sentence and main action first. Then choose a background or interaction that leaves enough contrast for them.
+
+VFX UI contains DOM/SVG, WebGL and WebGPU hero sections. DOM-based examples do not require WebGPU. WebGL and WebGPU examples need the corresponding browser and device support. A runtime name alone does not predict performance: measure the actual effect and viewport you intend to ship.
+
+## Two starting points without WebGPU
+
+### 1. Contour lines for an editorial layout
+
+[Hero Contour](/heroes/hero-contour/) uses SVG linework around editable headline content. Try it for a portfolio, studio or product page where the typography should remain the main visual element. Replace the demonstration copy before judging whether the composition fits.
+
+### 2. Eclipse for a pointer interaction
+
+[Hero Eclipse](/heroes/hero-eclipse/) uses a DOM-based implementation with an optional pointer interaction. Use the live controls to compare its interactive and resting states. Touch users still need a useful layout without a hover gesture.
+
+## A WebGL option for a global product story
+
+### 3. Globe beside a focused message
+
+[Hero Globe](/heroes/hero-globe/) uses WebGL. It can accompany a message about a distributed service or community, provided the illustration reflects what your product actually does. Keep the message and main link in HTML, and test the rendering on your intended devices.
+
+## Nine WebGPU directions to preview
+
+### 4. A flowing color field
+
+[Hero Fluid](/heroes/hero-fluid/) pairs a fluid shader with headline content. Begin with a small palette drawn from your brand and compare slow motion with a still state. The background should not make text contrast change unpredictably.
+
+### 5. Aurora bands
+
+[Hero Aurora](/heroes/hero-aurora/) offers a light-band treatment. Look at its brightest parts behind the text, rather than judging contrast from one screenshot.
+
+### 6. Fine fiber streams
+
+[Hero Fiber](/heroes/hero-fiber/) provides a thread-like background. Try it when you want visible motion without a large illustrated object competing with the headline.
+
+### 7. Mesh gradients
+
+[Hero Mesh](/heroes/hero-mesh/) uses a mesh-style field. Adjust the colors to fit the rest of the page, and check whether the next section creates a clear transition out of the hero.
+
+### 8. A starfield
+
+[Hero Starfield](/heroes/hero-starfield/) creates a space-like background. The effect is suitable when that visual language fits the product; it does not need to become the theme of every section below it.
+
+### 9. A vortex
+
+[Hero Vortex](/heroes/hero-vortex/) introduces a stronger sense of movement. Compare it with a quieter hero before choosing it. A visually active background can make a short message harder to scan.
+
+### 10. Ribbon movement
+
+[Hero Ribbon](/heroes/hero-ribbon/) uses a ribbon-like shader. Check the live preview at your intended aspect ratio: the composition of a background can change substantially between a wide monitor and a phone.
+
+### 11. A particle field
+
+[Hero Particles](/heroes/hero-particles/) is another way to give the background depth. Test it on a slower device as well as your development computer; do not assume the preview's frame rate will carry over.
+
+### 12. A black-hole treatment
+
+[Hero Black Hole](/heroes/hero-black-hole/) provides a more concentrated visual center. Keep your main action visually distinct from that center so the effect does not become a false interaction target.
+
+## Install one and make it yours
+
+For an existing shadcn-configured React project, start with:
+
+```bash
+npx shadcn@latest add https://vfx-ui.com/r/hero-contour.json
+```
+
+Then follow the [React and Next.js installation example](/docs/installation/). The registry adds editable source; inspect the generated files and update the import if your project uses a different alias.
+
+## Check the complete section before publishing
+
+- The heading and call to action are selectable HTML content.
+- The section has useful content when the animation is unavailable.
+- The layout works on a narrow screen and with long replacement copy.
+- Keyboard focus is visible and touch users do not depend on hover.
+- Motion preferences and GPU initialization failures have been checked.
+
+See [compatibility and accessibility](/docs/accessibility/) for the checklist, then continue with the [WebGPU background installation guide](/blog/webgpu-backgrounds/) or [browse all free components](/components/).

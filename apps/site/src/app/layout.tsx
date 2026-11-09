@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
+import { homeTitle, homeDescription, siteOrigin } from "@/lib/seo";
 import "@fontsource-variable/manrope";
 import "@fontsource/dm-mono/400.css";
 import "@fontsource-variable/bricolage-grotesque";
@@ -7,13 +9,12 @@ import "./global.css";
 import "./motion.css";
 import "./exhibit.css";
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vfx-ui.com"),
+  metadataBase: new URL(siteOrigin),
   title: {
-    default: "VFX UI — React components. Unexpected character.",
+    default: `${homeTitle} · VFX UI`,
     template: "%s · VFX UI",
   },
-  description:
-    "Free, open source React components. Shaders, expressive headers and footers, and complete Pro landing page templates.",
+  description: homeDescription,
   openGraph: { type: "website", images: ["/og-cover.png"] },
   icons: { icon: "/favicon.svg" },
 };
@@ -31,6 +32,11 @@ export default function RootLayout({
           </a>
           {children}
         </ThemeProvider>
+        <Script
+          id="vfx-rybbit"
+          src="https://stats.lzgpt.top/api/script.js?siteId=5"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

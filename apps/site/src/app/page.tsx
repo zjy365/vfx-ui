@@ -4,6 +4,10 @@ import { Shell } from "@/components/shell";
 import { LiveExhibit } from "@/components/live-exhibit";
 import { CopyButton } from "@/components/copy-button";
 import { components } from "@/lib/catalog";
+import { StructuredData } from "@/components/structured-data";
+import { homeTitle, homeDescription, pageMetadata, siteOrigin } from "@/lib/seo";
+
+export const metadata = pageMetadata({ title: homeTitle, description: homeDescription, path: "/" });
 
 export default function Home() {
   const pick = (id: string) => components.find((item) => item.id === id)!;
@@ -12,19 +16,19 @@ export default function Home() {
   return (
     <Shell>
       <main id="main" className="exhibit-home">
+        <StructuredData data={{ "@context": "https://schema.org", "@type": "WebSite", name: "VFX UI", url: siteOrigin + "/", description: homeDescription }} />
         <section
           className="exhibit-introduction exhibit-width"
           aria-labelledby="home-title"
         >
           <h1 id="home-title">
-            React components.
+            Free React components.
             <br />
             Unexpected character.
           </h1>
           <div>
             <p>
-              Shaders that move. Heroes that draw you in. Footers worth
-              scrolling for.
+              Animated backgrounds, hero sections and footers for React and Next.js.
               <br />
               Free, open source, and yours to shape.
             </p>
@@ -119,12 +123,15 @@ export default function Home() {
           <div>
             <h2 id="source-title">Your code. Your canvas.</h2>
             <p>
-              Pick a component, change the feel, and take the source. Use the
-              registry, npm, or hand it to your AI agent.
+              Start with a <Link href="/heroes/">React hero section</Link>, an{" "}
+              <Link href="/backgrounds/">animated background</Link> or a{" "}
+              <Link href="/footers/">footer component</Link>. Install editable
+              source with the shadcn registry, then make it your own.
             </p>
             <Link className="exhibit-link" href="/docs/installation/">
               Read the installation guide <ArrowRight size={16} />
             </Link>
+            <p>Need a starting point? Read our <Link href="/blog/">React UI guides and examples</Link>.</p>
           </div>
           <div className="exhibit-terminal">
             <div>

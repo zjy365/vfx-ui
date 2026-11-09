@@ -5,11 +5,14 @@ import { Shell } from "@/components/shell";
 import { TemplateCard, TemplatePreview } from "@/components/template-preview";
 import { ProOffer } from "@/components/pro-offer";
 import { templateSummary } from "@/components/pro-storefront";
-import { templates } from "@/lib/catalog";
+import { templates, deferredTemplateIds } from "@/lib/catalog";
+import { PRO_PUBLISHED } from "../../../../../../catalog/publication.mjs";
 import styles from "@/components/pro-storefront.module.css";
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbs, canonicalUrl, pageMetadata, templateTitle } from "@/lib/seo";
 
 export function generateStaticParams() {
-  return templates.map(({ id }) => ({ id }));
+  return deferredTemplateIds.map(id => ({ id }));
 }
 export const dynamicParams = false;
 export async function generateMetadata({
@@ -18,13 +21,10 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  if (!PRO_PUBLISHED) notFound();
   const item = templates.find((template) => template.id === id);
-  return {
-    title: item
-      ? `${item.brand} · ${item.title} Pro template`
-      : "Template not found",
-    description: item?.description,
-  };
+  if (!item) notFound();
+  return pageMetadata({ title: templateTitle(item), description: item.description, path: `/templates/${item.id}/`, image: item.thumbnail });
 }
 
 export default async function Template({
@@ -33,6 +33,7 @@ export default async function Template({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  if (!PRO_PUBLISHED) notFound();
   const item = templates.find((template) => template.id === id);
   if (!item) notFound();
   const related = templates
@@ -41,14 +42,24 @@ export default async function Template({
   return (
     <Shell>
       <main id="main" className={`${styles.page} ${styles.width}`}>
+        <StructuredData data={[
+          breadcrumbs([{ name: "Next.js templates", path: "/templates/" }, { name: templateTitle(item), path: `/templates/${item.id}/` }]),
+          {
+            "@context": "https://schema.org", "@type": "CreativeWork",
+            name: templateTitle(item), description: item.description,
+            url: canonicalUrl(`/templates/${item.id}/`),
+            // Sales remain gated: do not advertise a purchasable Offer or rating.
+            isPartOf: { "@type": "CollectionPage", url: canonicalUrl("/templates/") },
+          },
+        ]} />
         <Link className={styles.backLink} href="/templates/">
           <ArrowLeft size={16} aria-hidden="true" /> All templates
         </Link>
         <section className={styles.templateDetailTop}>
           <div>
-            <h1>{item.brand}</h1>
+            <h1>{templateTitle(item)}</h1>
             <p>
-              {item.title} template · {item.category}
+              {item.brand} · {item.category}
             </p>
           </div>
           <p>{templateSummary(item)}</p>

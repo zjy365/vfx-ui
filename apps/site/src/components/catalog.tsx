@@ -374,7 +374,7 @@ export function Catalog({
       {heading && (
         <div className={styles.intro}>
           <div>
-            <h1>Find your next signature.</h1>
+            <h1>Free React components.</h1>
             <p>
               Shaders, page sections, and the interactions in between. All free.
               All yours.

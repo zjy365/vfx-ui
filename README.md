@@ -55,13 +55,9 @@ npx shadcn@latest add https://vfx-ui.com/r/liquid-glass.json
 
 Self-contained sources land in `components/` — you own the code. Registry follows the [shadcn registry format](https://ui.shadcn.com/docs/registry); index at [`registry/dist/index.json`](registry/dist/index.json).
 
-## Pro
+## Free library
 
-Free components remain open source under MIT. Pro sells complete landing page projects in a separate private repository.
-
-The current offer is **Pro Lifetime: $199 USD once** for all six current and future Pro templates: Agency, Marketing, User Research, AI Workspace, Hosting and Signal. It licenses one user for unlimited personal and client end products, with lifetime use and updates. Individual templates are not currently offered for new purchases; existing license scopes remain valid. Separately sold content-creation skills and hosted services are excluded.
-
-[Explore Pro templates](https://vfx-ui.com/templates/). Public previews require no login; complete project downloads require a purchase. Availability is shown on the product page. Checkout remains disabled until the release and payment services are ready.
+The public website currently publishes the free MIT component library, installation guides and three practical React UI articles. Browsing and source installation require no account. No checkout or account service is exposed by this release.
 
 ## For AI agents
 
@@ -96,18 +92,20 @@ Pages build settings: repository root, Node.js `22`, pnpm `8.15.9`, output
 `apps/docs/dist`, and this build command:
 
 ```sh
-node registry/build.mjs && node scripts/generate-agentic.mjs && mkdir -p apps/docs/public/r && cp registry/dist/r/*.json apps/docs/public/r/ && cp registry/dist/index.json apps/docs/public/r/index.json && pnpm --filter @vfx-ui/docs build
+pnpm --filter @vfx-ui/docs build
 ```
 
 The `Check public product build` GitHub workflow validates builds; Cloudflare handles
 publishing through its GitHub integration without a GitHub Actions API token.
-Set `NEXT_PUBLIC_ACCOUNT_URL` to the deployed `vfx-ui-pro` account service URL
-before building the public site. It enables Sign in, purchase options and source
-downloads links. Local development defaults to `http://localhost:3200`; production
-has no localhost fallback. OAuth, payment and delivery configuration stays in the
-private account service, which decides whether checkout can actually open.
+The publication policy in `catalog/publication.mjs` currently exports only the free library. Account links remain disabled regardless of `NEXT_PUBLIC_ACCOUNT_URL`; deferred template routes, documentation and assets are omitted from the final static export.
 Custom domains are configured in Pages and use proxied CNAME records pointing
 to `vfx-ui-site.pages.dev`. This is the sole Pages project for this website.
+
+For a local deployment handoff, run `pnpm release:free`. It builds the static site,
+verifies its SEO and crawlable links, and writes a checksummed archive under
+`output/free-site/`. It never uploads or deploys. See [the deployment handoff](docs/free-site-deployment.md).
+Three free articles are published from `apps/site/content/blog/`; the template-selection article is preserved but excluded by the publication policy. The original
+`content-drafts/` reference files are not part of the site build.
 
 ## License & credits
 
@@ -141,4 +139,4 @@ The Glass collection now uses original ray-marched solids: a beveled card, a bic
 
 `RadiantDots` adds an orbital or square light field with real jump-flooded distance fields and radiance cascades. The pipeline is adapted from [Vercel's MIT example](https://vgpu.labs.vercel.dev/examples/agent-radiance-cascades); the arrangement and choreography are VFX UI's. It suspends continuous rendering offscreen, in hidden tabs, and under reduced motion. See [the design and implementation record](docs/design/glass.md).
 
-Pro thumbnails in `previews/` have a separate preview license. The MIT license continues to cover the free component library. Paid template source and the purchase service live in the separate local `vfx-ui-pro` directory and are excluded from Git tracking. Obsolete templates, pricing pages and static concept previews have been removed from this repository.
+The MIT license covers the free component library and its applicable open-source notices. Deferred preview assets in `previews/` are not part of the published free-site export; their own notices remain with their source files.

@@ -1,10 +1,11 @@
 import { Shell } from "@/components/shell";
-export const metadata = { title: "Privacy" };
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata({ title: "Privacy", description: "How the free VFX UI website handles public library browsing, local preview controls, request information and links to external services.", path: "/privacy/" });
 export default function Privacy() {
   return (
     <Shell>
       <main id="main" className="prose-page page-width">
-        <p className="eyebrow">LAST UPDATED / OCTOBER 22, 2026</p>
+        <p className="eyebrow">FREE COMPONENT LIBRARY</p>
         <h1>Privacy</h1>
         <p>
           The public VFX UI library can be browsed without an account. Component
@@ -17,19 +18,31 @@ export default function Privacy() {
           Links to GitHub and external services are governed by those services’
           policies.
         </p>
-        <h2>Purchases and accounts</h2>
+        <h2>Browsing without an account</h2>
         <p>
-          When the Pro store is available, the account service will process your
-          OAuth identity, email address, session cookies, purchase records and
-          download history. The payment provider handles payment details; VFX UI
-          does not store card numbers.
+          This website does not offer account registration or collect payments.
+          You do not need to provide an email address to browse the library or
+          copy component source.
         </p>
-        <h2>Your data</h2>
+        <h2>Website analytics</h2>
         <p>
-          Account data is used for sign-in, purchase access, support and
-          preventing abuse. Purchase records may need to be retained for tax and
-          accounting obligations. A support contact and account data request
-          process will be provided in the store before checkout is enabled.
+          We use our self-hosted Rybbit service at stats.lzgpt.top to measure
+          page visits, navigation and interactions such as installation and
+          code-copy button clicks. Rybbit stores a visitor identifier in your
+          browser. Its current tracking configuration also enables session
+          replay, error reporting and form interaction tracking.
+        </p>
+        <p>
+          Button events identify the action and, where relevant, the component.
+          These event properties do not include the code being copied.
+          Page addresses, including shared settings in URL parameters, may
+          appear in analytics.
+        </p>
+        <h2>Local controls</h2>
+        <p>
+          Component settings and searches run in your browser. A shared component
+          URL can include the settings you chose; review its contents before
+          sharing it with another person.
         </p>
         <h2>Preview isolation</h2>
         <p>

@@ -1,0 +1,62 @@
+---
+title: "5 Aceternity UI Alternatives for React Projects"
+description: "Compare Magic UI, Animata, Cult UI, Motion and VFX UI by workflow and project needs. Choose editable React components or build a custom animation."
+---
+
+An Aceternity UI alternative should solve a particular problem: a different visual direction, a better fit for your existing components, or more control over one interaction. Start with that problem rather than a ranking of libraries.
+
+We build VFX UI, which is one of the options below. This guide distinguishes component collections from animation tools and avoids treating catalog size as a measure of quality.
+
+## Start with the page you need
+
+[Aceternity UI](https://ui.aceternity.com/) provides React components, blocks and templates using Tailwind CSS and Motion. Before replacing it, decide whether you need a complete page, a copyable section or a lower-level animation library. Those choices lead to different kinds of work.
+
+| Option | Starting point | What to evaluate |
+| --- | --- | --- |
+| Magic UI | Animated React components and effects | Fit with your Tailwind and shadcn setup |
+| Animata | Copyable animated React examples | Source structure and behavior of the individual example |
+| Cult UI | Components for shadcn/ui projects | Dependencies and styling conventions |
+| Motion | Animation APIs for React | Time needed to design and implement your own interaction |
+| VFX UI | Editable React sections and visual effects | Component runtime, browser support and source installation |
+
+The distinctions in the final column are our selection criteria. They are not a claim that another library lacks those capabilities.
+
+## 1. Magic UI for an existing shadcn workflow
+
+[Magic UI](https://magicui.design/) describes its components as built with React, TypeScript, Tailwind CSS and Motion, and designed to accompany shadcn/ui. It is a sensible place to look when your project already uses those conventions.
+
+Choose one example and inspect its imports before adding it. Check how its colors, spacing and animation settings fit the page you already have. A coordinated interface usually needs fewer effects than a component showcase.
+
+## 2. Animata for copyable interaction examples
+
+[Animata](https://animata.design/) offers free, open-source animated React components that you can copy into a project. Its catalog spans backgrounds, cards, text and other interface patterns.
+
+Use the individual source example as your unit of evaluation. Keyboard behavior, touch interaction and reduced motion matter more than the number of examples in a collection.
+
+## 3. Cult UI for shadcn-based components
+
+[Cult UI](https://www.cult-ui.com/) provides open-source animated components intended for shadcn/ui projects. Browse it when that setup matches your application and you want another set of components to adapt.
+
+Read the license and dependencies attached to the particular item you choose. A library's free component catalog and any separate commercial products can have different terms.
+
+## 4. Motion for a custom animation
+
+[Motion for React](https://motion.dev/docs/react) provides animation, layout and gesture APIs. It is an animation tool rather than a replacement catalog of complete landing page sections.
+
+Choose it when the behavior itself needs to be designed: a particular transition, a draggable control or an interaction tied to your product. You will still provide the layout, content and accessibility behavior around that animation.
+
+## 5. VFX UI for editable sections and visual effects
+
+[VFX UI's free library](/components/) includes React hero sections, footers, page blocks, text effects and interactive cards. Some use DOM, CSS or SVG; other effects use WebGL or WebGPU. The component page identifies its runtime.
+
+Try [Hero Contour](/heroes/hero-contour/) for an SVG-based section, [Hero Eclipse](/heroes/hero-eclipse/) for a pointer interaction, or [Fluid Gradient](/backgrounds/fluid-gradient/) for a WebGPU background. Install editable source through the [shadcn registry guide](/docs/installation/). The current npm release does not cover this entire catalog.
+
+The VFX UI components in the public library use MIT. See the [license guide](/docs/license/) for commercial use and source redistribution.
+
+## A practical selection process
+
+Pick a single section you need, replace its demo copy, and test it in your application. Check a narrow viewport, keyboard navigation and reduced motion. For GPU effects, also test a device where the effect cannot initialize.
+
+Keep the option that makes your actual page easier to understand and maintain. You do not need to adopt every component or animation technique from the same collection.
+
+Next: explore [React hero section ideas](/blog/animated-hero-sections/) or learn how to add a [WebGPU background with a fallback](/blog/webgpu-backgrounds/).

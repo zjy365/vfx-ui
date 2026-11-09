@@ -1,0 +1,94 @@
+---
+title: "WebGPU Backgrounds in React: Installation and Fallbacks"
+description: "Add an editable WebGPU background to a React or Next.js page. Keep text in HTML, provide a static fallback and check browser support and motion preferences."
+---
+
+A WebGPU background renders a visual effect on a canvas while the rest of your page remains ordinary HTML. It can be useful for a flowing gradient or a shader-based field. You do not need it for every animation: CSS, SVG, Canvas 2D and WebGL are also valid options.
+
+This guide uses VFX UI's [Fluid Gradient](/backgrounds/fluid-gradient/). The implementation is available as editable source, so you can inspect both the shader and its React wrapper.
+
+## What WebGPU changes
+
+WebGPU exposes GPU rendering and computation to web applications. VFX UI's WebGPU backgrounds use WGSL shader programs to generate their visuals. A shader changes how an effect is rendered; it does not make an animation automatically faster or a page automatically better.
+
+If a CSS gradient already does what your design needs, keep it. Choose a shader when its specific visual behavior is useful enough to justify testing and maintaining it.
+
+## Check support before choosing an effect
+
+Support depends on the browser, operating system, device and GPU configuration. An exposed API does not guarantee that an adapter or device can be created. WebGPU also requires a secure context in supporting browsers. Check the current [MDN compatibility information](https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API#browser_compatibility) and test the environments your visitors actually use.
+
+Keep the page useful if initialization fails. A static color or gradient is often enough for a decorative background. Essential text, navigation and form controls should remain outside the canvas.
+
+## Install the React component
+
+Initialize shadcn if your existing project needs it, then add the component:
+
+```bash
+npx shadcn@latest init
+npx shadcn@latest add https://vfx-ui.com/r/fluid-gradient.json
+```
+
+With the default component alias, the import is `@/components/FluidGradient`. Your `components.json` determines where the source is written. Use the [installation guide](/docs/installation/) if you need to adapt the import or the Next.js client boundary.
+
+The currently published VFX UI npm package does not include every component in this catalog. Use the registry command for the example in this guide.
+
+## Keep the headline separate from the background
+
+Put the interactive wrapper in a client component:
+
+```tsx
+"use client";
+
+import { FluidGradient } from "@/components/FluidGradient";
+
+export function ProductHero() {
+  return (
+    <section className="product-hero">
+      <div className="product-hero-art" aria-hidden="true">
+        <FluidGradient
+          speed={0.25}
+          interactive={false}
+          style={{ width: "100%", height: "100%" }}
+          fallback={<div className="product-hero-fallback" />}
+        />
+      </div>
+      <div className="product-hero-copy">
+        <h1>A clear place to start.</h1>
+        <p>Describe your product in one useful sentence.</p>
+        <a href="#features">Explore the features</a>
+      </div>
+    </section>
+  );
+}
+```
+
+Add the following to your stylesheet. The illustration has its own bounds and cannot intercept the link:
+
+```css
+.product-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 28rem;
+  background: #102f49;
+  color: white;
+}
+.product-hero-art { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.product-hero-fallback { width: 100%; height: 100%; background: linear-gradient(135deg, #102f49, #355c7d); }
+.product-hero-copy { max-width: 44rem; padding: 4rem 1.5rem; }
+```
+
+In Next.js, import `ProductHero` into your page; the page itself can remain a Server Component. Replace the demonstration content and verify text contrast throughout the animation.
+
+## Treat motion and performance as separate checks
+
+Check reduced-motion behavior for the particular effect you install. Slowing an animation is not the same as providing a still version. The [accessibility guide](/docs/accessibility/) explains what to verify and how to keep a static alternative useful.
+
+Measure the complete page on representative devices. Watch canvas dimensions, device-pixel ratio, multiple simultaneous effects and behavior when the section is off screen. GPU rendering still uses device resources; there is no universal frame-rate or battery-life guarantee.
+
+For a first page, use one effect and compare it with the static fallback. If the animation makes the page harder to read or too expensive to render, simplify it or remove it.
+
+## Choose a different starting point when appropriate
+
+[Hero Contour](/heroes/hero-contour/) uses SVG without a WebGPU dependency. [Hero Globe](/heroes/hero-globe/) uses WebGL. Other [background components](/backgrounds/) have their own requirements, which are listed on their detail pages.
+
+Next: compare [hero section ideas](/blog/animated-hero-sections/) or browse the [free component library](/components/).

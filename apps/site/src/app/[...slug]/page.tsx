@@ -4,12 +4,8 @@ import { Header, Footer } from "@/components/shell";
 import { ComponentDetail } from "@/components/component-detail";
 import { Catalog } from "@/components/catalog";
 import { components, categories } from "@/lib/catalog";
-const segment = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/\.js\b/g, "-js")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+import { StructuredData } from "@/components/structured-data";
+import { breadcrumbs, canonicalUrl, categoryContent, collectionData, componentTitle, pageMetadata, routeSegment as segment, siteOrigin } from "@/lib/seo";
 const tags = [...new Set(components.flatMap((x) => x.tags))];
 function selection(path: string) {
   for (const item of components) {
@@ -39,14 +35,25 @@ export async function generateMetadata({
 }) {
   const { slug } = await params;
   const selected = selection("/" + slug.join("/"));
-  return selected
-    ? {
-        title: selected.item.title,
-        description: selected.item.description,
-        alternates: { canonical: selected.item.path + "/" },
-        openGraph: { images: [selected.item.thumbnail] },
-      }
-    : { title: "Free component collection" };
+  if (selected) return pageMetadata({
+    title: componentTitle(selected.item),
+    description: selected.item.description,
+    // Presets share a component's search intent and consolidate to its main page.
+    path: selected.item.path,
+    image: selected.item.thumbnail,
+  });
+  const category = categories.find(x => segment(x) === slug[0] && slug.length === 1);
+  const tag = slug.length === 3 && slug[0] === "components" && slug[1] === "tag"
+    ? tags.find(x => segment(x) === slug[2]) : undefined;
+  if (category) return pageMetadata({ ...categoryContent[category], path: `/${segment(category)}/` });
+  if (tag) return pageMetadata({
+    title: `${tag} React components`,
+    description: `Browse React components tagged ${tag}. Preview the designs and install editable source.`,
+    path: `/components/tag/${segment(tag)}/`,
+    // Uncurated filter combinations are navigation aids, not search landing pages.
+    index: false,
+  });
+  notFound();
 }
 export default async function Page({
   params,
@@ -60,7 +67,7 @@ export default async function Page({
     (x) => segment(x) === slug[0] && slug.length === 1,
   );
   const tag =
-    slug[0] === "components" && slug[1] === "tag"
+    slug.length === 3 && slug[0] === "components" && slug[1] === "tag"
       ? tags.find((x) => segment(x) === slug[2])
       : undefined;
   if (!selected && !category && !tag) notFound();
@@ -70,6 +77,20 @@ export default async function Page({
       {selected ? (
         <div className="component-product page-width">
           <main id="main" className="component-detail">
+            <StructuredData data={[
+              breadcrumbs([
+                { name: "Free React components", path: "/components/" },
+                { name: selected.item.category, path: `/${segment(selected.item.category)}/` },
+                { name: selected.item.title, path: selected.item.path },
+              ]),
+              {
+                "@context": "https://schema.org", "@type": "SoftwareSourceCode",
+                name: componentTitle(selected.item), description: selected.item.description,
+                url: canonicalUrl(selected.item.path), image: new URL(selected.item.thumbnail, siteOrigin).href,
+                programmingLanguage: selected.item.runtime === "webgpu" ? ["TypeScript", "WGSL"] : ["TypeScript"],
+                codeSampleType: "full", license: "https://opensource.org/license/mit",
+              },
+            ]} />
             <p className="eyebrow breadcrumb">
               <Link href="/components/">← THE FREE LIBRARY</Link> /{" "}
               <Link href={"/" + segment(selected.item.category) + "/"}>
@@ -81,15 +102,30 @@ export default async function Page({
               key={selected.item.id + ":" + (selected.variant?.id || "default")}
               item={selected.item}
               variantId={selected.variant?.id}
+              heading={componentTitle(selected.item)}
             />
+            <nav className="topic-links" aria-label="Component guides">
+              <Link href="/docs/installation/">Install in React or Next.js</Link>
+              <Link href="/docs/accessibility/">Browser support and accessibility</Link>
+              <Link href={`/${segment(selected.item.category)}/`}>More {selected.item.category.toLowerCase()}</Link>
+            </nav>
           </main>
         </div>
       ) : (
         <main id="main" className="catalog-page page-width">
+          {category && <StructuredData data={[
+            breadcrumbs([{ name: "Free React components", path: "/components/" }, { name: category, path }]),
+            collectionData(categoryContent[category].title, categoryContent[category].description, path, components.filter(item => item.visible && item.category === category)),
+          ]} />}
           <div className="page-intro">
             <p className="eyebrow">THE FREE LIBRARY</p>
-            <h1>{category || tag}</h1>
-            <p>Editable React components, free for commercial projects.</p>
+            <h1>{category ? categoryContent[category].title : `${tag} React components`}</h1>
+            <p>{category ? categoryContent[category].description : "Editable React components, free for commercial projects."}</p>
+            <nav className="topic-links" aria-label="Collection guides">
+              <Link href="/components/">All React components</Link>
+              <Link href="/docs/installation/">Installation guide</Link>
+              <Link href="/docs/accessibility/">Compatibility and accessibility</Link>
+            </nav>
           </div>
           <Catalog
             key={category || tag || "all"}

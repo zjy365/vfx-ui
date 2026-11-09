@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { legacyRedirects } from "../catalog/redirects.mjs";
+import { PRO_PUBLISHED } from "../catalog/publication.mjs";
 const root = fileURLToPath(new URL("..", import.meta.url));
 const publicDir = resolve(root, "apps/site/public");
 execFileSync(process.execPath, ["scripts/build-catalog.mjs"], {
@@ -48,7 +49,7 @@ await cp(
   resolve(root, "registry/dist/registry.json"),
   resolve(publicDir, "r/registry.json"),
 );
-await cp(
+if (PRO_PUBLISHED) await cp(
   resolve(root, "previews/thumbnails"),
   resolve(publicDir, "templates/thumbnails"),
   { recursive: true },
@@ -68,14 +69,14 @@ await writeFile(
 );
 await writeFile(
   resolve(publicDir, "_headers"),
-  "/r/*\n  Access-Control-Allow-Origin: *\n  X-Content-Type-Options: nosniff\n/*\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Content-Type-Options: nosniff\n",
+  "/r/*\n  Access-Control-Allow-Origin: *\n  X-Content-Type-Options: nosniff\n/preview-runtime/index.html\n  X-Robots-Tag: noindex, follow\n/*\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Content-Type-Options: nosniff\n",
 );
 const catalog = JSON.parse(
   await readFile(resolve(root, "catalog/generated.json"), "utf8"),
 );
 await writeFile(
   resolve(publicDir, "_redirects"),
-  legacyRedirects(catalog.components)
+  legacyRedirects(catalog.components).filter(([from, to]) => PRO_PUBLISHED || (!/^\/(?:pro|templates)(?:\/|$)/.test(from) && !to.startsWith("/templates/")))
     .map(([from, to]) => `${from} ${to} 301`)
     .join("\n") + "\n",
 );

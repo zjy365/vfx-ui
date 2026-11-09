@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Shell } from "@/components/shell";
-export const metadata = { title: "Terms" };
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata({ title: "Terms", description: "Terms for the free VFX UI React component library: MIT licensing, source notices, browser compatibility and external service requirements.", path: "/terms/" });
 export default function Terms() {
   return (
     <Shell>
       <main id="main" className="prose-page page-width">
-        <p className="eyebrow">LAST UPDATED / OCTOBER 22, 2026</p>
+        <p className="eyebrow">FREE COMPONENT LIBRARY</p>
         <h1>Terms</h1>
         <h2>Open source library</h2>
         <p>
@@ -13,29 +14,27 @@ export default function Terms() {
           disclaimer. Review the source and test compatibility before using it
           in your product.
         </p>
-        <h2>Pro collection</h2>
+        <h2>Use and redistribution</h2>
         <p>
-          Pro is a separate commercial source license for complete landing page
-          projects. The product page identifies availability, included projects,
-          price and update period. No payment is collected while a collection is
-          unavailable.
+          You may adapt the free components for personal, commercial and client
+          projects under their applicable licenses. Retain copyright and license
+          notices when redistributing source.
         </p>
         <p>
-          Read the <Link href="/docs/license/">license</Link> for permitted use,
-          client projects and source redistribution restrictions. Terms
-          presented at checkout govern a purchase.
+          Read the <Link href="/docs/license/">license guide</Link> and the full
+          license supplied with the source you use.
         </p>
         <h2>Service integrations</h2>
         <p>
-          Template setup may require your own hosting, account, email, analytics
-          or payment providers. Those services and their costs are not included
-          unless explicitly stated.
+          Your project may require its own hosting or third-party services.
+          Installing a component does not provide those services or cover their
+          costs. External websites have their own terms and policies.
         </p>
-        <h2>Purchase support</h2>
+        <h2>Example content</h2>
         <p>
-          The live store will provide a support contact, refund terms and seller
-          details before accepting orders. Applicable statutory consumer rights
-          remain unaffected.
+          Replace fictional demonstration copy, prices, links and testimonials
+          before publishing your own website. The free library does not collect
+          payments or sell services through its example components.
         </p>
       </main>
     </Shell>

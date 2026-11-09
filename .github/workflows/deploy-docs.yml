@@ -30,6 +30,8 @@ jobs:
         run: pnpm audit --audit-level=low
       - name: Build packages and static product site
         run: pnpm build
+      - name: Verify static page SEO and crawlable navigation
+        run: pnpm seo:check
       - name: Typecheck all packages and applications
         run: pnpm typecheck
       - name: Verify catalog, free registry and MCP boundary

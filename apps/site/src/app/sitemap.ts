@@ -1,24 +1,25 @@
 import type { MetadataRoute } from "next";
-import { components, categories, templates, siteUrl } from "@/lib/catalog";
+import { components, categories, templates } from "@/lib/catalog";
+import { source } from "@/lib/source";
+import { blogSource } from "@/lib/blog";
+import { canonicalUrl, routeSegment } from "@/lib/seo";
+import { PRO_PUBLISHED } from "../../../../catalog/publication.mjs";
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",
     "/components/",
-    "/templates/",
-    "/docs/",
-    "/docs/installation/",
-    "/docs/license/",
-    "/docs/free-and-pro/",
-    "/docs/accessibility/",
-    "/docs/agents/",
+    ...(PRO_PUBLISHED ? ["/templates/"] : []),
+    "/blog/",
+    ...blogSource.getPages().map(page => page.url),
+    ...source.getPages().map(page => page.url),
     "/privacy/",
     "/terms/",
     ...categories.map(
-      (x) => "/" + x.toLowerCase().replace(/[^a-z0-9]+/g, "-") + "/",
+      (x) => "/" + routeSegment(x) + "/",
     ),
-    ...components.map((x) => x.path + "/"),
+    ...components.filter(x => x.visible).map((x) => x.path + "/"),
     ...templates.map((x) => "/templates/" + x.id + "/"),
   ];
-  return [...new Set(paths)].map((path) => ({ url: siteUrl + path }));
+  return [...new Set(paths.map(canonicalUrl))].map(url => ({ url }));
 }
