@@ -55,6 +55,10 @@ if (PRO_PUBLISHED) await cp(
   resolve(publicDir, "templates/thumbnails"),
   { recursive: true },
 );
+execFileSync("pnpm", ["--filter", "@vfx-ui/react...", "run", "build"], {
+  cwd: root,
+  stdio: "inherit",
+});
 execFileSync("pnpm", ["--filter", "@vfx-ui/preview", "build"], {
   cwd: root,
   stdio: "inherit",
